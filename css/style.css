@@ -8,6 +8,7 @@
  */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,800);
 @import url(https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
 html {
   line-height: 1.15;
   /* 1 */
@@ -402,7 +403,9 @@ body {
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   margin: .5rem 0 1.5rem;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif; }
+  /*font-family: "Open Sans", Helvetica, Arial, sans-serif;*/
+  font-family: 'Jeju Gothic', sans-serif;
+ }
 
 h1, .h1 {
   font-size: 2em;
@@ -492,7 +495,8 @@ BUTTON DEFAULTS
   background-color: seagreen;
   display: inline-block;
   position: relative;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  /*font-family: "Open Sans", Helvetica, Arial, sans-serif;*/
+  font-family: 'Jeju Gothic', sans-serif;
   text-decoration: none;
   color: #fff;
   font-size: 1em;
@@ -676,7 +680,8 @@ html {
   box-sizing: inherit; }
 
 body {
-  font-family: "PT Serif", Georgia, Times, serif;
+  /*font-family: "PT Serif", Georgia, Times, serif;*/
+  font-family: 'Jeju Gothic', sans-serif;
   line-height: 1.75;
   font-size: 112.5%;
   color: #111;
@@ -774,7 +779,7 @@ LIST STYLING
   margin-left: 0; }
 
 dt {
-  font-weight: bold; }
+  font-weight: normal; }
 
 dd {
   margin: 0 0 1.5rem; }
@@ -816,8 +821,9 @@ HEADER STYLING
     padding-left: 2rem;
     font-size: 1em;
     line-height: 3em;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    font-weight: 800;
+    /*font-family: "Open Sans", Helvetica, Arial, sans-serif;*/
+    font-family: 'Jeju Gothic', sans-serif;
+    font-weight: 300;
     text-transform: uppercase; }
     .header h1 a {
       color: white;
@@ -859,8 +865,9 @@ POST STYLING
 .post .meta {
   text-align: center;
   color: gray;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  font-weight: 300; }
+  /*font-family: "Open Sans", Helvetica, Arial, sans-serif;*/
+  font-family: 'Jeju Gothic', sans-serif;
+  font-weight: 100; }
 
 .post figure {
   margin: 3rem 0; }
@@ -903,8 +910,9 @@ POST NAV STYLING
     height: 5rem;
     overflow: hidden;
     position: relative;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    font-weight: 800;
+    /*font-family: "Open Sans", Helvetica, Arial, sans-serif;*/
+    font-family: 'Jeju Gothic', sans-serif;
+    font-weight: 100;
     font-size: .9em;
     text-transform: uppercase;
     text-align: center; }
@@ -1005,8 +1013,9 @@ POST LIST STYLING
       text-decoration: underline; }
   .posts li .date {
     color: gray;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    font-weight: 300;
+    /*font-family: "Open Sans", Helvetica, Arial, sans-serif;*/
+    font-family: 'Jeju Gothic', sans-serif;
+    font-weight: 100;
     font-size: .8em; }
   .posts li h3 {
     margin: 0 0 .5em; }

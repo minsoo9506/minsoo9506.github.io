@@ -11,9 +11,10 @@ layout: default
   <p class="meta">{{ page.date | date: '%B %d, %Y' }} | <span class="time">{{ page.content | number_of_words | divided_by:180 }}</span> Minute Read</p>
   
   {{ content }}
-
+  {%- include mathjax.html -%}
   <!-- POST NAVIGATION -->
   <div class="postNav clearfix">
+    {%- include mathjax.html -%}
     {%- if page.previous.url -%} 
       <a class="prev{% if page.previous.image %} image{% endif %}" href="{{ page.previous.url | prepend: site.baseurl }}"><span>&laquo;&nbsp;{{ page.previous.title }}</span>
       {%- if page.previous.image -%} 

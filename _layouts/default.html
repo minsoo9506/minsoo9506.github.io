@@ -9,10 +9,12 @@
 <body>
 
    {%- include header.html -%}
+   {%- include mathjax.html -%}
 
    <div class="content">
       <div class="container">
          {{ content }}
+         {%- include mathjax.html -%}
       </div>
    </div><!-- end .content -->
 
