@@ -97,9 +97,9 @@ a {
 abbr[title] {
   border-bottom: none;
   /* 1 */
-  text-decoration: underline;
+  /*text-decoration: underline;
   /* 2 */
-  text-decoration: underline dotted;
+  /*text-decoration: underline dotted;
   /* 2 */ }
 
 /**
@@ -512,7 +512,7 @@ BUTTON DEFAULTS
   .button:hover, .button-secondary:hover, .button-tertiary:hover, .button__outline:hover, .button:focus, .button-secondary:focus, .button-tertiary:focus, .button__outline:focus {
     color: #fff;
     text-decoration: none;
-    background-color: #21653f; }
+    background-color: #519d95/*#21653f*/; }
   .button:active, .button-secondary:active, .button-tertiary:active, .button__outline:active {
     top: 1px; }
 
@@ -769,7 +769,7 @@ MENU STYLING
   transition: all 0.2s ease-in-out; }
   .nav-toggle:hover {
     color: white;
-    background-color: #21653f; }
+    background-color: #519d95/*#21653f*/; }
 
 /***************
 LIST STYLING
@@ -876,7 +876,7 @@ POST STYLING
     text-align: center;
     font-size: .9em;
     font-style: italic;
-    color: #5e5e5e; }
+    color: #519d95/*#5e5e5e*/; }
   .post figure img {
     margin: 0 auto;
     display: block; }
