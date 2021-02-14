@@ -18,9 +18,16 @@ title: Category
 - [[PRML] Chapter4 - Linear Models For Classification (3)](https://minsoo9506.github.io/blog/PRML-Chapter04-3/)
 
 <center><h2>Statistical Learning</h2></center>
+- [Introduction to Boosting](https://minsoo9506.github.io/blog/IntroductionToBoosting/)
+
+<center><h2>Deep Learning</h2></center>
+- [[Generative Model] Introduction to Generative Models](https://minsoo9506.github.io/blog/IntroductionToGenerativeModels/)
+- [[Generative Model] Variational Inference](https://minsoo9506.github.io/blog/VariationalInference/)
 
 <center><h2>Development</h2></center>
 
 <center><h2>Computer Science</h2></center>
+- [[Data Structure] ]()
+- [[Algorithm]]()
 
 <center><h2>ETC</h2></center>
