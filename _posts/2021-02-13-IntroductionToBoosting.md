@@ -82,7 +82,7 @@ $$\arg\min_{\Theta,\textbf{x}} \sum_{i=1}^{N}L(y_i, \hat{F}_H(x_i))\\=\arg\min_{
 ## Gradient Boosting Machine
 - Intialize $\hat{f}_0 (\textbf{x}) = 0$
 - for $h=1$ to $H$ do
-  - Compute gradient $\textbf{g}^{(t)} (\textbf{x}) = \{ g_j^{(t)}(\textbf{x}) \} = \{ [ \frac{\partial L(y, f(\textbf{x}))}{\partial f(\textbf{x})}] _{f(\textbf{x}) = \hat{F} _{h-1} (\textbf{x})} \}$
+  - Compute gradient $\textbf{g}^{(t)} (\textbf{x}) = \{ g_j^{(t)}(\textbf{x}) \} = \{ [ \frac{\partial L(y, f(\textbf{x}))}{\partial f(\textbf{x})}] _{f(\textbf{x}) = \hat{f} _{h-1} (\textbf{x})} \}$
   - Compute $\theta_h = \arg\min_{\theta} \sum_{i=1}^N (-\textbf{g}^{(t)}(\textbf{x}_i) - k(\textbf{x}_i;\theta))^2$
   - Compute $\beta_h = \arg\min_{\beta} \sum_{i=1}^N L(y_i, \hat{f}_{h-1} + \beta k(\textbf{x}_i;\theta_h))$
   - Set $\hat{f} _h(\textbf{x}) =  \hat{f} _{h-1} + \beta_h k(\textbf{x};\theta_h)$
@@ -100,6 +100,8 @@ $$ \text{loss}\;L(y,f) = \frac{1}{2}(y-f)^2 \rightarrow \frac{\partial L}{\parti
 - $F_1(\textbf{x}) = F_0(\textbf{x})+\beta_1 k(\textbf{x};\theta_1)$
 
 $F_2(\textbf{x})$부터 위의 과정을 똑같이 반복하면 된다.
+
+실제 데이터와 tree를 이용한 model에 대해서는 해당 [링크](https://www.youtube.com/watch?v=2xudPOBz-vs)를 참고하면 될 것이다. 최고의 설명!
 
 ## Convergence of Boosting
 시간이 없어서 설명은 나중에 정리하고자 한다 :)
