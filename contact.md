@@ -16,18 +16,25 @@ title: Category
 - [[PRML] Chapter4 - Linear Models For Classification (1)](https://minsoo9506.github.io/blog/PRML-Chapter04-1/)
 - [[PRML] Chapter4 - Linear Models For Classification (2)](https://minsoo9506.github.io/blog/PRML-Chapter04-2/)
 - [[PRML] Chapter4 - Linear Models For Classification (3)](https://minsoo9506.github.io/blog/PRML-Chapter04-3/)
+- [[PRML] Chapter6 - Kernel Methods (1)](https://minsoo9506.github.io/blog/PRML-Chapter06-1/)
+- [[PRML] Chapter6 - Kernel Methods (2)](https://minsoo9506.github.io/blog/PRML-Chapter06-2/)
+- [[PRML] Chapter7 - Sparse Kernel Machine](https://minsoo9506.github.io/blog/PRML-Chapter07/)
+- [[PRML] Chapter9 - Mixture Models and EM](https://minsoo9506.github.io/blog/PRML-Chapter09/)
+- [[PRML] Chapter11 - Sampling Method](https://minsoo9506.github.io/blog/PRML-Chapter11/)
+- [[PRML] Chapter14 - Combining Models](https://minsoo9506.github.io/blog/PRML-Chapter14/)
 
 <center><h2>Statistical Learning</h2></center>
 - [Introduction to Boosting](https://minsoo9506.github.io/blog/IntroductionToBoosting/)
 
+<center><h2>Anomaly Detection</h2></center>
+
 <center><h2>Deep Learning</h2></center>
 - [[Generative Model] Introduction to Generative Models](https://minsoo9506.github.io/blog/IntroductionToGenerativeModels/)
 - [[Generative Model] Variational Inference](https://minsoo9506.github.io/blog/VariationalInference/)
-
-<center><h2>Development</h2></center>
+- [[Generative Model] GAN](https://minsoo9506.github.io/blog/GAN/)
 
 <center><h2>Computer Science</h2></center>
 - [[Data Structure] ]()
 - [[Algorithm]]()
 
-<center><h2>ETC</h2></center>
+<center><h2>Development</h2></center>

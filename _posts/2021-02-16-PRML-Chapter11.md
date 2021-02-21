@@ -5,7 +5,7 @@ date: 2021-02-16
 title: "[PRML] Chapter11 - Sampling Method"
 ---
 
-distribution을 구하는 sampling method에 대해 정리해보았습니다.
+distribution을 구하는 sampling method에 대해 정리하였다.
 
 probabilistic model에서 exact inference는 intractable한 경우가 많아서 approximation한다. 이번에는 approximate inference 방법 중 *Monte carlo* 라고 알려진 numerical sampling에 기반을 하는 방법을 공부할 것이다.
 
