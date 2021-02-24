@@ -19,9 +19,11 @@ title: Category
 - [[PRML] Chapter6 - Kernel Methods (1)](https://minsoo9506.github.io/blog/PRML-Chapter06-1/)
 - [[PRML] Chapter6 - Kernel Methods (2)](https://minsoo9506.github.io/blog/PRML-Chapter06-2/)
 - [[PRML] Chapter7 - Sparse Kernel Machine](https://minsoo9506.github.io/blog/PRML-Chapter07/)
+- [[PRML] Chapter8 - Graphical Models](https://minsoo9506.github.io/blog/PRML-Chapter08-1/)
 - [[PRML] Chapter9 - Mixture Models and EM](https://minsoo9506.github.io/blog/PRML-Chapter09/)
 - [[PRML] Chapter11 - Sampling Method](https://minsoo9506.github.io/blog/PRML-Chapter11/)
 - [[PRML] Chapter14 - Combining Models](https://minsoo9506.github.io/blog/PRML-Chapter14/)
+
 
 <center><h2>Statistical Learning</h2></center>
 - [Introduction to Boosting](https://minsoo9506.github.io/blog/IntroductionToBoosting/)
@@ -35,6 +37,5 @@ title: Category
 
 <center><h2>Computer Science</h2></center>
 - [[Data Structure] ]()
-- [[Algorithm]]()
 
 <center><h2>Development</h2></center>

@@ -10,14 +10,14 @@ title: About Me
 	<p>머신러닝과 관련한 공부를 하고 있는 석사생입니다. 공부하면서 조금씩 정리한 내용을 블로그에 올리고 있습니다.</p>
 </div>
 
-### Academin Record
+### Academic Record
 - 2014.03~2020.08 `Department of Applied Statistics, Yonsei University` (Bachelor's degree)
 - 2020.08~        `Department of Statistics and Data Science, Yonsei University` (Master's degree)
 
 ### Work Experience
 - 2018.09~2018.12 `SKT` T-worx Intern (Research, data analysis)
 - 2019.06~2020.06 `DS school` 데이터사이언스 입문반 조교, R&D
-- 2021.02~2021.04 `Fastcampus` PRML 완독 온라인완주반 조교
+- 2021.02~2021.04 `Fastcampus` PRML 완독 온라인완주반 조교 (잠시중단)
 
 ### Project
 - 2018.06 연세대학교 빅데이터 학술동아리 YBIGTA conference
@@ -34,13 +34,31 @@ title: About Me
   - 설문조사 데이터 Entity embedding을 통한 고객 세분화, 타겟팅,군집화
   - 앱 데이터와 소비 데이터의 data integration 
 
-### Skills
-- Python, Javascript
-- Pytorch
-- Node.js
-
-### Interest
+### Studying
 - Probabilistic machine learning, Statistical learning
-- Imbalance learning, Deep anomaly detection
-- Bayesian Inference
+- Imbalance learning, Anomaly detection
 - NLP
+- See my github!
+
+### Want to study someday :)
+- Bayesian neural network
+- Causal inference
+
+### Can do
+<p align='center'>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=PyTorch&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>
+</p>
+
+- Have experience
+<p align='center'> 
+  <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=C%2B%2B&logoColor=white"/>
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=Amazon AWS&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Apache Spark-E25A1C?style=flat-square&logo=Apache Spark&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Flask-000000?style=flat-square&logo=Flask&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/>
+</p>
