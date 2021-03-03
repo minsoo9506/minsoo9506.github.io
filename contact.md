@@ -38,6 +38,6 @@ title: Category
 - [[Generative Model] GAN](https://minsoo9506.github.io/blog/GAN/)
 
 <center><h2>Computer Science</h2></center>
-- [[Data Structure] ]()
+- [[자료구조] 배열](https://minsoo9506.github.io/blog/DS-1/)
 
 <center><h2>Development</h2></center>
