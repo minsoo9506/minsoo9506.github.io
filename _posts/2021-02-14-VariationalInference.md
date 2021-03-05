@@ -38,7 +38,7 @@ $$\log p(\textbf{x}) = \text{ELBO} + D_{KL}[q(\textbf{z})|| p(\textbf{z}|\textbf
 
 ELBO를 조금 더 알아보자.
 
-$$L(q) = E_\textbf{z} [\log p(\textbf{z},\textbf{x})]-E_\textbf{z}[\log q(\textbf{z})] \\ = E_\textbf{z} [\log p(\textbf{x}|\textbf{z})] + E_\textbf{z} [\log p(\textbf{z})]-E_\textbf{z}[\log q(\textbf{z})] \\ =E_\textbf{z} [\log p(\textbf{x}|\textbf{z})]-D_{KL}[q(\textbf{z}|| p(\textbf{z}))]$$
+$$L(q) = E_\textbf{z} [\log p(\textbf{z},\textbf{x})]-E_\textbf{z}[\log q(\textbf{z})] \\ = E_\textbf{z} [\log p(\textbf{x}|\textbf{z})] + E_\textbf{z} [\log p(\textbf{z})]-E_\textbf{z}[\log q(\textbf{z})] \\ =E_\textbf{z} [\log p(\textbf{x}|\textbf{z})]-D_{KL}[q(\textbf{z})|| p(\textbf{z})]$$
 
 최종식에서
 - 앞부분은 expected log likelihood of the data

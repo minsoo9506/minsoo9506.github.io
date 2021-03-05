@@ -35,14 +35,14 @@ title: About Me
   - 앱 데이터와 소비 데이터의 data integration 
 
 ### Studying
-- Probabilistic machine learning, Statistical learning
+- Probabilistic machine learning
 - Imbalance learning, Anomaly detection
-- NLP
+- Causal inference
 - See my github!
 
 ### Want to study someday :)
+- Statistical learning
 - Bayesian neural network
-- Causal inference
 
 ### Can do
 <p align='center'>

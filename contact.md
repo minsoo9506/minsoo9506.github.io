@@ -22,6 +22,8 @@ title: Category
 - [[PRML] Chapter8 - Graphical Models (1)](https://minsoo9506.github.io/blog/PRML-Chapter08-1/)
 - [[PRML] Chapter8 - Graphical Models (2)](https://minsoo9506.github.io/blog/PRML-Chapter08-2/)
 - [[PRML] Chapter9 - Mixture Models and EM](https://minsoo9506.github.io/blog/PRML-Chapter09/)
+- [[PRML] Chapter10 - Approximate Inference (1)](https://minsoo9506.github.io/blog/PRML-Chapter10-1/)
+- [[PRML] Chapter10 - Approximate Inference (2)](https://minsoo9506.github.io/blog/PRML-Chapter10-2/)
 - [[PRML] Chapter11 - Sampling Method](https://minsoo9506.github.io/blog/PRML-Chapter11/)
 - [[PRML] Chapter14 - Combining Models](https://minsoo9506.github.io/blog/PRML-Chapter14/)
 
@@ -32,6 +34,9 @@ title: Category
 
 <center><h2>Anomaly Detection</h2></center>
 
+<center><h2>Representation Learning</h2></center>
+- [Network Embedding]
+
 <center><h2>Deep Learning</h2></center>
 - [[Generative Model] Introduction to Generative Models](https://minsoo9506.github.io/blog/IntroductionToGenerativeModels/)
 - [[Generative Model] Variational Inference](https://minsoo9506.github.io/blog/VariationalInference/)
@@ -40,4 +45,4 @@ title: Category
 <center><h2>Computer Science</h2></center>
 - [[자료구조] 배열](https://minsoo9506.github.io/blog/DS-1/)
 
-<center><h2>Development</h2></center>
+<!-- <center><h2>Development</h2></center> -->
