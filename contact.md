@@ -44,5 +44,6 @@ title: Category
 
 <center><h2>Computer Science</h2></center>
 - [[자료구조] 배열](https://minsoo9506.github.io/blog/DS-1/)
+- [[자료구조] 연결리스트](https://minsoo9506.github.io/blog/DS-2/)
 
 <!-- <center><h2>Development</h2></center> -->
