@@ -13,6 +13,7 @@ title: About Me
 ### Academic Record
 - 2014.03~2020.08 `Department of Applied Statistics, Yonsei University` (Bachelor's degree)
 - 2020.08~        `Department of Statistics and Data Science, Yonsei University` (Master's degree)
+- 연세대학교 빅데이터 학술동아리 YBIGTA 디자인팀, 데이터엔지니어링팀 활동
 
 ### Work Experience
 - 2018.09~2018.12 `SKT` T-worx Intern (Research, data analysis)
@@ -34,10 +35,14 @@ title: About Me
   - 설문조사 데이터 Entity embedding을 통한 고객 세분화, 타겟팅,군집화
   - 앱 데이터와 소비 데이터의 data integration 
 
-### Studying
+### Studied
 - Probabilistic machine learning
+- NLP
+
+### Studying
 - Imbalance learning, Anomaly detection
 - Causal inference
+- Network Embedding
 - See my github!
 
 ### Want to study someday :)
@@ -49,7 +54,6 @@ title: About Me
   <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/>
   <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=PyTorch&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>
 </p>
 
 - Have experience
@@ -58,6 +62,7 @@ title: About Me
   <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=Amazon AWS&logoColor=white"/>
   <img src="https://img.shields.io/badge/Apache Spark-E25A1C?style=flat-square&logo=Apache Spark&logoColor=white"/>
   <img src="https://img.shields.io/badge/Flask-000000?style=flat-square&logo=Flask&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>
   <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white"/>
   <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/>
