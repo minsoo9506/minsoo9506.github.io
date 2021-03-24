@@ -35,15 +35,22 @@ title: Category
 <center><h2>Anomaly Detection</h2></center>
 
 <center><h2>Representation Learning</h2></center>
-- [Network Embedding]
+- [Network Embedding] DeepWalk
+- [Network Embedding] LINE
+- [Network Embedding] node2vec
 
 <center><h2>Deep Learning</h2></center>
 - [[Generative Model] Introduction to Generative Models](https://minsoo9506.github.io/blog/IntroductionToGenerativeModels/)
 - [[Generative Model] Variational Inference](https://minsoo9506.github.io/blog/VariationalInference/)
 - [[Generative Model] GAN](https://minsoo9506.github.io/blog/GAN/)
+- [[Generative Model] LSGAN](https://minsoo9506.github.io/blog/LSGAN/)
 
 <center><h2>Computer Science</h2></center>
 - [[자료구조] 배열](https://minsoo9506.github.io/blog/DS-1/)
 - [[자료구조] 연결리스트](https://minsoo9506.github.io/blog/DS-2/)
+- [[자료구조] 스택, 큐](https://minsoo9506.github.io/blog/DS-3/)
+- [[자료구조] 데크, 우선순위 큐](https://minsoo9506.github.io/blog/DS-4/)
+- [[자료구조] 해시 테이블](https://minsoo9506.github.io/blog/DS-5/)
+- [[자료구조] 그래프](https://minsoo9506.github.io/blog/DS-6/)
 
 <!-- <center><h2>Development</h2></center> -->
