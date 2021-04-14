@@ -41,12 +41,12 @@ title: About Me
 
 ### Studying
 - Imbalance learning, Anomaly detection
-- Causal inference
+- Statistical learning
 - Network Embedding
 - See my github!
 
 ### Want to study someday :)
-- Statistical learning
+- Causal inference
 - Bayesian neural network
 
 ### Can do

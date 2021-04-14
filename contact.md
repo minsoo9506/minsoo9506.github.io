@@ -52,5 +52,8 @@ title: Category
 - [[자료구조] 데크, 우선순위 큐](https://minsoo9506.github.io/blog/DS-4/)
 - [[자료구조] 해시 테이블](https://minsoo9506.github.io/blog/DS-5/)
 - [[자료구조] 그래프](https://minsoo9506.github.io/blog/DS-6/)
+- [[자료구조] 트리](https://minsoo9506.github.io/blog/DS-7/)
+- [[자료구조] 힙](https://minsoo9506.github.io/blog/DS-8/)
+- [[자료구조] 트라이](https://minsoo9506.github.io/blog/DS-9/)
 
 <!-- <center><h2>Development</h2></center> -->
