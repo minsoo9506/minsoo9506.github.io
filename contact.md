@@ -38,12 +38,14 @@ title: Category
 - [Network Embedding] DeepWalk
 - [Network Embedding] LINE
 - [Network Embedding] node2vec
+- [Time Series Embedding] Time2vec
 
 <center><h2>Deep Learning</h2></center>
 - [[Generative Model] Introduction to Generative Models](https://minsoo9506.github.io/blog/IntroductionToGenerativeModels/)
 - [[Generative Model] Variational Inference](https://minsoo9506.github.io/blog/VariationalInference/)
 - [[Generative Model] GAN](https://minsoo9506.github.io/blog/GAN/)
 - [[Generative Model] LSGAN](https://minsoo9506.github.io/blog/LSGAN/)
+- [[Generative Model] TimeGAN]
 
 <center><h2>Computer Science</h2></center>
 - [[자료구조] 배열](https://minsoo9506.github.io/blog/DS-1/)
@@ -55,5 +57,7 @@ title: Category
 - [[자료구조] 트리](https://minsoo9506.github.io/blog/DS-7/)
 - [[자료구조] 힙](https://minsoo9506.github.io/blog/DS-8/)
 - [[자료구조] 트라이](https://minsoo9506.github.io/blog/DS-9/)
+- [[알고리즘] Recursion의 개념과 기본 예제들](https://minsoo9506.github.io/blog/Recursion(1)/)
+- [[알고리즘] Recursion의 응용](https://minsoo9506.github.io/blog/Recursion(2)/)
 
 <!-- <center><h2>Development</h2></center> -->
