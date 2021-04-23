@@ -45,7 +45,7 @@ title: Category
 - [[Generative Model] Variational Inference](https://minsoo9506.github.io/blog/VariationalInference/)
 - [[Generative Model] GAN](https://minsoo9506.github.io/blog/GAN/)
 - [[Generative Model] LSGAN](https://minsoo9506.github.io/blog/LSGAN/)
-- [[Generative Model] TimeGAN]
+- [[Generative Model] TimeGAN]()
 
 <center><h2>Computer Science</h2></center>
 - [[자료구조] 배열](https://minsoo9506.github.io/blog/DS-1/)
@@ -60,5 +60,7 @@ title: Category
 - [[알고리즘] Recursion의 개념과 기본 예제들](https://minsoo9506.github.io/blog/Recursion(1)/)
 - [[알고리즘] Recursion의 응용](https://minsoo9506.github.io/blog/Recursion(2)/)
 - [[알고리즘] 멱집합, 조합](https://minsoo9506.github.io/blog/Recursion(3)/)
+- [[알고리즘] 정렬 알고리즘 (1)](https://minsoo9506.github.io/blog/sort(1)/)
+- [[알고리즘] 정렬 알고리즘 (2)](https://minsoo9506.github.io/blog/sort(2)/)
 
 <!-- <center><h2>Development</h2></center> -->
