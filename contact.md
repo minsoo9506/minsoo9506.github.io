@@ -27,10 +27,9 @@ title: Category
 - [[PRML] Chapter11 - Sampling Method](https://minsoo9506.github.io/blog/PRML-Chapter11/)
 - [[PRML] Chapter14 - Combining Models](https://minsoo9506.github.io/blog/PRML-Chapter14/)
 
-<!--
 <center><h2>Statistical Learning</h2></center>
 - [Introduction to Boosting](https://minsoo9506.github.io/blog/IntroductionToBoosting/)
--->
+- [[ESL] Chapter2 - Overview of Supervised Learning]()
 
 <center><h2>Anomaly Detection</h2></center>
 
@@ -62,5 +61,9 @@ title: Category
 - [[알고리즘] 멱집합, 조합](https://minsoo9506.github.io/blog/Recursion(3)/)
 - [[알고리즘] 정렬 알고리즘 (1)](https://minsoo9506.github.io/blog/sort(1)/)
 - [[알고리즘] 정렬 알고리즘 (2)](https://minsoo9506.github.io/blog/sort(2)/)
+- [[알고리즘] Heap sort](https://minsoo9506.github.io/blog/sort(3)/)
+- [[알고리즘] 힙의 응용](https://minsoo9506.github.io/blog/sort(4)/)
+- [[알고리즘] 정렬의 lower bound](https://minsoo9506.github.io/blog/sort(5)/)
+- [[알고리즘] Sort in linear time](https://minsoo9506.github.io/blog/sort(6)/)
 
 <!-- <center><h2>Development</h2></center> -->
