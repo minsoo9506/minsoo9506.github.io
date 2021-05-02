@@ -65,5 +65,6 @@ title: Category
 - [[알고리즘] 힙의 응용](https://minsoo9506.github.io/blog/sort(4)/)
 - [[알고리즘] 정렬의 lower bound](https://minsoo9506.github.io/blog/sort(5)/)
 - [[알고리즘] Sort in linear time](https://minsoo9506.github.io/blog/sort(6)/)
-
+- [[알고리즘] 트리와 이진트리](https://minsoo9506.github.io/blog/bst(1)/)
+- [[알고리즘] 이진검색트리(BST)](https://minsoo9506.github.io/blog/bst(2)/)
 <!-- <center><h2>Development</h2></center> -->
