@@ -31,20 +31,19 @@ title: Category
 - [Introduction to Boosting](https://minsoo9506.github.io/blog/IntroductionToBoosting/)
 - [[ESL] Chapter2 - Overview of Supervised Learning]()
 
-<center><h2>Anomaly Detection</h2></center>
-
 <center><h2>Representation Learning</h2></center>
 - [Network Embedding] DeepWalk
 - [Network Embedding] LINE
 - [Network Embedding] node2vec
 - [Time Series Embedding] Time2vec
+- [Category Embedding] Entity Embedding
 
 <center><h2>Deep Learning</h2></center>
 - [[Generative Model] Introduction to Generative Models](https://minsoo9506.github.io/blog/IntroductionToGenerativeModels/)
 - [[Generative Model] Variational Inference](https://minsoo9506.github.io/blog/VariationalInference/)
 - [[Generative Model] GAN](https://minsoo9506.github.io/blog/GAN/)
 - [[Generative Model] LSGAN](https://minsoo9506.github.io/blog/LSGAN/)
-- [[Generative Model] TimeGAN]()
+- [[Generative Model] TimeGAN](https://minsoo9506.github.io/blog/TimeGAN/)
 
 <center><h2>Computer Science</h2></center>
 - [[자료구조] 배열](https://minsoo9506.github.io/blog/DS-1/)
@@ -67,4 +66,7 @@ title: Category
 - [[알고리즘] Sort in linear time](https://minsoo9506.github.io/blog/sort(6)/)
 - [[알고리즘] 트리와 이진트리](https://minsoo9506.github.io/blog/bst(1)/)
 - [[알고리즘] 이진검색트리(BST)](https://minsoo9506.github.io/blog/bst(2)/)
-<!-- <center><h2>Development</h2></center> -->
+- [[알고리즘] Hash](https://minsoo9506.github.io/blog/hash/)
+
+<center><h2>Anomaly Detection</h2></center>
+<center><h2>Time Series</h2></center>
