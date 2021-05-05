@@ -27,38 +27,30 @@ title: About Me
 
 ### Project
 - 2018.01~2018.12 연세대학교 빅데이터 학술동아리 YBIGTA conference
-  - 국민 관심사 텍스트 분석
-    - [발표자료](https://github.com/minsoo9506/project/blob/master/ybigta2018%EB%85%846%EC%9B%94_%EC%BB%A8%ED%8D%BC%EB%9F%B0%EC%8A%A4/%EB%84%88%EC%9D%98%EB%AA%A9%EC%86%8C%EB%A6%AC%EA%B0%80%EB%B3%B4%EC%97%AC_ppt.pdf)
+  - [국민 관심사 텍스트 분석](https://github.com/minsoo9506/project/blob/master/ybigta2018%EB%85%846%EC%9B%94_%EC%BB%A8%ED%8D%BC%EB%9F%B0%EC%8A%A4/%EB%84%88%EC%9D%98%EB%AA%A9%EC%86%8C%EB%A6%AC%EA%B0%80%EB%B3%B4%EC%97%AC_ppt.pdf)
     - 인터넷 뉴스 기사 제목 빈도 분석
     - 댓글 분석, 감성분석
   - 국회의원 발의안 텍스트 분석
     - 국회의원 발의안 데이터를 통해 국회의원 네트워크 분석
     - 발의안 텍스트 분석을 통해 보수/진보 점수 추출
-    - 
-- 2018 공공 빅데이터 분석 공모전 (시각화 부문 대상 입상, 행정안전부 장관상)
-  - [발표자료](https://drive.google.com/open?id=1CSgT-OwX_oP_lAygaoi4Bu6WJI6t28V1)
+
+- [2018 공공 빅데이터 분석 공모전 (시각화 부문 대상 입상, 행정안전부 장관상)](https://drive.google.com/open?id=1CSgT-OwX_oP_lAygaoi4Bu6WJI6t28V1)
   - 전국 폐교 관련 시각화 및 해결방안 제안
 
-- 2018 연세대학교 상경대학 주최 빅데이터 분석 경진대회 (우수상 입상)
-  - [발표자료](https://drive.google.com/file/d/1Jptl7U675RI-5lOvm-FL2cKdf2GoFmo5/view?usp=sharing)
-    - 광고회사 '프레인글로벌'의 수주관련 데이터 분석
-    - 텍스트 데이터 분석
-      - SNA 시각화
-      - 용어들을 이용한 회귀분석을 통해 키워드 추출
-    - 텍스트 데이터를 통한 수주 예측 모델링, 군집화
-      - word2vec, TF-IDF,  AE, clustering, 예측모델
+- [2018 연세대학교 상경대학 주최 빅데이터 분석 경진대회 (우수상 입상)](https://drive.google.com/file/d/1Jptl7U675RI-5lOvm-FL2cKdf2GoFmo5/view?usp=sharing)
+  - 광고회사 '프레인글로벌'의 수주관련 데이터 분석
+  - 텍스트 데이터를 이용한 SNA 시각화, 회귀분석을 통해 키워드 추출
+  - 텍스트 데이터를 통한 수주 예측 모델링, 군집화
 
-- 2018 L-point 공모전
-  - [발표자료](https://drive.google.com/file/d/1XYQHvzhnY139RuBtn2kWDY0e2FcBC582/view?usp=sharing)
+- [2018 L-point 공모전](https://drive.google.com/file/d/1XYQHvzhnY139RuBtn2kWDY0e2FcBC582/view?usp=sharing)
   - 상품 선호지수 개발
-  - 온라인 결제 데이터를 이용한 트랜드 예측
+  - 장바구니 분석
+  - 온라인 결제 데이터를 이용한 트랜드 예측 
     - 매출 시계열 예측 (ARIMA, Linear Regression)
     - 시간 가중치를 둔 워드클라우드
-  - 장바구니 분석
 
-- 2019 연세대학교 상경대학 주최 엠브레인 패널 빅데이터 경진대회
-  - [발표자료](https://drive.google.com/file/d/1D0_jCmcSim0IaMuvXH36Fue7OhlgzyeU/view?usp=sharing)
-  - 설문조사 데이터 Entity embedding을 통한 고객 세분화
+- [2019 연세대학교 상경대학 주최 엠브레인 패널 빅데이터 경진대회](https://drive.google.com/file/d/1D0_jCmcSim0IaMuvXH36Fue7OhlgzyeU/view?usp=sharing)
+  - 설문조사 데이터 Entity embedding을 이용한 고객 세분화
   - 앱 데이터와 소비 데이터의 data integration을 통한 소비자 타겟팅
   - 소비 데이터를 이용한 지역 구매 패턴 파악, 군집화
 
@@ -66,10 +58,10 @@ title: About Me
   - 입상보다 이론을 실제데이터에 적용해보는 공부
 
 ### Studied
+- NLP
 - machine learning fundamental
   - probabilistic machine learning
   - statistical learning
-- NLP
 
 ### Studying
 - imbalance learning, anomaly detection
