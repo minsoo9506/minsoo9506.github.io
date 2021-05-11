@@ -10,6 +10,8 @@ title: About Me
 	<p>머신러닝과 관련한 공부를 하고 있는 통계학과 석사생입니다. 공부하면서 정리한 내용을 블로그에 올리고 있습니다.</p>
 </div>
 
+- [My CV](https://docs.google.com/document/d/19HDMNOyUdaD3PHNhDLg_12NERmsZUl0n3j6bNFxz3q0/edit?usp=sharing)
+
 ### Academic Record
 - 2014.03~2020.08 `Department of Applied Statistics, Yonsei University` (Bachelor's degree)
   - GPA : 3.8 / 4.3
@@ -46,16 +48,17 @@ title: About Me
   - 상품 선호지수 개발
   - 장바구니 분석
   - 온라인 결제 데이터를 이용한 트랜드 예측 
-    - 매출 시계열 예측 (ARIMA, Linear Regression)
-    - 시간 가중치를 둔 워드클라우드
 
 - [2019 연세대학교 상경대학 주최 엠브레인 패널 빅데이터 경진대회](https://drive.google.com/file/d/1D0_jCmcSim0IaMuvXH36Fue7OhlgzyeU/view?usp=sharing)
   - 설문조사 데이터 Entity embedding을 이용한 고객 세분화
   - 앱 데이터와 소비 데이터의 data integration을 통한 소비자 타겟팅
   - 소비 데이터를 이용한 지역 구매 패턴 파악, 군집화
 
-- Kaggle, Dacon competition
-  - 입상보다 이론을 실제데이터에 적용해보는 공부
+- 개인 프로젝트 (진행중)
+  - kaggle, dacon
+  - 학교수업
+- 연구실 프로젝트 (진행중)
+  - 녹내장 진행속도 관련 분석 (성남 세브란스 병원)
 
 ### Studied
 - NLP
@@ -69,6 +72,7 @@ title: About Me
 
 ### Want to study someday :)
 - causal inference
+- ML production
 
 ### Can do
 <p align='center'>
