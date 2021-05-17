@@ -10,7 +10,7 @@ title: About Me
 	<p>머신러닝과 관련한 공부를 하고 있는 통계학과 석사생입니다. 공부하면서 정리한 내용을 블로그에 올리고 있습니다.</p>
 </div>
 
-- [My CV](https://docs.google.com/document/d/19HDMNOyUdaD3PHNhDLg_12NERmsZUl0n3j6bNFxz3q0/edit?usp=sharing)
+- [My CV](https://drive.google.com/file/d/1IN224DfqiSWF_tC30J9fuYPN2YoqKlLy/view?usp=sharing)
 
 ### Academic Record
 - 2014.03~2020.08 `Department of Applied Statistics, Yonsei University` (Bachelor's degree)
@@ -18,6 +18,7 @@ title: About Me
   - 전공GPA : 4.1 / 4.3
 - 2020.08~        `Department of Statistics and Data Science, Yonsei University` (Master's degree)
   - 머신러닝, 데이터마이닝 연구실
+  - 석사졸업논문 : Anomaly Detection with Deep Learning (준비중)
 - `연세대학교` 빅데이터 학술동아리 YBIGTA 디자인팀, 데이터엔지니어링팀 활동
   - 2018.01~2018.12 디자인팀 : 데이터 분석, 데이터 시각화, 머신러닝
   - 2020.06~2021.04 엔지니어링팀 : 하둡, 스파크 등 분산처리에 대한 공부 (이론 밎 간단한 실습)
@@ -36,7 +37,7 @@ title: About Me
     - 국회의원 발의안 데이터를 통해 국회의원 네트워크 분석
     - 발의안 텍스트 분석을 통해 보수/진보 점수 추출
 
-- [2018 공공 빅데이터 분석 공모전 (시각화 부문 대상 입상, 행정안전부 장관상)](https://drive.google.com/open?id=1CSgT-OwX_oP_lAygaoi4Bu6WJI6t28V1)
+- [2018 공공 빅데이터 분석 공모전 (시각화 부문 대상 입상, 행정안전부 장관상)](https://drive.google.com/file/d/1CSgT-OwX_oP_lAygaoi4Bu6WJI6t28V1/view?usp=sharing)
   - 전국 폐교 관련 시각화 및 해결방안 제안
 
 - [2018 연세대학교 상경대학 주최 빅데이터 분석 경진대회 (우수상 입상)](https://drive.google.com/file/d/1Jptl7U675RI-5lOvm-FL2cKdf2GoFmo5/view?usp=sharing)
@@ -49,7 +50,7 @@ title: About Me
   - 장바구니 분석
   - 온라인 결제 데이터를 이용한 트랜드 예측 
 
-- [2019 연세대학교 상경대학 주최 엠브레인 패널 빅데이터 경진대회](https://drive.google.com/file/d/1D0_jCmcSim0IaMuvXH36Fue7OhlgzyeU/view?usp=sharing)
+- [2019 연세대학교 상경대학 주최 엠브레인 패널 빅데이터 경진대회](https://drive.google.com/file/d/1D0_jCmcSim0IaMuvXH36Fue7OhlgzyeU/view?usp=sharing))
   - 설문조사 데이터 Entity embedding을 이용한 고객 세분화
   - 앱 데이터와 소비 데이터의 data integration을 통한 소비자 타겟팅
   - 소비 데이터를 이용한 지역 구매 패턴 파악, 군집화
