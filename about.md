@@ -33,9 +33,10 @@ title: About Me
   - [국민 관심사 텍스트 분석](https://github.com/minsoo9506/project/blob/master/ybigta2018%EB%85%846%EC%9B%94_%EC%BB%A8%ED%8D%BC%EB%9F%B0%EC%8A%A4/%EB%84%88%EC%9D%98%EB%AA%A9%EC%86%8C%EB%A6%AC%EA%B0%80%EB%B3%B4%EC%97%AC_ppt.pdf)
     - 인터넷 뉴스 기사 제목 빈도 분석
     - 댓글 분석, 감성분석
-  - 국회의원 발의안 텍스트 분석
-    - 국회의원 발의안 데이터를 통해 국회의원 네트워크 분석
-    - 발의안 텍스트 분석을 통해 보수/진보 점수 추출
+  - [국회의원 발의안 분석](https://drive.google.com/file/d/1a8RKxyJpqUV7tCD-qfCrYZ30UIL3bl4x/view?usp=sharing)
+    - 발의안 가결률분석
+    - 이념 성향 사전
+    - 국회의원 별 관심사 분석 및 네트워크 시각화
 
 - [2018 공공 빅데이터 분석 공모전 (시각화 부문 대상 입상, 행정안전부 장관상)](https://drive.google.com/file/d/1CSgT-OwX_oP_lAygaoi4Bu6WJI6t28V1/view?usp=sharing)
   - 전국 폐교 관련 시각화 및 해결방안 제안
