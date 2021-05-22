@@ -62,6 +62,9 @@ title: Category
 - [[알고리즘] 그래프](https://minsoo9506.github.io/blog/graph/)
 - [[알고리즘] 그래프 순회](https://minsoo9506.github.io/blog/graph/)
 - [[알고리즘] 최소신장트리(MST)](https://minsoo9506.github.io/blog/MST/)
+- [[알고리즘] 최단경로](https://minsoo9506.github.io/blog/minPath/)
+- [[알고리즘] 동적계획법](https://minsoo9506.github.io/blog/DP/)
 
 <center><h2>Anomaly Detection</h2></center>
 <center><h2>Time Series</h2></center>
+- [[Time Series] 허위상관](https://minsoo9506.github.io/blog/SpuriousCorr/)
