@@ -19,14 +19,14 @@ title: About Me
 - 2020.08~        `Department of Statistics and Data Science, Yonsei University` (Master's degree)
   - 머신러닝, 데이터마이닝 연구실
   - 석사졸업논문 : Anomaly Detection with Deep Learning (준비중)
-- `연세대학교` 빅데이터 학술동아리 YBIGTA 디자인팀, 데이터엔지니어링팀 활동
+- `연세대학교` 빅데이터 학술동아리 `YBIGTA` 디자인팀, 데이터엔지니어링팀 활동
   - 2018.01~2018.12 디자인팀 : 데이터 분석, 데이터 시각화, 머신러닝
   - 2020.06~2021.04 엔지니어링팀 : 하둡, 스파크 등 분산처리에 대한 공부 (이론 밎 간단한 실습)
 
 ### Work Experience
 - 2018.09~2018.12 `SKT` T-worx Intern (Research, data analysis)
 - 2019.06~2020.06 `DS school` 데이터사이언스 입문반 조교, R&D
-- 2021.06~2021.08 `Fastcampus` Deep Learning 완독 온라인완주반 조교 (예정)
+- 2021.06~2021.08 `Fastcampus` Deep Learning 완독 온라인완주반 조교 
 
 ### Project
 - 2018.01~2018.12 연세대학교 빅데이터 학술동아리 YBIGTA conference
@@ -56,9 +56,6 @@ title: About Me
   - 앱 데이터와 소비 데이터의 data integration을 통한 소비자 타겟팅
   - 소비 데이터를 이용한 지역 구매 패턴 파악, 군집화
 
-- 개인 프로젝트 (진행중)
-  - kaggle, dacon
-  - 학교수업
 - 연구실 프로젝트 (진행중)
   - 녹내장 진행속도 관련 분석 (성남 세브란스 병원)
 

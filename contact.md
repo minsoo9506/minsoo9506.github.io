@@ -36,6 +36,8 @@ title: Category
 - [[Generative Model] GAN](https://minsoo9506.github.io/blog/GAN/)
 - [[Generative Model] LSGAN](https://minsoo9506.github.io/blog/LSGAN/)
 - [[Generative Model] TimeGAN](https://minsoo9506.github.io/blog/TimeGAN/)
+- [[Generative Model] VAE](https://minsoo9506.github.io/blog/VAE/)
+- [Deep Variational Information Bottelneck](https://minsoo9506.github.io/blog/VAE/)
 
 <center><h2>Computer Science</h2></center>
 - [[자료구조] 배열](https://minsoo9506.github.io/blog/DS-1/)
