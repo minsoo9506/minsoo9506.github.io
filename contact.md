@@ -27,9 +27,6 @@ title: Category
 - [[PRML] Chapter11 - Sampling Method](https://minsoo9506.github.io/blog/PRML-Chapter11/)
 - [[PRML] Chapter14 - Combining Models](https://minsoo9506.github.io/blog/PRML-Chapter14/)
 
-<center><h2>Statistical Learning</h2></center>
-- [Introduction to Boosting](https://minsoo9506.github.io/blog/IntroductionToBoosting/)
-
 <center><h2>Deep Learning</h2></center>
 - [[Generative Model] Introduction to Generative Models](https://minsoo9506.github.io/blog/IntroductionToGenerativeModels/)
 - [[Generative Model] Variational Inference](https://minsoo9506.github.io/blog/VariationalInference/)
@@ -66,7 +63,11 @@ title: Category
 - [[알고리즘] 최소신장트리(MST)](https://minsoo9506.github.io/blog/MST/)
 - [[알고리즘] 최단경로](https://minsoo9506.github.io/blog/minPath/)
 - [[알고리즘] 동적계획법](https://minsoo9506.github.io/blog/DP/)
+- [[Linux] 리눅스 명령어 정리](https://minsoo9506.github.io/blog/linux/)
 
+<center><h2>Causal Inference</h2></center>
 <center><h2>Anomaly Detection</h2></center>
+<center><h2>Statistical Learning</h2></center>
+- [Introduction to Boosting](https://minsoo9506.github.io/blog/IntroductionToBoosting/)
 <center><h2>Time Series</h2></center>
 - [[Time Series] 허위상관](https://minsoo9506.github.io/blog/SpuriousCorr/)
