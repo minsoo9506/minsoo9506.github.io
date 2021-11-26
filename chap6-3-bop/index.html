@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/chap6-3-bop\/"
-        },"genre": "posts","keywords": "Bayesian Optimization","wordcount":  225 ,
+        },"genre": "posts","keywords": "Bayesian Optimization","wordcount":  271 ,
         "url": "http:\/\/minsoo9506.github.io\/chap6-3-bop\/","datePublished": "2021-11-26T11:40:01+09:00","dateModified": "2021-11-26T11:40:01+09:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Bayesian Optimization</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-26">2021-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;225 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-26">2021-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;271 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -115,9 +115,15 @@
   <ul>
     <li><a href="#bayesian-optimization-with-gaussian-process">Bayesian Optimization with Gaussian Process</a>
       <ul>
-        <li><a href="#acquisition-function--maximum-probability-of-improvement">Acquisition Function : Maximum probability of improvement</a></li>
+        <li><a href="#acquisition-function">Acquisition Function</a>
+          <ul>
+            <li><a href="#maximum-probability-of-improvement">Maximum Probability of Improvement</a></li>
+          </ul>
+        </li>
+        <li><a href="#maximum-expected-improvement">Maximum Expected Improvement</a></li>
       </ul>
     </li>
+    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>Bayesian Optimization으로 모델의 성능을 올려보자.</p>
@@ -143,33 +149,40 @@
 </ul>
 </li>
 </ul>
-<p>와 같은 방법들이 많이 사용되었다. 이제는</p>
+<p>위와 같은 방법들이 많이 사용되었다. 이와 다르게 BOP는</p>
 <ul>
 <li>learning underlying function</li>
 <li>selecting the next sampling input</li>
 </ul>
-<p>을 모두 잡을 수 있는 Bayesian Optimization을 사용하고자 한다.</p>
+<p>같은 task를 통해서 최적의 결과를 얻어내고자 하는 것이다. 그렇다면 어떤 과정으로 최적의 결과를 얻어낼까?</p>
 <ul>
-<li>GP는 모든 data point에서 predicted mean, predicted std를 알려준다.</li>
-<li>input을 넣고 underlying function을 만든다. 그 후에 mean과 variance를 통해 exploitation or exploration를 결정하여 next sampling input을 결정한다. (그리고 다시 underlying function을 만든다. 이를 반복한다.) 이에 대한 판단 기준이 필요한데 acquisition function을 이용한다.
+<li>GPR은 모든 data point에서 predicted mean, predicted std를 알려준다.</li>
+<li>input을 넣고 underlying function을 만든다 (GPR을 fitting하는 것). 그 후에 mean과 variance를 통해 exploitation or exploration를 결정하여 next sampling input을 결정한다. (그리고 다시 underlying function을 만든다. 이를 반복한다.)
 <ul>
 <li>Exploitation : result값이 높은 곳(underlying function mean이 큰) 탐색</li>
 <li>Exploration : 관측지가 적은 곳(variance가 큰) 탐색</li>
 </ul>
 </li>
+<li>이떄, 이에 대한 판단 기준이 필요하다. acquisition function을 이용한다.</li>
 </ul>
-<h3 id="acquisition-function--maximum-probability-of-improvement">Acquisition Function : Maximum probability of improvement</h3>
-<p>Acquisition Function은 다양하다. 그중 MPI에 대해 알아보자.</p>
+<h3 id="acquisition-function">Acquisition Function</h3>
+<p>Acquisition Function은 다양하다. 몇 가지만 간단히 알아보고 코드를 통해 실습을 진행해보자.</p>
+<h4 id="maximum-probability-of-improvement">Maximum Probability of Improvement</h4>
+<p>현재 optimized value $y_{max}$를 어떤 margin m 이상으로 올려줄 확률이 가장 높은 input을 sampling한다. grid search처럼 value를 계산하는 것이 아니라 확률만 계산하여 진행한다.</p>
 <ul>
-<li>Maximum probability of improvement
+<li>$D$는 기존 data, 이를 통해 GPR을 만들수 있겠다.</li>
+<li>$y \sim N(\mu, \sigma^2)$ 이는 GPR로 만들어진 것이다.</li>
+</ul>
+<p>$$MPI(x|D) = argmax_x P(y \ge (1+m)y_{max} | x, D)$$</p>
+<p>$$y\sim N(\mu, \sigma^2) =argmax_x P(\frac{y-\mu}{\sigma} \ge \frac{(1+m)y_{max}-\mu}{\sigma})$$</p>
+<p>$$=argmax_x \Phi (\frac{\mu - (1+m)y_{max}}{\sigma})$$</p>
+<h3 id="maximum-expected-improvement">Maximum Expected Improvement</h3>
+<p>MPI를 조금 더 디벨롭시킨 것이다. MPI에서는 m을 고려해야했다. 그렇게 하지 말고 0부터 infinite으로 고려하면 되지 않을까? 라는 접근을 한다. 구체적으로 식을 구하는 과정은 생략한다.</p>
+<h2 id="reference">Reference</h2>
 <ul>
-<li>현재 optimized value $y_{max}$를 어떤 margin m 이상으로 올려줄 확률이 가장 높은 input을 sampling한다. (grid search처럼 value를 계산하는 것이 아니라 확률만 계산하여 진행)</li>
-<li>$D$는 기존 data, 이를 통해 GP를 만들수 있겠다.</li>
-<li>$y \sim N(\mu, \sigma^2)$ 이는 GP로 만들어진 것</li>
-</ul>
-</li>
-</ul>
-<p>$$MPI(x|D) = argmax_x P(y \ge (1+m)y_{max} | x, D),;y\sim N(\mu, \sigma^2) \=argmax_x P(\frac{y-\mu}{\sigma} \ge \frac{(1+m)y_{max}-\mu}{\sigma})\=argmax_x \Phi (\frac{\mu - (1+m)y_{max}}{\sigma})$$</p></div><div class="post-footer" id="post-footer">
+<li><a href="https://www.youtube.com/watch?v=sbbR-XRft9o&amp;list=PLbhbGI_ppZIRPeAjprW9u9A46IJlGFdLn&amp;index=54" target="_blank" rel="noopener noreffer">문일철 교수님 강의</a></li>
+<li><a href="https://www.youtube.com/watch?v=PTxqPfG_lXY" target="_blank" rel="noopener noreffer">NHN cloud 발표</a></li>
+</ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

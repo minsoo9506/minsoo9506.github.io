@@ -18,22 +18,35 @@ Bayesian Optimization으로 모델의 성능을 올려보자.
 - Binary search
   - learning of constraints, not the function
 
-와 같은 방법들이 많이 사용되었다. 이제는 
+위와 같은 방법들이 많이 사용되었다. 이와 다르게 BOP는
 - learning underlying function
 - selecting the next sampling input
 
-을 모두 잡을 수 있는 Bayesian Optimization을 사용하고자 한다.
+같은 task를 통해서 최적의 결과를 얻어내고자 하는 것이다. 그렇다면 어떤 과정으로 최적의 결과를 얻어낼까?
 
-- GP는 모든 data point에서 predicted mean, predicted std를 알려준다.
-- input을 넣고 underlying function을 만든다. 그 후에 mean과 variance를 통해 exploitation or exploration를 결정하여 next sampling input을 결정한다. (그리고 다시 underlying function을 만든다. 이를 반복한다.) 이에 대한 판단 기준이 필요한데 acquisition function을 이용한다.
+- GPR은 모든 data point에서 predicted mean, predicted std를 알려준다.
+- input을 넣고 underlying function을 만든다 (GPR을 fitting하는 것). 그 후에 mean과 variance를 통해 exploitation or exploration를 결정하여 next sampling input을 결정한다. (그리고 다시 underlying function을 만든다. 이를 반복한다.)
   - Exploitation : result값이 높은 곳(underlying function mean이 큰) 탐색
   - Exploration : 관측지가 적은 곳(variance가 큰) 탐색
+- 이떄, 이에 대한 판단 기준이 필요하다. acquisition function을 이용한다.
 
-### Acquisition Function : Maximum probability of improvement
-Acquisition Function은 다양하다. 그중 MPI에 대해 알아보자.
-- Maximum probability of improvement
-  - 현재 optimized value $y_{max}$를 어떤 margin m 이상으로 올려줄 확률이 가장 높은 input을 sampling한다. (grid search처럼 value를 계산하는 것이 아니라 확률만 계산하여 진행)
-  - $D$는 기존 data, 이를 통해 GP를 만들수 있겠다.
-  - $y \sim N(\mu, \sigma^2)$ 이는 GP로 만들어진 것
+### Acquisition Function
+Acquisition Function은 다양하다. 몇 가지만 간단히 알아보고 코드를 통해 실습을 진행해보자.
 
-$$MPI(x|D) = argmax_x P(y \ge (1+m)y_{max} | x, D),\;y\sim N(\mu, \sigma^2) \\=argmax_x P(\frac{y-\mu}{\sigma} \ge \frac{(1+m)y_{max}-\mu}{\sigma})\\=argmax_x \Phi (\frac{\mu - (1+m)y_{max}}{\sigma})$$
+#### Maximum Probability of Improvement
+현재 optimized value $y_{max}$를 어떤 margin m 이상으로 올려줄 확률이 가장 높은 input을 sampling한다. grid search처럼 value를 계산하는 것이 아니라 확률만 계산하여 진행한다.
+- $D$는 기존 data, 이를 통해 GPR을 만들수 있겠다.
+- $y \sim N(\mu, \sigma^2)$ 이는 GPR로 만들어진 것이다.
+
+$$MPI(x|D) = argmax_x P(y \ge (1+m)y_{max} | x, D)$$
+
+$$y\sim N(\mu, \sigma^2) =argmax_x P(\frac{y-\mu}{\sigma} \ge \frac{(1+m)y_{max}-\mu}{\sigma})$$
+
+$$=argmax_x \Phi (\frac{\mu - (1+m)y_{max}}{\sigma})$$
+
+### Maximum Expected Improvement
+MPI를 조금 더 디벨롭시킨 것이다. MPI에서는 m을 고려해야했다. 그렇게 하지 말고 0부터 infinite으로 고려하면 되지 않을까? 라는 접근을 한다. 구체적으로 식을 구하는 과정은 생략한다.
+
+## Reference
+- [문일철 교수님 강의](https://www.youtube.com/watch?v=sbbR-XRft9o&list=PLbhbGI_ppZIRPeAjprW9u9A46IJlGFdLn&index=54)
+- [NHN cloud 발표](https://www.youtube.com/watch?v=PTxqPfG_lXY)
