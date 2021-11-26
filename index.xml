@@ -3,9 +3,16 @@
         <title>minsoo9506</title>
         <link>http://minsoo9506.github.io/</link>
         <description>This is My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 26 Nov 2021 09:59:46 &#43;0900</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 26 Nov 2021 11:40:01 &#43;0900</lastBuildDate>
             <atom:link href="http://minsoo9506.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[PRML] Bayesian Optimization</title>
+    <link>http://minsoo9506.github.io/chap6-3-bop/</link>
+    <pubDate>Fri, 26 Nov 2021 11:40:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/chap6-3-bop/</guid>
+    <description><![CDATA[<p>Bayesian Optimization으로 모델의 성능을 올려보자.</p>]]></description>
+</item><item>
     <title>[PRML] Chapter6 - Kernel Method (2) : GP</title>
     <link>http://minsoo9506.github.io/chap6-2-gp/</link>
     <pubDate>Fri, 26 Nov 2021 09:59:46 &#43;0900</pubDate>
