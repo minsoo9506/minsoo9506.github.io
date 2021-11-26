@@ -3,14 +3,21 @@
         <title>minsoo9506</title>
         <link>http://minsoo9506.github.io/</link>
         <description>This is My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 25 Nov 2021 23:25:18 &#43;0900</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 26 Nov 2021 09:59:46 &#43;0900</lastBuildDate>
             <atom:link href="http://minsoo9506.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Test</title>
-    <link>http://minsoo9506.github.io/test/</link>
-    <pubDate>Thu, 25 Nov 2021 23:25:18 &#43;0900</pubDate>
+    <title>[PRML] Chapter6 - Kernel Method (2) : GP</title>
+    <link>http://minsoo9506.github.io/chap6-2-gp/</link>
+    <pubDate>Fri, 26 Nov 2021 09:59:46 &#43;0900</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/test/</guid>
-    <description><![CDATA[hi]]></description>
+    <guid>http://minsoo9506.github.io/chap6-2-gp/</guid>
+    <description><![CDATA[<p>Gaussian Process에 대해 정리하였다.</p>]]></description>
+</item><item>
+    <title>Chap1</title>
+    <link>http://minsoo9506.github.io/chap1/</link>
+    <pubDate>Fri, 26 Nov 2021 09:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/chap1/</guid>
+    <description><![CDATA[<p>test 용</p>]]></description>
 </item></channel>
 </rss>

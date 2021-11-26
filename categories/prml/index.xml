@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>PRML - Category - minsoo9506</title>
+        <link>http://minsoo9506.github.io/categories/prml/</link>
+        <description>PRML - Category - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 26 Nov 2021 09:59:46 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/prml/" rel="self" type="application/rss+xml" /><item>
+    <title>[PRML] Chapter6 - Kernel Method (2) : GP</title>
+    <link>http://minsoo9506.github.io/chap6-2-gp/</link>
+    <pubDate>Fri, 26 Nov 2021 09:59:46 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/chap6-2-gp/</guid>
+    <description><![CDATA[<p>Gaussian Process에 대해 정리하였다.</p>]]></description>
+</item></channel>
+</rss>
