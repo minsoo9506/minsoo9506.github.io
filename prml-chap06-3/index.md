@@ -64,21 +64,30 @@ Acquisition Function은 다양하다. 몇 가지만 간단히 알아보고 코�
 - $D$는 기존 data, 이를 통해 GPR을 만들수 있겠다.
 - $y \sim N(\mu, \sigma^2)$ 이는 GPR로 만들어진 것이다.
 
-$$MPI(x|D) = argmax_x P(y \ge (1+m)y_{max} | x, D)$$
+$$MPI(x|D) = \argmax_x P(y \ge (1+m)y_{max} | x, D)$$
 
-$$y\sim N(\mu, \sigma^2) =argmax_x P(\frac{y-\mu}{\sigma} \ge \frac{(1+m)y_{max}-\mu}{\sigma})$$
+$$y\sim N(\mu, \sigma^2) = \argmax_x P(\frac{y-\mu}{\sigma} \ge \frac{(1+m)y_{max}-\mu}{\sigma})$$
 
-$$=argmax_x \Phi (\frac{\mu - (1+m)y_{max}}{\sigma})$$
+$$= \argmax_x \Phi (\frac{\mu - (1+m)y_{max}}{\sigma})$$
+
+그런데 PI는 잘 안쓴다고 한다.
 
 #### Maximum Expected Improvement (EI)
 MPI를 조금 더 디벨롭시킨 것이다. MPI에서는 m을 고려해야했다. 그렇게 하지 말고 0부터 infinite으로 고려하면 되지 않을까? 라는 접근을 한다. 구체적으로 식을 구하는 과정은 생략한다.
-- expected improvement w.r.t. the best observed objective value $y^{*}$ so far is defined as 
+- expected improvement w.r.t. the best observed objective value $y_{b}$ so far is defined as 
 
-$$EI	= E _ y \[ max(y - y^{*} ,0) \]$$
+$$EI	= E _ y \[ \max (y - y_{b} ,0) \]$$
 
-$$=\int max (y-y^{*}) N (y | \bar{y}, \sigma^{2})dy$$
+$$=\int \max (y-y_{b}) N (y | \bar{y}, \sigma^{2})dy$$
 
-$$=(\bar{y} - y^{*}) \Phi ( \frac{\bar{y}-y^{*}}{\sigma} ) + \sigma \phi ( \frac{\bar{y} - y^{*}}{\sigma} )$$ 
+$$=(\bar{y} - y_b) \Phi ( \frac{\bar{y}-y_b}{\sigma} ) + \sigma \phi ( \frac{\bar{y} - y_b}{\sigma} )$$ 
+
+#### Gaussian Process-Upper Confidence Bound (GP-UCB)
+posterior mean과 variance의 적절한 trade-off를 고려하여 data point를 선택한다. 아래의 수식에 따라서 point를 선택한다.
+- $\beta_t$ : appropriate constants
+- $\nu$ : hyperparameter involving the degree of exploration
+
+$$\bf{x} _ t = \argmax_{\bf{x}} ( \mu_{t-1}(\bf{x}) + \sqrt{\nu \beta_t} \sigma_{t-1}(\bf{x}))$$
 
 #### Thompson Sampling
 posterior에서 function을 sampling하는 방법이다.
@@ -90,13 +99,14 @@ posterior에서 function을 sampling하는 방법이다.
     # https://www.youtube.com/watch?v=PTxqPfG_lXY
 
 import numpy as np
+from scipy.stats import norm
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF
 
 # Acquisition function
 def expected_improvement(mean, std, max):
     z = (mean - max) / std
-    return (mean - max) * np.linag.norm.cdf(z) + std * np.linag.norm.pdf(z)
+    return (mean - max) * norm.cdf(z) + std * norm.pdf(z)
 
 # Objective function
 def f(x):
@@ -113,12 +123,17 @@ y = f(X).ravel()
 gp_model = GaussianProcessRegressor(kernel=RBF(1.0))
 
 for i in np.arange(10):
+    # surrogate model fit
     gp_model.fit(X, y)
+    # predict -> mean, std 계산
     xs = np.random.uniform(min_x, max_x, 10000)
     mean, std = gp_model.predict(xs.reshape(-1, 1), return_std=True)
+    # acq 계산
     acq = expected_improvement(mean, std, y.max())
+    # acq가 가장 큰 값 선택
     x_new = xs[acq.argmax()]
     y_new = f(x_new)
+    # 데이터에 추가
     X = np.append(X, np.array([x_new])).reshape(-1, 1)
     y = np.append(y, np.array([y_new]))
 ```

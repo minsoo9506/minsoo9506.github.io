@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/prml-chap06-3\/"
-        },"genre": "posts","keywords": "Bayesian Optimization","wordcount":  708 ,
+        },"genre": "posts","keywords": "Bayesian Optimization","wordcount":  790 ,
         "url": "http:\/\/minsoo9506.github.io\/prml-chap06-3\/","datePublished": "2021-11-27T11:30:01+09:00","dateModified": "2021-11-27T11:30:01+09:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Bayesian Optimization</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-27">2021-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;708 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-27">2021-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;790 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -120,6 +120,7 @@
           <ul>
             <li><a href="#maximum-probability-of-improvement-pi">Maximum Probability of Improvement (PI)</a></li>
             <li><a href="#maximum-expected-improvement-ei">Maximum Expected Improvement (EI)</a></li>
+            <li><a href="#gaussian-process-upper-confidence-bound-gp-ucb">Gaussian Process-Upper Confidence Bound (GP-UCB)</a></li>
             <li><a href="#thompson-sampling">Thompson Sampling</a></li>
           </ul>
         </li>
@@ -218,17 +219,25 @@
 <li>$D$는 기존 data, 이를 통해 GPR을 만들수 있겠다.</li>
 <li>$y \sim N(\mu, \sigma^2)$ 이는 GPR로 만들어진 것이다.</li>
 </ul>
-<p>$$MPI(x|D) = argmax_x P(y \ge (1+m)y_{max} | x, D)$$</p>
-<p>$$y\sim N(\mu, \sigma^2) =argmax_x P(\frac{y-\mu}{\sigma} \ge \frac{(1+m)y_{max}-\mu}{\sigma})$$</p>
-<p>$$=argmax_x \Phi (\frac{\mu - (1+m)y_{max}}{\sigma})$$</p>
+<p>$$MPI(x|D) = \argmax_x P(y \ge (1+m)y_{max} | x, D)$$</p>
+<p>$$y\sim N(\mu, \sigma^2) = \argmax_x P(\frac{y-\mu}{\sigma} \ge \frac{(1+m)y_{max}-\mu}{\sigma})$$</p>
+<p>$$= \argmax_x \Phi (\frac{\mu - (1+m)y_{max}}{\sigma})$$</p>
+<p>그런데 PI는 잘 안쓴다고 한다.</p>
 <h4 id="maximum-expected-improvement-ei">Maximum Expected Improvement (EI)</h4>
 <p>MPI를 조금 더 디벨롭시킨 것이다. MPI에서는 m을 고려해야했다. 그렇게 하지 말고 0부터 infinite으로 고려하면 되지 않을까? 라는 접근을 한다. 구체적으로 식을 구하는 과정은 생략한다.</p>
 <ul>
-<li>expected improvement w.r.t. the best observed objective value $y^{*}$ so far is defined as</li>
+<li>expected improvement w.r.t. the best observed objective value $y_{b}$ so far is defined as</li>
 </ul>
-<p>$$EI	= E _ y [ max(y - y^{*} ,0) ]$$</p>
-<p>$$=\int max (y-y^{*}) N (y | \bar{y}, \sigma^{2})dy$$</p>
-<p>$$=(\bar{y} - y^{<em>}) \Phi ( \frac{\bar{y}-y^{</em>}}{\sigma} ) + \sigma \phi ( \frac{\bar{y} - y^{*}}{\sigma} )$$</p>
+<p>$$EI	= E _ y [ \max (y - y_{b} ,0) ]$$</p>
+<p>$$=\int \max (y-y_{b}) N (y | \bar{y}, \sigma^{2})dy$$</p>
+<p>$$=(\bar{y} - y_b) \Phi ( \frac{\bar{y}-y_b}{\sigma} ) + \sigma \phi ( \frac{\bar{y} - y_b}{\sigma} )$$</p>
+<h4 id="gaussian-process-upper-confidence-bound-gp-ucb">Gaussian Process-Upper Confidence Bound (GP-UCB)</h4>
+<p>posterior mean과 variance의 적절한 trade-off를 고려하여 data point를 선택한다. 아래의 수식에 따라서 point를 선택한다.</p>
+<ul>
+<li>$\beta_t$ : appropriate constants</li>
+<li>$\nu$ : hyperparameter involving the degree of exploration</li>
+</ul>
+<p>$$\bf{x} _ t = \argmax_{\bf{x}} ( \mu_{t-1}(\bf{x}) + \sqrt{\nu \beta_t} \sigma_{t-1}(\bf{x}))$$</p>
 <h4 id="thompson-sampling">Thompson Sampling</h4>
 <p>posterior에서 function을 sampling하는 방법이다.</p>
 <h3 id="이해를-위한-코드">이해를 위한 코드</h3>
@@ -269,19 +278,26 @@
 </span><span class="lnt">33
 </span><span class="lnt">34
 </span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># NHN cloud</span>
     <span class="c1"># https://www.youtube.com/watch?v=PTxqPfG_lXY</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
 <span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="kn">import</span> <span class="n">GaussianProcessRegressor</span>
 <span class="kn">from</span> <span class="nn">sklearn.gaussian_process.kernels</span> <span class="kn">import</span> <span class="n">RBF</span>
 
 <span class="c1"># Acquisition function</span>
 <span class="k">def</span> <span class="nf">expected_improvement</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="nb">max</span><span class="p">):</span>
     <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">mean</span> <span class="o">-</span> <span class="nb">max</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">mean</span> <span class="o">-</span> <span class="nb">max</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linag</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">+</span> <span class="n">std</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linag</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">mean</span> <span class="o">-</span> <span class="nb">max</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">+</span> <span class="n">std</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 
 <span class="c1"># Objective function</span>
 <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -298,12 +314,17 @@
 <span class="n">gp_model</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">RBF</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1"># surrogate model fit</span>
     <span class="n">gp_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="c1"># predict -&gt; mean, std 계산</span>
     <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
     <span class="n">mean</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">gp_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xs</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># acq 계산</span>
     <span class="n">acq</span> <span class="o">=</span> <span class="n">expected_improvement</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="c1"># acq가 가장 큰 값 선택</span>
     <span class="n">x_new</span> <span class="o">=</span> <span class="n">xs</span><span class="p">[</span><span class="n">acq</span><span class="o">.</span><span class="n">argmax</span><span class="p">()]</span>
     <span class="n">y_new</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span>
+    <span class="c1"># 데이터에 추가</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_new</span><span class="p">]))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">y_new</span><span class="p">]))</span>
 </code></pre></td></tr></table>
