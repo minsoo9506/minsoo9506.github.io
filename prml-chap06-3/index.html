@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/prml-chap06-3\/"
-        },"genre": "posts","keywords": "Bayesian Optimization","wordcount":  700 ,
+        },"genre": "posts","keywords": "Bayesian Optimization","wordcount":  708 ,
         "url": "http:\/\/minsoo9506.github.io\/prml-chap06-3\/","datePublished": "2021-11-27T11:30:01+09:00","dateModified": "2021-11-27T11:30:01+09:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Bayesian Optimization</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-27">2021-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;700 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-27">2021-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;708 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -179,13 +179,13 @@
 <p>이에 대해 한번 더 정리하자면</p>
 <ol>
 <li>Surrogate model : Compute $p(f|D_{1})$, yielding $\mu_{1}({\bf x})$ and $\sigma_{1}({\bf x})$.</li>
-<li>Acquisition function: Choose ${\bf{x}} _ {2}$ such that ${\bf x} _ {2}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{1})$</li>
+<li>Acquisition function: Choose ${\bf{x}} _ {2}$ such that ${\bf x} _ {2}=argmax_{ {\bf x} \in \mathcal{X} } a ({\bf x}|\mathcal{M}_{1})$</li>
 <li>Augment data, $D_2 = D_1 \cup \{ ({\bf x}_{2}, y _ {2}) \}$</li>
 <li>Surrogate model : Compute $p(f|D_2)$, yielding $\mu_{2}({\bf x})$ and $\sigma_{2}({\bf x})$.</li>
-<li>Acquisition function: Choose ${\bf x} _ 3$ such that ${\bf x} _ {3}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{3})$</li>
+<li>Acquisition function: Choose ${\bf x} _ 3$ such that ${\bf x} _ {3}=argmax_{ {\bf x} \in \mathcal{X} }a({\bf x}|\mathcal{M}_{3})$</li>
 <li>Augment data, $D_ 3 = D_2 \cup \{ ({\bf x} _ {3},y _ {3}) \}$</li>
 <li>Repeat theses till the final round T, to compute $\mu_{T}({\bf x})$</li>
-<li>${\bf x}^{*} = argmax_{ {\bf x} \in \{ {\bf x}_1,&hellip;,{\bf x} _ T \} }  \mu _ {T}({\bf x})$</li>
+<li>${\bf x}^{*} = argmax_{ {\bf x} \in {\bf x}_1,&hellip;,{\bf x} _ T }  \mu _ {T}({\bf x})$</li>
 </ol>
 <h3 id="surrogate-model">surrogate model</h3>
 <p>다양한 모델을 사용할 수 있다. 하지만 해당 point의 mean, variance를 알 수 있는 stochastic한 모델이여야 할 것이다.</p>

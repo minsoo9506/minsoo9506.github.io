@@ -35,13 +35,13 @@ Bayesian Optimization으로 모델의 성능을 올려보자.
 이에 대해 한번 더 정리하자면
 
 1. Surrogate model : Compute $p(f|D_{1})$, yielding $\mu_{1}({\bf x})$ and $\sigma_{1}({\bf x})$.
-2. Acquisition function: Choose ${\bf{x}} _ {2}$ such that ${\bf x} _ {2}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{1})$
+2. Acquisition function: Choose ${\bf{x}} _ {2}$ such that ${\bf x} _ {2}=argmax_{ {\bf x} \in \mathcal{X} } a ({\bf x}|\mathcal{M}_{1})$
 3. Augment data, $D_2 = D_1 \cup \\{ ({\bf x}_{2}, y _ {2}) \\}$
 4. Surrogate model : Compute $p(f|D_2)$, yielding $\mu_{2}({\bf x})$ and $\sigma_{2}({\bf x})$.
-5. Acquisition function: Choose ${\bf x} _ 3$ such that ${\bf x} _ {3}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{3})$
+5. Acquisition function: Choose ${\bf x} _ 3$ such that ${\bf x} _ {3}=argmax_{ {\bf x} \in \mathcal{X} }a({\bf x}|\mathcal{M}_{3})$
 6. Augment data, $D_ 3 = D_2 \cup \\{ ({\bf x} _ {3},y _ {3}) \\}$
 7. Repeat theses till the final round T, to compute $\mu_{T}({\bf x})$
-8. ${\bf x}^{*} = argmax_{ {\bf x} \in \\{ {\bf x}_1,...,{\bf x} _ T \\} }  \mu _ {T}({\bf x})$
+8. ${\bf x}^{*} = argmax_{ {\bf x} \in {\bf x}_1,...,{\bf x} _ T }  \mu _ {T}({\bf x})$
 
 ### surrogate model
 다양한 모델을 사용할 수 있다. 하지만 해당 point의 mean, variance를 알 수 있는 stochastic한 모델이여야 할 것이다.
