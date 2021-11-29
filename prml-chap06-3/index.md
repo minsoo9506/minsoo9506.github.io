@@ -35,13 +35,13 @@ Bayesian Optimization으로 모델의 성능을 올려보자.
 이에 대해 한번 더 정리하자면
 
 1. Surrogate model : Compute $p(f|D_{1})$, yielding $\mu_{1}({\bf x})$ and $\sigma_{1}({\bf x})$.
-2. Acquisition function: Choose ${\bf x}_{2}$ such that ${\bf x}_{2}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{1})$
-3. Augment data, $\mathcal{D}_{2}=\mathcal{D}_{1}\cup\left\{ ({\bf x}_{2},y_{2})\right\}$
-4. Surrogate model : Compute $p(f|D_{2})$, yielding $\mu_{2}({\bf x}) and \sigma_{2}({\bf x})$.
-5. Acquisition function: Choose ${\bf x}_{3}$ such that ${\bf x}_{3}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{2})$
-6. Augment data, $\mathcal{D}_{3}=\mathcal{D}_{2}\cup\left\{ ({\bf x}_{3},y_{3})\right\}$
+2. Acquisition function: Choose ${\bf{x}} _ {2}$ such that ${\bf x} _ {2}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{1})$
+3. Augment data, $D_2 = D_1 \cup \\{ ({\bf x}_{2}, y _ {2}) \\}$
+4. Surrogate model : Compute $p(f|D_2)$, yielding $\mu_{2}({\bf x})$ and $\sigma_{2}({\bf x})$.
+5. Acquisition function: Choose ${\bf x} _ 3$ such that ${\bf x} _ {3}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{3})$
+6. Augment data, $D_ 3 = D_2 \cup \\{ ({\bf x} _ {3},y _ {3}) \\}$
 7. Repeat theses till the final round T, to compute $\mu_{T}({\bf x})$
-8. ${\bf x}^{*}=argmax_{{\bf x}\in\{{\bf x}_{1},...,{\bf x}_{T}\}}\mu_{T}({\bf x})$
+8. ${\bf x}^{*}=argmax_{{\bf x}\in \\{{\bf x} _ {1},...,{\bf x}_ T\\}}\mu_{T}({\bf x})$
 
 ### surrogate model
 다양한 모델을 사용할 수 있다. 하지만 해당 point의 mean, variance를 알 수 있는 stochastic한 모델이여야 할 것이다.
@@ -74,9 +74,11 @@ $$=argmax_x \Phi (\frac{\mu - (1+m)y_{max}}{\sigma})$$
 MPI를 조금 더 디벨롭시킨 것이다. MPI에서는 m을 고려해야했다. 그렇게 하지 말고 0부터 infinite으로 고려하면 되지 않을까? 라는 접근을 한다. 구체적으로 식을 구하는 과정은 생략한다.
 - expected improvement w.r.t. the best observed objective value $y^{*}$ so far is defined as 
 
-$$EI	=E_{y}\left[max(y-y^{*},0)\right]$$
-$$=\int max(y-y^{*})N(y|\bar{y},\sigma^{2})dy$$
-$$=(\bar{y}-y^{*})\Phi\left(\frac{\bar{y}-y^{*}}{\sigma}\right)+\sigma\phi\left(\frac{\bar{y}-y^{*}}{\sigma}\right)$$ 
+$$EI	= E _ y \[ max(y - y^{*} ,0) \]$$
+
+$$=\int max (y-y^{*}) N (y | \bar{y}, \sigma^{2})dy$$
+
+$$=(\bar{y} - y^{*}) \Phi ( \frac{\bar{y}-y^{*}}{\sigma} ) + \sigma \phi ( \frac{\bar{y} - y^{*}}{\sigma} )$$ 
 
 #### Thompson Sampling
 posterior에서 function을 sampling하는 방법이다.

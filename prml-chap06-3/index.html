@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/prml-chap06-3\/"
-        },"genre": "posts","keywords": "Bayesian Optimization","wordcount":  633 ,
+        },"genre": "posts","keywords": "Bayesian Optimization","wordcount":  691 ,
         "url": "http:\/\/minsoo9506.github.io\/prml-chap06-3\/","datePublished": "2021-11-27T11:30:01+09:00","dateModified": "2021-11-27T11:30:01+09:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,8 +104,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Bayesian Optimization</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-27">2021-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;633 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-27">2021-11-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;691 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -179,13 +179,13 @@
 <p>이에 대해 한번 더 정리하자면</p>
 <ol>
 <li>Surrogate model : Compute $p(f|D_{1})$, yielding $\mu_{1}({\bf x})$ and $\sigma_{1}({\bf x})$.</li>
-<li>Acquisition function: Choose ${\bf x}<em>{2}$ such that ${\bf x}</em>{2}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{1})$</li>
-<li>Augment data, $\mathcal{D}<em>{2}=\mathcal{D}</em>{1}\cup\left{ ({\bf x}<em>{2},y</em>{2})\right}$</li>
-<li>Surrogate model : Compute $p(f|D_{2})$, yielding $\mu_{2}({\bf x}) and \sigma_{2}({\bf x})$.</li>
-<li>Acquisition function: Choose ${\bf x}<em>{3}$ such that ${\bf x}</em>{3}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{2})$</li>
-<li>Augment data, $\mathcal{D}<em>{3}=\mathcal{D}</em>{2}\cup\left{ ({\bf x}<em>{3},y</em>{3})\right}$</li>
+<li>Acquisition function: Choose ${\bf{x}} _ {2}$ such that ${\bf x} _ {2}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{1})$</li>
+<li>Augment data, $D_2 = D_1 \cup \{ ({\bf x}_{2}, y _ {2}) \}$</li>
+<li>Surrogate model : Compute $p(f|D_2)$, yielding $\mu_{2}({\bf x})$ and $\sigma_{2}({\bf x})$.</li>
+<li>Acquisition function: Choose ${\bf x} _ 3$ such that ${\bf x} _ {3}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{3})$</li>
+<li>Augment data, $D_ 3 = D_2 \cup \{ ({\bf x} _ {3},y _ {3}) \}$</li>
 <li>Repeat theses till the final round T, to compute $\mu_{T}({\bf x})$</li>
-<li>${\bf x}^{*}=argmax_{{\bf x}\in{{\bf x}<em>{1},&hellip;,{\bf x}</em>{T}}}\mu_{T}({\bf x})$</li>
+<li>${\bf x}^{*}=argmax_{{\bf x}\in \{{\bf x} _ {1},&hellip;,{\bf x}_ T\}}\mu_{T}({\bf x})$</li>
 </ol>
 <h3 id="surrogate-model">surrogate model</h3>
 <p>다양한 모델을 사용할 수 있다. 하지만 해당 point의 mean, variance를 알 수 있는 stochastic한 모델이여야 할 것이다.</p>
@@ -226,9 +226,9 @@
 <ul>
 <li>expected improvement w.r.t. the best observed objective value $y^{*}$ so far is defined as</li>
 </ul>
-<p>$$EI	=E_{y}\left[max(y-y^{<em>},0)\right]$$
-$$=\int max(y-y^{</em>})N(y|\bar{y},\sigma^{2})dy$$
-$$=(\bar{y}-y^{<em>})\Phi\left(\frac{\bar{y}-y^{</em>}}{\sigma}\right)+\sigma\phi\left(\frac{\bar{y}-y^{*}}{\sigma}\right)$$</p>
+<p>$$EI	= E _ y [ max(y - y^{*} ,0) ]$$</p>
+<p>$$=\int max (y-y^{*}) N (y | \bar{y}, \sigma^{2})dy$$</p>
+<p>$$=(\bar{y} - y^{<em>}) \Phi ( \frac{\bar{y}-y^{</em>}}{\sigma} ) + \sigma \phi ( \frac{\bar{y} - y^{*}}{\sigma} )$$</p>
 <h4 id="thompson-sampling">Thompson Sampling</h4>
 <p>posterior에서 function을 sampling하는 방법이다.</p>
 <h3 id="이해를-위한-코드">이해를 위한 코드</h3>
