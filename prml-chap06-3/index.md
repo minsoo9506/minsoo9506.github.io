@@ -41,7 +41,7 @@ Bayesian Optimization으로 모델의 성능을 올려보자.
 5. Acquisition function: Choose ${\bf x} _ 3$ such that ${\bf x} _ {3}=argmax_{{\bf x}\in\mathcal{X}}a({\bf x}|\mathcal{M}_{3})$
 6. Augment data, $D_ 3 = D_2 \cup \\{ ({\bf x} _ {3},y _ {3}) \\}$
 7. Repeat theses till the final round T, to compute $\mu_{T}({\bf x})$
-8. ${\bf x}^{*}=argmax_{{\bf x}\in \\{{\bf x} _ {1},...,{\bf x}_ T\\}}\mu_{T}({\bf x})$
+8. ${\bf x}^{*}=argmax_{\bf x}\in \\{{\bf x} _ {1},...,{\bf x}_ T\\}}\mu_{T}({\bf x})$
 
 ### surrogate model
 다양한 모델을 사용할 수 있다. 하지만 해당 point의 mean, variance를 알 수 있는 stochastic한 모델이여야 할 것이다.
