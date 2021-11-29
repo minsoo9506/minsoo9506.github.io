@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[PRML] Chapter1 - Introduction (2) - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[PRML] Chapter1 - Introduction (2)" />
+<meta property="og:description" content="Decision Theory에 대해 알아봅시다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/prml-chap01-2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-26T10:21:26+09:00" />
+<meta property="article:modified_time" content="2021-11-26T10:21:26+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[PRML] Chapter1 - Introduction (2)"/>
+<meta name="twitter:description" content="Decision Theory에 대해 알아봅시다."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/prml-chap01-2/" /><link rel="prev" href="http://minsoo9506.github.io/prml-chap01-1/" /><link rel="next" href="http://minsoo9506.github.io/prml-chap06-2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[PRML] Chapter1 - Introduction (2)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/prml-chap01-2\/"
+        },"genre": "posts","wordcount":  1118 ,
+        "url": "http:\/\/minsoo9506.github.io\/prml-chap01-2\/","datePublished": "2021-11-26T10:21:26+09:00","dateModified": "2021-11-26T10:21:26+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Chapter1 - Introduction (2)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-26">2021-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1118 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#15-decision-theory">1.5 Decision Theory</a>
+      <ul>
+        <li><a href="#151-minimizing-the-misclassfication-rate">1.5.1 Minimizing the misclassfication rate</a></li>
+        <li><a href="#152-minimizing-the-expected-loss">1.5.2 Minimizing the expected loss</a></li>
+        <li><a href="#153-the-reject-option">1.5.3 The reject option</a></li>
+        <li><a href="#154-inference-and-decision">1.5.4 Inference and decision</a></li>
+        <li><a href="#155-loss-functions-for-regression">1.5.5 Loss functions for regression</a></li>
+      </ul>
+    </li>
+    <li><a href="#-decision-theory-추가">+ Decision Theory 추가</a>
+      <ul>
+        <li><a href="#1-minimizing-conditional-expected-loss">1. Minimizing conditional expected loss</a></li>
+        <li><a href="#2-choosing-f-to-minimize-expected-loss">2. Choosing f to minimize expected loss</a></li>
+        <li><a href="#big-picture">Big picture</a></li>
+        <li><a href="#generative-model">Generative model</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Decision Theory에 대해 알아봅시다.</p>
+<h2 id="15-decision-theory">1.5 Decision Theory</h2>
+<p>Decision Theory는 크게 두 가지의 과정으로 이루어져 있다.</p>
+<ul>
+<li>Determining $p(x,t)$ from a training data set : <strong>inference</strong></li>
+<li>이를 통하여 새로운 데이터에 대해 결정(분류,회귀) : <strong>decision</strong></li>
+</ul>
+<p>Decision Theory의 목표는 적절한 Probability들을 이용하여 optimal한 decision을 내리는 것이다. 2-class classification의 상황을 예시로 뒤의 내용을 진행한다. 우리는 input data를 통해 해당 data의 class를 구분하고 싶기에 $p(C_k / \textbf{x})$를 구해야 한다. Bayes' theorem을 생각해보면 posterior를 구해야 하는 것이다.</p>
+<p>$$p(C_k | \textbf{x}) = \frac{p(\textbf{x} | C_k)p(C_k)}{p(\textbf{x})}$$</p>
+<p>우리는 misclassfication을 최소화하기 위해서 둘 중 더 큰 posterior probability갖는 class에 input data를 분류한다.</p>
+<h3 id="151-minimizing-the-misclassfication-rate">1.5.1 Minimizing the misclassfication rate</h3>
+<p>우리의 목표가 misclassfication을 최소화하는게 목표라고 하자. 각 $\textbf{x}$를 class에 분류해야하고 이를 위해 rule이 필요하다. 그 rule에 따라 input space를 region $R_k$로 나눠야 한다. 이 region을 <em>decision regions</em> 라고 한다. ($R_k$에 속한 data는 class k라고 분류) decision region간의 경계선을 <em>decision boundary</em>, <em>decision surface</em> 라고 부른다. misclassfication의 확률은</p>
+<p>$$P(mistake) = P(\textbf{x} \in R_1, C_2) + P(\textbf{x} \in R_2, C_1) = \int_{R_1} p(\textbf{x}, C_2)d\textbf{x}+ \int_{R_2} p(\textbf{x}, C_1)d\textbf{x}$$</p>
+<p>mistake의 확률을 최소화하기 위해서는 각 integral의 값을 최소화해야 한다. 따라서 만약 $p(\textbf{x}, C_1) &gt;  p(\textbf{x}, C_2)$의 경우, data를 class1으로 분류해야한다.</p>
+<ul>
+<li>$p(\textbf{x}, C_k) = p(\textbf{x}) p(C_k | \textbf{x})$ 이고 우변의 $p(\textbf{x})$는 공통된 부분이므로 우리는 $p(C_k | \textbf{x})$만 고려하면 된다.</li>
+</ul>
+<h3 id="152-minimizing-the-expected-loss">1.5.2 Minimizing the expected loss</h3>
+<p>위에서 misclassfication rate를 줄이는 부분에 대해서 살펴봤다. 하지만 실제로 분류를 할 때는 이 접근으로는 부족하다. 예를 들어, 암환자를 분류하는 문제라고 생각해보자. 암이 걸리지 않은 환자를 걸렸다고 잘못 판단하는 것과 암이 걸렸는데 걸리지 않았다고 판단하는 것. 둘 중 후자가 훨씬 심각한 문제이다. 이런 경우 후자에 대해 더 가중치가 있어야 하지 않을까?</p>
+<ul>
+<li><em>loss function (cost function)</em> : overall measure of loss incurred in taking any of the available decisions or actions</li>
+<li>$L_{kj}$ :  (k인데 j로 분류한 경우) loss matrix의 element를 의미한다. misclassfication에 대한 loss라고 이해하면 된다. 예를 들면 암환자의 loss matrix는 아래와 같은 모양이다.</li>
+</ul>
+<p>$$\begin{bmatrix} 0 &amp; 100 \\ 1 &amp; 0 \end{bmatrix}$$</p>
+<p>(inference가 끝난 뒤에 decision하는 과정에 해당) optimal solution은 loss function을 최소화하는 것이다. 하지만 loss function은 true class을 알아야 계산할 수 있다. 우리는 true class를 모른다. (예를 들어, 환자의 신상데이터가 있고 이를 통해 암환자인지 아닌지 찾아야하는 상황) 따라서 우리는 expected (average) loss를 최소화하는 방법을 선택한다.</p>
+<p>$$E[L] = \sum_{k} \sum_{j} \int_{R_j} L_{kj} p(\textbf{x}, C_k) d\textbf{x}$$</p>
+<p>우리의 목표는 expected loss를 최소로 만드는 적절한 $R_j$를 찾는 것이고 이는 각 데이터 $\textbf{x}$가 $\sum_{k} L_{kj}p(\textbf{x}, C_k)$를 최소화 한다는 것을 의미한다.</p>
+<p>최종적으로 expected loss를 최소화 하기 위해서는 $\textbf{x}$를 값</p>
+<p>$$\sum_{k}{L_{kj} p(C_k|\textbf{x})}= E[L(C_k, \hat{C}_k) | X=\textbf{x}]$$</p>
+<p>이 최소가 되는 class $j$로 분류하는 것이다.</p>
+<h3 id="153-the-reject-option">1.5.3 The reject option</h3>
+<p>class에 따라 posterior의 비교를 통해 결정하기 애매한 상황이 생긴다. 이런 경우에는 probability에 따라 결정하기 보다는 다른 방법을 사용하는 것이 적절할 수도 있다. (예를 들면, 해당 데이터를 model이 아니라 전문가가 판단하는 방법)  이런 경우 <em>regect option</em> 이 있다고 할 수 있는 것이다.</p>
+<h3 id="154-inference-and-decision">1.5.4 Inference and decision</h3>
+<p>decision 문제를 해결하는 방법을 3가지로 분류할 수 있다. 앞쪽의 방법일수록 복잡한 방법이다.</p>
+<ul>
+<li><strong>generative model</strong>
+<ul>
+<li>아래 식에서 posterior를 구하기 위해서는 분자, 분모를 다 구해야 한다. 한마디로 <em>approachs that explicitly or implicitly model the distribution of inputs as well as outputs.</em></li>
+<li>다른 표현으로는, joint distribution $p(\textbf{x}, C_k)$을 구해서 marginalize하여 분모도 구하여 posterior를 구한다.</li>
+</ul>
+</li>
+</ul>
+<p>$$p(C_k | x) = \frac{p(x | C_k)p(C_k)}{p(x)}$$</p>
+<ul>
+<li>
+<p><strong>discriminative model</strong></p>
+<ul>
+<li><em>approachs that model the posterior probabilities directly</em></li>
+<li>예를 들면 SVM, Tree models, KNN 등등</li>
+</ul>
+</li>
+<li>
+<p><strong>discriminative function</strong></p>
+<ul>
+<li><em>maps each input x directly onto a class label</em></li>
+<li>따라서 확률을 고려하지 않는다.</li>
+<li>inference와 decision stage를 하나로 묶은 것이다.</li>
+</ul>
+</li>
+</ul>
+<p>각각 장단점이 존재한다. 예를 들면, 1번에서 prior $p(\textbf{x})$를 구했으므로 해당 값이 너무 작은 새로운 data는 무시하는 판단을 할 수 있다. (outlier detection하는 것처럼) 그렇다면 이제 (1,2번 선호) posterior를 구하면 어떤 장점이 있는지 알아보자.</p>
+<ul>
+<li>Minimizing risk
+<ul>
+<li>이전에 봤던 loss matrix를 수정하여 decision criterion을 수정하기 쉽다.</li>
+<li>확률의 threshold를 조정하여 decision criterion을 수정하기 쉽다.</li>
+</ul>
+</li>
+<li>Reject option
+<ul>
+<li>expected loss뿐만 아니라 misclassfication rate를 최소화하는 rejection criterion을 정할 수 있게 해준다.</li>
+</ul>
+</li>
+<li>Compensating for class priors
+<ul>
+<li>posterior는 prior에 비례하므로 prior를 적절하게 바꿔줌으로서 posterior를 보완할 수 있다.</li>
+</ul>
+</li>
+<li>Combing models
+<ul>
+<li>특정 문제를 subproblem으로 나누어서 생각할 수 있다. 예를 들면, naive bayes model과 같이 independent를 이용하여 posterior를 나누어서 생각할 수 있는 장점이 생긴다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="155-loss-functions-for-regression">1.5.5 Loss functions for regression</h3>
+<p>이전까지 classification에 대해 살펴봤으므로 이번에는 regression에 대해 살펴보자. expected (average) loss는</p>
+<p>$$E[L] = \int \int L(t, y(\textbf{x})) p(\textbf{x}, t) d\textbf{x}dt$$</p>
+<p>이다. regression에서 주로 사용하는 loss function은 squared loss이고 이를 통해 다시 쓰면</p>
+<p>$$E[L] = \int \int {y(\textbf{x}) - t}^2 p(\textbf{x}, t) d\textbf{x} dt$$</p>
+<p>이다. 우리는 이를 최소화하는 $y(\textbf{x})$를 찾는 것이 목표이므로 미분하여 구할 수 있다.</p>
+<p>$$\frac{dE[L]}{dy(\textbf{x})} = 2\int { y(\textbf{x}) - t}p(\textbf{x}, t) dt = 0$$</p>
+<p>$$y(\textbf{x}) = \frac{\int t p(\textbf{x}, t)dt}{p(\textbf{x})} = \int t p(t | \textbf{x})dt = E_t [t | \textbf{x}]$$</p>
+<p>이는 우리가 알고 있는 regression function의 모양이다. (conditional average of t conditioned on x) 이를 이용하여 추가적인 접근을 해보자면</p>
+<p>$${y(\textbf{x}) - t}^2 = {y(\textbf{x}) - E[t | \textbf{x}] + E[t | \textbf{x}] - t }^2$$</p>
+<p>$$E[L] = \int {y(\textbf{x}) - E[t | \textbf{x}]}^2 p(\textbf{x})d\textbf{x} + \int {E[t | \textbf{x}] - t}^2 p (\textbf{x}) d\textbf{x} $$</p>
+<p>두번째 항은 variance of the distribution of t, averaged over x 이다. 따라서 이는 irreducible minumum value of the loss function을 의미한다.</p>
+<h2 id="-decision-theory-추가">+ Decision Theory 추가</h2>
+<p><a href="https://www.youtube.com/watch?v=KYRAO8f5rXA&amp;list=PLD0F06AA0D2E8FFBA&amp;index=15" target="_blank" rel="noopener noreffer">monk의 강의</a>에서 decision theory를 다루는데 해당 내용을 추가하고자 한다.</p>
+<ul>
+<li>일단, loss function은 &ldquo;0-1 loss&rdquo; 으로 생각하자.
+<ul>
+<li>true = prediction : 0</li>
+<li>true != prediction : 1</li>
+</ul>
+</li>
+</ul>
+<p>두 가지 상황으로 나누어서 살펴보자. 하지만 두 경우 모두의 공통적인 결론은</p>
+<ul>
+<li>$p(y/x)$ 가 핵심이라는 것이다.</li>
+</ul>
+<h3 id="1-minimizing-conditional-expected-loss">1. Minimizing conditional expected loss</h3>
+<p>: Given $x$, minimize $L(y, \hat{y})$ &hellip; but don&rsquo;t know true class $y$</p>
+<ul>
+<li>$(X, Y) \sim P$ : discrete</li>
+</ul>
+<p>$$E[L(Y, \hat{y}) | X = x] = \sum_{y} L(y, \hat{y}) P(y | x) = \sum_{y \neq \hat{y} } 1*P(y | x) = 1 - P(\hat{y} | x)$$</p>
+<p>$$\therefore \hat{y} = argmin_y E[L(Y,\hat{y}) | x] = argmax_y P(y | x)$$</p>
+<h3 id="2-choosing-f-to-minimize-expected-loss">2. Choosing f to minimize expected loss</h3>
+<p>: Choose $f(f(x) = y)$ to minimize $L(y, f(x))$ but don&rsquo;t know $x$ or $y$</p>
+<p>$$E[L(Y, \hat{Y})] = E[L(Y, f(X))] = \sum_{x,y}L(y, f(x))P(x,y)$$</p>
+<p>$$ = \sum_{x}{\sum_y L(y, f(x))P(y  | x)}P(x) = \sum_{x}g(x,f(x))p(x) = E_x[g(x,f(x))]$$</p>
+<ul>
+<li>suppose for some $x', t$
+<ul>
+<li>$g(x', f(x')) \ge g(x', t)$</li>
+</ul>
+</li>
+<li>$f_0(x) =$
+<ul>
+<li>if $x \neq x', f(x)$</li>
+<li>if $x = x', t$</li>
+</ul>
+</li>
+<li>모든 $x,; g(x,f(x)) \ge g(x, f_0(x))$</li>
+</ul>
+<p>$$\therefore E_x [g(x, f(x))] \ge E_x[g(x,f_0(x))]$$</p>
+<p>Choose f to min $g(x,f(x))$</p>
+<p>$$f(x) = argmin_t g(x,t)$$</p>
+<h3 id="big-picture">Big picture</h3>
+<ul>
+<li>
+<h3 id="generative-model">Generative model</h3>
+<ul>
+<li>estimate $p(x,y)$ using data</li>
+<li>and then $p(y|x) = \frac{p(x,y)}{p(x)}$</li>
+</ul>
+</li>
+<li>
+<p>parameter / latent : $\theta$ 라고 하자</p>
+<ul>
+<li>$\theta$는 distribution에 관한 parameter / latent</li>
+<li>$D$는 random (new data)</li>
+</ul>
+</li>
+</ul>
+<p>$$p(y|x,D) = \int p(y|x,D,\theta) p(\theta | x,D) d\theta$$</p>
+<ul>
+<li>$p(y|x,D)$ : predictive distribution</li>
+<li>$p(\theta |x,D)$  : posterior distribution</li>
+</ul>
+<p>$p(y|x,D,\theta)$ 이 부분은 주로 closed form(eg. regression y=wx)으로 구해지며 어렵지 않다. 하지만 posterior 부분은 closed form으로 못 구하는 경우가 많다. 또한 integral 부분도 계산이 어려운 경우가 많다. 그렇다면 이를 어떻게 해결할까? 크게 4가지의 방법을 살펴보자.</p>
+<ul>
+<li>exact inference
+<ul>
+<li>Multivariate Gaussian, Conjugate prior, Graphical model</li>
+</ul>
+</li>
+<li>point estimate
+<ul>
+<li>MLE, MAP (1.2.5를 보면 integral 없이 계산)</li>
+<li>optimization, EM</li>
+</ul>
+</li>
+<li>deteministic approximation
+<ul>
+<li>Laplace approximation, Variational method, Expectation propagation</li>
+</ul>
+</li>
+<li>stochastic approximation
+<ul>
+<li>Sampling 기법들 (eg. MCMC)</li>
+</ul>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-11-26</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/prml-chap01-2/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/prml-chap01-1/" class="prev" rel="prev" title="[PRML] Chapter1 - Introduction (1)"><i class="fas fa-angle-left fa-fw"></i>[PRML] Chapter1 - Introduction (1)</a>
+            <a href="/prml-chap06-2/" class="next" rel="next" title="[PRML] Chapter6 - Kernel Method (2) : GP">[PRML] Chapter6 - Kernel Method (2) : GP<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

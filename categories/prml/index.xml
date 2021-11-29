@@ -3,19 +3,33 @@
         <title>PRML - Category - minsoo9506</title>
         <link>http://minsoo9506.github.io/categories/prml/</link>
         <description>PRML - Category - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 26 Nov 2021 11:40:01 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/prml/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 27 Nov 2021 11:30:01 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/prml/" rel="self" type="application/rss+xml" /><item>
     <title>[PRML] Bayesian Optimization</title>
-    <link>http://minsoo9506.github.io/chap6-3-bop/</link>
-    <pubDate>Fri, 26 Nov 2021 11:40:01 &#43;0900</pubDate>
+    <link>http://minsoo9506.github.io/prml-chap06-3/</link>
+    <pubDate>Sat, 27 Nov 2021 11:30:01 &#43;0900</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/chap6-3-bop/</guid>
+    <guid>http://minsoo9506.github.io/prml-chap06-3/</guid>
     <description><![CDATA[<p>Bayesian Optimization으로 모델의 성능을 올려보자.</p>]]></description>
 </item><item>
     <title>[PRML] Chapter6 - Kernel Method (2) : GP</title>
-    <link>http://minsoo9506.github.io/chap6-2-gp/</link>
-    <pubDate>Fri, 26 Nov 2021 09:59:46 &#43;0900</pubDate>
+    <link>http://minsoo9506.github.io/prml-chap06-2/</link>
+    <pubDate>Sat, 27 Nov 2021 10:59:46 &#43;0900</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/chap6-2-gp/</guid>
+    <guid>http://minsoo9506.github.io/prml-chap06-2/</guid>
     <description><![CDATA[<p>Gaussian Process에 대해 정리하였다.</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter1 - Introduction (2)</title>
+    <link>http://minsoo9506.github.io/prml-chap01-2/</link>
+    <pubDate>Fri, 26 Nov 2021 10:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap01-2/</guid>
+    <description><![CDATA[<p>Decision Theory에 대해 알아봅시다.</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter1 - Introduction (1)</title>
+    <link>http://minsoo9506.github.io/prml-chap01-1/</link>
+    <pubDate>Fri, 26 Nov 2021 09:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap01-1/</guid>
+    <description><![CDATA[<p>Probability Theory에 대해 알아봅시다.</p>]]></description>
 </item></channel>
 </rss>
