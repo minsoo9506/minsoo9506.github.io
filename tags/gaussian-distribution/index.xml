@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Gaussian Distribution - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/gaussian-distribution/</link>
+        <description>Gaussian Distribution - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 26 Nov 2021 13:21:26 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/gaussian-distribution/" rel="self" type="application/rss+xml" /><item>
+    <title>[PRML] Chapter2 - Probability Distribution (2)</title>
+    <link>http://minsoo9506.github.io/prml-chap02-2/</link>
+    <pubDate>Fri, 26 Nov 2021 13:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap02-2/</guid>
+    <description><![CDATA[<p>Gausisan distribution의 성질을 알아보자.</p>]]></description>
+</item></channel>
+</rss>

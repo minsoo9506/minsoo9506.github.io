@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Decision Theory - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/decision-theory/</link>
+        <description>Decision Theory - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 26 Nov 2021 10:21:26 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/decision-theory/" rel="self" type="application/rss+xml" /><item>
+    <title>[PRML] Chapter1 - Introduction (2)</title>
+    <link>http://minsoo9506.github.io/prml-chap01-2/</link>
+    <pubDate>Fri, 26 Nov 2021 10:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap01-2/</guid>
+    <description><![CDATA[<p>Decision Theory에 대해 알아봅시다.</p>]]></description>
+</item></channel>
+</rss>

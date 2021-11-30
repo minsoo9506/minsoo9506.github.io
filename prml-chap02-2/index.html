@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[PRML] Chapter2 - Probability Distribution (2) - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[PRML] Chapter2 - Probability Distribution (2)" />
+<meta property="og:description" content="Gausisan distribution의 성질을 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/prml-chap02-2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-26T13:21:26+09:00" />
+<meta property="article:modified_time" content="2021-11-26T13:21:26+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[PRML] Chapter2 - Probability Distribution (2)"/>
+<meta name="twitter:description" content="Gausisan distribution의 성질을 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/prml-chap02-2/" /><link rel="prev" href="http://minsoo9506.github.io/prml-chap02-1/" /><link rel="next" href="http://minsoo9506.github.io/prml-chap06-2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[PRML] Chapter2 - Probability Distribution (2)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/prml-chap02-2\/"
+        },"genre": "posts","keywords": "Gaussian Distribution","wordcount":  1521 ,
+        "url": "http:\/\/minsoo9506.github.io\/prml-chap02-2\/","datePublished": "2021-11-26T13:21:26+09:00","dateModified": "2021-11-26T13:21:26+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Chapter2 - Probability Distribution (2)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-26">2021-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1521 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#23-gaussian-distribution">2.3 Gaussian distribution</a>
+      <ul>
+        <li><a href="#231-conditional-gaussian-distributions">2.3.1 Conditional Gaussian distributions</a></li>
+        <li><a href="#232-mariginal-gaussian-distributions">2.3.2 Mariginal Gaussian distributions</a></li>
+        <li><a href="#233-bayes-theorem-for-gaussian-variables">2.3.3 Bayes' theorem for Gaussian variables</a></li>
+        <li><a href="#234-maximum-likelihood-for-the-gaussian">2.3.4 Maximum likelihood for the Gaussian</a></li>
+        <li><a href="#235-sequential-estimation">2.3.5 Sequential estimation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Gausisan distribution의 성질을 알아보자.</p>
+<h2 id="23-gaussian-distribution">2.3 Gaussian distribution</h2>
+<ul>
+<li>Multivariate Gaussian distribution
+<ul>
+<li>D 차원의 vector $\textbf{x}$에 대한 distribution</li>
+<li>entropy가 가장 큰 분포가 gaussian이고 multivariate gaussian도 해당한다.</li>
+<li>${\Sigma}$ : D*D의 covariance matrix</li>
+</ul>
+</li>
+</ul>
+<p>$$N(\pmb{x} | \pmb{\mu}, \pmb{\Sigma}) = \frac{1}{(2\pi)^{D/2}} \frac{1}{ | \pmb{\Sigma} |^{1/2} } \exp{ -\frac{1}{2}(\pmb{x} - \pmb{\mu})^T \pmb{\Sigma}^{-1}(\pmb{x} - \pmb{ \mu})}$$</p>
+<p>Gaussian distribution은 상당히 중요한 특징들을 갖고 있다 하나씩 살펴보자.</p>
+<p>$$\Delta^2 = ({\bf x}-{\pmb \mu})^T{\bf \Sigma}^{-1}({\bf x}-{\pmb \mu}) $$</p>
+<ul>
+<li>$\Delta$ : <em>Mahalanobis distance</em> from $\pmb{\mu}$ to $\textbf{x}$
+<ul>
+<li>$\pmb{\Sigma}$가 identity이면 Euclidean distance</li>
+</ul>
+</li>
+</ul>
+<p>$\pmb{\Sigma}$는 (실수)대칭행렬이므로</p>
+<ul>
+<li>고윳값이 실수</li>
+<li>고유벡터들은 orthonomal하게 가능</li>
+<li>고유대각화가 가능하고 아울어 직교대각화가 가능하다.</li>
+</ul>
+<p>$${\bf \Sigma}=\sum_{i=1}^{D}{\pmb \Lambda}_i{\bf u}_i{\bf u}_i^T = U{\pmb \Lambda} U^{-1}$$</p>
+<p>$${\bf \Sigma}^{-1}=\sum_{i=1}^{D}\dfrac{1}{\pmb \Lambda}_i{\bf u}_i{\bf u}_i^T = U {\pmb \Lambda}^{-1} U^{-1}$$</p>
+<p>이를 위에 대입하면</p>
+<p>$$\Delta^2 = \sum_{i=1}^{D}\frac{y_i^2}{\pmb \Lambda}_i $$</p>
+<ul>
+<li>$y_i={\bf u}_i^T({\bf x}-{\pmb \mu})$
+<ul>
+<li>우리는 ${y_i}$를 orthonomal vector $\textbf{u}_i$에 의해 새롭게 정의된 coordinate system이라고 이해할 수 있다.</li>
+</ul>
+</li>
+</ul>
+<p>multivariate gaussian의 평균과 분산은</p>
+<ul>
+<li>$E[\textbf{x}] = {\pmb \mu}$</li>
+<li>$cov[\textbf{x}] = {\pmb \Sigma}$ : 공분산행렬 (covariance matrix)</li>
+</ul>
+<p>multivariate gaussian은 유용한 분포지만 한계점도 있다.</p>
+<ul>
+<li>공분산행렬의 parameter 개수
+<ul>
+<li>공분산행렬의 parameter는 $D(D+3)/2$ 개 이다. 차원이 커짐에 따라 parameter가 quadratic하게 커진다. 이를 위한 해결책은 2가지가 있는데
+<ul>
+<li>공분산행렬은 대각행렬로 생각한다. 즉, ${\pmb \Sigma} = diag(\sigma_i^2)$</li>
+<li>공분산행렬을 isotropic covariance로 만든다. 즉, ${\pmb \Sigma} = \sigma^2{\pmb I}$</li>
+</ul>
+</li>
+<li>물론 이런 제약이 생기면 data간의 correlation을 못 잡는 경우가 발생한다.</li>
+</ul>
+</li>
+<li>gaussian은 unimodal 하기에 multimodal distribution을 잘 approximation하기 어렵다.
+<ul>
+<li>이에 대해 해결책은 나중에 뒤에서 배운다. (Mixture 등등)</li>
+</ul>
+</li>
+</ul>
+<h3 id="231-conditional-gaussian-distributions">2.3.1 Conditional Gaussian distributions</h3>
+<p>conditional distribution의 경우를 살펴보자. $\textbf{x}$는 Gaussian distribution $N(\textbf{x} | {\pmb \mu, \Sigma})$의 D-차원 vector이다. 이를 두 부분으로 나누어 $\textbf{x}_a, \textbf{x}_b$ 라고 하자.  D*D covariance matrix는 대칭행렬이다.</p>
+<p>$$\textbf{x} = \begin{pmatrix} \textbf{x}_a \\ \textbf{x}_b \end{pmatrix}, {\pmb \mu} = \begin{pmatrix} {\pmb \mu}_a \\ {\pmb \mu}_b \end{pmatrix}$$</p>
+<p>$${\pmb \Sigma} =  \begin{pmatrix} \Sigma_{aa} &amp; \Sigma_{ab} \\ \Sigma_{ba} &amp; \Sigma_{bb} \end{pmatrix}$$</p>
+<ul>
+<li>precision matrix</li>
+</ul>
+<p>$${\pmb \Lambda} \equiv {\pmb \Sigma}^{-1} = \begin{pmatrix} {\pmb \Lambda} _ {aa} &amp; {\pmb \Lambda} _ {ab} \\ {\pmb \Lambda} _ {ba} &amp; {\pmb \Lambda}_{bb} \end{pmatrix}$$</p>
+<p>이제 우리는 conditional distribution $p(\textbf{x}_a | \textbf{x}_b)$ 을 살펴보자. (gaussian은 <strong>quadratic form</strong> in the exponent를 주의깊게 살펴보자) $\textbf{x}_b$는 fixed 되었으며 exp 안의 부분을 나눠서보면</p>
+<p>$$-\frac{1}{2}({\bf x}-{\pmb \mu})^T\Sigma^{-1}({\bf x}-{\pmb \mu})=$$</p>
+<p>$$ -\frac{1}{2}({\bf x}_a - {\pmb \mu}_a)^T{\pmb \Lambda} _ {aa}({\bf x}_a-{\pmb \mu}_a) - \frac{1}{2}({\bf x}_a - {\pmb \mu}_a)^T {\pmb \Lambda} _ {ab}({\bf x}_b-{\pmb \mu}_b)$$</p>
+<p>$$-\frac{1}{2}({\bf x}_b-{\pmb \mu}_b)^T{\pmb \Lambda} _ {ba}({\bf x}_a-{\pmb \mu}_a) - \frac{1}{2}({\bf x}_b - {\pmb \mu}_b)^T{\pmb \Lambda} _ {bb}({\bf x}_b-{\pmb \mu}_b) $$</p>
+<p>위 식을 보면 $\textbf{x}_a$ 에 대한 함수이고 quadratic form 임을 알 수 있다. 즉 conditional dist는 Gaussian인 것이다.</p>
+<p>이제 평균과 분산을 구하는 과정을 살펴보자. 먼저, $\textbf{x}_a$의 second order인 부분을 먼저보면</p>
+<p>$$-\frac{1}{2}\textbf{x}^T_a {\pmb \Lambda}_{aa} \textbf{x}_a$$</p>
+<p>따라서 우리는 conditional distribution $p(\textbf{x}_a | \textbf{x}_b)$의 covariance 가</p>
+<p>$${\pmb \Sigma_{a|b} = {\pmb \Lambda}_{aa}^{-1}}$$</p>
+<p>임을 알 수 있다. 다음은 $\textbf{x}_a$에 linear한 부분을 보면</p>
+<p>$$\textbf{x}_a^T { {\pmb \Lambda} _ {aa} {\pmb \mu}_a - {\pmb \Lambda} _ {ab}(\textbf{x}_a - {\pmb \mu}_b)}$$</p>
+<p>이를 이용하여 우리는 평균을 구할 수 있다.</p>
+<p>$${\pmb \mu} _ {a|b} = {\pmb \Sigma}_{a|b} [ {\pmb \Lambda} _ {aa}{\pmb \mu}_a - {\pmb \Lambda} _ {ab}({\bf x}_b-{\pmb \mu}_b) ]
+= {\pmb \mu}_a -{\pmb \Lambda} _ {aa}^{-1}{\pmb \Lambda} _ {ab}({\bf x}_b-{\pmb \mu}_b) $$</p>
+<p>다음으로 공분산행렬을 구하면</p>
+<p>$${\pmb \Sigma}_{a|b} = {\pmb \Sigma} _ {aa} - {\pmb \Sigma} _ {ab}{\pmb \Sigma} _ {bb}^{-1}{\pmb \Sigma} _ {ba} $$</p>
+<ul>
+<li>[참고] 아래의 공식을 이용하여 구한다.
+$$<![CDATA[
+\left(\begin{array}{cc}A & B \\ C & D \end{array}\right)^{-1} = \left(\begin{array}{cc} M & -MBD^{-1} \\ -D^{-1}CM & D^{-1}CMBD^{-1} \end{array}\right) %]]>$$</li>
+</ul>
+<p>$$M = (A-BD^{-1}C)^{-1} $$</p>
+<ul>
+<li>결론 : conditional distribution도 Gaussian distribution이다
+<ul>
+<li>mean은 linear function of $\textbf{x}_b$</li>
+<li>covariance은 independent of $\textbf{x}_b$</li>
+</ul>
+</li>
+</ul>
+<h3 id="232-mariginal-gaussian-distributions">2.3.2 Mariginal Gaussian distributions</h3>
+<p>$$p({\bf x}_a) = \int p({\bf x}_a, {\bf x}_b)d{\bf x}_b $$</p>
+<p>joint distribution에서 integrate out $x_b$하면 된다. 이번에도 마찬가지로 quadratic form을 이용하여 문제를 해결한다. 위에서 봤던 joint distribution의 exp부분을 이번에는 $\textbf{x}_b$에 대해 전개하면</p>
+<p>$$-\dfrac{1}{2}{\bf x}_b^{T}{\pmb \Lambda} _ {bb}{\bf x}_b + {\bf x}_b^T{\bf m} = -\dfrac{1}{2}({\bf x}_b- {\pmb \Lambda} _ {bb}^{-1}{\bf m})^T {\pmb \Lambda} _ {bb}({\bf x}_b- {\pmb \Lambda} _ {bb}^{-1}{\bf m}) + \dfrac{1}{2}{\bf m}^T {\pmb \Lambda} _ {bb}^{-1}{\bf m}$$</p>
+<p>$$\text{where}\;{\bf m} = {\pmb \Lambda}_{bb}{\pmb \mu} _ b - {\pmb \Lambda} _ {ba}({\bf x}_a-{\pmb \mu}_a)$$</p>
+<p>위의 식 우항에서 첫번째 부분은 quadratic form으로 만들었다. integrate하면 exp부분을 제외한 Gaussian distribution의 normalization constant가 나온다. 이는 첫번째항의 covariance determinant만 관련이 있고 $\textbf{x}_a$와 independent하다. 결국 중요한건 $\textbf{x}_a$와 dependent한 뒷부분인데 이를 정리하면 ${\bf x}_a$에 대한 marginal gaussian distribution가 된다.</p>
+<p>$$\dfrac{1}{2}[{\pmb \Lambda} _ {bb}{\pmb \mu}_b-{\pmb \Lambda} _ {ba}({\bf x}_a-{\pmb \mu}_a)]^T {\pmb \Lambda} _ {bb}^{-1}[{\pmb \Lambda} _ {bb}{\pmb \mu}_b-{\pmb \Lambda} _ {ba}({\bf x}_a-{\pmb \mu}_a)]$$</p>
+<p>$$- \dfrac{1}{2}{\bf x}_a^T{\pmb \Lambda} _ {aa}{\bf x}_a + {\bf x}_a^T({\pmb \Lambda} _ {aa}{\pmb \mu}_a+{\pmb \Lambda} _ {ab}{\pmb \mu}_b) + const$$</p>
+<p>$$= - \dfrac{1}{2}{\bf x}_a^T({\pmb \Lambda} _ {aa}-{\pmb \Lambda} _ {ab}{\pmb \Lambda} _ {bb}^{-1}{\pmb \Lambda} _ {ba}){\bf x}_a + {\bf x}_a^T({\pmb \Lambda} _ {aa}-{\pmb \Lambda} _ {ab}{\pmb \Lambda} _ {bb}^{-1}{\pmb \Lambda} _ {ba}){\pmb \mu}_a+const $$</p>
+<p>이를 이용하여 marginal distribution을 구하면 된다. 먼저, covariance는</p>
+<p>$${\pmb \Sigma}_a = ({\pmb \Lambda} _ {aa}-{\pmb \Lambda} _ {ab}{\pmb \Lambda} _ {bb}^{-1}{\pmb \Lambda} _ {ba})^{-1} = {\pmb \Sigma} _ {aa}$$</p>
+<p>mean은 아래와 같다.</p>
+<p>$${\pmb \Sigma}_a({\pmb \Lambda} _ {aa}-{\pmb \Lambda} _ {ab}{\pmb \Lambda} _ {bb}^{-1}{\pmb \Lambda} _ {ba}){\pmb \mu}_a = {\pmb \mu}_a$$</p>
+<ul>
+<li>결론 : Marginal distribution도 Gaussian distribution이다.
+<ul>
+<li>$E[\textbf{x}_a] = {\pmb \mu}_a$</li>
+<li>$cov[\textbf{x}_a] = \Sigma _{aa}$</li>
+<li>직관과 거의 일치한다. (partitioned한 부분)</li>
+</ul>
+</li>
+</ul>
+<h3 id="233-bayes-theorem-for-gaussian-variables">2.3.3 Bayes' theorem for Gaussian variables</h3>
+<p>Gaussian marginal distribution $p(\textbf{x})$ , Gaussian conditional distribution $p(\textbf{y} | \textbf{x})$가 주어진 상태이다. (2.3.1과 2.3.2에서 알게된 사실을 토대로)</p>
+<p>$$p({\bf x}) = N({\bf x}|{\pmb \mu}, {\pmb \Lambda}^{-1}) $$</p>
+<p>$$p({\bf y}|{\bf x}) = N({\bf y}|{\bf A} {\bf x}+{\bf b} , \textbf{L}^{-1}) $$</p>
+<p>우리는 Gaussian marginal distribution $p(\textbf{y})$ , Gaussian conditional distribution $p(\textbf{x} | \textbf{y})$를 구하고자 한다. 먼저 joint distribution을 구한 뒤에 구해보자.</p>
+<p>$${\bf z} = \dbinom{ {\bf x} }{ {\bf y} }$$</p>
+<p>$$\ln p({\bf z}) = \ln p({\bf x}) + \ln p({\bf y}) \\
+= -\frac{1}{2}({\bf x}-{\pmb \mu})^T{\pmb \Lambda}({\bf x}-{\pmb \mu}) -\frac{1}{2}({\bf y}-{\bf A}{\bf x}-{\bf b})^T {\bf L}({\bf y}-{\bf A}{\bf x}-{\bf b})+const $$</p>
+<p>위의 식은 quadratic 형태의 함수라는 것을 알수 있고 따라서 Gaussian distribution의 함수일 것이다. 위의 식을 전개하여 이차항을 살펴보면 (for covariance)</p>
+<p>$$-\frac{1}{2} {\bf x}^T ({\pmb \Lambda} + {\bf A}^T {\pmb \Lambda} {\bf A}) {\bf x} - \frac{1}{2} {\bf y}^T {\bf L}{\bf y} + \frac{1}{2} {\bf x}^T {\bf A}{\bf L}{\bf y}$$</p>
+<p>$$ = -\frac{1}{2} \dbinom{ {\bf x} }{ {\bf y} }^T \left(\begin{array}{cc}{\pmb \Lambda}+{\bf A}^T{\bf L}{\bf A} &amp; -{\bf A}^T{\bf L} \\ - {\bf L}{\bf A} &amp; {\bf L}\end{array} \right) \dbinom{ {\bf x} }{ {\bf y} } = -\frac{1}{2}{\bf z}^T{\bf R}{\bf z}$$</p>
+<p>따라서 precision matrix는</p>
+<p>$${\bf R} = \left(\begin{array}{cc}{\pmb \Lambda}+{\bf A}^T{\bf L}{\bf A} &amp; -{\bf A}^T{\bf L}\-{\bf L}{\bf A} &amp; {\bf L}\end{array}\right)$$</p>
+<p>임을 알 수 있다. 이를 inverse하여 covariance matrix를 구하면</p>
+<p>$$cov[{\bf z}]={\bf R}^{-1} = \left(\begin{array}{cc}{\pmb \Lambda}^{-1} &amp; {\pmb \Lambda}^{-1}{\bf A}^T \ {\bf A}{\pmb \Lambda}^{-1} &amp; {\bf L}^{-1}+{\bf A}{\pmb \Lambda}^{-1}{\bf A}^T  \end{array}\right)$$</p>
+<p>이전의 방법을 이용하여 mean을 구할 수 있다.</p>
+<p>$${\bf x}^T{\pmb \Lambda}{\pmb \mu} - {\bf x}^T{\bf A}^T{\bf L}{\bf b} + {\bf y}^T{\bf L}{\bf b} = \dbinom{ {\bf x} }{ {\bf y} }^T \dbinom {\pmb \Lambda}{\pmb \mu}-{\bf A}^T{\bf L}{\bf b}  {\bf L}{\bf b}  $$</p>
+<p>$$E[{\bf z}] = {\bf R}^{-1}\dbinom{ {\bf x} }{ {\bf y} }^T\dbinom {\pmb \Lambda}{\pmb \mu}-{\bf A}^T{\bf L}{\bf b} {\bf L}{\bf b}$$</p>
+<p>전개하면 최종적으로 mean은</p>
+<p>$$E[{\bf z}] = \dbinom{ {\pmb \mu} }{ {\bf A} {\pmb \mu} - {\bf b}}$$</p>
+<ul>
+<li>결과</li>
+</ul>
+<p>$$E[{\bf y}] = {\bf A}{\pmb \mu} + {\bf b}$$</p>
+<p>$$cov[{\bf y}] = {\bf L}^T + {\bf A}{\pmb \Lambda}^{-1}{\bf A}^T $$</p>
+<p>다음은 conditional distribution $p(\textbf{x}| \textbf{y})$ 의 mean, covariance를 구하면</p>
+<p>$$\Sigma_{a|b}={\pmb \Lambda} _ {aa}^{-1} \ {\pmb \mu}_{a|b}={\pmb \mu}_a - {\pmb \Lambda} _ {aa}^{-1}{\pmb \Lambda} _ {ab}({\bf x}_b-{\pmb \mu}_b)$$</p>
+<p>$$E[{\bf x}|{\bf y}] = ({\pmb \Lambda}+{\bf A}^T{\bf L}{\bf A})^{-1}{ {\bf A}^T{\bf L}({\bf y}-{\bf b})+{\pmb \Lambda}{\pmb \mu}} $$</p>
+<p>$$cov[{\bf x}|{\bf y}] = ({\pmb \Lambda}+{\bf A}^T{\bf L}{\bf A})^{-1} $$</p>
+<h3 id="234-maximum-likelihood-for-the-gaussian">2.3.4 Maximum likelihood for the Gaussian</h3>
+<ul>
+<li>Log likelihood</li>
+</ul>
+<p>$$\ln p({\bf X}|{\pmb \mu}, \Sigma) = -\frac{ND}{2}\ln(2\pi) - \frac{N}{2}\ln|\Sigma|-\frac{1}{2}\sum_{n=1}^{N}({\bf x}_n-{\pmb \mu})^T\Sigma^{-1}({\bf x}_n-{\pmb \mu})$$</p>
+<p>(과정 생략)
+$${\pmb \mu} _ {ML} = \frac{1}{N}\sum_{i=1}^{N}{\bf x}_i = \bar{\bf x}$$</p>
+<p>$${ \pmb \Sigma} _ {ML} = \frac{1}{N}\sum_{i=1}^{N}({\bf x}_i-\mu)({\bf x}_i-\mu)^T$$</p>
+<h3 id="235-sequential-estimation">2.3.5 Sequential estimation</h3>
+<p>data sample이 하나 들어오면 바로 계산하고 버린다. MLE를 구하는 예시를 살펴보자.</p>
+<p>$${\pmb \mu} _ {ML}^{(N)} = \frac{1}{N} \sum_{n=1}^{N}{\bf x}_n = \frac{1}{N}{\bf x} _ N + \frac{1}{N} \sum _ {n=1}^{N-1}{\bf x}_n$$</p>
+<p>$$= \frac{1}{N}{\bf x}_N + \frac{N-1}{N}{\pmb \mu} _ {ML}^{(N-1)}={\pmb \mu} _ {ML}^{(N-1)}+\frac{1}{N}({\bf x}_N-{\pmb \mu} _ {ML}^{(N-1)}) $$</p>
+<p>이전에 구한 parameter를 &lsquo;error signal&rsquo; $(\textbf{x} _N - {\pmb \mu} _{ML}^{(N-1)})$ 쪽으로 1/N에 비례하도록 수정하여 parameter를 업데이트한다. $N$이 커질수록 새로운 data의 영향은 작아진다. 이번에는 이런 Sequential estimation에서 사용되는 일반적인 방법에 대해 살펴보자.</p>
+<ul>
+<li>바로 <em>Robbins-Monro</em> algorithm이다.</li>
+</ul>
+<p>random variables $\theta, z$가 있다. conditional expectation은</p>
+<p>$$f(\theta)\equiv E[z|\theta] = \int zp(z|\theta)dz $$</p>
+<p>이고 이러한 형태를 regression function이라고 부른다. 우리의 목표는 $f(\theta^{ * }) = 0$을 만족하는 root $\theta^{ * }$를 찾는 것이다.</p>
+<ul>
+<li>몇가지 가정을 살펴보면
+<ul>
+<li>data가 많으면 한번에 regression function을 만들고 root를 estimation할 수 있겠지만 지금은 Sequential하게 data가 하나씩 구해진다고 가정한다.</li>
+<li>$E[(z-f)^2 | \theta]&lt;\infty$ : conditional variance는 finite하다고 가정한다.</li>
+<li>$\theta &gt; \theta^{ * } \rightarrow f(\theta) &gt; 0$</li>
+<li>$\theta &lt; \theta^{ * } \rightarrow f(\theta) &lt; 0$</li>
+</ul>
+</li>
+</ul>
+<p>Robbins-Monro의 방법은</p>
+<p>$$\theta^{(N)} = \theta^{(N-1)} - a_{N-1} z(\theta^{N-1}) $$</p>
+<ul>
+<li>여기서 $z(\theta^{(N)})$은 N번째의 $\theta$가 들어왔을 때, $z$의 값을 의미한다.</li>
+<li>$a_N$은 양의 실수이며 다음과 같은 조건을 갖는다.
+<ul>
+<li>$\lim_{N\rightarrow\infty}a_N=0 $ : $\theta$가 특정값에 수렴</li>
+<li>$\sum_{N=1}^{\infty}a_N=\infty $ : root를 찾기도 전에 다른 값에 수렵하지 않도록</li>
+<li>$% <![CDATA[
+\sum_{N-1}^{\infty}a_N^2<\infty %]]>$ : 축적되는 noise가 finite하여 수렴을 방해하지 않는다.</li>
+</ul>
+</li>
+</ul>
+<p>이제 이 방법을 통해 이전에 구했던 MLE의 예시에 적용해보자.</p>
+<p>$$\frac{\partial}{\partial\theta}{-\frac{1}{N}\sum_{n=1}^{N}\ln p(x_n|\theta)}_ {\theta_{MLE}}=0$$</p>
+<p>MLE는 위처럼 log likelihood function을 미분하여 0으로 만드는 값니다.</p>
+<ul>
+<li>as $N \rightarrow \infty$</li>
+</ul>
+<p>$$-\lim_{n\rightarrow\infty}\frac{1}{N}\sum_{n=1}^{N}\frac{\partial}{\partial\theta}\ln p(x_n|\theta) = E_x\left[-\frac{\partial}{\partial\theta}\ln p(x|\theta)\right] $$</p>
+<p>이제 Robbins-Monro의 방법을 적용하면</p>
+<p>$$\theta^{(N)} = \theta^{(N-1)} - a_{N-1}\frac{\partial}{\partial\theta^{(N-1)}}\left[-\ln p(x_N/\theta^{(N-1)})\right] $$</p>
+<p>$$z=\frac{\partial}{\partial\mu_{ML}}[-\ln p(x|\mu_{ML}, \sigma^2)]=-\frac{1}{\sigma^2}(x-\mu_{ML}) $$</p>
+<p>따라서 $\textbf{x}_N$을 대입하고 $a_N = \sigma^1 / N$을 대입하면 처음에 구한 결과와 같다.</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-11-26</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/prml-chap02-2/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/gaussian-distribution/">Gaussian Distribution</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/prml-chap02-1/" class="prev" rel="prev" title="[PRML] Chapter2 - Probability Distribution (1)"><i class="fas fa-angle-left fa-fw"></i>[PRML] Chapter2 - Probability Distribution (1)</a>
+            <a href="/prml-chap06-2/" class="next" rel="next" title="[PRML] Chapter6 - Kernel Method (2) : GP">[PRML] Chapter6 - Kernel Method (2) : GP<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
