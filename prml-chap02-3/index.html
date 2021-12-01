@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[PRML] Chapter2 - Probability Distribution (3) - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[PRML] Chapter2 - Probability Distribution (3)" />
+<meta property="og:description" content="Gaussian Distribution과 관련한 내용을 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/prml-chap02-3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-26T14:21:26+09:00" />
+<meta property="article:modified_time" content="2021-11-26T14:21:26+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[PRML] Chapter2 - Probability Distribution (3)"/>
+<meta name="twitter:description" content="Gaussian Distribution과 관련한 내용을 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/prml-chap02-3/" /><link rel="prev" href="http://minsoo9506.github.io/prml-chap02-2/" /><link rel="next" href="http://minsoo9506.github.io/prml-chap02-4/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[PRML] Chapter2 - Probability Distribution (3)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/prml-chap02-3\/"
+        },"genre": "posts","keywords": "Gaussian Distribution","wordcount":  464 ,
+        "url": "http:\/\/minsoo9506.github.io\/prml-chap02-3\/","datePublished": "2021-11-26T14:21:26+09:00","dateModified": "2021-11-26T14:21:26+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Chapter2 - Probability Distribution (3)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-26">2021-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;464 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#236-bayesian-inference-for-the-gaussian">2.3.6 Bayesian inference for the Gaussian</a></li>
+        <li><a href="#237-students-t-distribution">2.3.7 Student&rsquo;s t-distribution</a></li>
+        <li><a href="#238-periodic-variables">2.3.8 Periodic variables</a></li>
+        <li><a href="#239-mixtures-of-gaussians">2.3.9 Mixtures of Gaussians</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Gaussian Distribution과 관련한 내용을 알아보자.</p>
+<h3 id="236-bayesian-inference-for-the-gaussian">2.3.6 Bayesian inference for the Gaussian</h3>
+<p>이번에는 Bayesian의 방법으로 접근해보자.</p>
+<ul>
+<li>$\sigma^2$ is known, inferring the mean $\mu$</li>
+</ul>
+<p>likelihood function은</p>
+<p>$$p({\bf x} | \mu) = \prod_{n=1}^{N}p(x_n | \mu) = \dfrac{1}{(2\pi\sigma^2)^{N/2}}\exp \{-\frac{1}{2\sigma^2}\sum_{n=1}^{N}(x_n-\mu)^2 \}$$</p>
+<p>Gaussian의 conjugate prior는 Gaussian이다. 따라서 prior distribution은</p>
+<p>$$p(\mu) = N(\mu | \mu_0, \sigma_0^2)$$</p>
+<p>posterior distribution은</p>
+<p>$$p(\mu |{\bf x}) \propto p({\bf x}|\mu)p(\mu) = N(\mu | \mu_N, \sigma_N^2)$$</p>
+<ul>
+<li>$\mu_N = \frac{\sigma^2}{N\sigma_0^2+\sigma^2}\mu_0 + \frac{N\sigma_0^2}{N\sigma_0^2+\sigma^2}\mu_{ML}$</li>
+<li>$\frac{1}{\sigma_N^2}=\frac{1}{\sigma_0^2}+\frac{N}{\sigma^2}$</li>
+</ul>
+<p>위의 결론을 통해 평균과 분산에 대해 좀 더 살펴보자.</p>
+<ul>
+<li>posterior mean
+<ul>
+<li>prior mean $\mu_0$ 와 MLE solution $\mu_{ML}$ 사이의 값을 갖는다.</li>
+<li>$N=0$이면 prior mean쪽으로 $N \rightarrow \infty$이면 MLE solution쪽을 가까워 진다.</li>
+</ul>
+</li>
+<li>posterior variance
+<ul>
+<li>해석의 편의를 위해 precision으로 표현하였다.</li>
+<li>data의 수가 늘어날수록 precision이 커지고 따라서 posterior variance는 작아진다.</li>
+<li>$N=0$이면 prior variance의 값과 같다. $N \rightarrow \infty$이면 variance가 0으로 가까워진다.</li>
+</ul>
+</li>
+</ul>
+<p>이번에는 $\mu$ is known, inferring the variance $\sigma^2$</p>
+<p>$$p({\bf x} | \lambda) = \prod_{n=1}^{N} N(x_n | \mu, \lambda^{-1}) \propto \lambda^{N/2} \exp \{ -\frac{\lambda}{2} \sum_{n=1}^{N}(x_n-\mu)^2 \}$$</p>
+<p>precision의 posterior의 conjugate prior는 <em>gamma</em> distribution이다.</p>
+<p>$$Gam(\lambda | a,b)=\frac{1}{\Gamma(a)}b^a\lambda^{a-1}\exp(-b\lambda) $$</p>
+<p>이를 이용하여 posterior를 구하면</p>
+<p>$$p({\bf x} | \lambda) \propto \lambda^{a_0-1}\lambda^{N/2} \exp \{-b_0\lambda-\frac{\lambda}{2}\sum_{n=1}^{N}(x_n-\mu)^2\}$$</p>
+<ul>
+<li>$a_N = a_0 + \frac{N}{2}$</li>
+<li>$b_N = b_0 + \frac{1}{2}\sum_{n=1}^{N}(x_n-\mu)^2 = b_0 + \frac{N}{2}\sigma_{ML}^2$</li>
+</ul>
+<p>precision이 아닌 covariance를 바로 이용하는 경우 gamma distribution이 아니라 <em>inverse gamma</em> distribution을 이용한다.</p>
+<p>이번에는 $\mu, \sigma^2$ 둘 다 모른다고 하자</p>
+<p>$$p({\bf x} | \mu, \lambda) = \prod_{n=1}^{N} (\frac{\lambda}{2\pi} )^{1/2} \exp \{-\frac{\lambda}{2}(x_n-\mu)^2\} \\ \propto [\lambda^{1/2}\exp (-\frac{\lambda\mu^2}{2})]^N\exp\{\lambda\mu\sum_{n=1}^{N}x_n-\frac{\lambda}{2}\sum_{n=1}^{N}x_n^2\} $$</p>
+<p>parameter가 2개이기에 prior가 $p(\mu, \lambda)$일 것이다. likelihood function의 모양과 $p(\mu, \lambda) = p(\mu |\lambda)p(\lambda)$를 이용하면</p>
+<ul>
+<li><em>Normal-Gamma</em> distribution</li>
+</ul>
+<p>$$p(\mu, \lambda) = N(\mu|\mu_0, (\beta\lambda)^{-1})Gam(\lambda|a,b) $$</p>
+<p>을 구할 수 있다.</p>
+<ul>
+<li>independent한 두 식을 곱한게 아니다. Normal의 precision이 $\lambda$에 dependent하다.</li>
+<li>D-dimension인 경우, <em>Wishart</em> distribution을 이용한다.</li>
+</ul>
+<h3 id="237-students-t-distribution">2.3.7 Student&rsquo;s t-distribution</h3>
+<p>위에서 gaussian precision과 관련하여 gamma prior을 이용했다.</p>
+<ul>
+<li>이때 $x$에 대한 marginal distribution을 구해보자.</li>
+</ul>
+<p>$$p(x/\mu,a,b) = \int_{0}^{\infty}N(x/\mu, \tau^{-1})Gam(\tau/a,b)d\tau \\
+=\int_{0}^{\infty}\frac{b^a e^{(-b\tau)}\tau^{(a-1)}}{\Gamma(a)}(\frac{\tau}{2\pi})^{1/2}\exp \{-\frac{\tau}{2}(x-\mu)^2 \}d\tau \\
+= \frac{b^a}{\Gamma(a)}(\frac{1}{2\pi})^{1/2}[b+\frac{(x-\mu)^2}{2}]^{-a-1/2}\Gamma(a+1/2) $$</p>
+<ul>
+<li>$z = \tau[b+(x-\mu)^2/2]$로 놓고 식을 전개하면</li>
+</ul>
+<p>$$St(x/\mu,\lambda,v) = \frac{\Gamma(v/2+1/2)}{\Gamma(v/2)}\left(\frac{\lambda}{\pi v}\right)^{1/2}\left[1+\frac{\lambda(x-\mu)^2}{v}\right]^{-v/2-1/2} $$</p>
+<p>이를 <em>Student&rsquo;s t-distribution</em> 이라고 한다. $v$는 자유도이며 이 값이 무한대로 갈수록 gaussian distribution에 가까워진다. 이 분포의 특징 중 하나는 robustness 라는 것이다. 분포모양이 gaussian distribution과 비슷하지만 (좌우대칭) 더 긴 꼬리를 갖고 있다. 이 때문에 outlier(이상치)에 대해 덜 민감하다.</p>
+<h3 id="238-periodic-variables">2.3.8 Periodic variables</h3>
+<p>skip</p>
+<h3 id="239-mixtures-of-gaussians">2.3.9 Mixtures of Gaussians</h3>
+<ul>
+<li><em>mixture distribution</em> : linear combination of basic distribution</li>
+</ul>
+<p>K개의 gaussian distribution을 중첩하면</p>
+<p>$$p({\bf x}) = \sum_{k=1}^{K}\pi_k N({\bf x} | {\bf \mu}_k, \Sigma_k) $$</p>
+<p>이를 <em>Mixture of Gaussian</em> 이라고 부른다. 이 때</p>
+<ul>
+<li>각 $N({\bf x} | {\bf \mu}_k, \Sigma_k)$ 는 component, $\pi_k$는 mixing coefficients 라고 부른다.</li>
+</ul>
+<p>$\pi_k$은 0과 1 사이의 값을 갖고 합이 1이다. 따라사 이를 확률로 이해할 수 있다. 이를 통해 다시 marginal distribution을 전개하면</p>
+<p>$$p({\bf x}) = \sum_{k=1}^{K}p(k)p({\bf x}|k)$$</p>
+<p>그렇다면 이제 parameter 추정을 해보자.</p>
+<ul>
+<li>prameter는 $\pi, \mu,\Sigma$</li>
+</ul>
+<p>$$\ln p({\bf X}|{\bf \pi}, {\bf \mu}, \Sigma) = \sum_{n=1}^{N}\ln \{\sum_{k=1}^{K} \pi_k N({\bf x}_n|{\bf \mu}_k, \Sigma_k) \}$$</p>
+<p>위의 식에서 MLE를 구하기는 쉽지 않다. log 안에 summation이 있기 때문이다. (미분이 어려움) 이를 구하는 방법은 EM algorithm이다. 나중에 배운다.</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-11-26</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/prml-chap02-3/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/gaussian-distribution/">Gaussian Distribution</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/prml-chap02-2/" class="prev" rel="prev" title="[PRML] Chapter2 - Probability Distribution (2)"><i class="fas fa-angle-left fa-fw"></i>[PRML] Chapter2 - Probability Distribution (2)</a>
+            <a href="/prml-chap02-4/" class="next" rel="next" title="[PRML] Chapter2 - Probability Distribution (4)">[PRML] Chapter2 - Probability Distribution (4)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

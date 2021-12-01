@@ -18,6 +18,34 @@
     <guid>http://minsoo9506.github.io/prml-chap06-2/</guid>
     <description><![CDATA[<p>Gaussian Process에 대해 정리하였다.</p>]]></description>
 </item><item>
+    <title>[PRML] Chapter3 - Linear Models For Regression (2)</title>
+    <link>http://minsoo9506.github.io/prml-chap03-2/</link>
+    <pubDate>Fri, 26 Nov 2021 17:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap03-2/</guid>
+    <description><![CDATA[<p>Regression에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter3 - Linear Models For Regression (1)</title>
+    <link>http://minsoo9506.github.io/prml-chap03-1/</link>
+    <pubDate>Fri, 26 Nov 2021 16:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap03-1/</guid>
+    <description><![CDATA[<p>Regression에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter2 - Probability Distribution (4)</title>
+    <link>http://minsoo9506.github.io/prml-chap02-4/</link>
+    <pubDate>Fri, 26 Nov 2021 15:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap02-4/</guid>
+    <description><![CDATA[<p>Exponential Family와 Nonparametric 방법론에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter2 - Probability Distribution (3)</title>
+    <link>http://minsoo9506.github.io/prml-chap02-3/</link>
+    <pubDate>Fri, 26 Nov 2021 14:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap02-3/</guid>
+    <description><![CDATA[<p>Gaussian Distribution과 관련한 내용을 알아보자.</p>]]></description>
+</item><item>
     <title>[PRML] Chapter2 - Probability Distribution (2)</title>
     <link>http://minsoo9506.github.io/prml-chap02-2/</link>
     <pubDate>Fri, 26 Nov 2021 13:21:26 &#43;0900</pubDate>
@@ -45,12 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/prml-chap01-2/</guid>
     <description><![CDATA[<p>Decision Theory에 대해 알아봅시다.</p>]]></description>
-</item><item>
-    <title>[PRML] Chapter1 - Introduction (1)</title>
-    <link>http://minsoo9506.github.io/prml-chap01-1/</link>
-    <pubDate>Fri, 26 Nov 2021 09:21:26 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/prml-chap01-1/</guid>
-    <description><![CDATA[<p>Probability Theory에 대해 알아봅시다.</p>]]></description>
 </item></channel>
 </rss>

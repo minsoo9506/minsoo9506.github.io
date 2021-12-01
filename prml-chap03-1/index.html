@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[PRML] Chapter3 - Linear Models For Regression (1) - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[PRML] Chapter3 - Linear Models For Regression (1)" />
+<meta property="og:description" content="Regression에 대해 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/prml-chap03-1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-26T16:21:26+09:00" />
+<meta property="article:modified_time" content="2021-11-26T16:21:26+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[PRML] Chapter3 - Linear Models For Regression (1)"/>
+<meta name="twitter:description" content="Regression에 대해 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/prml-chap03-1/" /><link rel="prev" href="http://minsoo9506.github.io/prml-chap02-4/" /><link rel="next" href="http://minsoo9506.github.io/prml-chap03-2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[PRML] Chapter3 - Linear Models For Regression (1)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/prml-chap03-1\/"
+        },"genre": "posts","keywords": "Regression","wordcount":  1090 ,
+        "url": "http:\/\/minsoo9506.github.io\/prml-chap03-1\/","datePublished": "2021-11-26T16:21:26+09:00","dateModified": "2021-11-26T16:21:26+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Chapter3 - Linear Models For Regression (1)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-26">2021-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1090 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#31-linear-basis-function-models">3.1 Linear Basis Function Models</a>
+      <ul>
+        <li><a href="#311-maximum-likelihood-and-least-sqaures">3.1.1 Maximum likelihood and least sqaures</a></li>
+        <li><a href="#312-geometry-of-least-squares">3.1.2 Geometry of least squares</a></li>
+        <li><a href="#313-sequential-learning">3.1.3 Sequential learning</a></li>
+        <li><a href="#314-regularized-least-squares">3.1.4 Regularized least squares</a></li>
+      </ul>
+    </li>
+    <li><a href="#32-the-bias-variance-decomposition">3.2 The Bias-Variance Decomposition</a>
+      <ul>
+        <li><a href="#-monk의-설명">+ monk의 설명</a></li>
+        <li><a href="#-문일철-교수님의-설명">+ 문일철 교수님의 설명</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Regression에 대해 알아보자.</p>
+<ul>
+<li>목표는 predictive distribution $p(t|x)$를 찾는 것</li>
+<li>주로 loss funciton은 squared loss를 사용하며 이 때 optimal solution은 conditional expectation of t : $E[t|x]$</li>
+</ul>
+<h2 id="31-linear-basis-function-models">3.1 Linear Basis Function Models</h2>
+<p>가장 기본적인 linear model for regression은</p>
+<p>$$y(x,w) = w_0+w_1x_1+&hellip;+w_D x_D$$</p>
+<p>의 형태일 것이다. 하지만 basis function $\phi_ j(\textbf{x})$을 이용하여 nonlinear의 성질을 추가할 수 있다.</p>
+<ul>
+<li>basis function은 다양하다.
+<ul>
+<li>gaussian distribution의 형태</li>
+<li>polynomial의 형태</li>
+<li>원래의 input data를 마음대로 변화가능</li>
+</ul>
+</li>
+</ul>
+<p>$$y(\textbf{w},\textbf{x}) = w_0 + \sum_{j=1}^{M-1}{w_j \phi_j(\textbf{x})} = \textbf{w}^T {\pmb \phi}( \textbf{x})$$</p>
+<p>하지만 여전히 linear model이다. 여기서 linear의 의미는 계수 w에 linear하다는 의미이기 때문이다. 그렇기에 여전히 interpretation에 대한 장점은 갖고 있다. 단점은 너무 단순하다는 것이다.</p>
+<h3 id="311-maximum-likelihood-and-least-sqaures">3.1.1 Maximum likelihood and least sqaures</h3>
+<ul>
+<li>$t$ : target variable</li>
+<li>$y(\textbf{x}, \textbf{w})$ : deterministic funciton</li>
+<li>$\epsilon \sim N(0, \beta^{-1})$ : noise</li>
+</ul>
+<p>$$t = y(\textbf{x}, \textbf{w})+ \epsilon$$</p>
+<p>$$p(t | \textbf{x},\textbf{w},\beta) = N(y(\textbf{x}, \textbf{w}), \beta^{-1})$$</p>
+<p>위의 gaussian 가정에서는 parameter $w$를 추정할 때, likelihood를 이용하는 것과 least square의 방법을 이용하는 것이 똑같다. (그 과정은 직접 해보면 쉽게 파악가능, chapter1에도 있다)</p>
+<ul>
+<li>optimal prediction은 conditional mean of the target variable 이므로
+<ul>
+<li>unimodal이라는 한계가 존재</li>
+</ul>
+</li>
+</ul>
+<p>$$E[t | {\bf x}] = \int tp(t | {\bf x})dt = y({\bf x}, {\bf w}) $$</p>
+<p>이제 likelihood function을 통해 MLE를 구하는 과정을 간단히 살펴보자.</p>
+<p>$$\ln{p({\bf t}|{\bf w}, \beta)} = \sum_{n=1}^{N}\ln{N( {\bf w}^T{\pmb \phi}(x_n), \beta^{-1})}\\
+=\dfrac{1}{2}\ln{\beta}-\dfrac{1}{2}\ln{2\pi}-\beta{E_D({\bf w})}$$</p>
+<p>$$E_D({\bf w})=\dfrac{1}{2}\sum_{n=1}^{N}{t_n-{\bf w}^T {\pmb \phi}(x_n)}^2$$</p>
+<p>위의 식을 미분하고 정리하면 ($\Phi$ : N*M design matrix)</p>
+<ul>
+<li>normal equation을 얻는다.</li>
+</ul>
+<p>$${\bf w}_{ML} = (\Phi^T\Phi)^{-1}\Phi^T{\bf t} $$</p>
+<ul>
+<li>bias : $w_0 = \bar{t} - \sum_{j=1}^{M-1}{w_j \bar{\phi}_j}$
+<ul>
+<li>실제 얻어지는 샘플들의 타겟 값들의 평균과,
+이 때 basis function에 parameter를 곱하여 얻어진 결과의 평균값의 차이를 보정하는 역할</li>
+</ul>
+</li>
+<li>noise precision : $\frac{1}{\beta_{ML}} = \frac{1}{N}\sum_{n=1}^{N}{{ t_n - w_{ML}^T \phi(x_n)}^2}$</li>
+</ul>
+<h3 id="312-geometry-of-least-squares">3.1.2 Geometry of least squares</h3>
+<ul>
+<li>least square의 방법에서 우리가 prediction한 값의 의미를 기하학적으로 살펴보자. 증명의 과정은 ESL에 잘 나와있다. 물론 봐도 이해하기는 어렵다. 결론만 언급하자면 <strong>&ldquo;input vector가 span하는 space에 true t의 값을 orthorgonal하게 projection한 값이 우리가 예측한 t의 값이다&rdquo;</strong></li>
+<li>추가적으로 multicolinearity에 대한 해결책으로는 PCA, SVD와 같은 방법으로 input들을 orthorgonal하게 만들어주는 것과 ridge regression과 같이 regulrarization 항이 있는 모델을 쓰는 것이다.</li>
+</ul>
+<h3 id="313-sequential-learning">3.1.3 Sequential learning</h3>
+<p>이 부분에서는 parameter를 최적화하는 과정에 있어서 gradient descent의 방법을 말하고 있다. 그게 Sequential하게 update하는 것이라 그런 것 같다. 데이터의 크기가 크면 normal equation의 방법이 오래걸리는 단점을 보완할 수도 있다.</p>
+<p>$$\textbf{w}^{\tau+1}=\textbf{w}^{(\tau)}+{\eta}(t_n-{\bf w}^{(\tau)T}{\pmb \phi}_n) {\pmb \phi}_n$$</p>
+<h3 id="314-regularized-least-squares">3.1.4 Regularized least squares</h3>
+<p>기존의 error function에 regularization term을 추가하여서 <em>parameter shrinkage</em>를 하고자 한다. 이를 통해 overfitting을 완화시킨다. lasso 같은 경우 sparse한 model을 만들어서 feature selection의 역할도 한다.</p>
+<ul>
+<li>regularized error takes the form
+<ul>
+<li>아래 식에서 q가 1이면 lasso, 2이면 ridge regression이다.</li>
+<li>$\lambda$가 커질수록 model complexity가 낮아진다.</li>
+</ul>
+</li>
+</ul>
+<p>$$\frac{1}{2}\sum_{n=1}^{N}{{t_n - \textbf{w}^T{\pmb \phi}(x_n)}^2}+ \frac{\lambda}{2}\sum_{j=1}^{M}{ \left| \textbf{w}_j\right|^q }$$</p>
+<ul>
+<li>ridge의 경우 error function이 $\textbf{w}$에 대해 quadratic form이라서 closed form으로 solution이 존재한다.</li>
+</ul>
+<p>$$w_{ridge} = (\Phi^T \Phi + \lambda I)^{-1}\Phi^T t$$</p>
+<h2 id="32-the-bias-variance-decomposition">3.2 The Bias-Variance Decomposition</h2>
+<p>모델링을 할 때 overfitting을 피하기 위해 제약을 두면 complexity를 못 잡을 수도 있다. 너무 모델을 복잡하게 하면 overfitting이 될 수도 있다. 이는 상당히 어려운 문제이다. 이 부분에 있어서 frequentist의 입장에서 바라보는 bias-variance trade off 관계를 공부하고자 한다. 이해를 위해 square loss (regression)의 경우의 예시를 살펴보자.</p>
+<ul>
+<li>square loss function 에서 optimal solution :</li>
+</ul>
+<p>$$E[t | \textbf{x}] = \int t p(t | \textbf{x})dt  = h(\textbf{x})$$</p>
+<ul>
+<li>expected squared loss :</li>
+</ul>
+<p>$$E[L] = \int { y(\textbf{x}) - h(\textbf{x})}^2 p(\textbf{x})d\textbf{x} + \int {h(\textbf{x}) - t}^2 p(\textbf{x},t)d\textbf{x}dt$$</p>
+<p>우리는 우항의 첫번째를 최대한 작게하는 $y(\textbf{x})$을 만들고자 한다. 위의 식에서 우항의 두번째는 우리가 줄일 수 없는 intrinsic noise이다. 첫 번째 항을 decompose 해보자.</p>
+<ul>
+<li>
+<p>일단 ${ y(\textbf{x};D) - h(\textbf{x})}^2$ 값은 특정한 dataset $D$에 대한 값이다. 이제 dataset이 여러개가 있다고 가정하고 이에 대해 average한 경우를 생각해보자.</p>
+</li>
+<li>
+<p>$E_D[y(\textbf{x};D)]$ 을 더하고 빼서</p>
+</li>
+</ul>
+<p>$$E_D[{ y(\textbf{x};D)-h(\textbf{x}) }^2] =\ {E_D[y(\textbf{x};D)] -h(\textbf{x})}^2+ E_D[{ y(\textbf{x};D) - E_D[y(\textbf{x};D)]}^2]$$</p>
+<p>이렇게 나타낼 수 있다. 즉, <strong>expected loss = (bias)^2 + variance +noise</strong> 인 것이다.</p>
+<ul>
+<li>bias 의미 : average prediction over all datasets 이 우리가 알고 싶은 true (regression) function과 차이나는 정도</li>
+<li>variance 의미 : 해당 하나의 dataset이 average 와 차이나는 정도, function $y(\textbf{x};D)$이 특정한 dataset에 얼마나 민감한지</li>
+<li>이 둘은 <strong>trade-off</strong> 관계 : 한쪽이 커지면 한쪽이 작아진다.</li>
+</ul>
+<p>하지만 이런 <strong>bias-variance의 관계는 average에 기반을 한 개념이기 때문에(bias, variance의 계산하는 과정이 D에 대해 평균) 한계점이 분명 존재</strong> 한다. 우리가 가지고 있는 데이터는 한정적이기 때문이다. 독립적인 데이터가 여러 개이면 각 데이터로 복잡한 모델을 만들어서 평균을 내면 좋은 결과를 얻을 수 있지만 우리는 데이터가 부족하다. 그래서 저자는 Bayesian 접근법을 소개한다.</p>
+<h3 id="-monk의-설명">+ monk의 설명</h3>
+<ul>
+<li>
+<p>정의</p>
+<ul>
+<li>MSE of an estimate $\hat{\theta} = f(D)$ for $\theta$ is</li>
+</ul>
+<p>$$MSE(\hat{\theta}) = E[(\hat{\theta} - \theta)^2 | \theta]$$</p>
+</li>
+<li>
+<p>$bias(\hat{\theta}) = E[\hat{\theta}] - \theta$</p>
+</li>
+<li>
+<p>$var(\hat{\theta}) = E[(\hat{\theta}-E[\hat{\theta}])^2]$</p>
+</li>
+</ul>
+<p>$$MSE(\hat{\theta}) = bias^2(\hat{\theta}) + var(\hat{\theta})$$</p>
+<ul>
+<li>(proof)
+<ul>
+<li>let $\mu = E[\hat{\theta}]$</li>
+</ul>
+</li>
+</ul>
+<p>$$E[(\hat{\theta} - \theta)^2] = E[(\hat{\theta} - \mu + \mu -\theta)^2] \\ = E[(\hat{\theta} - \mu)^2 + 2(\hat{\theta} - \mu)(\mu - \theta) + (\mu - \theta)^2] \\ = (\mu - \theta)^2 + E[(\hat{\theta}-\mu)^2] \quad \because E[(\hat{\theta} - \mu)(\mu - \theta)] = 0 $$</p>
+<ul>
+<li>쉬운 예시
+<ul>
+<li>$X \sim N(\theta,1)$</li>
+<li>$\theta$는 non random, unknown</li>
+<li>$\hat{\theta}_1 = X \rightarrow bias^2 = 0, var = 1, MSE = 1$</li>
+<li>$\hat{\theta}_2 = 0 \rightarrow bias^2 = \theta^2, var = 0, MSE = \theta^2$</li>
+</ul>
+</li>
+</ul>
+<h3 id="-문일철-교수님의-설명">+ 문일철 교수님의 설명</h3>
+<ul>
+<li>Sources of Error in ML
+<ul>
+<li>크게 두 가지로 나눌 수 있다 : Approximation and generalization</li>
+</ul>
+</li>
+<li>$E_{out} \le E_{in} + \Omega$
+<ul>
+<li>$E_{out}$ : estimation error</li>
+<li>$E_{in}$ : error from approximation by the learning algorithm</li>
+<li>$\Omega$ : error caused by the variance of the observations</li>
+</ul>
+</li>
+</ul>
+<p>뒤에서 사용할 notation에 대해 알아보자.</p>
+<ul>
+<li>$f$ : the target function to learn (true function)</li>
+<li>$g$ : the learning function of ML</li>
+<li>$g^{(D)}$ : the learned function by using a dataset</li>
+<li>$\bar{g}$ : the average hypothesis of a given infinite numbers of D ( $\bar{g}(x) = E_D [g^{(D) } (x)]$ )</li>
+</ul>
+<p>하나의 dataset D에 대한 Error는</p>
+<p>$$E_{out}[g^{(D)}(x)] = E_x[(g^{(D)}(x) - f(x))^2]$$</p>
+<p>그렇다면 expected error of the infinite dataset은</p>
+<p>$$E_D [E_{out}[g^{(D)}(x)] ] = E_D [E_x[(g^{(D)}(x) - f(x))^2]] = E_x [E_D[(g^{(D)}(x) - f(x))^2]]$$</p>
+<p>일단 안쪽에 있는 term부터 확인해보자.</p>
+<p>$$E_D[(g^{(D)}(x) - f(x))^2] = E_D [( g^{(D)}(x) - \bar{g}(x) + \bar{g}(x)  -  f(x) )^2]$$</p>
+<p>$$= E_D [(g^{(D)}(x) - \bar{g}(x) )^2] + (\bar{g}(x)  -  f(x))^2$$</p>
+<p>$$\therefore E_D [E_{out}[g^{(D)}(x)] ]  = E_D [(g^{(D)}(x) - \bar{g}(x) )^2] + (\bar{g}(x)  -  f(x))^2 $$</p>
+<p>여기서 우리는 variance와 bias를 정의할 수 있는데</p>
+<ul>
+<li>$Var = E_D [(g^{(D)}(x) - \bar{g}(x) )^2]$</li>
+<li>$Bias^2 = (\bar{g}(x)  -  f(x))^2$</li>
+</ul>
+<p>이들이 의미하는 바는</p>
+<ul>
+<li>var는 제한적인 dataset 때문에 model을 average hypothesis로 훈련시킬 수 없는 부분을 의미</li>
+<li>bias는 average hypothesis조차도 (true) real world hypothesis를 맞출수 없는 부분을 의미</li>
+</ul>
+<p>그렇다면 var과 bias를 줄이기 위해서는?</p>
+<ul>
+<li><strong>var를 줄이기 위해서는 data를 더 모은다.</strong></li>
+<li><strong>bias를 줄이기 위해서는 더 복잡한 model을 사용한다.</strong></li>
+</ul>
+<p>하지만 문제는 var와 bias는 trade-off 관계를 가진다. 예를 들어, 우리가 갖고 있는 dataset에 잘 맞는 복잡한 모델을 사용하면 평균적인 모델과는 차이가 커질 것이다.</p>
+<ul>
+<li>간단한 model은 낮은 variance, 높은 bias를 갖는다.</li>
+<li>복잡한 model은 높은 variance, 낮은 bias를 갖는다.</li>
+</ul>
+<p>따라서 적잘한 model을 만드는 것이 관건이다.</p>
+<ul>
+<li>Occam&rsquo;s Razor
+<ul>
+<li><strong>같은 error를 갖는 모델이라면 둘 중 더 간단한 모델을 선택하라!</strong></li>
+</ul>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-11-26</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/prml-chap03-1/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/regression/">Regression</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/prml-chap02-4/" class="prev" rel="prev" title="[PRML] Chapter2 - Probability Distribution (4)"><i class="fas fa-angle-left fa-fw"></i>[PRML] Chapter2 - Probability Distribution (4)</a>
+            <a href="/prml-chap03-2/" class="next" rel="next" title="[PRML] Chapter3 - Linear Models For Regression (2)">[PRML] Chapter3 - Linear Models For Regression (2)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

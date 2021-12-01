@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[PRML] Chapter2 - Probability Distribution (4) - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[PRML] Chapter2 - Probability Distribution (4)" />
+<meta property="og:description" content="Exponential Family와 Nonparametric 방법론에 대해 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/prml-chap02-4/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-26T15:21:26+09:00" />
+<meta property="article:modified_time" content="2021-11-26T15:21:26+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[PRML] Chapter2 - Probability Distribution (4)"/>
+<meta name="twitter:description" content="Exponential Family와 Nonparametric 방법론에 대해 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/prml-chap02-4/" /><link rel="prev" href="http://minsoo9506.github.io/prml-chap02-3/" /><link rel="next" href="http://minsoo9506.github.io/prml-chap03-1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[PRML] Chapter2 - Probability Distribution (4)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/prml-chap02-4\/"
+        },"genre": "posts","keywords": "Exponential Family, Non parametric","wordcount":  988 ,
+        "url": "http:\/\/minsoo9506.github.io\/prml-chap02-4\/","datePublished": "2021-11-26T15:21:26+09:00","dateModified": "2021-11-26T15:21:26+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Chapter2 - Probability Distribution (4)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-26">2021-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;988 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#24-the-exponential-family">2.4 The Exponential Family</a>
+      <ul>
+        <li><a href="#241-maximum-likelihood-and-sufficient-statistics">2.4.1 Maximum likelihood and sufficient statistics</a></li>
+        <li><a href="#242-conjugate-priors">2.4.2 Conjugate priors</a></li>
+        <li><a href="#243-noninformative-priors">2.4.3 Noninformative priors</a></li>
+      </ul>
+    </li>
+    <li><a href="#25-nonparametric-methods">2.5 Nonparametric Methods</a>
+      <ul>
+        <li><a href="#histogram">Histogram</a></li>
+        <li><a href="#kernel-density-estimators">Kernel density estimators</a></li>
+        <li><a href="#nearest-neighbour-methods">Nearest-neighbour methods</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Exponential Family와 Nonparametric 방법론에 대해 알아보자.</p>
+<h2 id="24-the-exponential-family">2.4 The Exponential Family</h2>
+<p>우리가 이전에 공부했던 대부분의 distribution은 Exponential Family에 속한다.</p>
+<ul>
+<li>The <em>exponential family</em> of distribution over $x$, given parameters $\eta$, is defined to be the set of distributions of the form</li>
+</ul>
+<p>$$p({\pmb x} | {\pmb \eta}) = h({\pmb x})g({\pmb \eta}) \exp ({\pmb \eta}^T u({\pmb x}))$$</p>
+<ul>
+<li>pdf(pmf) $p({\pmb x} | {\pmb \eta})$ 을 우항과 같이 표현할 수 있다면 exponential family에 속한다.</li>
+<li>${\pmb x}$는 스칼라, 벡터 둘 다 가능하고 discrete, continous 모두 가능하다.</li>
+<li>${\pmb \eta}$ 는 <em>natural parameter</em> of the distribution 이라고 한다.</li>
+<li>$g(\pmb \eta)$는 distribution의 normalize coefficient (적분해서 1이 되도록 만들어주는) 라고 할 수 있다.</li>
+</ul>
+<p>$$g({\pmb \eta}) \int h({\pmb x})\exp{ {\pmb \eta}^T{\pmb u} ({\pmb x}) } d {\pmb x}=1 $$</p>
+<ul>
+<li>
+<p>Bernoulli distribution 예시</p>
+<ul>
+<li>$p(x | \mu) = Bern(x | \mu)=\mu^x(1-\mu)^{1-x}$</li>
+<li>이를 exponential form으로 표현해보자.</li>
+<li>$f(x)=\exp(\ln{f(x)})$ 을 이용하여</li>
+</ul>
+<p>$$p(x | \mu) = \exp {x \ln \mu + (1-x) \ln (1-\mu) } \\ = (1-\mu) \exp \{ \ln \left( \frac{\mu}{1-\mu} \right) x \} \\ \therefore \eta = \ln\left(\frac{\mu}{1-\mu}\right) $$</p>
+</li>
+</ul>
+<p>위의 형태를 $\mu$에 대한 식으로 바꿔보면</p>
+<p>$$\mu=\sigma(\eta)=\dfrac{1}{1+\exp(-\eta)} $$</p>
+<p>위의 식과 같은 형태의 함수를  <em>logistic sigmoid</em> function이라고 부른다.</p>
+<ul>
+<li>Multinomial distribution 예시
+<ul>
+<li>$p({\pmb x} | {\pmb \mu}) = \prod_{k=1}^{M}\mu_k^{x_k}= \exp [\sum_{k=1}^{M}x_k \ln \mu_k]$</li>
+<li>$p({\pmb x}|{\pmb \eta})=\exp({\pmb \eta}^T{\pmb x})$
+<ul>
+<li>$\eta_k = \ln \mu_k$</li>
+<li>${\pmb \eta} = (\eta_1, \eta_2,&hellip;,\eta_k)^T$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>M개의 parameter가 있지만 $\sum_{k=1}^{M}{\mu_k}=1$ 이라는 제약때문에 M-1개의 값이 정해지면 마지막 M개는 저절로 정해진다. 이를 이용할 것이다.</p>
+<p>$$\exp \{\sum_{k=1}^{M}x_k\ln\mu_k \} = \exp \{\sum_{k=1}^{M-1}x_k\ln\mu_k + \left(1-\sum_{k=1}^{M-1}x_k\right)\ln\left(1-\sum_{k=1}^{M-1}\mu_k\right) \}\\
+= \exp\{\sum_{k=1}^{M-1}x_k\ln\left(\frac{\mu_k}{1-\sum_{j=1}^{M-1}\mu_j}\right)+\ln\left(1-\sum_{k=1}^{M-1}\mu_k\right)\}$$</p>
+<p>$$\therefore \eta_k = \ln\left(\frac{\mu_k}{1-\sum_{j \neq k} \mu_j}\right)$$</p>
+<p>똑같이</p>
+<p>$$\mu_k=\dfrac{\exp(\eta_k)}{1+\sum_{j \neq k}\exp(\eta_j)}$$</p>
+<p>위의 식과 같은 형태의 함수를  <em>softmax</em> function (normalized exponential) 이라고 부른다.</p>
+<h3 id="241-maximum-likelihood-and-sufficient-statistics">2.4.1 Maximum likelihood and sufficient statistics</h3>
+<p>$\eta$가 어떤 것인지 알았으니 이제 이를 MLE로 estimate해보자. exponential form을 $\eta$에 대해 미분하면</p>
+<p>$$\nabla g({\pmb \eta})\int h({\pmb x})\exp{ {\pmb \eta}^T {\pmb u}({\pmb x})}d{\pmb x} + g({\pmb \eta})\int h({\pmb x})\exp{ {\pmb \eta}^T{\pmb u}({\pmb x})}{\pmb u}({\pmb x})d{\pmb x} = 0$$</p>
+<ul>
+<li>$g({\pmb \eta}) \int h({\pmb x})\exp{ {\pmb \eta}^T{\pmb u} ({\pmb x}) } d {\pmb x}=1$ 을 이용하여</li>
+</ul>
+<p>$$-\frac{1}{g({\pmb \eta})} \nabla g({\pmb \eta}) = g({\pmb \eta})\int h({\pmb x})\exp{ {\pmb \eta}^T{\pmb u}({\pmb x})}{\pmb u}({\pmb x})d{\pmb x}=E[{\pmb u}({\pmb x})]$$</p>
+<p>최종적으로는</p>
+<p>$$-\nabla \ln g({\pmb \eta}) = E[{\pmb u}({\pmb x})] $$</p>
+<p>이제 iid인 data를 통해 likelihood function을 만들면</p>
+<p>$$p({\pmb X}|{\pmb \eta}) = \left(\prod_{n=1}^{N}h({\pmb x} _ n)\right) g({\pmb \eta})^N \exp\{ {\pmb \eta}^T\sum_{n=1}^{N}{\pmb u}({\pmb x}_n)\} $$</p>
+<p>log를 취한 뒤에 $\eta$에 대해 미분하여 0을 갖도록 하면 아래와 같은 식을 얻을 수 있다.</p>
+<p>$$-\nabla \ln g({\pmb \eta} _ {ML}) = \frac{1}{N}\sum_{n=1}^{N}{\pmb u}({\pmb x}_n)$$</p>
+<p>이를 통해 우리는 MLE solution이 오직 $\sum_{n=1}^{N} \textbf{u}(\textbf{x}_n)$에 달려 있다는 것을 알 수 있다. 이는 <em>sufficient statistics</em> of the distribution 이라고 부른다. parameter에 대한 정보가 여기 다 들어 있어서 충분하다! 라고 이해할 수 있다.</p>
+<p>따라서 우리는 MLE를 구하는 과정에 있어서 각 data를 모두 알고 있을 필요가 없이 충분통계량만 알면 된다. $N \rightarrow \infty$이면 우항은 $E[\textbf{u}(\textbf{x})]$이 되고 ${\pmb \eta}_{ML}$은 true값으로 수렴한다는 것을 알 수 있다.</p>
+<h3 id="242-conjugate-priors">2.4.2 Conjugate priors</h3>
+<p>exponential family인 prior distribution은</p>
+<p>$$p({\pmb \eta} | {\pmb \chi}, v) = f({\pmb \chi}, v)g({\pmb \eta})^v \exp\{v{\pmb \eta}^T{\pmb \chi}\}$$</p>
+<p>여기에 위에서 보았던 likelihood function을 곱하여 posterior distribution을 구하면</p>
+<p>$$p({\pmb \eta}|{\pmb X}, {\pmb \chi}, v) \propto g({\pmb \eta})^{v+N}\exp\{ {\pmb \eta}^T\left(\sum_{n=1}^{N}{\pmb u}({\pmb x})+v{\pmb \chi}\right)\}$$</p>
+<p>conjugacy를 확인할 수 있다. 또한 parameter $v$는 effective nunber of pseudo-observation 이라고 이해할 수 있다.</p>
+<h3 id="243-noninformative-priors">2.4.3 Noninformative priors</h3>
+<p>posterior를 만들기 위해 사전의 정보가 충분하면 상관없지만 그렇지 않은 경우, 우리는 prior의 영향을 최소화하고 싶을 것이다. 이런 prior를 <em>Noninformative prior</em> 라고 부른다.</p>
+<ul>
+<li>$p(x|\lambda)$ distribution이 있을 때, prior distribution $p(\lambda)=\text{const}$ 가 적절한 prior가 될 것이다.
+<ul>
+<li>만약에 $\lambda$가 $K$ states를 갖는 discrete이면 prior 는 $1/K$로 하면 된다.</li>
+<li>하지만 continous하고 domain이 unbounded하면 prior distribution은 합이 1이 되지 않는다 (integral diverge, not correctly normalized). 이런 prior를 <em>improper prior</em> 라고 한다.  적분값이 1이 아닌 diverge하는 모든 분포에 해당하는 것은 아니다. prior는 improper해도 posterior는 적절한 pdf가 되어야 한다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="25-nonparametric-methods">2.5 Nonparametric Methods</h2>
+<p>말 그대로 비모수적인 방법들이다. 이전까지는 parameter를 추정하여 density를 추정하였다면 아래의 방법들은 parameter를 추정할 필요가 없는 data oriented한 방법이라고 생각할 수 있다.</p>
+<h3 id="histogram">Histogram</h3>
+<ul>
+<li>주로 같은 크기의 bin으로 해당 data를 나눈 뒤에 해당 bin에 들어가는 data의 수를 통해 density를 파악한다.</li>
+<li>기본적인 것으로 저차원에서 시각화용으로만 사용해야 할 것 같다.</li>
+<li>(Probability 식) : x를 크기 $\Delta$로 나누고 각 bin i에 들어가는 data의 수를 $n_i$라고 하면 각 bin i의 확률값은 (각 bin의 넓이는 $\frac{n_i}{N} * \Delta$ 이고 histogram 전체 넓이는 1이라)</li>
+</ul>
+<p>$$p_i = \frac{n_i}{N \Delta}$$</p>
+<ul>
+<li>density는 bin의 크기가 커질수록 smooth해지고 작아질수록 복잡해진다.</li>
+</ul>
+<h3 id="kernel-density-estimators">Kernel density estimators</h3>
+<ul>
+<li>D-dimension의 probability density $p({\pmb x})$ 있고 우리는 이 값을 추정하려고 한다.
+<ul>
+<li>data set은 이 분포에서 나온 $N$개의 observation</li>
+<li>$R$은 data가 들어있는 어떤 지역</li>
+<li>이 지역의 probability mass는</li>
+</ul>
+</li>
+</ul>
+<p>$$P=\int_R p({\pmb x})d{\pmb x}$$</p>
+<p>여기서 이 지역에 들어가는 data의 수는 $K$라고 하면 이는 binomial distribution을 따를 것이다.</p>
+<p>$$Bin(K/N, P) = \dfrac{N!}{K!(N-K)!}P^K(1-P)^{1-K}$$</p>
+<p>data의 수 $N$이 커지면 $K \approx NP$일 것이다. $R$이 충분히 작아서 density $p({\pmb x})$는 해당 지역에서 거의 constant하면 $P \approx p({\pmb x}) V$ 임을 알 수 있다. ($V$는 volume of $R$) 따라서 density estimate하면</p>
+<p>$$p({\pmb X}) = \frac{K}{NV}$$</p>
+<ul>
+<li>$V$를 fix : Kernel approach</li>
+<li>$K$를 fix : K-nearest-neighbour</li>
+</ul>
+<p>조금 더 자세히 살펴보자.</p>
+<ul>
+<li>$R$을 우리가 구하고 싶은 probability density의 point ${\pmb x}$가 가운데에 있는 작은 hypercube라고 하자. 해당 지역에 들어있는 data 수 $K$를 위해 다음과 같은 함수를 생각해보자.</li>
+</ul>
+<p>이 함수는 <em>kernel function</em> 의 한 예시이다. 따라서</p>
+<p>$$K = \sum_{n=1}^{N}k\left(\frac{ {\pmb x}-{\pmb x}_n}{h}\right) $$</p>
+<p>이를 이용하여 density at ${\pmb x}$를 구하면</p>
+<p>$$p({\pmb x}) = \frac{1}{N}\sum_{n=1}^{N}\frac{1}{h^D}k\left(\frac{ {\pmb x}-{\pmb x}_n}{h}\right)$$</p>
+<ul>
+<li>$v = h^D$</li>
+<li>위 식은 함수 $k({\pmb u})$의 대칭성을 생각하여, single cube centered on ${\pmb x}$가 아니라 N cubes centered on the N data point ${\pmb x_n}$ 이라고 이해할 수 있다.</li>
+</ul>
+<p>하지만 이는 여전히 불연속적인 단점이 있기에 좀 더 업그레이드해보자. kernel function을 Gaussian으로 정하면</p>
+<p>$$p({\pmb x}) = \frac{1}{N}\sum_{n=1}^N\frac{1}{(2\pi h^2)^{D/2}}\exp\{-\frac{|{\pmb x}-{\pmb x}_n|^2}{2h^2}\}$$</p>
+<ul>
+<li>kernel function은 다양하게 정할 수 있다. 단, 조건은
+<ul>
+<li>$k(x) \ge 0$</li>
+<li>$\int k(x)dx = 1$</li>
+</ul>
+</li>
+</ul>
+<p>density는 h가 커지면 smooth해지고 h가 작아지면 더 복잡해진다. 우리는 적절하나 h를 잘 찾아야 하는데 이미 최선의 h는 밝혀져 있다. 아울러 가장 좋은 kernel function도 이미 밝혀져있다.</p>
+<h3 id="nearest-neighbour-methods">Nearest-neighbour methods</h3>
+<ul>
+<li>이번에는 $K$를 미리 정한 뒤에 이에 적절한 $V$를 찾는 것이다.</li>
+<li>density는 $K$가 커지면 smooth해지고 작아지면 복잡해진다.</li>
+<li>KNN classification이 잘 알려져있다.</li>
+</ul>
+<p>지금까지 Nonparametric 방법론을 살펴보았다.</p>
+<ul>
+<li>전체 data를 저장하고 있어야 하는 단점이 존재한다.</li>
+<li>data가 너무 많으면 계산에 어려움이 생기고 너무 적으면 다소 부정확한 근사치를 만들 수 있다.</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-11-26</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/prml-chap02-4/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/exponential-family/">Exponential Family</a>,&nbsp;<a href="/tags/non-parametric/">Non parametric</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/prml-chap02-3/" class="prev" rel="prev" title="[PRML] Chapter2 - Probability Distribution (3)"><i class="fas fa-angle-left fa-fw"></i>[PRML] Chapter2 - Probability Distribution (3)</a>
+            <a href="/prml-chap03-1/" class="next" rel="next" title="[PRML] Chapter3 - Linear Models For Regression (1)">[PRML] Chapter3 - Linear Models For Regression (1)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
