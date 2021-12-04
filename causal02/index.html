@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[인과추론] Potential Outcomes Framework - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[인과추론] Potential Outcomes Framework" />
+<meta property="og:description" content="Potential Outcomes 이란?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/causal02/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T11:02:00+00:00" />
+<meta property="article:modified_time" content="2021-12-03T11:02:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[인과추론] Potential Outcomes Framework"/>
+<meta name="twitter:description" content="Potential Outcomes 이란?"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/causal02/" /><link rel="prev" href="http://minsoo9506.github.io/causal01/" /><link rel="next" href="http://minsoo9506.github.io/causal03/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[인과추론] Potential Outcomes Framework",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/causal02\/"
+        },"genre": "posts","keywords": "Potential Outcome","wordcount":  701 ,
+        "url": "http:\/\/minsoo9506.github.io\/causal02\/","datePublished": "2021-12-03T11:02:00+00:00","dateModified": "2021-12-03T11:02:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[인과추론] Potential Outcomes Framework</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;701 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#notation">notation</a></li>
+    <li><a href="#the-fundamental-problem-of-causal-inference">The fundamental problem of causal inference</a></li>
+    <li><a href="#average-treatment-effect-ate">Average treatment effect (ATE)</a></li>
+    <li><a href="#ignorability-exchangeability">Ignorability (exchangeability)</a></li>
+    <li><a href="#conditional-exchangeability">Conditional exchangeability</a></li>
+    <li><a href="#positivityoverlap-and-extrapolation">Positivity/Overlap and Extrapolation</a></li>
+    <li><a href="#no-interference-consistency">No interference, Consistency</a>
+      <ul>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Potential Outcomes 이란?</p>
+<h2 id="notation">notation</h2>
+<ul>
+<li>$T$ : observed treatment</li>
+<li>$Y$ : observed outcome</li>
+<li>$i$ : to denote a specific unit/individual</li>
+<li>$Y_i (1)$ : potential outcome under treatment</li>
+<li>$Y_i (0)$ : potential outcome under no treatment</li>
+<li>(individual) Causal effect : $Y_i (1) - Y_i (0)$</li>
+</ul>
+<h2 id="the-fundamental-problem-of-causal-inference">The fundamental problem of causal inference</h2>
+<ul>
+<li>(individual) Causal effect : $Y_i (1) - Y_i (0)$</li>
+</ul>
+<p>위의 식에서 causal effect를 알 수가 없다. 예를 들어서,</p>
+<ul>
+<li>약을 먹으면 병이 낫는지 알고 싶다. 즉, causal effect를 알고 싶다.</li>
+<li>그런데 약을 먹었을 때의 결과 $Y(1)$와 먹지 않았을 때의 결과 $Y(0)$를 동시에 알 수 없기 때문에 문제가 발생한다.</li>
+<li>결국에는 모든 개체 $i$들의 outcome은 둘 중 하나의 potential outcome만을 얻을 수 밖에 없는 것이다. (이 때 반대의 예상되는 결과는 counterfactual outcome이라고 함)</li>
+</ul>
+<p>이것이 우리가 마주하게 되는 문제이다. 그렇다면 이를 어떻게 해결해야 할까?</p>
+<h2 id="average-treatment-effect-ate">Average treatment effect (ATE)</h2>
+<p>위에서 처럼 모든 개체들의 두 가지 outcome을 얻을 수 없다면 평균이라는 강력한 무기를 이용할 수 있다.</p>
+<ul>
+<li>Average treatment effect (ATE) :</li>
+</ul>
+<p>$$E[Y_i (1) - Y_i (0)] = E[Y(1) - Y(0)] = E[Y(1)] - E[Y(0)]$$</p>
+<ul>
+<li>Associational difference :</li>
+</ul>
+<p>$$E[Y|T=1] - E[Y|T=0]$$</p>
+<p>그렇다면 ATE와 associational difference가 같도록 하는 가정은 무엇일까. 하나씩 알아보자.</p>
+<h2 id="ignorability-exchangeability">Ignorability (exchangeability)</h2>
+<ul>
+<li>Ignorability :</li>
+</ul>
+<p>$$(Y(1),Y(0)) \perp T$$</p>
+<p>또 다른 시점으로는 (계산, 수학적으로 같은 의미)</p>
+<ul>
+<li>exchangeability :
+<ul>
+<li>두 그룹을 바꿔서 treatment나 not treatment를 해도 똑같은 결과를 나오는 가정</li>
+</ul>
+</li>
+</ul>
+<p>$$E[Y(1)|T=1] = E[Y(1)|T=0] \rightarrow = E[Y(1)] \\ E[Y(0)|T=1] = E[Y(0)|T=0] \rightarrow = E[Y(0)]$$</p>
+<p>결국 treatment, non treatment 두 그룹이 comparable해야한다는 것이다. 위의 가정을 만족한다면 우리는 아래와 같은 식을 얻을 수 있다.</p>
+<p>$$E[Y(1)] - E[Y(0)] = E[Y(1)|T=1] - E[Y(0)|T=0]$$</p>
+<p>위의 식을 보면 causal notation에서 점점 statistical notation으로 변화하는 느
+낌을 받을 수 있다. data를 통해 결국 측정하는 것은 statistical inference의 영역인 것이다. 여기서 identifiability라는 개념이 나온다.</p>
+<ul>
+<li>identifiability
+<ul>
+<li>만약에 causal quantity (ex, $E[Y(t)]$)를 statistical quantity(ex, $E[Y|t]$)로 계산할 수 있다면 우리는 이 causal quantity가 identifiable하다고 한다.</li>
+</ul>
+</li>
+</ul>
+<p>위의 ignorability(exchangeability)라는 중요한 가정을 배웠다. 그런데 이를 실제로 만족하도록 하기 위해서는 어떻게 해야할까? Randomized control trial (RCT)이 필요하다. 동전을 던져서 그룹을 나누는 것이다. 즉, 그룹이 나누어질 때 confounder를 없어지고 두 그룹이 동일한 특징(comparable)을 가진다는 것이다.</p>
+<h2 id="conditional-exchangeability">Conditional exchangeability</h2>
+<p>하지만 obserbational data에서는 ignorability가정을 만족하기가 어렵다. 이유는 당연히 RCT를 하지 못한 상태이기 때문에 confounder가 있을 수 밖에 없다. 따라서 이를 해결하기 위해 conditional exchangeability가정을 주로 이용한다. covariate $X$들을 conditioning함으로서 subgroup들이 exchangeable하게 만드는 것이다. confounder들을 제어함으로서 RCT처럼 동일한(comparable) 두 집단을 만들어가는 과정이라고 볼 수 있다. 물론 모든 confounder를 파악할 수 없기에 RCT와 동일하다고 할 수는 없다.</p>
+<ul>
+<li>Conditional Exchangeability (Unconfoundedness):</li>
+</ul>
+<p>$$(Y(1),Y(0)) \perp Y |X$$</p>
+<p>graphical하게 표현하면 아래와 같다.</p>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_02_01.PNG?raw=true"  width="200">
+</center>
+<p>$$E[Y(1) - Y(0) | X] = E[Y(1)|X] - E[Y(0)|X] $$
+$$ = E[Y(1)|T=1,X]-E[Y(0)|T=0,X]$$</p>
+<p>marginal effect는</p>
+<p>$$E[Y(1) - Y(0)] = E_X E[Y(1) - Y(0)|X]$$</p>
+<h2 id="positivityoverlap-and-extrapolation">Positivity/Overlap and Extrapolation</h2>
+<p>위의 unconfoundedness도 중요한 가정이지만 추가적으로 고려해야하는 가정도 존재한다.</p>
+<ul>
+<li>Positivity (Overlap, Extrapolation) :
+<ul>
+<li>모든 covariates $x$에 대해</li>
+</ul>
+</li>
+</ul>
+<p>$$0 &lt; P(T=1|X=x) &lt; 1$$</p>
+<p>이 가정이 필요한 이유를 먼저 수학적으로 살펴보자.</p>
+<p>$$E[Y(1) - Y(0)] = E_X [E[Y|T=1, X] - E[Y|T=0, X]]$$</p>
+<p>$$\sum_x P(X=x)(\sum_y y P(Y=y|T=1,X=x) - \sum_y y P(Y=y|T=0,X=x)) $$</p>
+<p>$$ =\sum_x P(X=x)(\sum_y y \frac{P(Y=y, T=1,X=x)}{P(T=1 | X=x)P(X=x)} - \sum_y y \frac{P(Y=y,T=0,X=x)}{P(T=0 | X=x)P(X=x)})$$</p>
+<p>위 식에서 분모에 $P(T=1|X=x)+P(T=0|X=x)=1$이다. 따라서 $P(T=1|X=x)$이 0 또는 1이면 문제가 생긴다.</p>
+<p>이에 대해 생각해보면 당연한 결과이다. 특정 covariate값에서 관찰할 수 있는 것이 treatment 또는 non- treatment의 결과만 존재한다면 이는 causal effect를 제대로 측정하지 못하게 되는 것을 의미한다.</p>
+<h2 id="no-interference-consistency">No interference, Consistency</h2>
+<p>마지막으로 추가적인 가정들을 알아보자.</p>
+<ul>
+<li>No Interference
+<ul>
+<li>내 outcome이 다른 이들의 treatment로 영향을 받지 않아야한다</li>
+</ul>
+</li>
+</ul>
+<p>$$Y_i (t_1, t_2,&hellip;t_i,&hellip;, t_n) = Y_i (t_i)$$</p>
+<ul>
+<li>Consistency
+<ul>
+<li>우리가 관측하는 $Y$의 값이 관측된 treatment $T$의  potential outcome이여야 한다.</li>
+</ul>
+</li>
+</ul>
+<p>$$T=t \rightarrow Y = Y(t) \\ Y = Y(T)$$</p>
+<p>Consistency에 대해 예를 들어보자.</p>
+<ul>
+<li>강아지와 함께 살면 행복지수가 높아질 것이다.</li>
+<li>위와 같은 causal effect를 구하고자 한다. 의도한 것은 강아지의 어떤 친밀함과 같은 교류 덕에 행복지수가 높아지는 효과(potential outcome)일 것이다. 그런데 나이가 많은 강아지가 treatment가 되었다면 우리가 의도한대로 결과가 나오지 않을 수도 있다.</li>
+<li>이처럼 treatment specification으로 잡히지 않은 요인들 때문에 consistency가 중요한 것이다. (<em>no muliple version of treatment</em>)</li>
+</ul>
+<p>consistency 가정이 성립한다면</p>
+<p>$$E[Y(1) - Y(0) | X] = E[Y(1)|X] - E[Y(0)|X] \\ = E[Y(1)|T=1,X]-E[Y(0)|T=0,X] \\ =E[T|T=1,X] - E[Y|T=0,X]$$</p>
+<p>지금까지의 가정들을 총집합해보면</p>
+<ul>
+<li>Unconfoundedness</li>
+<li>Positivity</li>
+<li>No interference</li>
+<li>Consistency</li>
+</ul>
+<p>$$E[Y(1) - Y(0)] = E[Y(1)] - E[Y(0)]\;\text{(linearity of expectation)} \\ =E_X [E[Y(1)|X] - E[Y(0)|X]] \;\text{(law of iterated expectations)} \\ =E_X [E[Y(1)|T=1,X] - E[Y(0)|T=0,X]] \;\text{(unconfoundedness, positivity)} \\ =E_X [E[Y|T=1,X] - E[Y|T=0,X]] \; \text{(consistency)}$$</p>
+<p>최종적으로 우리는 통계적인 추론을 통해 (최종식이 모두 확률변수, 평균 등으로 이루어진 식) 우리가 궁금해했던 ATE를 구할 수 있게 된다.</p>
+<h3 id="reference">Reference</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=5x_pPemAVxs&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=2" target="_blank" rel="noopener noreffer">https://www.youtube.com/watch?v=5x_pPemAVxs&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=2</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/causal02/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/potential-outcome/">Potential Outcome</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/causal01/" class="prev" rel="prev" title="[인과추론] Introduction"><i class="fas fa-angle-left fa-fw"></i>[인과추론] Introduction</a>
+            <a href="/causal03/" class="next" rel="next" title="[인과추론] The Flow of Causation and Association in Graphs">[인과추론] The Flow of Causation and Association in Graphs<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

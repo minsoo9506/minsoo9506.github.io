@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Estimation - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/estimation/</link>
+        <description>Estimation - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 03 Dec 2021 11:06:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/estimation/" rel="self" type="application/rss+xml" /><item>
+    <title>[인과추론] Estimation</title>
+    <link>http://minsoo9506.github.io/causal06/</link>
+    <pubDate>Fri, 03 Dec 2021 11:06:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal06/</guid>
+    <description><![CDATA[<p>statistical estimand를 estimate하는 방법을 알아보자.</p>]]></description>
+</item></channel>
+</rss>

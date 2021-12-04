@@ -100,35 +100,38 @@
         alt="/blog-imgs/human-brain.png"
         title="/blog-imgs/human-brain.png" /></a></div><h1 class="home-title">All models are wrong</h1><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/minsoo9506" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="mailto:ghktjd15ghgmail.com" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/prml-chap06-3/">[PRML] Bayesian Optimization</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-29">2021-11-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div><div class="content"><p>Bayesian Optimization으로 모델의 성능을 올려보자.</p></div><div class="post-footer">
-        <a href="/prml-chap06-3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/bayesian-optimization/">Bayesian Optimization</a></div></div>
+        <a href="/prml-chap14-1/">[PRML] Chapter 14 : Combining Models</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-29">2021-11-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div><div class="content">Ensemble method에 대해 정리하였다.
+14. Combining Models 말 그대로 모델들을 섞는 것이다. 머신러닝 예측 모델에서 가장 좋은 성능을 보이고 있다는 Boosting이 이 부분의 내용이다.
+14.1 Bayesian Model Averaging model combination methods 와 Bayesian model averaging 을 구분하는 것은 중요하다. Density estimation using a mixture of Gaussians 예시를 통해 살펴보자.
+ model combination  각 data들은 iid, $X = {\textbf{x}_1, \textbf{x}_2,&hellip;,\textbf{x}_n }$ $X$는 전체 dataset을 의미    $$p(X) = \prod_{n=1}^{N}{p(\textbf{x} _ n)} = \prod_{n=1}^{N}{[\sum_{z_n}p(\textbf{x}_n, \textbf{z}_n)]}$$</div><div class="post-footer">
+        <a href="/prml-chap14-1/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ensemble/">Ensemble</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/prml-chap06-2/">[PRML] Chapter6 - Kernel Method (2) : GP</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-29">2021-11-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div><div class="content"><p>Gaussian Process에 대해 정리하였다.</p></div><div class="post-footer">
-        <a href="/prml-chap06-2/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/prml/">PRML</a>,&nbsp;<a href="/tags/gassian-process/">Gassian Process</a></div></div>
+        <a href="/prml-chap11-1/">[PRML] Chapter11 - Sampling Method</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-29">2021-11-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div><div class="content"><p>distribution을 구하는 sampling method에 대해 정리하였다.</p></div><div class="post-footer">
+        <a href="/prml-chap11-1/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/approximate-inference/">Approximate Inference</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/prml-chap04-3/">[PRML] Chapter4 - Linear Models For Classification (3)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-26">2021-11-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div><div class="content"><p>PRML에서 Naive bayes 와 Logistic regression에 대해 공부하였는데 이 둘의 관계에 대해 간단히 정리해보고자 한다. (문일철 교수님의 강의에 대해 정리하였습니다.) 몇 가지 가정(constraint)가 더해지면 Naive bayes와 Logistic regression이 같아진다.</p></div><div class="post-footer">
-        <a href="/prml-chap04-3/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/classification/">Classification</a></div></div>
+        <a href="/prml-chap10-2/">[PRML] Chapter10 - Approximate Inference (2)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-29">2021-11-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div><div class="content"><p>VI, EP 에 대한 정리 (예시 제외)</p></div><div class="post-footer">
+        <a href="/prml-chap10-2/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/approximate-inference/">Approximate Inference</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/prml-chap04-2/">[PRML] Chapter4 - Linear Models For Classification (2)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-26">2021-11-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div><div class="content"><p>Classification에 대해 알아보자.</p></div><div class="post-footer">
-        <a href="/prml-chap04-2/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/classification/">Classification</a></div></div>
+        <a href="/prml-chap10-1/">[PRML] Chapter10 - Approximate Inference (1)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-29">2021-11-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div><div class="content"><p>PRML chapter10 에 대한 카이스트 문일철 교수님 강의 정리하였다.</p></div><div class="post-footer">
+        <a href="/prml-chap10-1/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/approximate-inference/">Approximate Inference</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/prml-chap04-1/">[PRML] Chapter4 - Linear Models For Classification (1)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-26">2021-11-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div><div class="content"><p>Classification에 대해 알아보자.</p></div><div class="post-footer">
-        <a href="/prml-chap04-1/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/classification/">Classification</a></div></div>
+        <a href="/prml-chap09-1/">[PRML] Chapter9 - Mixture Models and EM</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-29">2021-11-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div><div class="content"><p>GMM과 EM 알고리즘에 대해 정리하였다.GMM과 EM 알고리즘에 대해 정리하였다.</p></div><div class="post-footer">
+        <a href="/prml-chap09-1/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/gmm/">GMM</a>,&nbsp;<a href="/tags/em-algorithm/">EM Algorithm</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/prml-chap03-2/">[PRML] Chapter3 - Linear Models For Regression (2)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-26">2021-11-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div><div class="content"><p>Regression에 대해 알아보자.</p></div><div class="post-footer">
-        <a href="/prml-chap03-2/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/regression/">Regression</a></div></div>
+        <a href="/prml-chap08-2/">[PRML] Chapter8 - Graphical Models (2)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-publish">published on <time datetime="2021-11-29">2021-11-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div><div class="content"><p>graphical model에서 inference하는 방법에 대해 정리하였다. (미완성)</p></div><div class="post-footer">
+        <a href="/prml-chap08-2/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/grphical-model/">Grphical Model</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -154,6 +157,10 @@
                 </li><li class="page-item ">
                     <span class="page-link">
                         <a href="/page/10/">10</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/11/">11</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

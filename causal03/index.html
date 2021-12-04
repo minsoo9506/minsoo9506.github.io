@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[인과추론] The Flow of Causation and Association in Graphs - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[인과추론] The Flow of Causation and Association in Graphs" />
+<meta property="og:description" content="Graph를 통해 causality를 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/causal03/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T11:03:00+00:00" />
+<meta property="article:modified_time" content="2021-12-03T11:03:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[인과추론] The Flow of Causation and Association in Graphs"/>
+<meta name="twitter:description" content="Graph를 통해 causality를 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/causal03/" /><link rel="prev" href="http://minsoo9506.github.io/causal02/" /><link rel="next" href="http://minsoo9506.github.io/causal04/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[인과추론] The Flow of Causation and Association in Graphs",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/causal03\/"
+        },"genre": "posts","keywords": "Causal Graph","wordcount":  567 ,
+        "url": "http:\/\/minsoo9506.github.io\/causal03\/","datePublished": "2021-12-03T11:03:00+00:00","dateModified": "2021-12-03T11:03:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[인과추론] The Flow of Causation and Association in Graphs</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;567 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#terminology">Terminology</a></li>
+    <li><a href="#baysian-networks-and-causal-graphs">Baysian networks and causal graphs</a></li>
+    <li><a href="#graphical-building-blocks">Graphical building blocks</a></li>
+    <li><a href="#the-flow-of-association-and-causation">The flow of association and causation</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Graph를 통해 causality를 알아보자.</p>
+<h2 id="terminology">Terminology</h2>
+<p>여기서 graph라고 하는 것은 node와 edge로 이루어진 것을 의미한다.</p>
+<ul>
+<li>undirected graph : edge에 방향성이 없는 graph</li>
+<li>directed graph : edge에 방향성이 있는 graph
+<ul>
+<li>parent, child : edge가 출발하는 node를 parent, 그 edge가 도착한 node를 child</li>
+<li>adjacent : 하나의 edge로 연결이 되어있는 두 node들을 adjacent하다고 한다. (un, directed 둘 다)</li>
+<li>path : (방향성과 상관없이) 두 node들 사이에 edge들이 있으면 path가 있다고 한다.
+<ul>
+<li>directed path : path중에서 directed edge들의 방향이 일정한 경우</li>
+</ul>
+</li>
+<li>Ancestor, Descendant : 특정 노드(Ancestor)에서 시작하여 directed path로 특정 노드(descendant)로 끝날 때, 각 노드를 이렇게 부른다.</li>
+</ul>
+</li>
+<li>Directed Acyclic Graph (DAG) : cycle이 없는 directed graph
+<ul>
+<li>cycle : node가 자기 자신으로 돌아오는 directed path가 있는 경우</li>
+</ul>
+</li>
+<li>Immorality : 아래 사진에서 $A\rightarrow C \leftarrow B$를 의미 (parent가 child를 공유)</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_03_01.PNG?raw=true"  width="200">
+</center>
+<h2 id="baysian-networks-and-causal-graphs">Baysian networks and causal graphs</h2>
+<p>Baysian network는 통계에서 probabilistic graphical model의 한 종류이다. 그런데 이 모델의 특징이 causality를 다루기에 좋기 때문에 많이 이용한다. 100% 그대로 쓰는 것은 아니고 조금씩 수정해서 사용하는 것으로 알고 있다.</p>
+<p>먼저, causal을 생각하지 않고 진행해보자. joint distribution을 modeling하는 경우 많은 양의 parameter들을 고려해야하는 경우가 생긴다. 그런데 이 때 dependency를 파악할 수 있는 정보가 있다면? 더 적은 수의 parameters 고려해도 된다. 이와 관련한 가정이 Local markov assumption이다.</p>
+<ul>
+<li>Local markov assumption
+<ul>
+<li>DAG에서 parent가 주어진다면(given) 나머지 descendant들과는 independent</li>
+</ul>
+</li>
+</ul>
+<p>예시를 통해 이해해보자. 먼저 dependency가 없는 경우,</p>
+<p>$$P(x_1, x_2, x_3, x_4) = P(x_1)P(x_2 | x_1)P(x_3 | x_2, x_1)P(x_4  |x_3, x_2, x_1)$$</p>
+<p>아래의 그림과 같은 DAG와 Local markov assumption을 고려하면</p>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_03_02.PNG?raw=true"  width="200">
+</center>
+<p>$$P(x_1, x_2, x_3, x_4) = P(x_1)P(x_2 | x_1)P(x_3 | x_2, x_1)P(x_4  |x_3)$$</p>
+<p>이처럼 더 간단해진다.</p>
+<ul>
+<li>Bayesian network factorization
+<ul>
+<li>확률분포 $P$와 DAG $G$가 주어지고, $P$는 $G$에 따라 아래의 식처럼 factorize될 수 있다. 
+$$P(x_1,&hellip;,x_n) = \prod_i P(x_i | pa_i)$$</li>
+</ul>
+</li>
+</ul>
+<p>Bayesian network factorization과 Local Markov assumption은 사실 같은 내용이다. 지금까지는 independency에 관한 내용이었는데 dependency에 관한 내용도 당연히 있을 것이다.</p>
+<ul>
+<li>Minimality assumption
+<ul>
+<li>Local Markov ssumption + Adjacent nodes in the DAG are dependent</li>
+</ul>
+</li>
+</ul>
+<p>Minimality assumption을 통해 dependency도 다룰 수 있으므로 우리는 이제 DAG에서 association flow를 다룰 수 있게 되었다. 그렇다면 다음은  causation을 다룰 차례!</p>
+<ul>
+<li>Causal Edges assumption
+<ul>
+<li>In a directed graph, every parent is a direct cause of all its children</li>
+</ul>
+</li>
+</ul>
+<h2 id="graphical-building-blocks">Graphical building blocks</h2>
+<p>이제는 the flow of association and causation in DAG 를 알아보자. 일단 3가지 building block들을 살펴보자.</p>
+<ul>
+<li>chain, fork, immorality</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_03_03.PNG?raw=true"  width="600">
+</center>
+<p>위의 사진들의 모습을 잘 기억하자. 이제 각각의 특징을 살펴보자.</p>
+<ul>
+<li>Chains, Forks : dependence
+<ul>
+<li>$X_1,X_3$는 dependent하다.</li>
+<li>$X_1$에서 $X_3$로 association flow가 흐른다. symmetric하게 $X_3$에서 $X_1$으로도 흐른다.</li>
+<li>causation flow를 symmetric하지 않다. 한쪽의 방향으로만 흐른다.</li>
+</ul>
+</li>
+<li>Chains, Forks : independence
+<ul>
+<li>$X_2$가 given, $P(X_1,X_3 | X_2)=P(X_1 | X_2)P(X_3 | X_2)$</li>
+</ul>
+</li>
+</ul>
+<p>$$\text{Chain: }P(X_1,X_3 | X_2) = \frac{P(X_1,X_2,X_3)}{P(X_2)} \\ =\frac{P(X_1)P(X_2|X_1)P(X_3|X_2)}{P(X_2)}=P(X_1 | X_2)P(X_3 | X_2)$$</p>
+<p>$$\text{Forks: } P(X_1,X_3 | X_2) =  \frac{P(X_1,X_2,X_3)}{P(X_2)} \\ =\frac{P(X_2)P(X_1|X_2)P(X_3|X_2)}{P(X_2)}=P(X_1 | X_2)P(X_3 | X_2)$$</p>
+<p>위에서 independent한 상황의 경우 blocked path라고 하고 반대는 unblock path라고 부른다.</p>
+<ul>
+<li>Immorality
+<ul>
+<li>$X_2$를 collider라고 한다.</li>
+<li>위에 두 가지의 경우와 반대
+<ul>
+<li>conditioning on the collider $\rightarrow$ unblocked path</li>
+<li>conditioning을 하지 않으면 아래의 식처럼 block path가 존재한다. (independence)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>$$P(X_1, X_3) = \sum_{X_2} P(X_1, X_2, X_3) \\ =\sum_{X_2} P(X_1)P(X_3)P(X_2|X_1,X_3) \\ =P(X_1)P(X_3) \sum_{X_2} P(X_2|X_1,X_3)$$</p>
+<ul>
+<li>conditioning on descendants of colliders는? 이 또한 association을 야기한다.</li>
+</ul>
+<h2 id="the-flow-of-association-and-causation">The flow of association and causation</h2>
+<ul>
+<li>d-separation
+<ul>
+<li>두 개(또는 집합)의 노드들 $X,Y$사이의 모든 path가 노드(들) $Z$에 의해 blocked되면</li>
+<li>이를 Two (sets of) nodes $X$ and $Y$ are d-separated by a set of nodes $Z$</li>
+</ul>
+</li>
+</ul>
+<p>일반적인 Bayesian network graph의 경우, association만 다룰 수 있다. 하지만 우리가 여기에 추가적인 가정을 더하면 causal association을 구할 수 있는 것이다.</p>
+<ul>
+<li><em>We refer to the flow of association along directed paths as causal association</em></li>
+<li><em>d-separation implies association is causation</em>
+<ul>
+<li>d-separate된 경우, 남아있는 association은 purely non-causal association이므로!</li>
+</ul>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/causal03/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/causal-graph/">Causal Graph</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/causal02/" class="prev" rel="prev" title="[인과추론] Potential Outcomes Framework"><i class="fas fa-angle-left fa-fw"></i>[인과추론] Potential Outcomes Framework</a>
+            <a href="/causal04/" class="next" rel="next" title="[인과추론] Causal Models">[인과추론] Causal Models<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Potential Outcome - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/potential-outcome/</link>
+        <description>Potential Outcome - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 03 Dec 2021 11:02:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/potential-outcome/" rel="self" type="application/rss+xml" /><item>
+    <title>[인과추론] Potential Outcomes Framework</title>
+    <link>http://minsoo9506.github.io/causal02/</link>
+    <pubDate>Fri, 03 Dec 2021 11:02:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal02/</guid>
+    <description><![CDATA[<p>Potential Outcomes 이란?</p>]]></description>
+</item></channel>
+</rss>

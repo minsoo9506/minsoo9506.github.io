@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[인과추론] Introduction - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[인과추론] Introduction" />
+<meta property="og:description" content="Causal Inference시 주의할 점" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/causal01/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T11:01:00+00:00" />
+<meta property="article:modified_time" content="2021-12-03T11:01:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[인과추론] Introduction"/>
+<meta name="twitter:description" content="Causal Inference시 주의할 점"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/causal01/" /><link rel="prev" href="http://minsoo9506.github.io/07-vae/" /><link rel="next" href="http://minsoo9506.github.io/causal02/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[인과추론] Introduction",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/causal01\/"
+        },"genre": "posts","keywords": "Correlation","wordcount":  326 ,
+        "url": "http:\/\/minsoo9506.github.io\/causal01\/","datePublished": "2021-12-03T11:01:00+00:00","dateModified": "2021-12-03T11:01:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[인과추론] Introduction</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;326 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#simpsons-paradox">Simpson&rsquo;s paradox</a></li>
+    <li><a href="#correlation-does-not-imply-causation">Correlation does not imply causation</a>
+      <ul>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Causal Inference시 주의할 점</p>
+<h2 id="simpsons-paradox">Simpson&rsquo;s paradox</h2>
+<p>Simpson&rsquo;s paradox는 주로 observational data에 주로 발생하는 경우가 많다. 환자들에게 약(Treatment)을 통해 효과가 어떤지 확인하는 상황을 가정해보자. 아래의 표는 두 가지 약을 처방받은 사람들의 사망률이다.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>16% (240/1500)</td>
+</tr>
+<tr>
+<td>B</td>
+<td>19%(105/550)</td>
+</tr>
+</tbody>
+</table>
+<p>위의 표에 따른 수치에 따르면 A가 더 좋다. 정말 그럴까? 사망한 환자의 아픈정도(Condition)에 따라 나눠서 생각해보자.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Mild</th>
+<th>Severe</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>15% (210/1400)</td>
+<td>30% (30/100)</td>
+<td>16% (240/1500)</td>
+</tr>
+<tr>
+<td>B</td>
+<td>10% (5/50)</td>
+<td>20% (100/500)</td>
+<td>19% (105/550)</td>
+</tr>
+</tbody>
+</table>
+<p>전체적으로는 A약의 사망률이 더 낮은데 상태별로 나눠서 보니 B약의 사망률이 두 가지 경우 모두 낮다. 그렇다면 어떤 약을 사용해야할까?</p>
+<p>이에 대해서는 두 가지의 시나리오가 있다.</p>
+<ul>
+<li>먼저 아픈정도(Condition)가 어떤 약(Treatment)을 투여하는지와 사망률(Outcome) 모두에게 영향을 주는 경우 : 이런 경우는 B 선호
+<ul>
+<li>예를 들어, 의사가 상태가 Mild한 환자에게는 A약을 투여하고 상태가 Severe한 환자에게는 B약을 투여한 상황을 생각해보자. 이미 Severe한 환자는 사망할 확률이 높았고 따라서 A약의 사망률이 더 낮게 나온 것이다. (<em>Condition confounds the effect of treatment on morality</em>) 이 예시에서처럼 treatment와 outcome 모두에 영향을 미치는 변수를 <strong>confounder</strong> 라고 부른다.</li>
+</ul>
+</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_01_02.PNG?raw=true"  width="200">
+</center>
+<ul>
+<li>약(Treatment)이 아픈정도(Condition)와 사망률(Outcome) 모두에게 영향을 주는 경우 : 이런 경우는 A 선호
+<ul>
+<li>예를 들어, B약은 약의 특징상 2번 맞아야하는데 그 사이의 시간이 꽤 긴 편이다. 따라서 B약을 처방받은 사람은 그 사이의 시간동안 아픈상태가 Severe해지는 경우가 발생할 수 있다. 그래서 B약을 맞은 사람의 전체사망률이 높아질수 있다.</li>
+</ul>
+</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_01_02.PNG?raw=true"  width="200">
+</center>
+<p>이처럼 어떤 인과모형을 갖느냐에 따라 결론이 바뀌게 된다. 따라서 우리는 인과관계를 통해 decision-making을 할 때, 적절한 과정을 거쳐야하는 것이다.</p>
+<h2 id="correlation-does-not-imply-causation">Correlation does not imply causation</h2>
+<p>&lsquo;신발을 신고 자는 것&rsquo;과 &lsquo;일어나서 두통이 있는 것&rsquo;이 상관관계가 높다. 그러면 신발을 신고자면 다음날 일어나서 두통이 있을 것이라고 말할 수 있을까? 즉, 인과관계가 있다고 할 수 있을까? 그럴 수 없다.</p>
+<p>common cause가 있다면? 술을 마신 경우를 생각해보자. 취해서 신발을 신고 자게된다. 숙취 때문에 다음날 일어나서 두통이 있을 확률이 높다. 즉 total association이 confounding association과 causal association으로 이루어진 것이다. (<em>correlation is technically only a measure of linear statistical dependence. We will largely be using the term &lsquo;association&rsquo; to refer to statistical dependence from now on</em>)</p>
+<p>이처럼 우리는 data를 보고 인과관계를 함부로 판단해서는 안된다. 추후에는 인과관계를 파악하기 위한 방법론들을 알아보자.</p>
+<h3 id="reference">Reference</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=DXBPtpBhGqo&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=2" target="_blank" rel="noopener noreffer">https://www.youtube.com/watch?v=DXBPtpBhGqo&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=2</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/causal01/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/correlation/">Correlation</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/07-vae/" class="prev" rel="prev" title="[Generative Model] VAE"><i class="fas fa-angle-left fa-fw"></i>[Generative Model] VAE</a>
+            <a href="/causal02/" class="next" rel="next" title="[인과추론] Potential Outcomes Framework">[인과추론] Potential Outcomes Framework<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

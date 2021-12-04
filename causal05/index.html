@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[인과추론] Randomized Experiments and Identification - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[인과추론] Randomized Experiments and Identification" />
+<meta property="og:description" content="Randomized Experiment에 대해 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/causal05/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T11:05:00+00:00" />
+<meta property="article:modified_time" content="2021-12-03T11:05:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[인과추론] Randomized Experiments and Identification"/>
+<meta name="twitter:description" content="Randomized Experiment에 대해 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/causal05/" /><link rel="prev" href="http://minsoo9506.github.io/causal04/" /><link rel="next" href="http://minsoo9506.github.io/causal06/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[인과추론] Randomized Experiments and Identification",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/causal05\/"
+        },"genre": "posts","keywords": "Randomized Experiment","wordcount":  648 ,
+        "url": "http:\/\/minsoo9506.github.io\/causal05\/","datePublished": "2021-12-03T11:05:00+00:00","dateModified": "2021-12-03T11:05:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[인과추론] Randomized Experiments and Identification</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;648 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#randomized-experiment">Randomized Experiment</a></li>
+    <li><a href="#frontdoor-adjustment">Frontdoor adjustment</a></li>
+    <li><a href="#pearls-do-calculus">Pearl&rsquo;s do-calculus</a>
+      <ul>
+        <li><a href="#rules-of-do-calculus">Rules of <em>do</em>-calculus</a></li>
+      </ul>
+    </li>
+    <li><a href="#determining-identifiability-from-the-graph">Determining identifiability from the graph</a>
+      <ul>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Randomized Experiment에 대해 알아보자.</p>
+<h2 id="randomized-experiment">Randomized Experiment</h2>
+<p>언제나 우리가 관측하지 못한 confounder가 있다. 이를 conditioning하지 못할 것이다. 따라서 RCT (Randomized control trial)이 아주 강력한 것이다. 기업에서 많이들 A/B test를 하는데 이게 RCT이다. treatment, control group을 random하게 나누는 것이다. RCT를 통해 association이 causation이 되는데 이를 각기 다른 3가지 측면에서 살펴보자.</p>
+<ul>
+<li>covariate balance</li>
+</ul>
+<p>$$P(X|T=1) = P(X|T=0)$$</p>
+<ul>
+<li>Randomization implies covariate balance
+<ul>
+<li>treatment를 random하게 적용하기 때문에 covariate $X$들과 독립이다. 이 때 covariate들이 observed or unobserved 인지 상관없이 독립적이다.</li>
+</ul>
+</li>
+</ul>
+<p>$$P(X|T=1) = P(X|T=0) = P(X)$$</p>
+<ul>
+<li>Covariate balance implies association is causation</li>
+</ul>
+<p>$$P(y|do(t)) = \sum_x P(y|t,x)P(x) \\ = \sum_x \frac{P(y|t,x)P(t|x)P(x)}{P(t|x)}\ = \sum_x \frac{P(y,t,x)}{P(t|x)} \\ = \sum_x \frac{P(y,t,x)}{P(t)} \\ = \sum_x P(y,x|t)\ =P(y|t)$$</p>
+<ul>
+<li>Exchangeability
+<ul>
+<li>RCT를 exchangeability의 측면에서 살펴보자. RCT를 하면 exchangeability가 성립할 수 밖에 없다. 동전을 던져서 treatment를 할지 말지 결정하기 때문에 당연히 아래의 식이 성립하고 association이 causation이 되는 것이다.</li>
+</ul>
+</li>
+</ul>
+<p>$$E[Y(1)|T=1] = E[Y(1)|T=0] \ E[Y(0)|T=0] = E[Y(0)|T=1]$$</p>
+<p>$$E[Y(1)]-E[Y(0)] = E[Y(1)|T=1] - E[Y(0)|T=0] \\ =E[Y|T=1] = E[Y|T=0]$$</p>
+<ul>
+<li>No backdoor paths
+<ul>
+<li>graphical causal model에서도 RCT를 통해 association이 causation이 된다. $T$의 incoming edges가 사라지기 때문이다. 따라서 backdoor path들도 사라지고 association이 causal이 되는 것이다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="frontdoor-adjustment">Frontdoor adjustment</h2>
+<p>아래의 그림처럼 $W$가 unobserved인 경우 backdoor path를 막을 수 없고 따라서 causal association도 구할 수 없게 된다. 그러면 어떻게 할까? Frontdoor adjustment!</p>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_05_01.PNG?raw=true"  width="300">
+</center>
+<p>위의 그림에서 mediator $M$에 집중하면 된다. 과정은 아래와 같다.</p>
+<ol>
+<li>Identify the causal effect of $T$ on $M$</li>
+<li>Identify the causal effect of $M$ on $Y$</li>
+<li>Combine the above steps to identify the causal effect of $T$ on $Y$</li>
+</ol>
+<p>step1에서 $Y$는 $T-M$ path through $W$에 대해 collider이고 이는 backdoor path를 막아준다. 따라서 우리는 아래와 같은 identification이 성립함을 알 수 있다.</p>
+<p>$$P(m|do(t)) = P(m|t)$$</p>
+<p>step2에서 $T$를 conditioning하면 backdoor path $M \leftarrow T \leftarrow W \rightarrow Y$를 막을 수 있다.</p>
+<p>$$P(y|do(m)) = \sum_t P(y|m,t)P(t)$$</p>
+<p>이제 위에서 알게된 내용을 합쳐서 $T$의 변화가 $Y$를 얼마나 변하게 하는지 알 수 있게 된다.</p>
+<p>$$P(y|do(t))=\sum_m P(m|do(t))P(y|do(m))$$</p>
+<ul>
+<li>proof</li>
+</ul>
+<p>위의 사진으로 진행한다. truncated factorization으로</p>
+<p>$$P(w,m,y|do(t))=P(w)P(m|t)P(y|w,m)$$</p>
+<p>$w,m$에 대해 marginalize하면</p>
+<p>$$\sum_m \sum_w P(w,m,y|do(t)) = \sum_m \sum_w P(w)P(m|t)P(y|w,m) \\ P(y|do(t)) = \sum_m P(m|t) \sum_w P(w)P(y|w,m) $$</p>
+<p>그런데 우항에 unobserved $w$가 있기에 marginalization을 진행할 수 없다. 따라서 우리는 $w$를 식에서 없애는 작업이 필요할 것이다.</p>
+<p>그림에서 $T$가 주어진다면 $P(w|t)=P(w|t,m)$이므로</p>
+<p>$$P(y|do(t)) = \sum_m P(m|t) \sum_w P(w)P(y|w,m) \\ = \sum_m P(m|t) \sum_w P(y|w,m)\sum_{t'}P(w|t')P(t') \\ = \sum_m P(m|t) \sum_w P(y|w,m)\sum_{t'}P(w|t',m)P(t') \\ = \sum_m P(m|t) \sum_{t'}P(t') \sum_w P(y|w,m)P(w|t',m) \\ = \sum_m P(m|t) \sum_{t'}P(t') \sum_w P(y|w,m,t')P(w|t',m) \\ = \sum_m P(m|t) \sum_{t'}P(t') \sum_w P(y,w|m,t') \\ =\sum_m P(m|t) \sum_{t'}P(t')P(y|m,t')$$</p>
+<ul>
+<li>Frontdoor Adjustment
+<ul>
+<li>만약 $(T,M,Y)$이 the frontdoor
+criterion을 만족하고 positivity를 만족하면</li>
+</ul>
+</li>
+</ul>
+<p>$$P(y|do(t))=\sum_m P(m|t) \sum_{t'}P(y|m,t')P(t')$$</p>
+<ul>
+<li>Frontdoor Criterion
+<ul>
+<li>아래의 조건이 사실이면 set of variables $M$들이 $T,Y$에 대해 the
+frontdoor criterion을 만족한다.
+<ul>
+<li>$M$ completely mediates the effect of $T$ on $Y$</li>
+<li>There is no unblocked backdoor path from $T$ to $M$</li>
+<li>All backdoor paths from $M$ to $Y$ are blocked by $T$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="pearls-do-calculus">Pearl&rsquo;s do-calculus</h2>
+<p>backdoor adjustment가 성립하지 않더라도 frondoor adjustment라는 방법을 통해 identification이 성립할 수 있음을 알게되었다. 그렇다면 둘다 성립하지 않을 때는 어떻게 해야할까? <em>do-calculus</em> ! do-calculus는 causal graph에 녹아있는 causal assumptions을 사용하여 causal effects를 identify할 수 있는 tool을 제공한다.</p>
+<ul>
+<li>notation
+<ul>
+<li>$G$ : causal graph</li>
+<li>$G_{\overline{X}}$ : the graph that remove all of the incoming edges to nodes in the set $X$</li>
+<li>$G_{\underline{X}}$ : the graph that remove all of the outgoing edges to nodes in the set $X$</li>
+</ul>
+</li>
+</ul>
+<h3 id="rules-of-do-calculus">Rules of <em>do</em>-calculus</h3>
+<p>Given a causal graph $G$, an associated distribution $P$, and disjoint sets of vairables $Y,T,Z,W$ the following rules hold:</p>
+<ul>
+<li>Rule1 : if $Y \perp_{G_{\overline{T}}} Z | T,W$</li>
+</ul>
+<p>$$P(y|do(t),z,w)=P(y|do(t),w)$$</p>
+<ul>
+<li>Rule2 : if $Y \perp_{G_{\overline{T}, \underline{Z}}} Z | T,W$</li>
+</ul>
+<p>$$P(y|do(t),do(z),w) = P(y|do(t),z,w)$$</p>
+<ul>
+<li>Rule3 : if $Y \perp_{G_{\overline{T}, \overline{Z(W)}}} Z | T,W$
+<ul>
+<li>$Z(W)$ : the set of nodes of $Z$ that aren&rsquo;t ancestors of any node of $W$</li>
+</ul>
+</li>
+</ul>
+<p>$$P(y|do(t),do(z),w) = P(y|do(t),w)$$</p>
+<p>이에 대한 증명은 &lsquo;Pearl (1995) Causal diagrams for empirical research&rsquo;를 읽어보면 될 것이다. 그렇다면 <em>do</em>-calculs만 있으면 causal estimands들이 무조건 identifiable할 수 있을까? 2000년대에 나온 논문들이 이를 증명했다고 한다. 즉, 위의 <em>3가지 rule들이 sufficient to identify all identifiable causal estimands</em>라는 것을 의미한다.</p>
+<p>위의 identification은 nonparametric identification에 속한다. 추후에 parametric identification에 대해서도 살펴볼 것이다.</p>
+<h2 id="determining-identifiability-from-the-graph">Determining identifiability from the graph</h2>
+<ul>
+<li>skip</li>
+</ul>
+<h3 id="reference">Reference</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=9X4pR4jvKmM&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=5" target="_blank" rel="noopener noreffer">https://www.youtube.com/watch?v=9X4pR4jvKmM&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=5</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/causal05/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/randomized-experiment/">Randomized Experiment</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/causal04/" class="prev" rel="prev" title="[인과추론] Causal Models"><i class="fas fa-angle-left fa-fw"></i>[인과추론] Causal Models</a>
+            <a href="/causal06/" class="next" rel="next" title="[인과추론] Estimation">[인과추론] Estimation<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

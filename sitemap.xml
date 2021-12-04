@@ -2,12 +2,32 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://minsoo9506.github.io/causal09/</loc><lastmod>2021-12-03T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2021-12-03T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/causality/</loc><lastmod>2021-12-03T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/did/</loc><lastmod>2021-12-03T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/</loc><lastmod>2021-12-03T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2021-12-03T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2021-12-03T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/causal08/</loc><lastmod>2021-12-03T11:08:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/instrumental-variables/</loc><lastmod>2021-12-03T11:08:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/causal07/</loc><lastmod>2021-12-03T11:07:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/bounds/</loc><lastmod>2021-12-03T11:07:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/unobserved-confounding/</loc><lastmod>2021-12-03T11:07:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/causal06/</loc><lastmod>2021-12-03T11:06:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/estimation/</loc><lastmod>2021-12-03T11:06:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/causal05/</loc><lastmod>2021-12-03T11:05:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/randomized-experiment/</loc><lastmod>2021-12-03T11:05:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/causal04/</loc><lastmod>2021-12-03T11:04:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/causal-model/</loc><lastmod>2021-12-03T11:04:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/causal03/</loc><lastmod>2021-12-03T11:03:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/causal-graph/</loc><lastmod>2021-12-03T11:03:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/causal02/</loc><lastmod>2021-12-03T11:02:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/potential-outcome/</loc><lastmod>2021-12-03T11:02:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/causal01/</loc><lastmod>2021-12-03T11:01:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/correlation/</loc><lastmod>2021-12-03T11:01:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/07-vae/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/categories/deep-generative-model/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/vae/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/06-ib/</loc><lastmod>2021-12-03T09:06:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/vib/</loc><lastmod>2021-12-03T09:06:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>

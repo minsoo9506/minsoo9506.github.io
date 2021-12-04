@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[인과추론] Estimation - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[인과추론] Estimation" />
+<meta property="og:description" content="statistical estimand를 estimate하는 방법을 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/causal06/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T11:06:00+00:00" />
+<meta property="article:modified_time" content="2021-12-03T11:06:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[인과추론] Estimation"/>
+<meta name="twitter:description" content="statistical estimand를 estimate하는 방법을 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/causal06/" /><link rel="prev" href="http://minsoo9506.github.io/causal05/" /><link rel="next" href="http://minsoo9506.github.io/causal07/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[인과추론] Estimation",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/causal06\/"
+        },"genre": "posts","keywords": "Estimation","wordcount":  435 ,
+        "url": "http:\/\/minsoo9506.github.io\/causal06\/","datePublished": "2021-12-03T11:06:00+00:00","dateModified": "2021-12-03T11:06:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[인과추론] Estimation</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;435 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#conditional-outcome-modeling-com">Conditional Outcome Modeling (COM)</a></li>
+    <li><a href="#grouped-conditional-outcome-modeling-gcom">Grouped Conditional Outcome Modeling (GCOM)</a></li>
+    <li><a href="#propensity-scores">Propensity Scores</a></li>
+    <li><a href="#inverse-probability-weighting-ipw">Inverse Probability Weighting (IPW)</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>statistical estimand를 estimate하는 방법을 알아보자.</p>
+<h2 id="conditional-outcome-modeling-com">Conditional Outcome Modeling (COM)</h2>
+<p>$$\tau = E[Y(1) - Y(0)]=E_W [E[Y|T=1,W]-E[Y|T=0,W]]$$</p>
+<p>좌항은 causal estimand이고 우항은 statistical estimand이다. 이제 이를 estimate값을 구하는 과정을 알아보자. 가장 직관적인 방법은 conditional expectation $E[Y|T,W]$을 statistical(or ML) model로 구하는 것이다. 그리고 이를 $n$개의 data가 있다고 하면 empirical mean을 구하면 우리가 원하는 값을 얻을 수 있다. 편의를 위해 아래의 notation을 사용하자.</p>
+<p>$$\mu(1,w) - \mu(0,w) = E_W [E[Y|T=1,W]-E[Y|T=0,W]]$$</p>
+<p>우리는 $\mu$를 approximation하기 위해 모델링을 할 것이고 우리가 구한 모델을 $\hat{\mu}$라고 한다. 이 모델을 <em>conditional outcome model</em>이라고 한다. 이를 이용하여 ATE에 대한 model-assisted estimator를 아래와 같이 구할 수 있다.</p>
+<p>$$\therefore \hat{\tau} = \frac{1}{n}\sum_i [\hat{\mu}(1,w_i)-\hat{\mu}(0,w_i)]$$</p>
+<p>이런 estimator를 COM estimator라고 부른다.</p>
+<p>CATE estimation에서 $\mu$는 아래와 같고</p>
+<p>$$\mu(t,w,x) = E[Y|T=t, W=w, X=x]$$</p>
+<p>이를 통해 COM estimator for the CATE $\tau(x)$는</p>
+<p>$$\hat{\tau}(x) = \frac{1}{n_x}\sum_{i:x_i=x} [\hat{\mu}(1,w_i,x)-\hat{\mu}(0,w_i,x)]$$</p>
+<p>여기서 $n_x$는 $x_i = x$인 data의 갯수를 의미한다.</p>
+<h2 id="grouped-conditional-outcome-modeling-gcom">Grouped Conditional Outcome Modeling (GCOM)</h2>
+<p>예를 들어 COM estimator를 구하기 위해 모델링을 한다고 가정해보자. $T$의 경우 1차원, $W$의 경우는 고차원인 경우가 발생할 것이다. 이를 Neural net에 넣는다고하면 $T$의 effect는 무시당할 확률이 크다. 따라서 ATE estimate는 0으로 가게되는 것이다. 이외에도 COM estimator가 zero biased된다는 논문도 있다. 그렇다면 어떻게 모델이 $T$를 무시하지 못하게 할 수 있을까?</p>
+<p>아래와 같은 모델 두 개를 만들면 된다.</p>
+<p>$$\mu_1 (w) = E[Y|T=1,W=w],;\mu_0 (w) = E[Y|T=0,W=w]$$</p>
+<p>$T$에 따라 그룹을 나누어서 모델을 훈련시키는 것이다. 이렇게 얻어진 estimator를 <em>grouped conditional outcome model estimators</em>라고 한다.</p>
+<p>$$\hat{\tau} = \frac{1}{n}\sum_i [\hat{\mu}_1(w_i)-\hat{\mu}_0(w_i)]$$</p>
+<p>CATE를 위한 GCOM estimator는</p>
+<p>$$\hat{\tau}(x) = \frac{1}{n_x}\sum_{i:x_i=x} [\hat{\mu}_1(w_i,x)-\hat{\mu}_0(w_i,x)]$$</p>
+<p>GCOM estimation을 통해 COM estimation에서 발생하는 zero treatment effect를 방지할 수 있다. 하지만 이 또한 데이터를 나누어서 모델링을 해야하는 단점이 존재한다. 이를 위한 모델링 방법도 존재한다.</p>
+<ul>
+<li>Increasing Data Efficiency
+<ul>
+<li>TARNet</li>
+<li>X-Learner</li>
+</ul>
+</li>
+</ul>
+<h2 id="propensity-scores">Propensity Scores</h2>
+<p>vector of variables $W$가 backdoor critetion을 만족한다고 하자. 그러면 $W$를 conditioning하여 causality를 파악하려고 할 것이다. 그러데 $W$가 고차원이면 이를 계산하기가 까다로워진다. 이를 해결하기 위한 것이 propensity score $e(w)$이다.</p>
+<p>$$e(w) = P(T=1|W=w)$$</p>
+<p>$e(w)$는 scalar이므로 상당히 계산이 간단해진다.</p>
+<ul>
+<li>Propensity Score Theorem
+<ul>
+<li>Given positivity, unconfoundedness given $W$ implies unconfoundedness given the propensity score $e(W)$</li>
+</ul>
+</li>
+</ul>
+<p>$$(Y(1),Y(0))\perp T | W \rightarrow (Y(1),Y(0))\perp T | e(W)$$</p>
+<p>이는 수학적으로 증명되있기도 하다. graphical하게 이해해도 된다. 그렇다면 $e(W)$는 어떻게 구할까? logistic regression같은 모델을 이용하여 $T$를 target, $W$는 input으로 놓고 모델링을 하면 된다.</p>
+<h2 id="inverse-probability-weighting-ipw">Inverse Probability Weighting (IPW)</h2>
+<p>confounder $W$에서 $T$로 가는 edge를 없애는 것이 우리가 하고 싶은 일이다. 이를 가중치를 통해 해결하는 것이 IPW방법론이다. $T=1$인 경우, $1/e(W)$의 가중치를 곱하고 continuous의 경우에는 $1/P(T|W)$를 곱한다. 따라서</p>
+<p>$$E[Y(t)] = E[\frac{1(T=t)Y}{P(t|W)}]$$</p>
+<p>$$\tau = E[Y(1)-Y(0)] = E[\frac{1(T=1)Y}{e(w)}] - E[\frac{1(T=0)Y}{1-e(w)}]$$</p>
+<ul>
+<li>proof</li>
+</ul>
+<p>$$E[Y(t)] = E[E[Y|t, W]] \; \text{(given unconfoundedness and positivity)} $$</p>
+<p>$$ = \sum_w \sum_y y P(y|t,w)P(w) \\ = \sum_w \sum_y y P(y|t,w)P(w) \frac{P(t|w)}{P(t|w)} \\ = \sum_w \sum_y y P(y,t,w)\frac{1}{P(t|w)} \\ = \sum_w E[1(T=t,W=w)Y]\frac{1}{P(t|w)} \\ = E[\frac{1(T=t)Y}{P(t|W)}]$$</p>
+<p>이외에도</p>
+<ul>
+<li>Doubly Robust Method</li>
+<li>Match</li>
+<li>Double Machine Learning</li>
+<li>Causal Trees and Forests</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/causal06/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/estimation/">Estimation</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/causal05/" class="prev" rel="prev" title="[인과추론] Randomized Experiments and Identification"><i class="fas fa-angle-left fa-fw"></i>[인과추론] Randomized Experiments and Identification</a>
+            <a href="/causal07/" class="next" rel="next" title="[인과추론] Unobserved Confounding, Bounds, and Unobserved Confounding">[인과추론] Unobserved Confounding, Bounds, and Unobserved Confounding<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -3,75 +3,75 @@
         <title>All Posts - minsoo9506</title>
         <link>http://minsoo9506.github.io/posts/</link>
         <description>All Posts | minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 03 Dec 2021 09:07:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 03 Dec 2021 11:09:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[인과추론] Difference-in-Difference</title>
+    <link>http://minsoo9506.github.io/causal09/</link>
+    <pubDate>Fri, 03 Dec 2021 11:09:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal09/</guid>
+    <description><![CDATA[<p>DID 방법론에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[인과추론] Instrumental Variables</title>
+    <link>http://minsoo9506.github.io/causal08/</link>
+    <pubDate>Fri, 03 Dec 2021 11:08:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal08/</guid>
+    <description><![CDATA[<p>unobserved confounding이 있는 경우는 어떻게 할까? 이전 chapter에서도 알아봤지만 여기서는 <em>instrumental vairable</em> $Z$을 이용하고자 한다.</p>]]></description>
+</item><item>
+    <title>[인과추론] Unobserved Confounding, Bounds, and Unobserved Confounding</title>
+    <link>http://minsoo9506.github.io/causal07/</link>
+    <pubDate>Fri, 03 Dec 2021 11:07:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal07/</guid>
+    <description><![CDATA[<p>No unobserved confounding은 솔직히 비현실적이다.</p>]]></description>
+</item><item>
+    <title>[인과추론] Estimation</title>
+    <link>http://minsoo9506.github.io/causal06/</link>
+    <pubDate>Fri, 03 Dec 2021 11:06:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal06/</guid>
+    <description><![CDATA[<p>statistical estimand를 estimate하는 방법을 알아보자.</p>]]></description>
+</item><item>
+    <title>[인과추론] Randomized Experiments and Identification</title>
+    <link>http://minsoo9506.github.io/causal05/</link>
+    <pubDate>Fri, 03 Dec 2021 11:05:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal05/</guid>
+    <description><![CDATA[<p>Randomized Experiment에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[인과추론] Causal Models</title>
+    <link>http://minsoo9506.github.io/causal04/</link>
+    <pubDate>Fri, 03 Dec 2021 11:04:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal04/</guid>
+    <description><![CDATA[<p>Causal Model이란?</p>]]></description>
+</item><item>
+    <title>[인과추론] The Flow of Causation and Association in Graphs</title>
+    <link>http://minsoo9506.github.io/causal03/</link>
+    <pubDate>Fri, 03 Dec 2021 11:03:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal03/</guid>
+    <description><![CDATA[<p>Graph를 통해 causality를 알아보자.</p>]]></description>
+</item><item>
+    <title>[인과추론] Potential Outcomes Framework</title>
+    <link>http://minsoo9506.github.io/causal02/</link>
+    <pubDate>Fri, 03 Dec 2021 11:02:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal02/</guid>
+    <description><![CDATA[<p>Potential Outcomes 이란?</p>]]></description>
+</item><item>
+    <title>[인과추론] Introduction</title>
+    <link>http://minsoo9506.github.io/causal01/</link>
+    <pubDate>Fri, 03 Dec 2021 11:01:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal01/</guid>
+    <description><![CDATA[<p>Causal Inference시 주의할 점</p>]]></description>
+</item><item>
     <title>[Generative Model] VAE</title>
     <link>http://minsoo9506.github.io/07-vae/</link>
     <pubDate>Fri, 03 Dec 2021 09:07:00 &#43;0900</pubDate>
     <author>Author</author>
     <guid>http://minsoo9506.github.io/07-vae/</guid>
     <description><![CDATA[<p>Auto-Encoding Variational Bayes (2014)</p>]]></description>
-</item><item>
-    <title>[Generative Model] Deep Variational Information Bottelneck (ICLR 2017)</title>
-    <link>http://minsoo9506.github.io/06-ib/</link>
-    <pubDate>Fri, 03 Dec 2021 09:06:00 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/06-ib/</guid>
-    <description><![CDATA[<p>Deep Variational Information Bottelneck 논문을 간단하게 리뷰하였다.</p>]]></description>
-</item><item>
-    <title>[Generative Model] TimeGAN</title>
-    <link>http://minsoo9506.github.io/05-timegan/</link>
-    <pubDate>Fri, 03 Dec 2021 09:05:00 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/05-timegan/</guid>
-    <description><![CDATA[<p>TimeGAN 논문을 간단하게 리뷰하였다.</p>]]></description>
-</item><item>
-    <title>[Generative Model] LSGAN</title>
-    <link>http://minsoo9506.github.io/04-lsgan/</link>
-    <pubDate>Fri, 03 Dec 2021 09:04:00 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/04-lsgan/</guid>
-    <description><![CDATA[<p>LSGAN 논문을 간단하게 리뷰하였다.</p>]]></description>
-</item><item>
-    <title>[Generative Model] GAN</title>
-    <link>http://minsoo9506.github.io/03-gan/</link>
-    <pubDate>Fri, 03 Dec 2021 09:03:00 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/03-gan/</guid>
-    <description><![CDATA[<p>GAN의 논문과 youtube에서 본 내용을 간단히 정리하였다.</p>]]></description>
-</item><item>
-    <title>[Generative Model] Variational Inference</title>
-    <link>http://minsoo9506.github.io/02-variationalinference/</link>
-    <pubDate>Fri, 03 Dec 2021 09:02:00 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/02-variationalinference/</guid>
-    <description><![CDATA[<p>VAE를 공부하기 위해 variational inference에 대해 간단하게 공부해보자.</p>]]></description>
-</item><item>
-    <title>[Generative Model] Introduction to Generative Models</title>
-    <link>http://minsoo9506.github.io/01-introductiontogenerativemodels/</link>
-    <pubDate>Fri, 03 Dec 2021 09:01:00 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/01-introductiontogenerativemodels/</guid>
-    <description><![CDATA[<p>Generative model에 대해 간단하게 정리하였다.</p>]]></description>
-</item><item>
-    <title>[알고리즘] 동적계획법</title>
-    <link>http://minsoo9506.github.io/algo-17-dp/</link>
-    <pubDate>Thu, 02 Dec 2021 09:17:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/algo-17-dp/</guid>
-    <description><![CDATA[<p>Dynamic Programming + Python</p>]]></description>
-</item><item>
-    <title>[알고리즘] 최단경로문제</title>
-    <link>http://minsoo9506.github.io/algo-16-minpath/</link>
-    <pubDate>Thu, 02 Dec 2021 09:16:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/algo-16-minpath/</guid>
-    <description><![CDATA[<p>Dijkstra, Floyd + python</p>]]></description>
-</item><item>
-    <title>[알고리즘] 최소신장트리(MST)</title>
-    <link>http://minsoo9506.github.io/algo-15-mst/</link>
-    <pubDate>Thu, 02 Dec 2021 09:15:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/algo-15-mst/</guid>
-    <description><![CDATA[<p>Kruskal, Prim + python</p>]]></description>
 </item></channel>
 </rss>
