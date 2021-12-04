@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[알고리즘] Sort in linear time - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[알고리즘] Sort in linear time" />
+<meta property="og:description" content="Counting, Radix sort &#43; python" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/algo-09-sort6/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-02T09:09:00+00:00" />
+<meta property="article:modified_time" content="2021-12-02T09:09:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[알고리즘] Sort in linear time"/>
+<meta name="twitter:description" content="Counting, Radix sort &#43; python"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/algo-09-sort6/" /><link rel="prev" href="http://minsoo9506.github.io/algo-08-sort5/" /><link rel="next" href="http://minsoo9506.github.io/algo-10-bst1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[알고리즘] Sort in linear time",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/algo-09-sort6\/"
+        },"genre": "posts","keywords": "Counting sort, Radix sort","wordcount":  500 ,
+        "url": "http:\/\/minsoo9506.github.io\/algo-09-sort6\/","datePublished": "2021-12-02T09:09:00+00:00","dateModified": "2021-12-02T09:09:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[알고리즘] Sort in linear time</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/"><i class="far fa-folder fa-fw"></i>알고리즘</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-02">2021-12-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;500 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#counting-sort">Counting sort</a></li>
+    <li><a href="#radix-sort">Radix sort</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Counting, Radix sort + python</p>
+<h2 id="counting-sort">Counting sort</h2>
+<ul>
+<li>조건
+<ul>
+<li>n개의 정수를 정렬</li>
+<li>단, 모든 정수는 0에서 k사이의 정수 (사전지식)</li>
+<li>k가 주로 너무 크지 않은 경우 사용한다.</li>
+</ul>
+</li>
+<li>방법
+<ul>
+<li>길이 k인 배열에 각 정수의 개수를 count한다.</li>
+<li>그 count개수를 기준으로 하나씩 뽑아내면 정렬한 결과가 나온다.</li>
+<li>예를 들어, <code>[4,1,2,1]</code> 데이터가 있는 경우 count 배열은 <code>[0,2,1,0,1]</code>이 된다. 그러면 1은 2번, 2를 1번, 4를 1번로 하여 print하면 되는 것이다.</li>
+</ul>
+</li>
+</ul>
+<p>근데 위에서 문제는</p>
+<ul>
+<li>우리가 정렬하는 데이터들은 다른 데이터들과 함께 묶여있는 경우가 많다.</li>
+<li>예를 들어, 학생정보가 있는 데이터를 학생의 시험점수로 정렬하고자 하는 경우</li>
+<li>그래서 윈래의 데이터 reference를 갖고 정렬하는 과정이 필요하다.</li>
+</ul>
+<p>이를 위한 해결방법은</p>
+<ul>
+<li>누적을 이용하는 것이다.</li>
+<li>예를 들어, <code>[4,1,2,1]</code> 데이터가 있는 경우 count 배열은 <code>[0,2,3,3,4]</code>이 된다. 각 원소의 개수를 누적합으로 표현한다.</li>
+<li>그리고 원래 데이터배열 <code>[4,1,2,1]</code> 뒤에서부터 하나씩 빼온다.
+<ul>
+<li>맨 뒤에 있는 1이 뽑힌다.
+<ul>
+<li>이렇게 맨 뒤에서부터 뽑으면 stable 정렬이 가능하다.</li>
+<li>stable 정렬 알고리즘 : 입력에 동일한 값이 있을때 입력에 먼저 나오는 값이 (정렬된)출력에서도 먼저 나온다.</li>
+</ul>
+</li>
+<li>count배열에서 1이하의 값은 2개이므로</li>
+<li>sort배열의 2번째 위치에 해당 값을 넣는다. (new sort배열 필요, index를 1부터 시작)</li>
+<li>count배열에서 1의 개수에서 1을 뺀다.</li>
+</ul>
+</li>
+<li>이런식으로 반복을 하면 정렬된 배열을 얻을 수 있다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="c1"># 데이터수는 n</span>
+<span class="c1"># 데이터는 0부터 k의 값을 가진다.</span>
+<span class="k">def</span> <span class="nf">counting_sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">sort_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># index를 1부터 하기 위해</span>
+    <span class="n">count_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># data 원소별 개수 count</span>
+    <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">count_list</span><span class="p">[</span><span class="n">ele</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># 누적합</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">count_list</span><span class="p">)):</span>
+        <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="c1"># 정렬</span>
+    <span class="c1"># data의 맨 뒤부터 시작 -&gt; stable 정렬이 가능</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">sort_list</span><span class="p">[</span><span class="n">count_list</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">count_list</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">sort_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># index를 1부터 사용했으니까</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">counting_sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>시간복잡도
+<ul>
+<li>$O(n+k);\text{or};O(n);\text{if};k=O(n)$</li>
+<li>$k$가 클 경우 비실용적</li>
+</ul>
+</li>
+</ul>
+<h2 id="radix-sort">Radix sort</h2>
+<ul>
+<li>n개의 d자리 정수들
+<ul>
+<li>정수가 꼭 아니여도 된다 ex. d자리 문자열</li>
+</ul>
+</li>
+<li>가장 낮은 자리수부터 정렬</li>
+<li>stable 정렬을 이용해야한다.
+<ul>
+<li>예를 들어, [77,66,69] 이라는 배열이 있다.</li>
+<li>먼저 일의 자리에 따라 정렬하면 [66,77,69] 가 되고</li>
+<li>다음 십의 자리에 따라 정렬하면 [66,69,77]이 된다.</li>
+<li>여기서 66과 69는 십의 자리가 같지만 제대로 정렬이 되는 이유는</li>
+<li>이전에 일의 자리에서 정렬한 순서를 그대로 유지했지 때문이다. (stable)</li>
+</ul>
+</li>
+<li>stable 정렬에 counting sort이용하면 되겠다.
+<ul>
+<li>이런 경우 시간복잡도 $O(d(n+k))$</li>
+<li>그런데 $d$가 상수고 $k=O(n)$이면 $O(n)$</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">23</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">counting_sort_for_radix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">digit</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">sort_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> 
+    <span class="n">count_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="n">digit</span>
+        <span class="n">count_list</span><span class="p">[</span><span class="n">idx</span> <span class="o">%</span> <span class="mi">10</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">//</span> <span class="n">digit</span>
+        <span class="n">sort_list</span><span class="p">[</span><span class="n">count_list</span><span class="p">[</span><span class="n">idx</span> <span class="o">%</span> <span class="mi">10</span><span class="p">]]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">count_list</span><span class="p">[</span><span class="n">idx</span> <span class="o">%</span> <span class="mi">10</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">sort_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+<span class="k">def</span> <span class="nf">radix_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+    <span class="n">digit</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">max_val</span> <span class="o">//</span> <span class="n">digit</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">counting_sort_for_radix</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">digit</span><span class="p">)</span>
+        <span class="n">digit</span> <span class="o">*=</span> <span class="mi">10</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">radix_sort</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="reference">Reference</h2>
+<ul>
+<li>권오흠 교수님 알고리즘
+<ul>
+<li>Java예시를 Python으로 바꿔서 구현</li>
+</ul>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-02</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/algo-09-sort6/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/counting-sort/">Counting sort</a>,&nbsp;<a href="/tags/radix-sort/">Radix sort</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/algo-08-sort5/" class="prev" rel="prev" title="[알고리즘] 정렬의 lower bound"><i class="fas fa-angle-left fa-fw"></i>[알고리즘] 정렬의 lower bound</a>
+            <a href="/algo-10-bst1/" class="next" rel="next" title="[알고리즘] 트리와 이진트리">[알고리즘] 트리와 이진트리<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

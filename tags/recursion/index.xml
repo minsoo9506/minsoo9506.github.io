@@ -1,0 +1,28 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Recursion - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/recursion/</link>
+        <description>Recursion - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 02 Dec 2021 09:03:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/recursion/" rel="self" type="application/rss+xml" /><item>
+    <title>[알고리즘] 멱집합, 조합</title>
+    <link>http://minsoo9506.github.io/algo-03-recursion3/</link>
+    <pubDate>Thu, 02 Dec 2021 09:03:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/algo-03-recursion3/</guid>
+    <description><![CDATA[<p>멱집합, 조합 + python</p>]]></description>
+</item><item>
+    <title>[알고리즘] Recursion의 응용</title>
+    <link>http://minsoo9506.github.io/algo-02-recursion2/</link>
+    <pubDate>Thu, 02 Dec 2021 09:02:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/algo-02-recursion2/</guid>
+    <description><![CDATA[<p>미로찾기, n queens problem + python</p>]]></description>
+</item><item>
+    <title>[알고리즘] Recursion의 개념과 기본 예제들</title>
+    <link>http://minsoo9506.github.io/algo-01-recursion1/</link>
+    <pubDate>Thu, 02 Dec 2021 09:01:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/algo-01-recursion1/</guid>
+    <description><![CDATA[<p>Recursion(재귀)의 개념 + python</p>]]></description>
+</item></channel>
+</rss>

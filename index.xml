@@ -3,80 +3,77 @@
         <title>minsoo9506</title>
         <link>http://minsoo9506.github.io/</link>
         <description>This is My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 01 Dec 2021 09:09:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 02 Dec 2021 09:17:00 &#43;0000</lastBuildDate>
             <atom:link href="http://minsoo9506.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>[자료구조] 트라이</title>
-    <link>http://minsoo9506.github.io/ds-09/</link>
-    <pubDate>Wed, 01 Dec 2021 09:09:00 &#43;0000</pubDate>
+    <title>[알고리즘] 동적계획법</title>
+    <link>http://minsoo9506.github.io/algo-17-dp/</link>
+    <pubDate>Thu, 02 Dec 2021 09:17:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/ds-09/</guid>
-    <description><![CDATA[<p>비선형적인 자료구조 트라이에 대해 정리</p>]]></description>
+    <guid>http://minsoo9506.github.io/algo-17-dp/</guid>
+    <description><![CDATA[<p>Dynamic Programming + Python</p>]]></description>
 </item><item>
-    <title>[자료구조] 힙</title>
-    <link>http://minsoo9506.github.io/ds-08/</link>
-    <pubDate>Wed, 01 Dec 2021 09:07:00 &#43;0000</pubDate>
+    <title>[알고리즘] 최단경로문제</title>
+    <link>http://minsoo9506.github.io/algo-16-minpath/</link>
+    <pubDate>Thu, 02 Dec 2021 09:16:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/ds-08/</guid>
-    <description><![CDATA[<p>비선형적인 자료구조 힙에 대해 정리</p>]]></description>
+    <guid>http://minsoo9506.github.io/algo-16-minpath/</guid>
+    <description><![CDATA[<p>Dijkstra, Floyd + python</p>]]></description>
 </item><item>
-    <title>[자료구조] 트리</title>
-    <link>http://minsoo9506.github.io/ds-07/</link>
-    <pubDate>Wed, 01 Dec 2021 09:06:00 &#43;0000</pubDate>
+    <title>[알고리즘] 최소신장트리(MST)</title>
+    <link>http://minsoo9506.github.io/algo-15-mst/</link>
+    <pubDate>Thu, 02 Dec 2021 09:15:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/ds-07/</guid>
-    <description><![CDATA[<p>비선형적인 자료구조 트리에 대해 정리</p>]]></description>
+    <guid>http://minsoo9506.github.io/algo-15-mst/</guid>
+    <description><![CDATA[<p>Kruskal, Prim + python</p>]]></description>
 </item><item>
-    <title>[자료구조] 그래프</title>
-    <link>http://minsoo9506.github.io/ds-06/</link>
-    <pubDate>Wed, 01 Dec 2021 09:05:00 &#43;0000</pubDate>
+    <title>[알고리즘] 그래프 순회</title>
+    <link>http://minsoo9506.github.io/algo-14-graph2/</link>
+    <pubDate>Thu, 02 Dec 2021 09:14:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/ds-06/</guid>
-    <description><![CDATA[<p>비선형적인 자료구조 그래프에 대해 정리</p>]]></description>
+    <guid>http://minsoo9506.github.io/algo-14-graph2/</guid>
+    <description><![CDATA[<p>그래프 순회 + python</p>]]></description>
 </item><item>
-    <title>[자료구조] 해시 테이블</title>
-    <link>http://minsoo9506.github.io/ds-05/</link>
-    <pubDate>Wed, 01 Dec 2021 09:04:00 &#43;0000</pubDate>
+    <title>[알고리즘] 그래프</title>
+    <link>http://minsoo9506.github.io/algo-13-graph1/</link>
+    <pubDate>Thu, 02 Dec 2021 09:13:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/ds-05/</guid>
-    <description><![CDATA[<p>선형적인 자료구조 해시 테이블에 대해 정리</p>]]></description>
+    <guid>http://minsoo9506.github.io/algo-13-graph1/</guid>
+    <description><![CDATA[<p>그래프 개념</p>]]></description>
 </item><item>
-    <title>[자료구조] deque, 우선순위 큐</title>
-    <link>http://minsoo9506.github.io/ds-04/</link>
-    <pubDate>Wed, 01 Dec 2021 09:03:00 &#43;0000</pubDate>
+    <title>[알고리즘] Hash</title>
+    <link>http://minsoo9506.github.io/algo-12-hash/</link>
+    <pubDate>Thu, 02 Dec 2021 09:12:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/ds-04/</guid>
-    <description><![CDATA[<p>선형적인 자료구조 데크과 우선순위 큐에 대해 정리</p>]]></description>
+    <guid>http://minsoo9506.github.io/algo-12-hash/</guid>
+    <description><![CDATA[<p>Hash 개념 + python</p>]]></description>
 </item><item>
-    <title>[자료구조] 스택, 큐</title>
-    <link>http://minsoo9506.github.io/ds-03/</link>
-    <pubDate>Wed, 01 Dec 2021 09:02:00 &#43;0000</pubDate>
+    <title>[알고리즘] 이진검색트리(BST)</title>
+    <link>http://minsoo9506.github.io/algo-11-bst2/</link>
+    <pubDate>Thu, 02 Dec 2021 09:11:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/ds-03/</guid>
-    <description><![CDATA[<p>선형적인 자료구조 스택과 큐에 대해 정리</p>]]></description>
+    <guid>http://minsoo9506.github.io/algo-11-bst2/</guid>
+    <description><![CDATA[<p>이진검색트리 + python</p>]]></description>
 </item><item>
-    <title>[자료구조] 연결리스트</title>
-    <link>http://minsoo9506.github.io/ds-02/</link>
-    <pubDate>Wed, 01 Dec 2021 09:01:00 &#43;0000</pubDate>
+    <title>[알고리즘] 트리와 이진트리</title>
+    <link>http://minsoo9506.github.io/algo-10-bst1/</link>
+    <pubDate>Thu, 02 Dec 2021 09:10:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/ds-02/</guid>
-    <description><![CDATA[<p>선형적인 자료구조 연결리스트에 대해 정리</p>]]></description>
+    <guid>http://minsoo9506.github.io/algo-10-bst1/</guid>
+    <description><![CDATA[<p>트리와 이진트리의 개념 + python</p>]]></description>
 </item><item>
-    <title>[자료구조] 배열</title>
-    <link>http://minsoo9506.github.io/ds-01/</link>
-    <pubDate>Wed, 01 Dec 2021 09:00:00 &#43;0000</pubDate>
+    <title>[알고리즘] Sort in linear time</title>
+    <link>http://minsoo9506.github.io/algo-09-sort6/</link>
+    <pubDate>Thu, 02 Dec 2021 09:09:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/ds-01/</guid>
-    <description><![CDATA[<p>선형적인 자료구조 배열에 대해 정리</p>]]></description>
+    <guid>http://minsoo9506.github.io/algo-09-sort6/</guid>
+    <description><![CDATA[<p>Counting, Radix sort + python</p>]]></description>
 </item><item>
-    <title>[PRML] Chapter 14 : Combining Models</title>
-    <link>http://minsoo9506.github.io/prml-chap14-1/</link>
-    <pubDate>Mon, 29 Nov 2021 11:40:01 &#43;0900</pubDate>
+    <title>[알고리즘] 정렬의 lower bound</title>
+    <link>http://minsoo9506.github.io/algo-08-sort5/</link>
+    <pubDate>Thu, 02 Dec 2021 09:08:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/prml-chap14-1/</guid>
-    <description><![CDATA[Ensemble method에 대해 정리하였다.
-14. Combining Models 말 그대로 모델들을 섞는 것이다. 머신러닝 예측 모델에서 가장 좋은 성능을 보이고 있다는 Boosting이 이 부분의 내용이다.
-14.1 Bayesian Model Averaging model combination methods 와 Bayesian model averaging 을 구분하는 것은 중요하다. Density estimation using a mixture of Gaussians 예시를 통해 살펴보자.
- model combination  각 data들은 iid, $X = {\textbf{x}_1, \textbf{x}_2,&hellip;,\textbf{x}_n }$ $X$는 전체 dataset을 의미    $$p(X) = \prod_{n=1}^{N}{p(\textbf{x} _ n)} = \prod_{n=1}^{N}{[\sum_{z_n}p(\textbf{x}_n, \textbf{z}_n)]}$$]]></description>
+    <guid>http://minsoo9506.github.io/algo-08-sort5/</guid>
+    <description><![CDATA[<p>정렬 알고리즘의 lower bound는?</p>]]></description>
 </item></channel>
 </rss>

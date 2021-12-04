@@ -3,7 +3,14 @@
         <title>그래프 - Tag - minsoo9506</title>
         <link>http://minsoo9506.github.io/tags/%EA%B7%B8%EB%9E%98%ED%94%84/</link>
         <description>그래프 - Tag - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 01 Dec 2021 09:05:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/%EA%B7%B8%EB%9E%98%ED%94%84/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 02 Dec 2021 09:13:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/%EA%B7%B8%EB%9E%98%ED%94%84/" rel="self" type="application/rss+xml" /><item>
+    <title>[알고리즘] 그래프</title>
+    <link>http://minsoo9506.github.io/algo-13-graph1/</link>
+    <pubDate>Thu, 02 Dec 2021 09:13:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/algo-13-graph1/</guid>
+    <description><![CDATA[<p>그래프 개념</p>]]></description>
+</item><item>
     <title>[자료구조] 그래프</title>
     <link>http://minsoo9506.github.io/ds-06/</link>
     <pubDate>Wed, 01 Dec 2021 09:05:00 &#43;0000</pubDate>

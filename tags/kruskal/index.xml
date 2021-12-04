@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Kruskal - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/kruskal/</link>
+        <description>Kruskal - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 02 Dec 2021 09:15:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/kruskal/" rel="self" type="application/rss+xml" /><item>
+    <title>[알고리즘] 최소신장트리(MST)</title>
+    <link>http://minsoo9506.github.io/algo-15-mst/</link>
+    <pubDate>Thu, 02 Dec 2021 09:15:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/algo-15-mst/</guid>
+    <description><![CDATA[<p>Kruskal, Prim + python</p>]]></description>
+</item></channel>
+</rss>

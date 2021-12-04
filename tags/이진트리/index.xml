@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>이진트리 - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/%EC%9D%B4%EC%A7%84%ED%8A%B8%EB%A6%AC/</link>
+        <description>이진트리 - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 02 Dec 2021 09:10:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/%EC%9D%B4%EC%A7%84%ED%8A%B8%EB%A6%AC/" rel="self" type="application/rss+xml" /><item>
+    <title>[알고리즘] 트리와 이진트리</title>
+    <link>http://minsoo9506.github.io/algo-10-bst1/</link>
+    <pubDate>Thu, 02 Dec 2021 09:10:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/algo-10-bst1/</guid>
+    <description><![CDATA[<p>트리와 이진트리의 개념 + python</p>]]></description>
+</item></channel>
+</rss>

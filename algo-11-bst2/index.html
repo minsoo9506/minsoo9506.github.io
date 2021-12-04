@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[알고리즘] 이진검색트리(BST) - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[알고리즘] 이진검색트리(BST)" />
+<meta property="og:description" content="이진검색트리 &#43; python" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/algo-11-bst2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-02T09:11:00+00:00" />
+<meta property="article:modified_time" content="2021-12-02T09:11:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[알고리즘] 이진검색트리(BST)"/>
+<meta name="twitter:description" content="이진검색트리 &#43; python"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/algo-11-bst2/" /><link rel="prev" href="http://minsoo9506.github.io/algo-10-bst1/" /><link rel="next" href="http://minsoo9506.github.io/algo-12-hash/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[알고리즘] 이진검색트리(BST)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/algo-11-bst2\/"
+        },"genre": "posts","keywords": "이진검색트리","wordcount":  585 ,
+        "url": "http:\/\/minsoo9506.github.io\/algo-11-bst2\/","datePublished": "2021-12-02T09:11:00+00:00","dateModified": "2021-12-02T09:11:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[알고리즘] 이진검색트리(BST)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/"><i class="far fa-folder fa-fw"></i>알고리즘</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-02">2021-12-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;585 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#dynamic-set">Dynamic set</a></li>
+    <li><a href="#검색트리">검색트리</a></li>
+    <li><a href="#이진검색트리-bst">이진검색트리 (BST)</a>
+      <ul>
+        <li><a href="#최소값-최대값">최소값, 최대값</a></li>
+        <li><a href="#successor">Successor</a></li>
+        <li><a href="#predecessor">Predecessor</a></li>
+        <li><a href="#search">SEARCH</a></li>
+        <li><a href="#insert">INSERT</a></li>
+        <li><a href="#delete">DELETE</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>이진검색트리 + python</p>
+<h2 id="dynamic-set">Dynamic set</h2>
+<ul>
+<li>여러 개의 키를 저장</li>
+<li>다음과 같은 연산들을 지원하는 자료구조
+<ul>
+<li><code>INSERT</code> : 새로운 키 삽입</li>
+<li><code>SEARCH</code> : 키 탐색</li>
+<li><code>DELETE</code> : 키 삭제</li>
+</ul>
+</li>
+<li>위를 구현하는데 다양한 방법들 존재
+<ul>
+<li>정렬된 혹은 정렬되지 않은 배열, 연결 리스트를 사용하면 위의 연산중에 적어도 하나는 $O(n)$</li>
+<li>트리 계열</li>
+<li>해쉬 계열</li>
+</ul>
+</li>
+</ul>
+<h2 id="검색트리">검색트리</h2>
+<ul>
+<li>Dynamic set을 트리의 형태로 구현</li>
+<li>일반적으로 <code>SEARCH</code>, <code>INSERT</code>, <code>DELETE</code> 연산이 트리의 높이에 비례하는 시간복잡도를 가짐</li>
+</ul>
+<h2 id="이진검색트리-bst">이진검색트리 (BST)</h2>
+<ul>
+<li>이진 트리이면서</li>
+<li>각 노드에 하나의 키를 저장</li>
+<li>각 노드 <code>v</code>에 대해서 그 노드의 왼쪽 subtree에 있는 키들은 <code>key[v]</code>보다 작거나 같고, 오른쪽 subtree에 있는 값은 크거나 같다.</li>
+<li>각종 연산의 시간복잡도 $O(h)$, 최악의 경우는 트리의 높이가 $h=O(n)$이 될 수도 있다.</li>
+<li>균형잡힌 트리(ex. 레드-블랙 트리)를 만들면 높이를 $O(\log_2 n)$</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="최소값-최대값">최소값, 최대값</h3>
+<ul>
+<li>해당하는 최소값은 왼쪽자식이 없겠구나</li>
+<li>root에서 왼쪽으로만 내려가서 더 이상 내려갈 곳이 없을 때</li>
+<li>최대값은 반대!</li>
+<li>시간복잡도 : $O(h)$</li>
+</ul>
+<h3 id="successor">Successor</h3>
+<ul>
+<li>노드 <code>x</code>의 successor란 <code>key[x]</code>보다 크면서 가장 작은 키를 가진 노드</li>
+<li>모든 키들이 서로 다르다고 가정</li>
+<li>3 가지 경우 존재
+<ul>
+<li>노드 x의 오른쪽 subtree가 존재할 경우, 오른쪽 subtree의 최소값</li>
+<li>오른쪽 subtree가 없는 경우, 어떤 노드 y의 왼쪽 subtree의 최대값이 x가 되는 그런 노드 y가 x의 successor</li>
+<li>그런 노드 y가 존재하지 않을 경우 successor가 없음 (x가 최대값)</li>
+</ul>
+</li>
+<li>시간복잡도 : $O(h)$</li>
+</ul>
+<h3 id="predecessor">Predecessor</h3>
+<ul>
+<li>노드 <code>x</code>의 successor란 <code>key[x]</code>보다 작으면서 가장 작은 키를 가진 노드</li>
+</ul>
+<h3 id="search">SEARCH</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
+  <span class="o">...</span>
+  <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">_find_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">root</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">root</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_value</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_value</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>시간복잡도 : $O(h)$
+<ul>
+<li>여기서 $h$는 트리의 높이</li>
+</ul>
+</li>
+</ul>
+<h3 id="insert">INSERT</h3>
+<ul>
+<li>x, y 두 포인터를 이용 또는 재귀</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
+  <span class="o">...</span>
+  <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_insert_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+  <span class="k">def</span> <span class="nf">_insert_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">data</span> <span class="o">&lt;=</span> <span class="n">node</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_insert_value</span><span class="p">(</span><span class="n">node</span><span class="p">,</span><span class="n">left</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_insert_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">node</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>시간복잡도 : $O(h)$</li>
+</ul>
+<h3 id="delete">DELETE</h3>
+<ul>
+<li>삭제하려는 노드의 자식노드가 없는 경우 : 그냥 삭제</li>
+<li>삭제하려는 노드의 자식노드가 1개인 경우 : 해당 자식노드를 나의 노드 위치로 보내면 된다</li>
+<li>삭제하려는 노드의 자식노드가 2개인 경우
+<ul>
+<li>삭제하려는 노드의 successor를 찾는다</li>
+<li>그 successor를 삭제하려는 노드로 옮긴다</li>
+<li>그리고 successor는 최대 1개의 자식노드를 가지니까 이를 successor로 옮긴다</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
+  <span class="o">...</span>
+  <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">deleted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">deleted</span>
+
+  <span class="k">def</span> <span class="nf">_delete_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+      <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+          <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="kc">False</span>
+      <span class="n">deleted</span> <span class="o">=</span> <span class="kc">False</span>
+      <span class="c1"># 해당 노드가 삭제할 노드일 경우</span>
+      <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">node</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+          <span class="n">deleted</span> <span class="o">=</span> <span class="kc">True</span>
+          <span class="c1"># 삭제할 노드가 자식이 두개일 경우</span>
+          <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+              <span class="c1"># 오른쪽 서브 트리에서 가장 왼쪽에 있는 노드를 찾고 교체</span>
+              <span class="n">parent</span><span class="p">,</span> <span class="n">child</span> <span class="o">=</span> <span class="n">node</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
+              <span class="k">while</span> <span class="n">child</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                  <span class="n">parent</span><span class="p">,</span> <span class="n">child</span> <span class="o">=</span> <span class="n">child</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">left</span>
+              <span class="n">child</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span>
+              <span class="k">if</span> <span class="n">parent</span> <span class="o">!=</span> <span class="n">node</span><span class="p">:</span>
+                  <span class="n">parent</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">right</span>
+                  <span class="n">child</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
+              <span class="n">node</span> <span class="o">=</span> <span class="n">child</span>
+          <span class="c1"># 자식 노드가 하나일 경우 해당 노드와 교체</span>
+          <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">or</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+              <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">or</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
+          <span class="c1"># 자식 노드가 없을 경우 그냥 삭제</span>
+          <span class="k">else</span><span class="p">:</span>
+              <span class="n">node</span> <span class="o">=</span> <span class="kc">None</span>
+      <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+          <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">deleted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+      <span class="k">else</span><span class="p">:</span>
+          <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">deleted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="n">deleted</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>시간복잡도 : $O(h)$</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>권오흠 교수님 알고리즘
+<ul>
+<li>Java예시를 Python으로 바꿔서 구현</li>
+</ul>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-02</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/algo-11-bst2/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%EC%9D%B4%EC%A7%84%EA%B2%80%EC%83%89%ED%8A%B8%EB%A6%AC/">이진검색트리</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/algo-10-bst1/" class="prev" rel="prev" title="[알고리즘] 트리와 이진트리"><i class="fas fa-angle-left fa-fw"></i>[알고리즘] 트리와 이진트리</a>
+            <a href="/algo-12-hash/" class="next" rel="next" title="[알고리즘] Hash">[알고리즘] Hash<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

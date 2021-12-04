@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Bubble sort - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/bubble-sort/</link>
+        <description>Bubble sort - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 02 Dec 2021 09:04:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/bubble-sort/" rel="self" type="application/rss+xml" /><item>
+    <title>[알고리즘] 정렬 알고리즘 (1)</title>
+    <link>http://minsoo9506.github.io/algo-04-sort1/</link>
+    <pubDate>Thu, 02 Dec 2021 09:04:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/algo-04-sort1/</guid>
+    <description><![CDATA[<p>Selection, Bubble, Insertion sort + python</p>]]></description>
+</item></channel>
+</rss>
