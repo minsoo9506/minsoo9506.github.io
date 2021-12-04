@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[PRML] Chapter4 - Linear Models For Classification (2) - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[PRML] Chapter4 - Linear Models For Classification (2)" />
+<meta property="og:description" content="Classification에 대해 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/prml-chap04-2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-26T17:26:26+09:00" />
+<meta property="article:modified_time" content="2021-11-26T17:26:26+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[PRML] Chapter4 - Linear Models For Classification (2)"/>
+<meta name="twitter:description" content="Classification에 대해 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/prml-chap04-2/" /><link rel="prev" href="http://minsoo9506.github.io/prml-chap04-1/" /><link rel="next" href="http://minsoo9506.github.io/prml-chap04-3/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[PRML] Chapter4 - Linear Models For Classification (2)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/prml-chap04-2\/"
+        },"genre": "posts","keywords": "Classification","wordcount":  1546 ,
+        "url": "http:\/\/minsoo9506.github.io\/prml-chap04-2\/","datePublished": "2021-11-26T17:26:26+09:00","dateModified": "2021-11-26T17:26:26+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Chapter4 - Linear Models For Classification (2)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-26">2021-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1546 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#43-probabilistic-discriminative-models">4.3 Probabilistic Discriminative Models</a>
+      <ul>
+        <li><a href="#431-fixed-basis-functions">4.3.1 Fixed basis functions</a></li>
+        <li><a href="#432-logistic-regression">4.3.2 Logistic regression</a></li>
+        <li><a href="#433-iterative-reweighted-least-squares">4.3.3 Iterative reweighted least squares</a></li>
+        <li><a href="#434-multiclass-logistic-regression">4.3.4 Multiclass logistic regression</a></li>
+        <li><a href="#435-probit-regression">4.3.5 Probit regression</a></li>
+      </ul>
+    </li>
+    <li><a href="#44-the-laplace-approximation">4.4 The Laplace Approximation</a>
+      <ul>
+        <li><a href="#441-model-comparison-and-bic">4.4.1 Model comparison and BIC</a></li>
+      </ul>
+    </li>
+    <li><a href="#45-bayesian-logistic-regression">4.5 Bayesian Logistic Regression</a>
+      <ul>
+        <li><a href="#451-laplace-approximation">4.5.1 Laplace approximation</a></li>
+        <li><a href="#452-predictive-distribution">4.5.2 Predictive distribution</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Classification에 대해 알아보자.</p>
+<h2 id="43-probabilistic-discriminative-models">4.3 Probabilistic Discriminative Models</h2>
+<p>이전과 다르게 parameter 추정을 $p(C_k|x)$에서 Maximum likelihood 를 이용하여 directly 하고자 한다. 이전에 본 generative한 방법에 비해</p>
+<ul>
+<li>parameter가 더 적다</li>
+<li>class-conditional density 가정이 잘못되면 성능이 좋지 않을 수 있다</li>
+</ul>
+<h3 id="431-fixed-basis-functions">4.3.1 Fixed basis functions</h3>
+<p>이제부터는 basis function $\phi ({\bf x})$을 사용할 것이다.</p>
+<ul>
+<li>basis function이 비선형이라 decision boudary는 original space에 linear하지 않을 것이다.</li>
+<li>basis function에는 $\phi ({\bf x})=1$ bias를 기본적으로 넣는다.</li>
+<li>original이 아닌 basis function을 사용했다고 항상 결과가 좋은 것은 아니다.</li>
+</ul>
+<h3 id="432-logistic-regression">4.3.2 Logistic regression</h3>
+<p>2-class의 경우로 시작해보자. 이전에 공부했듯이 일반적인 가정하에서 posterior는 sigmoid에 linear function of $\phi$ (feature vector) 가 들어간 형태이다.</p>
+<p>$$p(C_1 | \phi) = y(\phi) = \sigma ({\bf w}^T \phi)$$</p>
+<ul>
+<li>logistic regression 의 장점
+<ul>
+<li>(2 class) M 차원이라고 가정하면 M개의 parameter가 있을 것이다. 반면에 generative한 상황을 생각하면 Gaussian class conditional density 의 경우 2M개의 평균, M(M+1) / 2개의 covariance matrix, prior 까지 총 M(M+5)/2+1 개의 parameter가 필요하다.</li>
+<li>interpretable하다.</li>
+<li>parameter estimation에 있어 computationally efficient 하다.</li>
+<li>multiclass도 가능하다.</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>prediction performance가 좋은 편은 아니다.</li>
+<li>basis가 fixed되어 있다.</li>
+</ul>
+</li>
+</ul>
+<p>likelihood로 parameter를 추정하는 과정을 살펴보자.</p>
+<ul>
+<li>Given : $D = [({\bf x}_1,y_1),({\bf x}_2,y_2),..,({\bf x}_n,y_n)]$</li>
+<li>model : $t_i \sim^{iid} \text{Bern}[\sigma({\bf w}^T \phi({\bf x}_i))]$</li>
+</ul>
+<p>$$y_n = p(C_1 | \phi_n)=\sigma({\bf w}^T \phi({\bf x}_n))$$</p>
+<p>$$p(\textbf{t}|{\bf w}) = \prod_{n=1}^{N}{y_n^{t_n}(1-y_n)^{1-t_n}}$$</p>
+<ul>
+<li>$\textbf{t} = (t_1,&hellip;t_N)^T$ : true target</li>
+<li>cross-entropy error function  :</li>
+</ul>
+<p>$$E({\bf w}) = - \ln p(\textbf{t} | {\bf w}) = - \sum{ { t_n \log y_n + (1-t_n)\log(1-y_n) } }$$</p>
+<ul>
+<li>${\bf w}$에 대해 미분하면</li>
+</ul>
+<p>$$\bigtriangledown E({\bf w}) = \sum_{n=1}^{N}{(y_n - t_n)\phi_n}$$</p>
+<ul>
+<li>이를 구하는 방법은 chain rule을 사용한다. 아래의 값들을 곱하면 위의 식이 나온다.</li>
+</ul>
+<p>$$\frac{\partial E}{\partial y_n} = \frac{1-t_n}{1-y_n} - \frac{t_n}{y_n} = \frac{y_n-t_n}{y_n(1-y_n)}$$
+$$\frac{\partial y_n}{\partial a_n} = \frac{\partial \sigma(a_n)}{\partial a_n} = \sigma(a_n)(1-\sigma(a_n)) = y_n(1-y_n)$$
+$$ \frac{\partial a_n}{\partial {\bf w}} = \phi_n$$</p>
+<ul>
+<li>이전에 linear regression과는 다르게 MLE가 closed form으로 존재하지 않는다. 따라서 approximation하는 방법이 필요하다.</li>
+<li>이를 Gradient descent 방법을 통해 답을 구할 수도 있다. 하지만 뒤에서는 약간 다른 방법으로 해결해본다. (전통적인 통계방법)</li>
+</ul>
+<h3 id="433-iterative-reweighted-least-squares">4.3.3 Iterative reweighted least squares</h3>
+<p>+일단은 교재의 내용을 보기 전에 이해를 돕기 위해 추가 설명을 한다.</p>
+<p>우리는 logL를 미분했을 때, 이를 0으로 만드는 MLE를 찾고싶다.</p>
+<ul>
+<li>$g'(x)$ 는 미분가능</li>
+<li>$g''(x) \neq 0$</li>
+</ul>
+<p>위의 조건을 만족하는 경우 taylor expansion을 이용하여 (1차 근사)</p>
+<p>$$0 = g'(x) \approx g'(x^{t}) + (x-x^t)g''(x^t)$$</p>
+<p>이를 정리하면</p>
+<p>$$x = x^t - \frac{g'(x^t)}{g''(x^t)}$$</p>
+<p>이제 교재의 내용을 살펴보자.<br>
+logisitc regression은 sigmoid function의 non-linearlity 때문에 closed-form의 해를 구할 수 없다. 그래서 우리는 error function의 최소화하는 방법으로 <strong>Newton-Raphson iterative opimization</strong> algorithm을 사용한다.</p>
+<p>$${\bf w}^{new} = {\bf w}^{old} - {\bf H}^{-1} \bigtriangledown E({\bf w})$$</p>
+<ul>
+<li>${\bf H}$ : hessian matrix whose elements comprise the second derivatives of $E({\bf w})$ with respect to the component of ${\bf w}$</li>
+</ul>
+<p>$$\bigtriangledown E({\bf w}) = \sum_{n=1}^{N}{(y_n - t_n)\phi_n} = \Phi ^T (\textbf{y}-\textbf{t})$$</p>
+<p>$${\bf H} = \bigtriangledown \bigtriangledown E({\bf w}) =   \sum_{n=1}^{N}{y_n(1-y_n)\phi_n \phi_n^T} = \Phi^T\textbf{R}\Phi$$</p>
+<p>$\Phi^T\textbf{R}^{1/2} \textbf{R}^{1/2} \Phi =(\textbf{R}^{1/2} \Phi)^T (\textbf{R}^{1/2} \Phi)$ 이기에 positive semi definite이고 이를 통해 $E({\bf w})$가 convex하다는 것을 알 수 있다.</p>
+<ul>
+<li>$\textbf{R}$ : N*N diagonal matrix with elements $R_{nn} = y_n(1-y_n)$
+<ul>
+<li>$y_n$의 식이므로 parameter ${\bf w}$에 dependent하다. 따라서 ${\bf R}$에 대해서도 iterative하게 업데이트가 필요하다.</li>
+</ul>
+</li>
+</ul>
+<p>아래처럼 iterative하게 parameter를 업데이트 한다.</p>
+<p>$${\bf w}^{(new)} = {\bf w}^{(old)} - (\Phi^T{\bf R}\Phi)^{-1}\Phi^T({\bf y}-{\bf t})$$
+$$= (\Phi^T{\bf R}\Phi)^{-1}\{\Phi^T{\bf R}\Phi{\bf w}^{(old)}-\Phi^T({\bf y}-{\bf t})\}$$
+$$= (\Phi^T{\bf R}\Phi)^{-1}\Phi^T{\bf R}{\bf z}$$</p>
+<p>$${\bf z} = \Phi{\bf w}^{(old)} - {\bf R}^{-1}({\bf y}-{\bf t})$$</p>
+<p>마지막 줄을 보면 이 형태는 weighted least-square 문제에서의 normal equation의 형태이다. 하지만 ${\bf R}$이 상수가 아니기에 iterative하게 답을 구해야 하고 이러한 이유로 <em>iterative reweighted least square</em> 라고 부른다.</p>
+<ul>
+<li>${\bf R}$의 대각성분을 variance라고 해석할 수도 있다.
+<ul>
+<li>대각성분이 $y_n(1-y_n)$ 인데 이는 $t_n$의 variance이기 때문이다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="434-multiclass-logistic-regression">4.3.4 Multiclass logistic regression</h3>
+<p>위에서 본 binary와 똑같이 할 수 있다. multiclass에서는 softmax function을 이용한다.</p>
+<p>$$p(C_k|\phi) = y_k(\phi) = \frac{\exp(a_k)}{\sum_j \exp(a_j)}$$</p>
+<p>likelihood function을 구하면</p>
+<p>$$p({\bf T}|{\bf w} _ 1,&hellip;{\bf w} _ K) = \prod_{n=1}^{N}\prod_{k=1}^{K} p(C_k|\phi_n)^{t_{nk}} = \prod_{n=1}^{N}\prod_{k=1}^{K}y_{nk}^{t_{nk}}$$</p>
+<p>negative log를 취하면</p>
+<p>$$E({\bf w} _ 1, &hellip;, {\bf w} _ K) = -\ln p({\bf T}|{\bf w} _ 1, &hellip;,{\bf w} _ K) = - \sum_{n=1}^{N} \sum_{k=1}^{K} t_{nk} \ln(y_{nk})$$</p>
+<p>똑같이 미분을 취하고 Gradient descent나 IRLS 방법을 통해 parameter를 추정한다.</p>
+<p>$$\nabla_{ {\bf w} _ j } E({\bf w} _ 1, &hellip;, {\bf w} _ K) = \sum_{n=1}^{N} (y _ {nj} - t _ {nj}) \phi_n $$</p>
+<h3 id="435-probit-regression">4.3.5 Probit regression</h3>
+<p>이전과 마찬가지로 generalized linear model의 형태</p>
+<p>$$p(t=1|a)=f(a)=f({\bf w}^T \phi)$$</p>
+<p>를 유지하지만 조금 다른 activation function을 알아보자.</p>
+<ul>
+<li>link function으로 noisy threshold model을 생각해보면
+<ul>
+<li>$t_n = 1 \text{ if } a_n\ge \theta $</li>
+<li>$t_n=0 \text{ otherwise}$</li>
+</ul>
+</li>
+</ul>
+<p>$\theta$는 random variable이고 probability density가 $p(\theta)$라고 하자. 이에 따라 activation function을 CDF형태</p>
+<p>$$f(a) = \int_{-\infty}^{a}p(\theta)d\theta$$</p>
+<p>로 표현할 수 있다. probability density를 $N(0,1)$로 가정하면</p>
+<p>$$\Phi(a) = \int_{-\infty}^{a}N(0, 1)d\theta $$</p>
+<p>이고 이를 <em>probit</em> function이라고 한다. 모양은 sigmoid function과 거의 유사하다. 이를 모델에서 사용할 때는 약간 다른 모습을 이용한다. (계산의 편리함 때문인듯) <em>erf function</em> 은</p>
+<p>$$erf(a) = \frac{2}{\sqrt{\pi}} \int_{0}^{a} \exp(-\theta^2) d\theta$$</p>
+<p>이를 통해 탄생한 generalized linear model을 <em>probit regression</em> 이라고 한다.</p>
+<p>$$\Phi(a) = \frac{1}{2} \{1+erf\left(\frac{a}{\sqrt{2}}\right)\}$$</p>
+<p>probit은 뒤에 나올 Bayesian logistic regression에서 사용된다.</p>
+<ul>
+<li>logistic, probit regression 모두 outlier에 취약한 편이다.
+<ul>
+<li>근데 probit은 $exp(-x^2)$이 있어서 더 취약하다.</li>
+</ul>
+</li>
+<li>data가 mislabelling된 경우, 새로운 probability $\epsilon$을 추가하여 사용할 수 있다.</li>
+</ul>
+<p>$$p(t|{\bf x}) = (1-\epsilon)\sigma({\bf x}) + \epsilon(1-\sigma({\bf x})) = \epsilon + (1-2\epsilon)\sigma({\bf x})$$</p>
+<h2 id="44-the-laplace-approximation">4.4 The Laplace Approximation</h2>
+<p>4.5장에서 logistic regression에 Bayesian 방법을 사용하고자 한다. 근데 ${\bf w}$의 posterior가 더 이상 Gaussian이 아니기 때문에 integrate하기가 어렵다. 따라서 특정 범위에 있는 함수를 Gaussian으로 approximation하는 방법을 이용하고자 한다. 먼저 single variable의 경우부터 살펴보자.</p>
+<ul>
+<li>Suppose the distribution $p(z)$ is defined by
+$$p(z) = \frac{1}{Z}f(z),;; Z = \int f(z)dz$$</li>
+</ul>
+<p>우리의 목표는 $p(z)$의 mode를 중앙(평균)으로 갖는 Gaussian distribution을 approximation하는 것이다.</p>
+<ul>
+<li>먼저, mode를 찾아야한다.</li>
+</ul>
+<p>$$p'(z_0) = 0$$</p>
+<ul>
+<li>Taylor expansion</li>
+</ul>
+<p>$$\ln f(z) \simeq \ln f(z_0) - \frac{1}{2}A(z-z_0)^2$$</p>
+<p>$$A=-\left.\dfrac{d^2}{dz^2}\ln f(z)\right|_ {z=z_0} $$</p>
+<p>따라서</p>
+<p>$$f(z) \simeq f(z_0) \exp { - \frac{A}{2}(z-z_0)^2}$$</p>
+<p>$$q(z) = (\frac{A}{2\pi})^{1/2} \exp { -\frac{A}{2}(z-z_0)^2 }$$</p>
+<ul>
+<li>우리는 $p(z)$를 approximate한 Gaussian $q(z)$를 찾을 수 있다! 이 과정이 <em>Laplace approximation</em> 이다.</li>
+<li>Gaussian approximation에서  ($f(z)$를 두 번 미분하여 $z_0$를 대입) precision $A$는 양수이다. 따라서 $z_0$는 local maximum이다.</li>
+</ul>
+<p>이제 다차원의 형태로 살펴보자.</p>
+<ul>
+<li>Hessian Matrix  $\textbf{A} = - \bigtriangledown \bigtriangledown \ln f(\textbf{z}_0)$</li>
+<li>$f(\textbf{z}) \simeq f(\textbf{z}_0) \exp { -\frac{1}{2} (\textbf{z} - \textbf{z}_0)^T \textbf{A} (\textbf{z}-\textbf{z}_0) }$</li>
+</ul>
+<p>$$q({\bf z}) = \dfrac{|{\bf A}|^{1/2}}{(2\pi)^{M/2}}\exp\{-\dfrac{1}{2}({\bf z}-{\bf z}_0)^T{\bf A}({\bf z}-{\bf z}_0)\} = N( {\bf z}_0, {\bf A}^{-1})$$</p>
+<ul>
+<li>Laplace approximation 특징
+<ul>
+<li>Mutimodal인 distribution은 다양한 Laplace approximation이 생길 수 있다.</li>
+<li>CLT에 의해 Laplace approximation은 data가 많을수록 좋다.</li>
+<li>위에서 알 수 있는이 $Z$에 대해 알 필요가 없다.</li>
+<li>Gaussian에 기반하므로 실수 변수에만 사용이 가능하다.</li>
+<li>global한 특징을 잡기 어렵다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="441-model-comparison-and-bic">4.4.1 Model comparison and BIC</h3>
+<p>normalization constraint $Z$에 대해 approximation해보자.</p>
+<p>$$Z = \int f({\bf z})d{\bf z} \simeq f({\bf z}_0)\int\exp\{\dfrac{1}{2}({\bf z}-{\bf z}_0)^T{\bf A}({\bf z}-{\bf z}_0)\}d{\bf z}=f({\bf z}_0)\dfrac{(2\pi)^{M/2}}{|{\bf A}|^{1/2}}$$</p>
+<p>우리는 이 결과를 통해 이전에 공부했던 Bayesian model comparison에서 model evidence를 approximation해볼 것이다.</p>
+<ul>
+<li>
+<p>model evidence $p(D|M_i)$</p>
+<ul>
+<li>$M_i$ 생략</li>
+</ul>
+<p>$$p(D)=\int p(D|{\pmb \theta})p({\pmb \theta})d{\pmb \theta}$$</p>
+</li>
+<li>
+<p>아래와 같이 정의하고 우리는 model evidence를 approximation하면</p>
+<ul>
+<li>$f({\pmb \theta}) = p(D|{\pmb \theta})p({\pmb \theta})$</li>
+<li>$Z = p(D)$</li>
+</ul>
+<p>$$\ln p(D)\simeq \ln p(D|{\pmb \theta} _ {MAP}) + \ln p({\pmb \theta} _ {MAP}) + \dfrac{M}{2}\ln(2\pi) - \dfrac{1}{2}\ln|{\bf A}| $$</p>
+</li>
+<li>
+<p>첫번째 term은 log likelihood evaluated using the optimized parameters</p>
+</li>
+<li>
+<p>두번째 term부터 마지막 term까지 <em>Occam factor</em> 라고 부른다.</p>
+<ul>
+<li>penalizes model complexity</li>
+</ul>
+</li>
+<li>
+<p>${\pmb \theta}_{MAP}$ : mode of posterior distribution</p>
+</li>
+<li>
+<p>${\bf A}$ : Hessian matrix</p>
+</li>
+</ul>
+<p>$${\bf A} = - \nabla\nabla p(D|{\pmb \theta} _ {MAP})p({\pmb \theta} _ {MAP}) = -\nabla\nabla\ln p({\pmb \theta} _ {MAP}|D)$$</p>
+<p>model evidence를 approximation한 식에서</p>
+<ul>
+<li>Gaussian prior가 broad하고</li>
+<li>Hessian이 full rank이면</li>
+</ul>
+<p>우리는 해당 식을 더 간단하게 (의미없는 상수 생략)</p>
+<p>$$\ln p(D) \simeq \ln p(D|{\bf \theta}_{MAP}) - \frac{1}{2}M\ln N$$</p>
+<p>이는 <em>BIC(Baysian Information Criterion)</em> 이다.</p>
+<ul>
+<li>$M$은 parameter의 갯수, $N$은 data의 수를 의미한다.</li>
+<li>AIC보다 더 간단한 모델을 추구한다.</li>
+<li>BIC를 쉽게 계산할 수 있지만 full rank라는 가정이 만족하기 쉽지 않아서 한계가 존재한다.</li>
+</ul>
+<h2 id="45-bayesian-logistic-regression">4.5 Bayesian Logistic Regression</h2>
+<p>Logistic regression에 Bayesian적으로 접근해보자.</p>
+<h3 id="451-laplace-approximation">4.5.1 Laplace approximation</h3>
+<p>일단 prior는 Gaussian으로 가정한다.</p>
+<p>$$p({\bf w}) = N( \textbf{m}_0 , \textbf{S}_0)$$</p>
+<p>이제 posterior를 구해보자.</p>
+<p>$$p(\textbf{w}| \textbf{t}) \propto  p(\textbf{w})p(\textbf{t}|\textbf{w})$$</p>
+<p>양변에 log를 취하면</p>
+<p>$$\ln p(\textbf{w} | \textbf{t}) = - \frac{1}{2}(\textbf{w}-\textbf{m} _ 0)^T \textbf{S} _ 0^{-1} (\textbf{w} - \textbf{m} _ 0 )$$</p>
+<p>$$+ \sum_{n=1}^{N}{\{ t_n \ln y_n + (1-t_n)\ln (1-y_n) \}+ const}$$</p>
+<p>posterior에 대한 Gaussian approximation하였다고 가정하자. maximize하는 parameter를 ${\bf w}_{MAP}$라고 하고 covariance는</p>
+<p>$${\bf S}_N^{-1} = -\nabla\nabla \ln p({\bf w}|{\bf t}) = {\bf S} _ 0^{-1} + \sum _ {n=1}^{N} y_n(1-y_n)\phi_n\phi_n^T$$</p>
+<p>따라서 Gaussian approximation한 posterior distribution의 form은</p>
+<p>$$q(\textbf{w}) = N(\textbf{w}_{MAP} , \textbf{S}_N)$$</p>
+<p>이제 approximation하여 구한 posterior로 Predictive를 구해보자.</p>
+<h3 id="452-predictive-distribution">4.5.2 Predictive distribution</h3>
+<p>2-class의 경우라고 가정하자. predictive distribution은</p>
+<p>$$p(C_1 |  \phi, \textbf{t} ) = \int p(C_1 | \phi, \textbf{w})p(\textbf{w} | \textbf{t}) \simeq \int \sigma (\textbf{w}^T\phi) q(\textbf{w})d\textbf{w}$$</p>
+<ul>
+<li>Funtion $\sigma ({\bf w}^T \phi)$ depends on w only through tis projection onto $\phi$</li>
+<li>(교재에 설명이 다소 빈약) 그냥 아래처럼 변형</li>
+</ul>
+<p>$$\sigma({\bf w}^T\phi) = \int \delta(a-{\bf w}^T\phi)\sigma(a)da$$</p>
+<p>이를 predictive distribution에 대입하면</p>
+<p>$$\int \sigma({\bf w}^T\phi)q({\bf w})d{\bf w} = \int \sigma(a)p(a)da$$</p>
+<p>$$p(a) = \int \delta(a-{\bf w}^T\phi)q({\bf w})d{\bf w}$$</p>
+<p>$p(a)$는 Gaussian distribution이 되는데</p>
+<ul>
+<li>delta function ($\delta$) imposes a linear constraint on ${\bf w}$이고</li>
+<li>$q({\bf w})$ 는 정의에 의해 Gaussian distribution</li>
+<li>Gaussian의 marginal도 Gaussian</li>
+</ul>
+<p>$$\mu_a = E[a] = \int p(a)a da = \int q({\bf w}){\bf w}^T \phi d{\bf w} = {\bf w}_{MAP}^T\phi$$</p>
+<p>$$\sigma_a^2 = var[a] = \int p(a){ a^2 - E[a]^2 }da $$
+$$= \int q({\bf w}) {({\bf w}^T\phi)^2 - ({\bf m}_N^T\phi)^2 }d{\bf w} = \phi^T{\bf S}_N\phi$$</p>
+<p>따라서 predictive distribution은</p>
+<p>$$p(C_1|{\bf t}) = \int \sigma(a)p(a)da = \int \sigma(a)N(\mu_a, \sigma_a^2)da$$</p>
+<p>sigmoid-gaussian을 analytically 구할 수 없기 때문에 이 또한 approximation을 해야한다. sigmoid와 비슷한 모양을 가지는 Probit function을 이용한다. ($\sigma(a) \approx \Phi(\lambda a) ,\lambda^2 = \pi / 8$)</p>
+<ul>
+<li>probit function을 이용한 approximation의 장점은 Gaussian과 만나서 analytically 또 probit function으로 아래와 같은 결과가 나온다.</li>
+</ul>
+<p>$$\int \Phi (\lambda a )N ( \mu, \sigma^2)da = \Phi (\frac{\mu}{(  \lambda^{-2}+\sigma^2 ) ^{1/2}})$$</p>
+<p>$$\int \sigma(a) N(\mu,\sigma^2)da \simeq \sigma (k(\sigma^2)\mu)$$</p>
+<ul>
+<li>$k(\sigma^2) = (1+\pi \sigma^2 / 8)^{-1/2}$</li>
+</ul>
+<p>최종 결과 approximate predictive distribution은</p>
+<p>$$p(C_1 | \phi, \textbf{t}) = \sigma (k(\sigma^2_a)\mu_a)$$</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-11-26</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/prml-chap04-2/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/classification/">Classification</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/prml-chap04-1/" class="prev" rel="prev" title="[PRML] Chapter4 - Linear Models For Classification (1)"><i class="fas fa-angle-left fa-fw"></i>[PRML] Chapter4 - Linear Models For Classification (1)</a>
+            <a href="/prml-chap04-3/" class="next" rel="next" title="[PRML] Chapter4 - Linear Models For Classification (3)">[PRML] Chapter4 - Linear Models For Classification (3)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
