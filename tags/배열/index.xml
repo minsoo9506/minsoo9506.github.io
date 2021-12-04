@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>배열 - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/%EB%B0%B0%EC%97%B4/</link>
+        <description>배열 - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 01 Dec 2021 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/%EB%B0%B0%EC%97%B4/" rel="self" type="application/rss+xml" /><item>
+    <title>[자료구조] 배열</title>
+    <link>http://minsoo9506.github.io/ds-01/</link>
+    <pubDate>Wed, 01 Dec 2021 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/ds-01/</guid>
+    <description><![CDATA[<p>선형적인 자료구조 배열에 대해 정리</p>]]></description>
+</item></channel>
+</rss>

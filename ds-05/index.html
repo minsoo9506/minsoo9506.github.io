@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[자료구조] 해시 테이블 - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[자료구조] 해시 테이블" />
+<meta property="og:description" content="선형적인 자료구조 해시 테이블에 대해 정리" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/ds-05/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-01T09:04:00+00:00" />
+<meta property="article:modified_time" content="2021-12-01T09:04:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[자료구조] 해시 테이블"/>
+<meta name="twitter:description" content="선형적인 자료구조 해시 테이블에 대해 정리"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/ds-05/" /><link rel="prev" href="http://minsoo9506.github.io/ds-04/" /><link rel="next" href="http://minsoo9506.github.io/ds-06/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[자료구조] 해시 테이블",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/ds-05\/"
+        },"genre": "posts","keywords": "해시테이블","wordcount":  236 ,
+        "url": "http:\/\/minsoo9506.github.io\/ds-05\/","datePublished": "2021-12-01T09:04:00+00:00","dateModified": "2021-12-01T09:04:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[자료구조] 해시 테이블</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/"><i class="far fa-folder fa-fw"></i>자료구조</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-01">2021-12-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;236 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#해시-테이블-hash-table">해시 테이블 (Hash Table)</a></li>
+    <li><a href="#로드-팩터-load-factor">로드 팩터 (Load Factor)</a></li>
+    <li><a href="#해시-함수hash-function">해시 함수(Hash Function)</a></li>
+    <li><a href="#충돌-collision">충돌 (Collision)</a></li>
+    <li><a href="#python-예시">Python 예시</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>선형적인 자료구조 해시 테이블에 대해 정리</p>
+<h2 id="해시-테이블-hash-table">해시 테이블 (Hash Table)</h2>
+<ul>
+<li>키를 값에 매핑할 수 있는 구조인 연관 배열 추상 자료형을 구현하는 자료구조</li>
+<li>대부분 연산의 시간 복잡도가 $O(1)$</li>
+<li>Python에서 해시 테이블로 구현된 자료형 : dictionary</li>
+</ul>
+<h2 id="로드-팩터-load-factor">로드 팩터 (Load Factor)</h2>
+<ul>
+<li>해시 테이블에 저장된 데이터 개수 $n$을 버킷의 개수 $k$로 나눈 것</li>
+</ul>
+<h2 id="해시-함수hash-function">해시 함수(Hash Function)</h2>
+<ul>
+<li>해시함수
+<ul>
+<li>임의 크기 데이터를 고정 크기 값으로 매핑하는데 사용하는 함수</li>
+</ul>
+</li>
+<li>해시함수를 만드는 방법은 다양하다.</li>
+<li>좋은 해시함수?
+<ul>
+<li>less collision</li>
+<li>fast computation</li>
+</ul>
+</li>
+</ul>
+<h2 id="충돌-collision">충돌 (Collision)</h2>
+<ul>
+<li>충돌이 일어나는 경우 이를 방지하기 위한 방법이 필요하다.
+<ul>
+<li>체이닝 (Chaining), 오픈 어드레싱 (Open addressing)</li>
+<li>Python은 Open addressing 방법을 사용</li>
+</ul>
+</li>
+<li>Chaining
+<ul>
+<li>충돌이 발생하면 연결리스트로 연결한다.</li>
+<li>충돌이 많지 않으면 대부분의 탐색은 $O(1)$ 최악은 $O(n)$</li>
+</ul>
+</li>
+<li>Open addressing
+<ul>
+<li>충돌이 일어나면 그 뒤의 가장 가까운 다음 빈 위치를 탐사 (linear probing 방법)</li>
+<li>linear probing, quadratic probing, double hashing &hellip;</li>
+<li>연산
+<ul>
+<li><code>set(key, value)</code>
+<ul>
+<li>해시테이블에서 key를 찾아서 있으면 key update, 없으면 key와 value 삽입한다.</li>
+</ul>
+</li>
+<li><code>search(key)</code>
+<ul>
+<li>찾았는데 없으면 다음칸에 빈칸이 나올 때까지 찾는다.</li>
+</ul>
+</li>
+<li><code>remove(key)</code>
+<ul>
+<li>충돌이 일어나서 이어지는 경우 중간에 빈칸이 없도록 해야한다.</li>
+</ul>
+</li>
+<li>평균적으로 50% 이상 빈슬롯이면 위의 연산 모두 $O(1)$이다.</li>
+</ul>
+</li>
+<li>성능평가
+<ul>
+<li>cluster size : 해시테이블에서 뭉쳐진 cluster가 최소</li>
+<li>충돌비율 등등</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="python-예시">Python 예시</h2>
+<ul>
+<li><a href="https://github.com/minsoo9506/computer-science-study/tree/master/%5BData%20Structure%5D%20python%20algorithm%20interview" target="_blank" rel="noopener noreffer">Link</a></li>
+<li>해시맵 디자인
+<ul>
+<li>chaining 방식</li>
+<li>직접 해시함수를 구현</li>
+<li><code>collections.defaultdict</code> 사용</li>
+</ul>
+</li>
+<li>보석과 돌
+<ul>
+<li>A문자열이 B문자열에 얼마나 등장하는지</li>
+</ul>
+</li>
+<li>중복 문자 없는 가장 긴 부분 문자열</li>
+<li>상위 K빈도 요소
+<ul>
+<li>Python에서 <code>zip</code>, <code>*</code> 의 사용법</li>
+<li><code>zip</code>은 제너레이터를 리턴</li>
+<li><code>zip</code>은 2개 이상의 시퀀스를 짧은 길이를 기준으로 일대일 대응하는 새로운 튜플 시쿼스를 만든다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>파이썬 알고리즘 인터뷰 (박상길 지음)</li>
+<li><a href="https://www.youtube.com/watch?v=Bzmepm6pYQI&amp;list=PLsMufJgu5933ZkBCHS7bQTx0bncjwi4PK&amp;index=17&amp;t=2s" target="_blank" rel="noopener noreffer">신찬수, 한국외대, 컴퓨터전자시스템공학부, 자료구조 2020-1</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/ds-05/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%ED%95%B4%EC%8B%9C%ED%85%8C%EC%9D%B4%EB%B8%94/">해시테이블</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/ds-04/" class="prev" rel="prev" title="[자료구조] deque, 우선순위 큐"><i class="fas fa-angle-left fa-fw"></i>[자료구조] deque, 우선순위 큐</a>
+            <a href="/ds-06/" class="next" rel="next" title="[자료구조] 그래프">[자료구조] 그래프<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
