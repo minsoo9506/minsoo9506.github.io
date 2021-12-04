@@ -146,4 +146,4 @@
   - Octal modes도 있다 예를들어 `chomod 111 result.txt` 처럼 owner, group, other 모두 한번에 `1`(excute only)이 되도록 한다
 
 ### Reference
-- https://www.youtube.com/playlist?list=PLuHgQVnccGMBT57a9dvEtd6OuWpugF9SH
+- (생활코드)[https://www.youtube.com/playlist?list=PLuHgQVnccGMBT57a9dvEtd6OuWpugF9SH]
