@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Generative Model] LSGAN - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Generative Model] LSGAN" />
+<meta property="og:description" content="LSGAN 논문을 간단하게 리뷰하였다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/04-lsgan/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T09:04:00+09:00" />
+<meta property="article:modified_time" content="2021-12-03T09:04:00+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Generative Model] LSGAN"/>
+<meta name="twitter:description" content="LSGAN 논문을 간단하게 리뷰하였다."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/04-lsgan/" /><link rel="prev" href="http://minsoo9506.github.io/03-gan/" /><link rel="next" href="http://minsoo9506.github.io/05-timegan/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Generative Model] LSGAN",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/04-lsgan\/"
+        },"genre": "posts","keywords": "LSGAN","wordcount":  261 ,
+        "url": "http:\/\/minsoo9506.github.io\/04-lsgan\/","datePublished": "2021-12-03T09:04:00+09:00","dateModified": "2021-12-03T09:04:00+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Generative Model] LSGAN</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/deep-generative-model/"><i class="far fa-folder fa-fw"></i>Deep Generative Model</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;261 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#least-squares-generative-adversarial-networks-2017">Least Squares Generative Adversarial Networks (2017)</a>
+      <ul>
+        <li><a href="#lsgan">LSGAN</a></li>
+        <li><a href="#benefits-of-lsgans">Benefits of LSGANs</a></li>
+        <li><a href="#relation-to-f-divergence">Relation to f-divergence</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>LSGAN 논문을 간단하게 리뷰하였다.</p>
+<h2 id="least-squares-generative-adversarial-networks-2017">Least Squares Generative Adversarial Networks (2017)</h2>
+<p>GAN과 거의 똑같은 형태를 갖는다. 달라진 점은 loss function! 이라고 할 수 있다. 이를 통해 (vanilla) GAN이 갖고 있는 문제점을 어느 정도 해결하였고 더 좋은 성능을 보였다고 한다.</p>
+<ul>
+<li>GAN은 disciminator에서 sigmoid cross entropy loss function을 사용한다. 이는 fake data가 discriminator에 의해 real로 판단된 경우 문제가 생긴다. fake data가 정말 real해서 판단되면 상관이 없지만 real 차이가 많이 나는 경우에도 불구하고 real이라고 discriminator가 판단하는 경우가 있는 것이다. 이렇게 되면 generator를 학습할 때 해당하는 data를 통해 학습할 수 없게 된다. (gradient vanishing)</li>
+</ul>
+<p>그래서 LSGAN은 위와 같은 data도 학습에 사용된다면 더 좋은 결과가 나오지 않을까? 라는 생각을 했다. 이를 위해 새로운 loss function을 제안한 것이다.</p>
+<h3 id="lsgan">LSGAN</h3>
+<ul>
+<li>$a,b$는 각각 fake, real data labels</li>
+<li>$c$는 the value that $G$ wants to $D$ to believe for fake data</li>
+</ul>
+<p>$$\min_D V(D)=\frac{1}{2}E_{x\sim p_{data}(x)}[(D(x)-b)^2]+\frac{1}{2}E_{z\sim p(z)}[(D(G(z))-a)^2]$$</p>
+<p>$$\min_G V(G)=\frac{1}{2}E_{z\sim p(z)}[(D(G(z))-c)^2]$$</p>
+<p>위와 같이 loss function을 바꾸면 LSGAN의 원하는대로 더 학습을 잘 시킬 수 있게 된다.</p>
+<h3 id="benefits-of-lsgans">Benefits of LSGANs</h3>
+<ul>
+<li>위에서 설명한대로 이미 잘 속인 경우에도 penalty를 주어서 최대한 real과 비슷하게 만들도록 한다. generator를 학습시킬 때, discriminator는 fixed시킨다. 즉, decision boundary가 고정된 상태에서 decision boundary쪽으로 data가 최대한 가까워지도록 만드는 것이다. 이 의미는 결국 최대한 긴가민가한 data를 만들겠다는 의도로 이해할 수 있다.</li>
+<li>(위의 같은 이유 덕에) 덤으로 LSGAN은 학습과정이 더 stable하다.</li>
+</ul>
+<h3 id="relation-to-f-divergence">Relation to f-divergence</h3>
+<ul>
+<li>optimal discriminator $D$ for a fixed $G$ :</li>
+</ul>
+<p>$$D^* (x)=\frac{bp_d (x)+ap_g(x)}{p_d(x)+p_g(x)}$$</p>
+<ul>
+<li>Peason $\chi^2$ divergence
+<ul>
+<li>if we set $b-c=1,\;b-a=2$</li>
+<li>$\min_D V(G)=\frac{1}{2}E_{x\sim p_{data}(x)}[(D(x)-c)^2]+\frac{1}{2}E_{z\sim p(z)}[(D(G(z))-c)^2]$ : 이를 최소화하는 것은 Peason $\chi^2$ divergence between $p_d + p_g$ and $2p_g$ 를 최소화하는 것과 같다.</li>
+</ul>
+</li>
+</ul>
+<p>$$2C(G)=E_{x\sim p_{data}(x)}[(D^* (x)-c)^2]+E_{z\sim p(z)}[(D^* (G(z))-c)^2]$$</p>
+<p>$$ =\chi^2 \text{ Pearson} (p_d + p_g || 2p_g)$$</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/04-lsgan/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/lsgan/">LSGAN</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/03-gan/" class="prev" rel="prev" title="[Generative Model] GAN"><i class="fas fa-angle-left fa-fw"></i>[Generative Model] GAN</a>
+            <a href="/05-timegan/" class="next" rel="next" title="[Generative Model] TimeGAN">[Generative Model] TimeGAN<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

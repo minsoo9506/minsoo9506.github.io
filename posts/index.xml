@@ -3,7 +3,56 @@
         <title>All Posts - minsoo9506</title>
         <link>http://minsoo9506.github.io/posts/</link>
         <description>All Posts | minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 02 Dec 2021 09:17:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 03 Dec 2021 09:07:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[Generative Model] VAE</title>
+    <link>http://minsoo9506.github.io/07-vae/</link>
+    <pubDate>Fri, 03 Dec 2021 09:07:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/07-vae/</guid>
+    <description><![CDATA[<p>Auto-Encoding Variational Bayes (2014)</p>]]></description>
+</item><item>
+    <title>[Generative Model] Deep Variational Information Bottelneck (ICLR 2017)</title>
+    <link>http://minsoo9506.github.io/06-ib/</link>
+    <pubDate>Fri, 03 Dec 2021 09:06:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/06-ib/</guid>
+    <description><![CDATA[<p>Deep Variational Information Bottelneck 논문을 간단하게 리뷰하였다.</p>]]></description>
+</item><item>
+    <title>[Generative Model] TimeGAN</title>
+    <link>http://minsoo9506.github.io/05-timegan/</link>
+    <pubDate>Fri, 03 Dec 2021 09:05:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/05-timegan/</guid>
+    <description><![CDATA[<p>TimeGAN 논문을 간단하게 리뷰하였다.</p>]]></description>
+</item><item>
+    <title>[Generative Model] LSGAN</title>
+    <link>http://minsoo9506.github.io/04-lsgan/</link>
+    <pubDate>Fri, 03 Dec 2021 09:04:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/04-lsgan/</guid>
+    <description><![CDATA[<p>LSGAN 논문을 간단하게 리뷰하였다.</p>]]></description>
+</item><item>
+    <title>[Generative Model] GAN</title>
+    <link>http://minsoo9506.github.io/03-gan/</link>
+    <pubDate>Fri, 03 Dec 2021 09:03:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/03-gan/</guid>
+    <description><![CDATA[<p>GAN의 논문과 youtube에서 본 내용을 간단히 정리하였다.</p>]]></description>
+</item><item>
+    <title>[Generative Model] Variational Inference</title>
+    <link>http://minsoo9506.github.io/02-variationalinference/</link>
+    <pubDate>Fri, 03 Dec 2021 09:02:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/02-variationalinference/</guid>
+    <description><![CDATA[<p>VAE를 공부하기 위해 variational inference에 대해 간단하게 공부해보자.</p>]]></description>
+</item><item>
+    <title>[Generative Model] Introduction to Generative Models</title>
+    <link>http://minsoo9506.github.io/01-introductiontogenerativemodels/</link>
+    <pubDate>Fri, 03 Dec 2021 09:01:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/01-introductiontogenerativemodels/</guid>
+    <description><![CDATA[<p>Generative model에 대해 간단하게 정리하였다.</p>]]></description>
+</item><item>
     <title>[알고리즘] 동적계획법</title>
     <link>http://minsoo9506.github.io/algo-17-dp/</link>
     <pubDate>Thu, 02 Dec 2021 09:17:00 &#43;0000</pubDate>
@@ -24,54 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/algo-15-mst/</guid>
     <description><![CDATA[<p>Kruskal, Prim + python</p>]]></description>
-</item><item>
-    <title>[알고리즘] 그래프 순회</title>
-    <link>http://minsoo9506.github.io/algo-14-graph2/</link>
-    <pubDate>Thu, 02 Dec 2021 09:14:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/algo-14-graph2/</guid>
-    <description><![CDATA[<p>그래프 순회 + python</p>]]></description>
-</item><item>
-    <title>[알고리즘] 그래프</title>
-    <link>http://minsoo9506.github.io/algo-13-graph1/</link>
-    <pubDate>Thu, 02 Dec 2021 09:13:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/algo-13-graph1/</guid>
-    <description><![CDATA[<p>그래프 개념</p>]]></description>
-</item><item>
-    <title>[알고리즘] Hash</title>
-    <link>http://minsoo9506.github.io/algo-12-hash/</link>
-    <pubDate>Thu, 02 Dec 2021 09:12:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/algo-12-hash/</guid>
-    <description><![CDATA[<p>Hash 개념 + python</p>]]></description>
-</item><item>
-    <title>[알고리즘] 이진검색트리(BST)</title>
-    <link>http://minsoo9506.github.io/algo-11-bst2/</link>
-    <pubDate>Thu, 02 Dec 2021 09:11:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/algo-11-bst2/</guid>
-    <description><![CDATA[<p>이진검색트리 + python</p>]]></description>
-</item><item>
-    <title>[알고리즘] 트리와 이진트리</title>
-    <link>http://minsoo9506.github.io/algo-10-bst1/</link>
-    <pubDate>Thu, 02 Dec 2021 09:10:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/algo-10-bst1/</guid>
-    <description><![CDATA[<p>트리와 이진트리의 개념 + python</p>]]></description>
-</item><item>
-    <title>[알고리즘] Sort in linear time</title>
-    <link>http://minsoo9506.github.io/algo-09-sort6/</link>
-    <pubDate>Thu, 02 Dec 2021 09:09:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/algo-09-sort6/</guid>
-    <description><![CDATA[<p>Counting, Radix sort + python</p>]]></description>
-</item><item>
-    <title>[알고리즘] 정렬의 lower bound</title>
-    <link>http://minsoo9506.github.io/algo-08-sort5/</link>
-    <pubDate>Thu, 02 Dec 2021 09:08:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/algo-08-sort5/</guid>
-    <description><![CDATA[<p>정렬 알고리즘의 lower bound는?</p>]]></description>
 </item></channel>
 </rss>

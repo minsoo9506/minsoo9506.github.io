@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>VAE - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/vae/</link>
+        <description>VAE - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 03 Dec 2021 09:07:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/vae/" rel="self" type="application/rss+xml" /><item>
+    <title>[Generative Model] VAE</title>
+    <link>http://minsoo9506.github.io/07-vae/</link>
+    <pubDate>Fri, 03 Dec 2021 09:07:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/07-vae/</guid>
+    <description><![CDATA[<p>Auto-Encoding Variational Bayes (2014)</p>]]></description>
+</item></channel>
+</rss>

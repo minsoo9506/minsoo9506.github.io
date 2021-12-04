@@ -2,12 +2,27 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://minsoo9506.github.io/07-vae/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/deep-generative-model/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/vae/</loc><lastmod>2021-12-03T09:07:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/06-ib/</loc><lastmod>2021-12-03T09:06:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/vib/</loc><lastmod>2021-12-03T09:06:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/05-timegan/</loc><lastmod>2021-12-03T09:05:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/timegan/</loc><lastmod>2021-12-03T09:05:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/04-lsgan/</loc><lastmod>2021-12-03T09:04:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/lsgan/</loc><lastmod>2021-12-03T09:04:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/03-gan/</loc><lastmod>2021-12-03T09:03:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/gan/</loc><lastmod>2021-12-03T09:03:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/02-variationalinference/</loc><lastmod>2021-12-03T09:02:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/variational-inference/</loc><lastmod>2021-12-03T09:02:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/01-introductiontogenerativemodels/</loc><lastmod>2021-12-03T09:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/generative-model/</loc><lastmod>2021-12-03T09:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/algo-17-dp/</loc><lastmod>2021-12-02T09:17:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2021-12-02T09:17:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/dynamic-programming/</loc><lastmod>2021-12-02T09:17:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/</loc><lastmod>2021-12-02T09:17:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2021-12-02T09:17:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2021-12-02T09:17:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/%EB%8F%99%EC%A0%81%EA%B3%84%ED%9A%8D%EB%B2%95/</loc><lastmod>2021-12-02T09:17:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/categories/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</loc><lastmod>2021-12-02T09:17:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/algo-16-minpath/</loc><lastmod>2021-12-02T09:16:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -53,7 +68,6 @@
             <loc>http://minsoo9506.github.io/tags/%ED%8A%B8%EB%9D%BC%EC%9D%B4/</loc><lastmod>2021-12-01T09:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/ds-08/</loc><lastmod>2021-12-01T09:07:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/%ED%9E%99/</loc><lastmod>2021-12-01T09:07:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/%ED%9E%99/</loc><lastmod>2021-12-01T09:07:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/ds-07/</loc><lastmod>2021-12-01T09:06:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/ds-06/</loc><lastmod>2021-12-01T09:05:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/ds-05/</loc><lastmod>2021-12-01T09:04:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>

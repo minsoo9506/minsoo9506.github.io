@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Generative Model] Variational Inference - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Generative Model] Variational Inference" />
+<meta property="og:description" content="VAE를 공부하기 위해 variational inference에 대해 간단하게 공부해보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/02-variationalinference/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T09:02:00+09:00" />
+<meta property="article:modified_time" content="2021-12-03T09:02:00+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Generative Model] Variational Inference"/>
+<meta name="twitter:description" content="VAE를 공부하기 위해 variational inference에 대해 간단하게 공부해보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/02-variationalinference/" /><link rel="prev" href="http://minsoo9506.github.io/01-introductiontogenerativemodels/" /><link rel="next" href="http://minsoo9506.github.io/03-gan/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Generative Model] Variational Inference",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/02-variationalinference\/"
+        },"genre": "posts","keywords": "Variational Inference","wordcount":  373 ,
+        "url": "http:\/\/minsoo9506.github.io\/02-variationalinference\/","datePublished": "2021-12-03T09:02:00+09:00","dateModified": "2021-12-03T09:02:00+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Generative Model] Variational Inference</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/deep-generative-model/"><i class="far fa-folder fa-fw"></i>Deep Generative Model</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;373 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#variational-inference">Variational Inference</a></li>
+    <li><a href="#elbo">ELBO</a></li>
+    <li><a href="#restriction-on-q">Restriction on Q</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>VAE를 공부하기 위해 variational inference에 대해 간단하게 공부해보자.</p>
+<h2 id="variational-inference">Variational Inference</h2>
+<p>MCMC와 같이 sampling에 기반한 방법으로 posterior를 구하는 것이 아니라 inference problem을 optimization problem으로 바꾼다는 것이라고 할 수 있다. 전체적인 흐름을 정리하고 공부해보자.</p>
+<ol>
+<li>latent $\textbf{z}$의 posterior $p(\textbf{z}|\textbf{x})$를 approximation하는 분포의 <em>family</em>를 $Q$라고 하자.</li>
+<li>우리는 $Q$에 속하는 분포들 중에서 exact posterior와 가장 가까운 분포 $q(\textbf{z})$를 구하고자 한다.</li>
+</ol>
+<p>$$q(\textbf{z})=\arg\min_{q(\textbf{z}) \in Q}D_{KL}[q(\textbf{z}) || p(\textbf{z}|\textbf{x})]$$</p>
+<p>결국 approximation하는 $q(\textbf{z})$를 구해서 우리가 원하는 task를 진행하면 된다.</p>
+<p>그렇가면 KL-divergence를 최소화하는 optimization을 진행하기 위해서는 적절한 $Q$를 정해야 한다. 여기서 고려해야할 점이 있다.</p>
+<ul>
+<li>우리가 posterior를 tractable하지 않아서 approximation하는 것이므로 $Q$는 적절한 restriction을 걸어서 tractable하게 정해야한다.</li>
+<li>하지만 그 restriction이 너무 강하다면 posterior에 근접하지 못한 결과를 얻을 것이다.</li>
+</ul>
+<h2 id="elbo">ELBO</h2>
+<p>이제 variational inference를 어떻게 하는지 살펴보자. 이 과정에 있어서는 다양한 접근방법이 존재한다. 다양한 자료를 살펴보면 이해의 폭을 넓힐수 있을 것이다.</p>
+<p>$$D_{KL}[q(\textbf{z}) || p(\textbf{z}|\textbf{x})]=\int q(\textbf{z})\frac{\log q(\textbf{z})}{\log p(\textbf{z}|\textbf{x})}d\textbf{z}$$</p>
+<p>$$=E_\textbf{z}[\log q(\textbf{z})]-E_\textbf{z}[\log p(\textbf{z}|\textbf{x})] $$</p>
+<p>$$=E_\textbf{z}[\log q(\textbf{z})]-E_\textbf{z}[\log p(\textbf{z},\textbf{x})]+\log p(\textbf{x})$$</p>
+<p>그런데 위의 식에서 마지막 부분인 $\log p(\textbf{x})$을 보자. obseved data의 분포를 쉽게 구할 수 있을까? intractable하다. 그래서 우리는 위의 식을 directly optimization하는 것이 아니라 <strong>Evidence lower bound (ELBO)</strong> 를 최대화하는 방법으로 우회한다. 어떻게 하는지 알아보자. 아래의 식에서 우항을 ELBO하고 부른다.</p>
+<p>$$\log p(\textbf{x})-D_{KL}[q(\textbf{z})|| p(\textbf{z}|\textbf{x})] = E_\textbf{z} [\log p(\textbf{z},\textbf{x})]-E_\textbf{z}[\log q(\textbf{z})]$$</p>
+<p>우리는 원래 $D_{KL}$을 최소화하는 것이 목표였다. 그 의미는 결국 <strong>ELBO를 최대화</strong> 하는 것과 같다. (좌변의 $\log p(\textbf{x})$는 어차피 constant wrt $q(\textbf{z})$)</p>
+<p>여기서 또한 왜 ELBO라고 부르는지 알 수 있다. evidence $p(\textbf{x})$의 lower-bound이기 때문인데, KL-divergence가 항상 0이상의 값을 가진다는 사실과 아래의 식을 보면 이해할 수 있다.</p>
+<p>$$\log p(\textbf{x}) = \text{ELBO} + D_{KL}[q(\textbf{z})|| p(\textbf{z}|\textbf{x})]$$</p>
+<p>ELBO를 조금 더 알아보자.</p>
+<p>$$L(q) = E_\textbf{z} [\log p(\textbf{z},\textbf{x})]-E_\textbf{z}[\log q(\textbf{z})] $$
+$$= E_\textbf{z} [\log p(\textbf{x}|\textbf{z})] + E_\textbf{z} [\log p(\textbf{z})]-E_\textbf{z}[\log q(\textbf{z})] $$
+$$ =E_\textbf{z} [\log p(\textbf{x}|\textbf{z})]-D_{KL}[q(\textbf{z})|| p(\textbf{z})]$$</p>
+<p>최종식에서</p>
+<ul>
+<li>앞부분은 expected log likelihood of the data</li>
+<li>뒷부분은 KL-D berween prior $p(\textbf{z})$ and $q(\textbf{z})$</li>
+</ul>
+<p>으로 이해할 수 있다.</p>
+<h2 id="restriction-on-q">Restriction on Q</h2>
+<p>이 글의 초반에 적절한 $Q$를 정해야 한다고 했다. 이를 위해 주로 사용하는 restriction을 두가지 정도 알아보자.</p>
+<ul>
+<li>
+<p>Parameterization</p>
+<ul>
+<li>식 $q$를 parametric distribution으로 한정한다.</li>
+<li>$q(\textbf{z};\phi)=q_{\phi}(\textbf{z})$</li>
+<li>$\phi$ : variational parameters</li>
+<li>그렇다면 이제 posterior inference는 variational parameters inference가 되는 것이다.</li>
+<li>VAE에서는 $q_{\phi}(\textbf{z})$를 neural net으로 modeling한다.</li>
+</ul>
+</li>
+<li>
+<p>Factorization</p>
+<ul>
+<li>assume $q(\textbf{z})=\prod_{j=1}^m q_j (z_j)$</li>
+</ul>
+</li>
+</ul>
+<p>마지막으로 variational inference에 대한 간단한 예시를 통해 어떤 식으로 진행되는지 정리해보자.</p>
+<ul>
+<li>먼저, 어떠한 임의의 model $p(\textbf{x},\textbf{z})$로 시작한다.</li>
+<li>적절한 approximation function $q_{\phi}(\textbf{z})$를 정한다.</li>
+<li>ELBO를 구한다.
+<ul>
+<li>예를 들어, $L(\phi)= \textbf{x}^2\phi^3+\log \phi$</li>
+</ul>
+</li>
+<li>derivatives를 구해서 optimize한다.
+<ul>
+<li>$\phi_{t+1} = \phi_{t} + \alpha \triangledown_\phi L(\phi)$</li>
+</ul>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/02-variationalinference/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/variational-inference/">Variational Inference</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/01-introductiontogenerativemodels/" class="prev" rel="prev" title="[Generative Model] Introduction to Generative Models"><i class="fas fa-angle-left fa-fw"></i>[Generative Model] Introduction to Generative Models</a>
+            <a href="/03-gan/" class="next" rel="next" title="[Generative Model] GAN">[Generative Model] GAN<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

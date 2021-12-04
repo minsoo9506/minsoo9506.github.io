@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Generative Model] GAN - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Generative Model] GAN" />
+<meta property="og:description" content="GAN의 논문과 youtube에서 본 내용을 간단히 정리하였다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/03-gan/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T09:03:00+09:00" />
+<meta property="article:modified_time" content="2021-12-03T09:03:00+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Generative Model] GAN"/>
+<meta name="twitter:description" content="GAN의 논문과 youtube에서 본 내용을 간단히 정리하였다."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/03-gan/" /><link rel="prev" href="http://minsoo9506.github.io/02-variationalinference/" /><link rel="next" href="http://minsoo9506.github.io/04-lsgan/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Generative Model] GAN",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/03-gan\/"
+        },"genre": "posts","keywords": "GAN","wordcount":  822 ,
+        "url": "http:\/\/minsoo9506.github.io\/03-gan\/","datePublished": "2021-12-03T09:03:00+09:00","dateModified": "2021-12-03T09:03:00+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Generative Model] GAN</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/deep-generative-model/"><i class="far fa-folder fa-fw"></i>Deep Generative Model</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;822 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#main-problem-and-solution">Main problem and solution</a></li>
+    <li><a href="#gan">GAN</a></li>
+    <li><a href="#training-objective-function">Training objective function</a></li>
+    <li><a href="#each-gradient-update">Each gradient update</a></li>
+    <li><a href="#performance-evaluation">Performance evaluation</a></li>
+    <li><a href="#gan의-발전">GAN의 발전</a></li>
+    <li><a href="#challenge">Challenge</a></li>
+    <li><a href="#gan-training-challenges">GAN training challenges</a></li>
+    <li><a href="#tips-and-tricks">Tips and Tricks</a></li>
+    <li><a href="#advantages-and-disadvantages">Advantages and disadvantages</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>GAN의 논문과 youtube에서 본 내용을 간단히 정리하였다.</p>
+<h2 id="main-problem-and-solution">Main problem and solution</h2>
+<ul>
+<li>problem
+<ul>
+<li>complex/high dimensional training distribution에서 sampling하고 싶다</li>
+<li>근데 어렵다</li>
+</ul>
+</li>
+<li>solution
+<ul>
+<li>Gan에서는 2-step으로 이 문제를 해결</li>
+<li>sample from a simple distribution</li>
+<li>learn a transformation(by NN) to the training distribution</li>
+</ul>
+</li>
+</ul>
+<h2 id="gan">GAN</h2>
+<ul>
+<li>
+<p>do not work with any explicit density function</p>
+<ul>
+<li>take a game-theoreric approach</li>
+</ul>
+</li>
+<li>
+<p>generator network</p>
+<ul>
+<li>directly produces samples $\tilde{\textbf{x}} = G(\textbf{z};\theta_g)$</li>
+<li>$\textbf{z}$는 random noise</li>
+</ul>
+</li>
+<li>
+<p>discriminator network</p>
+<ul>
+<li>train data와 generator가 만든 sample을 구분</li>
+</ul>
+</li>
+</ul>
+<h2 id="training-objective-function">Training objective function</h2>
+<p>$$\min_{\theta_G} \max_{\theta_D} [E_{x\sim p_{data}}\log D_{\theta_d}(x)+E_{z\sim p(z)}\log (1-D_{\theta_d}(G_{\theta_G}(z)))]$$</p>
+<ul>
+<li>
+<p>실제 학습을 진행할 때는 두 네트워크를 동시에 학습시키지 않고 따로따로 업데이트를 한다. D를 학습시킬 때는 G를 고정한 상태에서, G를 학습시킬 때는 D를 고정한 상태에서 진행한다. 먼저, D를 학습하기 위해서는 G의 parameter를 고정한 상태에서 batch size의 수만큼의 data를 넣어서 V를 높이는 방향으로 parameter를 업데이트한다.</p>
+</li>
+<li>
+<p>discriminator : maximize $J_D$ wrt $\theta_d$</p>
+</li>
+</ul>
+<p>$$J_D = E_{x\sim p_{data}}\log D_{\theta_d}(x)+E_{z\sim p(z)}\log (1-D_{\theta_D}(G_{\theta_g}(z)))$$
+$$ \approx\frac{1}{m}\sum_{i=1}^m\log D_{\theta_D}(x_i)+\frac{1}{m}\sum_{i=1}^m\log (1-D_{\theta_d}(G_{\theta_g}(z_i)))$$</p>
+<ul>
+<li>generator : minimize $J_G$ wrt $\theta_g$</li>
+</ul>
+<p>$$J_G =E_{z\sim p(z)}\log (1-D_{\theta_d}(G_{\theta_g}(z)))\ \approx \frac{1}{m}\sum_{i=1}^m\log (1-D_{\theta_d}(G_{\theta_g}(z_i)))$$</p>
+<ul>
+<li>gradient ascent on discriminator, gradient descent on generator</li>
+<li>$\log (1-D(G(z)))$의 경우 $D(G(z))=0$에서 기울기가 거의 0 이다. 반대로 $D(G(z))=1$에서는 기울기가 크다. 즉 fake에 가까울수록 gradient가 커서 학습이 잘되야 하는데 반대의 경우가 되버리는 것이다. 이러면 특히 학습초반에 fake image가 잘 만들어지지 않을 때 문제가 생기게 되는 것이다.
+<ul>
+<li>그래서 generator의 objective function을 바꾼다. 이제 generator도 gradient ascent가 된다.</li>
+</ul>
+</li>
+</ul>
+<p>$$\max_{\theta_G}E_{z\sim p(z)}\log (D_{\theta_D}(G_{\theta_g}(z)))$$</p>
+<h2 id="each-gradient-update">Each gradient update</h2>
+<ol>
+<li>discriminator update (repeat k times per iteration)
+<ul>
+<li>discriminator가 generator보다 앞서서 학습해야 더 잘된다고 함</li>
+<li>real data m개, fake data m개 -&gt; 총 2m개</li>
+<li>gradient ascent</li>
+</ul>
+</li>
+<li>generator update(once per iteration)
+<ul>
+<li>backward gradient from discriminator output</li>
+<li>but update $\theta_G$ only</li>
+</ul>
+</li>
+</ol>
+<h2 id="performance-evaluation">Performance evaluation</h2>
+<ul>
+<li>
+<p>entropy</p>
+<ul>
+<li>high entropy = high randomness, less predictable</li>
+</ul>
+</li>
+<li>
+<p>GAN이 원하는 결과는?</p>
+<ul>
+<li>quality
+<ul>
+<li>low entropy (high predictable) conditional label distribution $p(y|x)$</li>
+<li>어떤 label인지 바로 맞출수있게!</li>
+</ul>
+</li>
+<li>diversity
+<ul>
+<li>high entropy (less predictable) $p(y)=\int p(y|x=G(z))dz$</li>
+<li>다양한 data가 generate가 가능하게!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Inception score</p>
+<ul>
+<li>높은수록 좋다.</li>
+<li>quality와 diversity 둘 다 고려
+$$IS(G)=\exp (E_{x\sim G} [D_{KL}(p(y|x)|| p(y))])$$</li>
+</ul>
+</li>
+<li>
+<p>FID</p>
+<ul>
+<li>낮을수록 좋다.
+$$FID(x_r, x_f) = ||\mu_r - \mu_f ||^2 + Tr(\Sigma_r + \Sigma_f - 2(\Sigma_r \Sigma_f)^{1/2})$$</li>
+</ul>
+</li>
+<li>
+<p>precision, recall, F1 score</p>
+</li>
+</ul>
+<h2 id="gan의-발전">GAN의 발전</h2>
+<ul>
+<li>depth and convolution
+<ul>
+<li><strong>DCGAN</strong> (2015) : deep하고 convnet사용</li>
+</ul>
+</li>
+<li>class-conditional generation
+<ul>
+<li><strong>Conditional GAN</strong> (2014) : 진짜같지 않으니 label을 알려주자.</li>
+<li><strong>AC-GAN</strong>* (2016) : ensemble of specialized classifiers, 100개의 generator를 만들어서 각 10개의 label을 만들었다.</li>
+</ul>
+</li>
+<li>spectral normalization
+<ul>
+<li><strong>SN-GAN</strong> (2018) : 하나의 generator로 모든 label을 만들었다, spectral normalization</li>
+<li>Spectral normalization
+<ul>
+<li>각 layer의 weight들을 SVD해서 가장 큰 singular value로 weight들을 나눠준다.</li>
+<li>그렇게하면 learning이 상당히 stable해진다. 그래서 GAN을 죽이지 않고 오래동안 학습이 가능해졌다고 한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>two-timescale update rule
+<ul>
+<li><strong>TTUR (Two-timescale update rule)</strong> : 이론적으로 generator의 learning rate가 discriminator 것보다 더 빠르게 줄어들면 convergence에 도움을 된다는 것을 밝힘, 실제로는 그냥 서로 다른 learning rate를 쓰면 충분하다고 한다.</li>
+</ul>
+</li>
+<li>self-attention
+<ul>
+<li><strong>non-local neural nets</strong> (2017) : self-attention과 non-local filtering operation을 연결시킴</li>
+<li><strong>SAGAN</strong> (2018) : non-local neural net을 layer로 사용, generation을 할 때 symmetric을 이용하자(eg, 눈), unusually shaped도 잘 만드려고 했다</li>
+</ul>
+</li>
+</ul>
+<h2 id="challenge">Challenge</h2>
+<ul>
+<li>Mode collapse (sample의 variety 부족)</li>
+<li>Gan은 VAE보다 Sharp한 결과를 만듬</li>
+</ul>
+<p>왜 이런 결과가 나오는 걸까? 중명은 생략하고 결과만 보자.</p>
+<ul>
+<li>$p:p_{data},q:p_{model}$이라고 가정하자.</li>
+<li>$D_{KL}(p||q)$
+<ul>
+<li>name : maximum likelihood</li>
+<li>key property : mean-seeking</li>
+<li>high $q(x)$ anywhere $p(x)$ is high</li>
+<li>lower quality but more diverse samples</li>
+</ul>
+</li>
+<li>$D_{KL}(q||p)$
+<ul>
+<li>name : reverse KL</li>
+<li>key property : mode-seeking</li>
+<li>rarely high $q(x)$ anywhere $p(x)$ is low</li>
+<li>higher quality but less diverse samples</li>
+</ul>
+</li>
+</ul>
+<p>그렇다면 GAN은?</p>
+<ul>
+<li>Jensen-Shannon divergence
+<ul>
+<li>symmetric</li>
+<li>penalizes poor images badly : revese KL과 비슷</li>
+</ul>
+</li>
+</ul>
+<p>$$D_{JS}(p||q)=\frac{1}{2}D_{KL}(p||\frac{p+q}{2})+\frac{1}{2}D_{KL}(q||\frac{p+q}{2})$$</p>
+<ul>
+<li>GAN : optimizing generator = minimizing JS divergence
+<ul>
+<li>2014 GAN 논문에서 discriminator가 optimal한 상태라면 generator의 objective function은 아래처럼 JS-divergence를 최소화하는 것이다라고 했다.</li>
+</ul>
+</li>
+</ul>
+<p>$$J(D^*, G)=2D_{JS}(p_{data}|| p_{model})-\log 4$$</p>
+<ul>
+<li>최적의 D가 전제되었다면 gan의 목적함수를 최적화하는 것은 $p_{data}$와 $p_{g}$사이의 Jensen-Shannon divergence를 최소화하는 것과 같다. 즉, data의 분포와 G가 생성하는 분포 사이의 차이를 줄인다고 할 수 있다. 따라서 최적의 결과는 $p_{data}=p_{g}$이다.</li>
+</ul>
+<p>$$\min_{G}V(D^* , G)=E_{x\sim p_{data}(x)}[\log D^* (\textbf{x})]+E_{z\sim p_{g}(z)}[\log (1-D^*(\textbf{x})) ]$$</p>
+<p>$$=E_{x\sim p_{data}(x)}\left[\log\frac{P_{data}(\textbf{x})}{P_{data}(\textbf{x})+P_{g}(\textbf{x})}\right]+E_{x\sim p_{g}(z)}\left[\log\frac{P_{g}(\textbf{x})}{P_{data}(\textbf{x})+P_{g}(\textbf{x})}\right]$$</p>
+<p>$$=\int_{x}p_{data}(x)\log\left[\frac{P_{data}(\textbf{x})}{P_{data}(\textbf{x})+P_{g}(\textbf{x})}\right]dx+\int_{x}p_{g}(x)\log\left[\frac{P_{g}(\textbf{x})}{P_{data}(\textbf{x})+P_{g}(\textbf{x})}\right]dx$$</p>
+<p>$$=-\log4+\int_{x}p_{data}(x)\log\left[\frac{p_{data}(x)}{\frac{p_{data}(x)+p_{g}(x)}{2}}\right]dx+\int_{x}p_{g}(x)\log\left[\frac{P_{g}(\textbf{x})}{\frac{P_{data}(\textbf{x})+P_{g}(\textbf{x})}{2}}\right]dx$$</p>
+<p>$$=-\log4+KL\left(p_{data}(x)||\frac{p_{data}(x)+p_{g}(x)}{2}\right)+KL\left(p_{g}(x)||\frac{p_{data}(x)+p_{g}(x)}{2}\right)$$</p>
+<p>$$=-\log4+2*JS\left(p_{data}(x)||p_{g}(x)\right)\; JS(\cdot)=0;\text{if};p_{data}=P_{g}$$</p>
+<p>그래서 이전에는 GAN의 sharp/real 한 이미지를 만드는 이유가 reverse KL 과 비슷한 JS divergence때문이라고 생각했다. 근데 최근에는 해당하는 이유는 아니라고 밝혀졌다.</p>
+<ul>
+<li>GAN을 원래와 다른 $D_{KL}$로 학습해봤더니 그래도 비슷한 결과가 나오더라.</li>
+<li>reverse KL이 특정한 mode를 선호한다는 근거가 부족하다.</li>
+<li>mode collapsing은 divergence보다는 training의 어려움 때문에 발생할 것이다.</li>
+<li>generate한 image가 sharp한 이유는 아직까지도 not clear 하다.</li>
+</ul>
+<h2 id="gan-training-challenges">GAN training challenges</h2>
+<ul>
+<li>non-convergence
+<ul>
+<li>두 model을 동시에 훈련하다보니까 문제 발생</li>
+</ul>
+</li>
+<li>mode collapse
+<ul>
+<li>서로 다른 input을 generator에 넣었음에도 동일한 output이 나오는 문제 발생</li>
+<li>maxmin solution과 minmax solution이 달라서가 아닌가? 라는 의문 존재</li>
+<li>이를 해결하기 위한 접근
+<ul>
+<li>augmented/different objective function
+<ul>
+<li>unrolled GAN, DRAGAN, EBGAN</li>
+</ul>
+</li>
+<li>architecture chage
+<ul>
+<li>MAD-GAN, MRGAN</li>
+</ul>
+</li>
+<li>minibatch discrimination
+<ul>
+<li>progressive GAN</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>diminished gradient
+<ul>
+<li>discriminator가 너무 성능이 좋아지면 generator gradient vanishing이 발생한다고 한다.</li>
+</ul>
+</li>
+<li>generator/discriminator unbalance
+<ul>
+<li>cause overfitting</li>
+</ul>
+</li>
+<li>hyperparmeter sensitivity</li>
+</ul>
+<h2 id="tips-and-tricks">Tips and Tricks</h2>
+<ul>
+<li>train with labels</li>
+<li>one-sided label smoothing
+<ul>
+<li>real label을 $1-\epsilon$으로 바꿔서 regularization</li>
+</ul>
+</li>
+<li>virtual batch normalization
+<ul>
+<li>GAN에서는 BN을 사용하지 않는다.</li>
+<li>그래서 다른 trick으로 BN사용</li>
+</ul>
+</li>
+<li>balancing generator/discriminator
+<ul>
+<li>D가 살짝 앞서가도록 한다.</li>
+<li>D가 G보다 layers/filter를 더 많이 갖게 한다.</li>
+<li>근데 너무 D가 앞서가면 안된다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="advantages-and-disadvantages">Advantages and disadvantages</h2>
+<p>논문에서 말하는 장단점은 아래와 같다.</p>
+<ul>
+<li>advantage
+<ul>
+<li>No need of Markov chain only backprop with gradient.</li>
+<li>No need of inference during training.</li>
+<li>Wide variety of functions can be incorporated into the model.</li>
+</ul>
+</li>
+<li>disadvantage
+<ul>
+<li>There is no explicit rep[resentation of $p_{g}(\textbf{x})$.</li>
+<li>D must be synchronized well with G during training.</li>
+</ul>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/03-gan/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/gan/">GAN</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/02-variationalinference/" class="prev" rel="prev" title="[Generative Model] Variational Inference"><i class="fas fa-angle-left fa-fw"></i>[Generative Model] Variational Inference</a>
+            <a href="/04-lsgan/" class="next" rel="next" title="[Generative Model] LSGAN">[Generative Model] LSGAN<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
