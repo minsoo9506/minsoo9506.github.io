@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>SVM - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/svm/</link>
+        <description>SVM - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 29 Nov 2021 11:32:01 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/svm/" rel="self" type="application/rss+xml" /><item>
+    <title>[PRML] Chapter7 - Sparse Kernel Machine</title>
+    <link>http://minsoo9506.github.io/prml-chap07-1/</link>
+    <pubDate>Mon, 29 Nov 2021 11:32:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap07-1/</guid>
+    <description><![CDATA[<p>Sparse kernel machine (SVM)에 대해 정리하였다.</p>]]></description>
+</item></channel>
+</rss>

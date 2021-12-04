@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Grphical Model - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/grphical-model/</link>
+        <description>Grphical Model - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 29 Nov 2021 11:34:01 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/grphical-model/" rel="self" type="application/rss+xml" /><item>
+    <title>[PRML] Chapter8 - Graphical Models (2)</title>
+    <link>http://minsoo9506.github.io/prml-chap08-2/</link>
+    <pubDate>Mon, 29 Nov 2021 11:34:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap08-2/</guid>
+    <description><![CDATA[<p>graphical model에서 inference하는 방법에 대해 정리하였다. (미완성)</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter8 - Graphical Models (1)</title>
+    <link>http://minsoo9506.github.io/prml-chap08-1/</link>
+    <pubDate>Mon, 29 Nov 2021 11:33:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap08-1/</guid>
+    <description><![CDATA[<p>graphical model에 대해 정리하였다.</p>]]></description>
+</item></channel>
+</rss>

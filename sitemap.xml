@@ -2,13 +2,29 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://minsoo9506.github.io/prml-chap14-1/</loc><lastmod>2021-11-29T11:40:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2021-11-29T11:40:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/ensemble/</loc><lastmod>2021-11-29T11:40:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/</loc><lastmod>2021-11-29T11:40:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2021-11-29T11:40:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/prml/</loc><lastmod>2021-11-29T11:40:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2021-11-29T11:40:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/prml-chap11-1/</loc><lastmod>2021-11-29T11:38:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/approximate-inference/</loc><lastmod>2021-11-29T11:38:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/prml-chap10-2/</loc><lastmod>2021-11-29T11:37:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/prml-chap10-1/</loc><lastmod>2021-11-29T11:36:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/prml-chap09-1/</loc><lastmod>2021-11-29T11:35:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/em-algorithm/</loc><lastmod>2021-11-29T11:35:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/gmm/</loc><lastmod>2021-11-29T11:35:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/prml-chap08-2/</loc><lastmod>2021-11-29T11:34:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/grphical-model/</loc><lastmod>2021-11-29T11:34:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/prml-chap08-1/</loc><lastmod>2021-11-29T11:33:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/prml-chap07-1/</loc><lastmod>2021-11-29T11:32:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/svm/</loc><lastmod>2021-11-29T11:32:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/prml-chap07-0/</loc><lastmod>2021-11-29T11:31:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/optimization/</loc><lastmod>2021-11-29T11:31:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/prml-chap06-3/</loc><lastmod>2021-11-29T11:30:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/bayesian-optimization/</loc><lastmod>2021-11-29T11:30:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2021-11-29T11:30:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/</loc><lastmod>2021-11-29T11:30:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2021-11-29T11:30:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/prml/</loc><lastmod>2021-11-29T11:30:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2021-11-29T11:30:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/prml-chap06-2/</loc><lastmod>2021-11-29T10:59:46&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/gassian-process/</loc><lastmod>2021-11-29T10:59:46&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/prml/</loc><lastmod>2021-11-29T10:59:46&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>

@@ -3,75 +3,78 @@
         <title>All Posts - minsoo9506</title>
         <link>http://minsoo9506.github.io/posts/</link>
         <description>All Posts | minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 29 Nov 2021 11:30:01 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 29 Nov 2021 11:40:01 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[PRML] Chapter 14 : Combining Models</title>
+    <link>http://minsoo9506.github.io/prml-chap14-1/</link>
+    <pubDate>Mon, 29 Nov 2021 11:40:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap14-1/</guid>
+    <description><![CDATA[Ensemble method에 대해 정리하였다.
+14. Combining Models 말 그대로 모델들을 섞는 것이다. 머신러닝 예측 모델에서 가장 좋은 성능을 보이고 있다는 Boosting이 이 부분의 내용이다.
+14.1 Bayesian Model Averaging model combination methods 와 Bayesian model averaging 을 구분하는 것은 중요하다. Density estimation using a mixture of Gaussians 예시를 통해 살펴보자.
+ model combination  각 data들은 iid, $X = {\textbf{x}_1, \textbf{x}_2,&hellip;,\textbf{x}_n }$ $X$는 전체 dataset을 의미    $$p(X) = \prod_{n=1}^{N}{p(\textbf{x} _ n)} = \prod_{n=1}^{N}{[\sum_{z_n}p(\textbf{x}_n, \textbf{z}_n)]}$$]]></description>
+</item><item>
+    <title>[PRML] Chapter11 - Sampling Method</title>
+    <link>http://minsoo9506.github.io/prml-chap11-1/</link>
+    <pubDate>Mon, 29 Nov 2021 11:38:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap11-1/</guid>
+    <description><![CDATA[<p>distribution을 구하는 sampling method에 대해 정리하였다.</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter10 - Approximate Inference (2)</title>
+    <link>http://minsoo9506.github.io/prml-chap10-2/</link>
+    <pubDate>Mon, 29 Nov 2021 11:37:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap10-2/</guid>
+    <description><![CDATA[<p>VI, EP 에 대한 정리 (예시 제외)</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter10 - Approximate Inference (1)</title>
+    <link>http://minsoo9506.github.io/prml-chap10-1/</link>
+    <pubDate>Mon, 29 Nov 2021 11:36:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap10-1/</guid>
+    <description><![CDATA[<p>PRML chapter10 에 대한 카이스트 문일철 교수님 강의 정리하였다.</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter9 - Mixture Models and EM</title>
+    <link>http://minsoo9506.github.io/prml-chap09-1/</link>
+    <pubDate>Mon, 29 Nov 2021 11:35:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap09-1/</guid>
+    <description><![CDATA[<p>GMM과 EM 알고리즘에 대해 정리하였다.GMM과 EM 알고리즘에 대해 정리하였다.</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter8 - Graphical Models (2)</title>
+    <link>http://minsoo9506.github.io/prml-chap08-2/</link>
+    <pubDate>Mon, 29 Nov 2021 11:34:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap08-2/</guid>
+    <description><![CDATA[<p>graphical model에서 inference하는 방법에 대해 정리하였다. (미완성)</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter8 - Graphical Models (1)</title>
+    <link>http://minsoo9506.github.io/prml-chap08-1/</link>
+    <pubDate>Mon, 29 Nov 2021 11:33:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap08-1/</guid>
+    <description><![CDATA[<p>graphical model에 대해 정리하였다.</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter7 - Sparse Kernel Machine</title>
+    <link>http://minsoo9506.github.io/prml-chap07-1/</link>
+    <pubDate>Mon, 29 Nov 2021 11:32:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap07-1/</guid>
+    <description><![CDATA[<p>Sparse kernel machine (SVM)에 대해 정리하였다.</p>]]></description>
+</item><item>
+    <title>[PRML] Chapter7 - Constrained Optimization</title>
+    <link>http://minsoo9506.github.io/prml-chap07-0/</link>
+    <pubDate>Mon, 29 Nov 2021 11:31:01 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/prml-chap07-0/</guid>
+    <description><![CDATA[<p>khan academy의 강의를 듣고 간략하게 정리해보았다.</p>]]></description>
+</item><item>
     <title>[PRML] Bayesian Optimization</title>
     <link>http://minsoo9506.github.io/prml-chap06-3/</link>
     <pubDate>Mon, 29 Nov 2021 11:30:01 &#43;0900</pubDate>
     <author>Author</author>
     <guid>http://minsoo9506.github.io/prml-chap06-3/</guid>
     <description><![CDATA[<p>Bayesian Optimization으로 모델의 성능을 올려보자.</p>]]></description>
-</item><item>
-    <title>[PRML] Chapter6 - Kernel Method (2) : GP</title>
-    <link>http://minsoo9506.github.io/prml-chap06-2/</link>
-    <pubDate>Mon, 29 Nov 2021 10:59:46 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/prml-chap06-2/</guid>
-    <description><![CDATA[<p>Gaussian Process에 대해 정리하였다.</p>]]></description>
-</item><item>
-    <title>[PRML] Chapter4 - Linear Models For Classification (3)</title>
-    <link>http://minsoo9506.github.io/prml-chap04-3/</link>
-    <pubDate>Fri, 26 Nov 2021 17:27:26 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/prml-chap04-3/</guid>
-    <description><![CDATA[<p>PRML에서 Naive bayes 와 Logistic regression에 대해 공부하였는데 이 둘의 관계에 대해 간단히 정리해보고자 한다. (문일철 교수님의 강의에 대해 정리하였습니다.) 몇 가지 가정(constraint)가 더해지면 Naive bayes와 Logistic regression이 같아진다.</p>]]></description>
-</item><item>
-    <title>[PRML] Chapter4 - Linear Models For Classification (2)</title>
-    <link>http://minsoo9506.github.io/prml-chap04-2/</link>
-    <pubDate>Fri, 26 Nov 2021 17:26:26 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/prml-chap04-2/</guid>
-    <description><![CDATA[<p>Classification에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[PRML] Chapter4 - Linear Models For Classification (1)</title>
-    <link>http://minsoo9506.github.io/prml-chap04-1/</link>
-    <pubDate>Fri, 26 Nov 2021 17:25:26 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/prml-chap04-1/</guid>
-    <description><![CDATA[<p>Classification에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[PRML] Chapter3 - Linear Models For Regression (2)</title>
-    <link>http://minsoo9506.github.io/prml-chap03-2/</link>
-    <pubDate>Fri, 26 Nov 2021 17:21:26 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/prml-chap03-2/</guid>
-    <description><![CDATA[<p>Regression에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[PRML] Chapter3 - Linear Models For Regression (1)</title>
-    <link>http://minsoo9506.github.io/prml-chap03-1/</link>
-    <pubDate>Fri, 26 Nov 2021 16:21:26 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/prml-chap03-1/</guid>
-    <description><![CDATA[<p>Regression에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[PRML] Chapter2 - Probability Distribution (4)</title>
-    <link>http://minsoo9506.github.io/prml-chap02-4/</link>
-    <pubDate>Fri, 26 Nov 2021 15:21:26 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/prml-chap02-4/</guid>
-    <description><![CDATA[<p>Exponential Family와 Nonparametric 방법론에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[PRML] Chapter2 - Probability Distribution (3)</title>
-    <link>http://minsoo9506.github.io/prml-chap02-3/</link>
-    <pubDate>Fri, 26 Nov 2021 14:21:26 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/prml-chap02-3/</guid>
-    <description><![CDATA[<p>Gaussian Distribution과 관련한 내용을 알아보자.</p>]]></description>
-</item><item>
-    <title>[PRML] Chapter2 - Probability Distribution (2)</title>
-    <link>http://minsoo9506.github.io/prml-chap02-2/</link>
-    <pubDate>Fri, 26 Nov 2021 13:21:26 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/prml-chap02-2/</guid>
-    <description><![CDATA[<p>Gausisan distribution의 성질을 알아보자.</p>]]></description>
 </item></channel>
 </rss>

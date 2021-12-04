@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[PRML] Chapter7 - Sparse Kernel Machine - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[PRML] Chapter7 - Sparse Kernel Machine" />
+<meta property="og:description" content="Sparse kernel machine (SVM)에 대해 정리하였다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/prml-chap07-1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-29T11:32:01+09:00" />
+<meta property="article:modified_time" content="2021-11-29T11:32:01+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[PRML] Chapter7 - Sparse Kernel Machine"/>
+<meta name="twitter:description" content="Sparse kernel machine (SVM)에 대해 정리하였다."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/prml-chap07-1/" /><link rel="prev" href="http://minsoo9506.github.io/prml-chap07-0/" /><link rel="next" href="http://minsoo9506.github.io/prml-chap08-1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[PRML] Chapter7 - Sparse Kernel Machine",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/prml-chap07-1\/"
+        },"genre": "posts","keywords": "SVM","wordcount":  1552 ,
+        "url": "http:\/\/minsoo9506.github.io\/prml-chap07-1\/","datePublished": "2021-11-29T11:32:01+09:00","dateModified": "2021-11-29T11:32:01+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Chapter7 - Sparse Kernel Machine</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-29">2021-11-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1552 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#71-maximum-margin-classifiers-hard-margin">7.1 Maximum Margin Classifiers (hard margin)</a>
+      <ul>
+        <li><a href="#-위-내용을-다른-방법으로-접근">+ 위 내용을 다른 방법으로 접근</a></li>
+        <li><a href="#711-overlapping-class-distributions-soft-margin">7.1.1 Overlapping class distributions (soft margin)</a></li>
+        <li><a href="#712--comparison-to-logistic-regression">7.1.2  Comparison to logistic regression</a></li>
+        <li><a href="#713-multiclass-svm">7.1.3 Multiclass SVM</a></li>
+        <li><a href="#714-svms-for-regression">7.1.4 SVMs for regression</a></li>
+      </ul>
+    </li>
+    <li><a href="#72-relevance-vector-machines">7.2 Relevance vector machines</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Sparse kernel machine (SVM)에 대해 정리하였다.</p>
+<p>이번 장에서는 SVM에 대해 공부할 것이다. SVM은</p>
+<ul>
+<li>classification, regression, novelty detection에 사용한다.</li>
+<li>decision machine이기 때문에 posterior probability를 알수는 없다.</li>
+<li>model parameter를 구하는데 있어 convex optimization problem이기에 any local solution이 global optimum이 된다.</li>
+<li>high dimension에서 분류할 때 좋은 generalization 성능을 보인다</li>
+<li>train이 quadratic programmin problem이다</li>
+<li>train data에 대해 fit하지만 generalization의 성능이 좋다.</li>
+<li>statistical learning theory라는 탄탄한 이론에 기반하여 만들어졌다.</li>
+</ul>
+<h2 id="71-maximum-margin-classifiers-hard-margin">7.1 Maximum Margin Classifiers (hard margin)</h2>
+<p>일단 몇 가지 가정을 하고 공부를 시작해보자.</p>
+<ul>
+<li>two class classification problem using linear model</li>
+</ul>
+<p>$$y(\textbf{x}) = \textbf{w}^T \phi (\textbf{x}) + b$$</p>
+<ul>
+<li><strong>train data가 linearly separable in feature space라고 가정</strong>
+<ul>
+<li>따라서 최소한 하나의 오류없이 100% 분류가능한 $\textbf{w}, b$가 존재</li>
+</ul>
+</li>
+<li>training data $(\textbf{x}_1,&hellip;,\textbf{x}_n),(t_1,&hellip;,t_n), t_n \in {-1,1}$</li>
+<li>decision boundary : $y(\textbf{x})=0$</li>
+<li>$y(\textbf{x}_n) &lt; 0 \rightarrow t_n = -1,;y(\textbf{x}_n) &gt; 0 \rightarrow t_n = 1$
+<ul>
+<li>$\therefore y(\textbf{x}_n) t_n &gt; 0$ for all train data</li>
+</ul>
+</li>
+<li>new data are classified by the sign of $y(\textbf{x})$</li>
+</ul>
+<p>train data가 lineary separable하므로 우리의 목표는 이를 나누는 hyperplane을 찾는 것이다. 그렇다면 가장 좋은 hyperplane을 어떻게 찾을까?</p>
+<ul>
+<li>SVM에서 hyperplane (decision boundary)는 <em>margin</em> 을 최대화하도록 한다.
+<ul>
+<li>margin : smallest distance between the decision boundary and any of the samples</li>
+<li>이에 해당하는 그림을 찾아보면 이해하기 쉬울 것이다.</li>
+<li>train set에서 margin 최대화 = generalization error 최소화 = good prediction</li>
+</ul>
+</li>
+</ul>
+<p>hyperplane과 data point $\textbf{x}$의 거리는</p>
+<p>$$\frac{\left| y(\textbf{x})\right|}{ \left| \textbf{w} \right|}$$</p>
+<p>인데 가정에 따라 모든 data point는 잘 분류되어 있다. (그 중에서 best hyperplane을 찾기). 따라서 $t_n y(\textbf{x}_n)&gt;0$ 인 상황이므로</p>
+<p>$$\frac{t_n y(\textbf{x}_n)}{\left| \textbf{w} \right|}$$</p>
+<p>으로 나타낼 수 있다. 따라서 maximize margin solution은</p>
+<p>$$\arg\max_{w,b}{ \frac{1}{\left| \textbf{w}\right|} \min_{n} [t_n (\textbf{w}^T \phi(\textbf{x}_n)+b)] }$$</p>
+<p>이를 바로 풀기는 어려움이 있어서 약간의 변화를 준다.</p>
+<ul>
+<li>Let $t_n(\textbf{w}^T \phi(x_n) + b) = 1$ for the point that is closest to the decision boundary.
+<ul>
+<li>따라서 $t_n(\textbf{w}^T \phi(x_n) + b) \ge 1$ 의 제약이 생긴다.</li>
+<li>대신 $\min$ 뒷 부분을 제외하고 optimization이 가능하다. (constraint가 생기지만)</li>
+</ul>
+</li>
+</ul>
+<p>이를 통해 우리는 (convex) optimization problem을 아래와 같이 정의할 수 있다.</p>
+<ul>
+<li>constraint : $t_n(\textbf{w}^T \phi(x_n) + b) \ge 1$</li>
+</ul>
+<p>$$\arg\min_{w,b} \frac{1}{2} \left| \textbf{w} \right|^2_2$$</p>
+<h3 id="-위-내용을-다른-방법으로-접근">+ 위 내용을 다른 방법으로 접근</h3>
+<ul>
+<li>고려대학교 김성범 교수님의 유투브 참조</li>
+</ul>
+<p>위의 margin을 찾는 과정에 대해 조금 다른 derivation을 소개한다.</p>
+<ul>
+<li>$y(\textbf{x})=1, y(\textbf{x})=-1$ 위의 점을 각각 $\textbf{x}^+, \textbf{x}^-$ 라고 하자 : support vector, 즉 decision boundary와 가장 가까운 각 class의 점들을 의미</li>
+<li>$\textbf{x}^-$을 움직여서 반대편 class $y(\textbf{w})=-1$ 위의 점으로 만들 수 있다.
+<ul>
+<li>$\textbf{x}^+ = \textbf{x}^- + \alpha \textbf{w}$</li>
+</ul>
+</li>
+</ul>
+<p>$$\textbf{w}^T \textbf{x}^+ + b = 1 \ \textbf{w}^T (\textbf{x}^- + \alpha \textbf{w})  + b =  1 \ \textbf{w}^T \textbf{x}^- +b + \alpha \textbf{w}^T \textbf{w} = 1 \ \therefore \alpha = \frac{2}{\textbf{w}^T \textbf{w}}$$</p>
+<ul>
+<li>margin = distance($\textbf{x}^+, \textbf{x}^-$) / 2</li>
+</ul>
+<p>$$ = \left| \textbf{x}^+ - \textbf{x}^- \right|_ 2 /2 \ = \left | \alpha \textbf{w} \right |_ 2 /2 \ = \alpha \sqrt{\textbf{w}^T \textbf{w}}/2 \ = \frac{1}{\sqrt{\textbf{w}^T \textbf{w}}} = \frac{1}{\left | \textbf{w} \right |_ 2}$$</p>
+<p>이렇게 약간 다른 과정을 통해 같은 결과를 얻을 수 있다.</p>
+<p>이를 <em>quadratic programming</em> problem이라고 한다.</p>
+<ul>
+<li>quadratic programming : minimize a quadratic function subject to a set of linear inequality constraints</li>
+</ul>
+<p>이를 통해 Lagrange function을 만들어 parameter를 구해보자. 제약식이 있는 <strong>maximum margin problem을  Lagrangian Primal문제로 변환</strong> 시킨 것이다.</p>
+<ul>
+<li><strong>Lagrangian Primal</strong>
+<ul>
+<li>$\max_{a} \min_{w,b} L(\textbf{w},b,\textbf{a})$</li>
+<li>Lagrange multipliers $a_n \ge 0$</li>
+</ul>
+</li>
+</ul>
+<p>$$L(\textbf{w}, b, \textbf{a}) = \frac{1}{2} \left| \textbf{w} \right|^2_2 - \sum_{n=1}^{N}{a_n{ t_n(\textbf{w}^T \phi(\textbf{x}_n)+b)-1 }}$$</p>
+<p>이 식을 각 parameter $\textbf{w}, b$ 로 미분하면</p>
+<p>$$\textbf{w} = \sum_{n=1}^{N}{a_n t_n \phi (\textbf{x}_n)}$$</p>
+<p>$$0 = \sum_{n=1}^{N}{a_n t_n}$$</p>
+<p>이를 통해 maximum margin problem을 <em>dual representation</em> 으로 나타낼 수 있다.</p>
+<p>첫번째 항</p>
+<p>$$\frac{1}{2} \left| \textbf{w} \right|^2_2 = \frac{1}{2}\textbf{w}^T\textbf{w} $$
+$$= \frac{1}{2}\textbf{w}^T \sum_{n=1}a_n t_n \phi(\textbf{x} _ n)$$
+$$ = \frac{1}{2} \sum_{n=1}a_n t_n \textbf{w}^T \phi(\textbf{x} _ n) $$
+$$ =  \frac{1}{2} \sum_{n=1}a_n t_n\sum_{m=1}a_m t_m \phi(\textbf{x} _ m)^T \phi(\textbf{x} _ n) $$
+$$ =\frac{1}{2} \sum_{n=1}\sum_{m=1}a_n t_na_m t_m \phi(\textbf{x}_m)^T \phi(\textbf{x}_n) $$</p>
+<p>두번째 항</p>
+<p>$$- \sum_{n=1}^{N}{a_n{ t_n(\textbf{w}^T \phi(\textbf{x} _ n)+b)-1 }} $$
+$$ = -\sum_{n=1}a_n t_n \textbf{w}^T \phi(\textbf{x} _ n) - b\sum_{n=1} a_n t_n + \sum_{n=1}a_n $$
+$$ = -\sum_{n=1}\sum_{m=1}a_n a_m t_n t_m \phi(\textbf{x} _ m)^T \phi(\textbf{x} _ n) + \sum_{n=1}a_n$$</p>
+<p>따라서 최종적으로</p>
+<ul>
+<li><strong>Lagrangian dual</strong>
+<ul>
+<li>constraint (제약식)
+<ul>
+<li>$a_n \ge 0$</li>
+<li>$\sum_{n=1}^{N}{a_n t_n} = 0$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>$$L(\textbf{a}) = \sum_{n=1}^{N}{a_n} - \frac{1}{2}\sum_{n=1}^{N} \sum_{m=1}^{N}{a_n a_m t_n t_m \phi(\textbf{x}_m)^T \phi(\textbf{x}_n)}$$</p>
+<p>위 식을 maximize하면 되고 이는 다시 $a$에 관한 quadratic problem이 된다.</p>
+<ul>
+<li>Lagrangian Dual problem으로 바뀐 것이다.
+<ul>
+<li>objective function is quadratic &amp; constraint is linear</li>
+<li>따라서 여기서 Lagrangian Dual은 quadratic programming이 된다.</li>
+</ul>
+</li>
+<li>또한 kernel function을 사용할 수 있는 형태을 얻었다. (inner product)</li>
+</ul>
+<p>우리는 $\textbf{a}$를 구하여 $\textbf{w},b$ 모두 알 수 있고 prediction도 할 수 있다.</p>
+<p>새로운 데이터를 분류하기 위해 $y(\textbf{x})$의 sign을 알면 된다. 그리고 prediction을 위해 굳이 $\textbf{w},b$를 구하지 않고 아래의 식으로 prediction하면 된다.</p>
+<p>$$y(\textbf{x}) = \sum_{n=1}^{N}{a_n t_n \phi(\textbf{x})^T \phi(\textbf{x}_n)+b}$$</p>
+<p>그런데 $(\textbf{w}, b, \textbf{a})$가 Lagrangian dual problem의 최적해가 되기 위한 조건으로 <em>KKT condition</em> 을 만족해야 한다.</p>
+<ul>
+<li>KKT( Karuch-Kuhn-Tuker) condition
+<ul>
+<li>Stationarity
+<ul>
+<li>$\frac{\partial L(\textbf{w},b,\textbf{a})}{\partial \textbf{w}}=0, \frac{\partial L(\textbf{w},b,\textbf{a})}{\partial \textbf{b}}=0$</li>
+</ul>
+</li>
+<li>Primal feasibility
+<ul>
+<li>$t_n y(\textbf{x}_n) - 1 \ge 0$</li>
+</ul>
+</li>
+<li>Dual feasibility
+<ul>
+<li>$a_n \ge 0$</li>
+</ul>
+</li>
+<li>Complementary slackness
+<ul>
+<li>$a_n { t_n y(\textbf{x}_n )- 1 } = 0$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>이를 통해 SVM에서 중요한 내용을 생각할 수 있는데 모든 점은 두 가지 경우에 해당한다.</p>
+<ul>
+<li>$a_n &gt; 0 ; \text{and} ; t_n y(\textbf{x}_n)-1=0$</li>
+<li>$a_n = 0 ; \text{and} ; t_n y(\textbf{x}_n)-1\neq 0$</li>
+</ul>
+<p>근데 <strong>$a_n$이 0인 경우는 decision boundary를 만드는 것과 prediction에 아무런 영향을 주지 않는다.</strong> 영향을 주는 점들은 <em>support vector</em> 라고 부른다. 이들은 $t_n y(\textbf{x}_n) = 1$ 이고 maximum margin hyperplane의 위에 있는 점들이다. (각 class별로 decision boundary와 가장 가까운 점에 관한 hyperplane)</p>
+<ul>
+<li>support vector만으로 optimal hyperplane(decision boundary)를 구할 수 있다. 그래서 sparse kernel machine이라고 부르는 것이다.</li>
+</ul>
+<h3 id="711-overlapping-class-distributions-soft-margin">7.1.1 Overlapping class distributions (soft margin)</h3>
+<p>이전까지 우리는 완전히 separable이 가능한 경우에서 모델링하였다. 하지만 이런 경우는 드물다. overlap되는 경우에 우리는 penalty를 주고 misclassification이 된 경우가 존재하는 모델을 만드는 것이다. 이를 <em>soft margin</em> 이라고 부른다. 이 penalty를 위해 각 data point마다 slack variable을 생각한다.</p>
+<ul>
+<li>slack variable (penalty)
+<ul>
+<li>$\xi_n =  0$  : 데이터가 잘 분류되고 margin 밖에 위치</li>
+<li>이외의 경우 : $\xi_n =  | t_n - y(x_n) |$ (틀린 거리만큼 penalty)
+<ul>
+<li>$0 &lt; \xi_n &lt; 1$ : 잘 분류되었지만 margin 범위 안에 위치</li>
+<li>$\xi_n = 1$ : data가 +, - boundary 위에 위치</li>
+<li>$\xi_n &gt; 1$ : 잘못 분류</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>이에 따라 $t_n y(\textbf{x}_n) \ge 1- \xi_n$ 으로 constraint가 바뀐다(error를 허용하는).  따라서 우리는 minimize</p>
+<ul>
+<li>constraint : $t_n(\textbf{w}^T \phi(\textbf{x}_n) + b) \ge 1- \xi_n$</li>
+</ul>
+<p>$$C\sum_{n=1}^{N}{\xi_n + \frac{1}{2}|\textbf{w}|^2_2}$$</p>
+<p>하게 된다.</p>
+<ul>
+<li>여기서 C는 trade-off 관계를 컨트롤하는 파라미터이다.
+<ul>
+<li>C가 커지면 error를 많이 허용하지 않으므로 overfit</li>
+<li>C가 작으면 error를 많이 허용하므로 underfit</li>
+</ul>
+</li>
+</ul>
+<p>이 식을 위에서 했던 대로 Lagrange로 계산하면 위의 dual representation과 같은 결과가 나온다. 이번에는 Lagrange multiplyer가 두 개가 필요하다. 다른 점은 constraint, KKT 가 달라진다.</p>
+<ul>
+<li>Lagrangian Primal
+<ul>
+<li>$\max_{a,\gamma} \min_{w,b,\xi} L(\textbf{w},b,\textbf{a}, \xi, \gamma)$</li>
+<li>Lagrange multipliers $a_n \gamma_n \ge 0$</li>
+</ul>
+</li>
+</ul>
+<p>$$L(\textbf{w},b,\textbf{a}, \xi, \gamma)$$
+$$ = \frac{1}{2} \| \textbf{w} \|^2_2 + C\sum_{n=1}\xi_n  - \sum_{n=1}{a_n{ t_n(\textbf{w}^T \phi(\textbf{x} _ n)+b) - 1 + \xi_n }} - \sum_{n=1}\gamma_n \xi_n$$</p>
+<p>이 식을 각 parameter $\textbf{w}, b, \xi$ 로 미분하면</p>
+<p>$$\textbf{w} = \sum_{n=1}^{N}{a_n t_n \phi (\textbf{x}_n)}$$</p>
+<p>$$0 = \sum_{n=1}^{N}{a_n t_n}$$</p>
+<p>$$C - a_n - \gamma_n = 0$$</p>
+<ul>
+<li>Lagrange dual
+<ul>
+<li>constraint (제약식)
+<ul>
+<li>$a_n \ge 0$</li>
+<li>$\sum_{n=1}^{N}{a_n t_n} = 0$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>$$L(\textbf{a}) = \sum_{n=1}^{N}{a_n} - \frac{1}{2}\sum_{n=1}^{N} \sum_{m=1}^{N}{a_n a_m t_n t_m k(\textbf{x}_n,\textbf{x}_m)}$$</p>
+<ul>
+<li>KKT( Karuch-Kuhn-Tuker) condition
+<ul>
+<li>$\frac{\partial L(\textbf{w},b,\textbf{a})}{\partial \textbf{w}}=0, \frac{\partial L(\textbf{w},b,\textbf{a})}{\partial \textbf{b}}=0$</li>
+<li>$C - a_n- \gamma_n = 0$</li>
+<li>$a_n { t_n y(\textbf{x}_n )- 1 + \xi } = 0, \gamma_n \xi_n = 0$</li>
+</ul>
+</li>
+</ul>
+<p>이번에도 마찬가지로 solution의 특징을 보면</p>
+<ul>
+<li>$a_n { t_n y(\textbf{x}_n )- 1 + \xi } = 0,; \gamma_n \xi_n = 0,; a_n = C-\gamma_n$
+<ul>
+<li>$a_n = 0 \Rightarrow \gamma_n = C \Rightarrow \xi_n=0 \Rightarrow t_n y(\textbf{x}_n )- 1\neq 0$
+<ul>
+<li>$\textbf{x}_n$ 이 +,- boundary 보다 멀리 잘 분류되었다.</li>
+</ul>
+</li>
+<li>$0 &lt; a_n &lt; C \Rightarrow \gamma_n &gt; 0 \Rightarrow \xi_n=0, \gamma_n\xi_n=0 \Rightarrow t_n y(\textbf{x}_n )- 1=0$
+<ul>
+<li>$\textbf{x}_n$ 이 +,- boundary 위에 있다. (support vector)</li>
+</ul>
+</li>
+<li>$a_n = C \Rightarrow \gamma_n = 0 \Rightarrow \xi_n&gt;0 \Rightarrow t_n y(\textbf{x}_n )- 1 = -a_n \xi_n \neq 0$
+<ul>
+<li>$\textbf{x}_n$ 이 +,- boundary 과 decision boundary 사이에 존재한다. (margin의 범위에 존재, 이들도 support vector라고 함)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>이제 kernel method for nonlinear classification에 대해 살펴보자. 우리의 위에서 dual problem을 통해 kernel function의 사용가능성을 파악할 수 있었다. kernel을 사용함으로서 nonlinear decision boundary를 만드는데 있어서 inner product $\phi(\textbf{x}_n)^T \phi(\textbf{x}_m)$이 아니라 $k(\textbf{x}_n, \textbf{x}_m)$으로 계산할 수 있다.</p>
+<p>예시를 통해 kernel의 유용성을 알아보자.</p>
+<ul>
+<li>$\textbf{x},\textbf{z}$는 2차원 vector</li>
+<li>kernel function : $k(\textbf{x},\textbf{z}) = (1+\textbf{x}^T\textbf {z})$ 라고 하자.</li>
+</ul>
+<p>$$\phi(\textbf{x})^T \phi(\textbf{z}) = (1\;\sqrt{2}x_1\;\sqrt{2}x_2\;x_1^2\;\sqrt{2}x_1x_2;x_2^2)(1\;\sqrt{2}z_1\;\sqrt{2}z_2\;z_1^2\;\sqrt{2}z_1 z_2\;z_2^2)^T $$
+$$ = (1+x_1z_1+x_2z_2)^2 = (1 + \textbf{x}^T \textbf{z})^2$$</p>
+<p>이처럼</p>
+<ul>
+<li><strong>kernel을 통해 기존의 $\textbf{x}$을 nonlinear하게 만들어서 decision boundary를 만들 수 있어서 classification을 더 잘 할 수 있는 것이다.</strong> (여기서는 처음부터 $\phi(\textbf{x})$를 사용하였지만 지금까지의 모든 과정을 $\textbf{x}$ 라고 생각하면 kernel을 통해 nonlinear하게 만들었다고 이해할 수 있다.)</li>
+<li><strong>기존의 data를 explicit하게  $\phi(\textbf{x})$ (nonlinear하게) 으로 만든 뒤에 inner product로 계산하는 것이 아니라 kernel function을 통해 같은 결과를 만들 수 있기에 explicit하게 몰라도 되고 상당히 computationally 좋다.</strong></li>
+</ul>
+<p>가장 많이 쓰이는 kernel은</p>
+<ul>
+<li>Gaussian Kernel (Radial basis function Kernel)</li>
+</ul>
+<p>$$k(\textbf{x}, \textbf{z}) = \exp(\frac{- \left| \textbf{x} - \textbf{z} \right|^2_2}{2 \sigma^2})$$</p>
+<h3 id="712--comparison-to-logistic-regression">7.1.2  Comparison to logistic regression</h3>
+<p>그림을 찾아보는 것을 추천한다.</p>
+<ul>
+<li>SVM loss function : Hinge loss $\xi_j = (1-(wx_j + b)y_j)_ {+}$</li>
+<li>logistic loss function : Log loss $\xi_j = -\log (1+\exp(wx_j+b)y_j)$</li>
+</ul>
+<p>$$\because \theta_{MLE} = \arg\max {\sum{log(P(T_i \ X_i;\theta))}} $$
+$$ = \arg\max {\sum { Y_i X_i \theta - \log (1+\exp(X_i \theta) ) }}$$</p>
+<p>Hinge loss는 correct한 경우 penalty가 0이 되지만 log loss는 corret한 경우에도 0이 되지 않는다. log loss가 좀 덜 극단적인 것 같다.</p>
+<h3 id="713-multiclass-svm">7.1.3 Multiclass SVM</h3>
+<p>다양한 방법이 있다. 하지만 다들 한계점이 있는 것으로 보인다.</p>
+<h3 id="714-svms-for-regression">7.1.4 SVMs for regression</h3>
+<p>어렵지 않다. 정리는 생략하고자 한다.</p>
+<ul>
+<li>$\epsilon$-insensitive error function
+$$E_\epsilon((y(\textbf{x})-t)) = \begin{Bmatrix} 0 ,\; if\;|y(\textbf{x})-t|&lt;\epsilon \\  |y(\textbf{x})-t|-\epsilon,\; \text{otherwise} \end{Bmatrix}$$</li>
+</ul>
+<p>아래의 식을 최소화한다.
+$$C\sum_{n=1}^{N}{E_\epsilon((y(x)-t)) + \frac{1}{2}|\textbf{w}|^2}$$</p>
+<h2 id="72-relevance-vector-machines">7.2 Relevance vector machines</h2>
+<p>SVM은 확률적인 요소가 없다. 이를 위해 Bayesian SVM이라고 할 수 있는 RVM이 있다. 하지만 나중에 필요하면 다시 공부하고자 한다.</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-11-29</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/prml-chap07-1/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/svm/">SVM</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/prml-chap07-0/" class="prev" rel="prev" title="[PRML] Chapter7 - Constrained Optimization"><i class="fas fa-angle-left fa-fw"></i>[PRML] Chapter7 - Constrained Optimization</a>
+            <a href="/prml-chap08-1/" class="next" rel="next" title="[PRML] Chapter8 - Graphical Models (1)">[PRML] Chapter8 - Graphical Models (1)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

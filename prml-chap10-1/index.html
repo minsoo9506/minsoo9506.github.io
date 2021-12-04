@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[PRML] Chapter10 - Approximate Inference (1) - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[PRML] Chapter10 - Approximate Inference (1)" />
+<meta property="og:description" content="PRML chapter10 에 대한 카이스트 문일철 교수님 강의 정리하였다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/prml-chap10-1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-29T11:36:01+09:00" />
+<meta property="article:modified_time" content="2021-11-29T11:36:01+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[PRML] Chapter10 - Approximate Inference (1)"/>
+<meta name="twitter:description" content="PRML chapter10 에 대한 카이스트 문일철 교수님 강의 정리하였다."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/prml-chap10-1/" /><link rel="prev" href="http://minsoo9506.github.io/prml-chap09-1/" /><link rel="next" href="http://minsoo9506.github.io/prml-chap10-2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[PRML] Chapter10 - Approximate Inference (1)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/prml-chap10-1\/"
+        },"genre": "posts","keywords": "Approximate Inference","wordcount":  966 ,
+        "url": "http:\/\/minsoo9506.github.io\/prml-chap10-1\/","datePublished": "2021-11-29T11:36:01+09:00","dateModified": "2021-11-29T11:36:01+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Chapter10 - Approximate Inference (1)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-29">2021-11-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;966 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#variational-transform">Variational transform</a></li>
+        <li><a href="#convex-duality">Convex duality</a></li>
+        <li><a href="#variables-of-e-and-h">Variables of E and H</a></li>
+        <li><a href="#setting-the-minimum-criteria">Setting the minimum criteria</a></li>
+        <li><a href="#optimizing-the-lower-bound">Optimizing the Lower Bound</a></li>
+        <li><a href="#factorizing-q">Factorizing Q</a></li>
+        <li><a href="#focusing-on-single-variable-in-q">Focusing on Single Variable in Q</a></li>
+        <li><a href="#예시">예시</a></li>
+        <li><a href="#기타-예시">기타 예시</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>PRML chapter10 에 대한 카이스트 문일철 교수님 강의 정리하였다.</p>
+<h3 id="variational-transform">Variational transform</h3>
+<ul>
+<li>concave한 $y = \ln (x)$ 를 조금 더 간단한 함수(linear)로 근사하고자 한다. (특정 $x$에서)</li>
+<li>linear model $f(x) = \lambda x + b(\lambda)$ 으로 근사하자.</li>
+<li>How?
+<ul>
+<li>$\min_x (\lambda x + b(\lambda) -\ln x)$</li>
+<li>이를 위해 $x$에 대해 미분한다. 미분해서 구하면 $\lambda= \frac{1}{x}$</li>
+<li>이를 이용하면 $b(\lambda) = -\ln \lambda -1$</li>
+</ul>
+</li>
+<li>$f(x) = \lambda x - \ln \lambda -1$ 의 결과가 나온다. $x$에 대해서 선형인 결과이다. 하지만 optimization하기에 non linear한 $\lambda$가 다시 생긴다.</li>
+</ul>
+<p>그렇다면 logistic function에서는 variation transform이 가능할까?</p>
+<ul>
+<li>s curve라 concave하지도 convex하지도 않다.</li>
+<li>이런 경우 log 을 취해준다.</li>
+</ul>
+<p>$$\log \frac{1}{1+e^{x}} = -\log(1+e^x)$$</p>
+<p>이렇게 하면 log함수의 형태이므로 linear approximation(variational transform)이 가능하다. 그리고 linear model을 다시 exp를 취해주면 될 것이다.</p>
+<h3 id="convex-duality">Convex duality</h3>
+<p>그렇다면 위와 같은 경우를 좀 더 systematic variational transform할 수 없을까?</p>
+<ul>
+<li>Utilize the convex duality</li>
+</ul>
+<p>우리는 log같은 concave(or convex) function의 형태만 되면 선형으로 근사할 수 있다.</p>
+<ul>
+<li>Dual function(=Conjugate function) : $f^{ * }(\lambda)$</li>
+</ul>
+<p>$$f(x)=\min_{\lambda}{ \lambda^T x - f^{* }(\lambda) } \Leftrightarrow f^{* }(\lambda)=\min_{x}{ \lambda^T x - f(x)}$$</p>
+<p>위에서 봤듯이 복잡한 함수를 approximate했지만 그 복잡성은 사라지는 것이 아니고 $\lambda$와 같이 파라미터의 형태로 존재하게 된다.</p>
+<p>앞에서 배운 내용을 확률모델에서 생각해보자.</p>
+<ul>
+<li>probability distribution function도 결국 function이니까 그대로 이용할 수 있다. (variational transform)
+<ul>
+<li>아래 식에서 $\pi (i)$는 $i$의 given을 의미
+<ul>
+<li>eg. $P(S) = P(S_1)P(S_2|P_1,P_3)P(S_3)$ 에서 $\pi(2)={1,3}$</li>
+</ul>
+</li>
+<li>variational parameter $\lambda_i^U$</li>
+</ul>
+</li>
+</ul>
+<p>$$P(S) = \prod P(S_i | S_{\pi(i)}) = \min_{\lambda}P^U (S_i | S_{\pi(i)}, \lambda^U_i )$$</p>
+<h3 id="variables-of-e-and-h">Variables of E and H</h3>
+<ul>
+<li>$E$ is observed, fixed</li>
+<li>$H$ is estimated, infered</li>
+<li>$E \cup H = S$ (전체) 라고 할 때</li>
+<li>$P(E) = \sum_H P(H,E) = \sum_H P(S) = \sum_H \prod_i P(S_i  | S_{\pi(i)})$</li>
+</ul>
+<p>우리가 구하고자 하는 것은 $P(H|E) = P(H,E) / P(E)$ 이다. variational inference를 통해 $P(E)$를 approximate해야 한다. (바로 구하기 어려운 경우)</p>
+<h3 id="setting-the-minimum-criteria">Setting the minimum criteria</h3>
+<p>$$\ln P(E) = \ln \sum_H P(H,E) = \ln \sum_H Q(H|E) \frac{P(H,E)}{Q(H|E)}$$</p>
+<ul>
+<li>log는 concave(위로 볼록) 하기에</li>
+</ul>
+<p>$$\ln \sum_H Q(H|E) \frac{P(H,E)}{Q(H|E)} \ge \sum_H Q(H|E) \ln \frac{P(H,E)}{Q(H|E)} \ = \sum_H Q(H|E)[{ \ln P(E|H) + \ln P(H) } - \ln Q(H|E)] \= E_{Q(H|E)}\ln P(E|H) - KL(Q(H|E) || P(H))$$</p>
+<h3 id="optimizing-the-lower-bound">Optimizing the Lower Bound</h3>
+<ul>
+<li>
+<p>$Q(H | E,\lambda)$ : variational function(distribution)</p>
+<ul>
+<li>$\lambda$ : variational parameter</li>
+</ul>
+</li>
+<li>
+<p>$\theta$는 model parameter</p>
+</li>
+</ul>
+<p>$$\ln P(E | \theta) \ge  E_{Q(H|E)}\ln P(E|H,\theta) - KL(Q(H|E) || P(H|\theta))$$</p>
+<ul>
+<li>ELBO(evidence lower bound)</li>
+</ul>
+<p>$$L(\theta, \lambda) = \sum_H Q(H|E,\lambda)\ln P(H,E | \theta) - Q(H|E,\lambda)\ln Q(H|E,\lambda)$$</p>
+<p>이를 최적화하기 위해서 (9장에서 공부한 EM과 거의 유사) KL을 0으로 만들고</p>
+<ul>
+<li>$Q(H|E,\lambda)=P(H|E,\theta)$으로 만든다.
+<ul>
+<li>$\lambda^{t+1} = \arg\max_{\lambda}L(\theta^t, \lambda^t)$</li>
+</ul>
+</li>
+<li>그리고 $\theta$를 optimization한다. (미분해서)
+<ul>
+<li>$\theta^{t+1} = \arg\max_{\theta}L(\theta^t, \lambda^{t+1})$</li>
+</ul>
+</li>
+</ul>
+<p>그렇다면 어떻게 Q를 구할까?</p>
+<h3 id="factorizing-q">Factorizing Q</h3>
+<p>Q를 안다는 것은 좋은 $\lambda$와 Q의 distribution 형태를 골라야하는 것이다. 이전에는 Q가 $P(H|E,\theta)$이 되도록 하였지만 이를 쉽게  구하기 어려운 경우도 존재한다. 그렇다면 Q를 approximate 해보자.</p>
+<ul>
+<li>Mean field approximation
+<ul>
+<li>hidden variable들이 독립이라는 가정 given variational parameter</li>
+<li>simple, easier to hadle</li>
+<li>strong assumption</li>
+</ul>
+</li>
+</ul>
+<p>$$Q(H) = \prod_{i \le |H|}q_i(H_i | \lambda_i)$$</p>
+<h3 id="focusing-on-single-variable-in-q">Focusing on Single Variable in Q</h3>
+<p>이번에는 Factorizing한 Q에서 하나의 variable에 대해 살펴보자.</p>
+<p>$$L(\theta, \lambda) = \sum_H [ \prod_{i \le |H|}q_i(H_i |E, \lambda_i)\ln P(H,E | \theta) \\ - \prod_{i \le |H|}q_i(H_i |E, \lambda_i)\ln \prod_{i \le |H|}q_i(H_i | E,\lambda_i) ]$$</p>
+<p>위에서 single variable에 대해 정리하면 (j와 관련없으면 constant C로 처리)</p>
+<p>$$L(\lambda_j) = \sum_H [ \prod_{i \le |H|}q_i(H_i |E, \lambda_i)\ln P(H,E | \theta) \\ - \prod_{i \le |H|}q_i(H_i |E, \lambda_i)\ln \prod_{i \le |H|}q_i(H_i | E,\lambda_i) ]$$
+$$= \sum_H [ \prod_{i \le |H|}q_i(H_i |E, \lambda_i) { \ln P(H,E | \theta) - \ln \prod_{i \le |H|}q_i(H_i | E,\lambda_i)} ] $$
+$$=  \sum_{H_j} q_j (H_j | E, \lambda_j) \sum_{H_{-j}} \prod_{i \le |H|, i \neq j} q_i(H_i |E,\lambda_i) \ln P(H,E|\theta) \\ -\sum_{H_j} q_j (H_j|E,\lambda_j) \ln  q_j (H_j|E,\lambda_j)+C$$</p>
+<p>이제 새로운 P function을 정의하면</p>
+<p>$$\ln \tilde{P}(H,E | \theta) = \sum_{H_{-j}}\prod_{i\le |H|, i \neq j}q_i(H_i | E,\lambda_i) \ln P(H,E | \theta) $$
+$$ = E_{q_{i \neq j} }[\ln P(H,E | \theta)]+C$$</p>
+<p>이 새로운 P function을 $L(\lambda_j)$ 에 대입하면 이전에 우리가 봤던 형태가 나온다. 그렇다 KL divergence! 이를 최적화하기 위해서는 KL divergence = 0 을 만드는 분포를 이용하면 된다. 따라서</p>
+<p>$$\ln q_j (H_j | E, \lambda_j) = \ln \tilde{P}(H,E | \theta)=E_{q_{i \neq j}}[\ln P(H,E | \theta)] + C$$</p>
+<h3 id="예시">예시</h3>
+<ul>
+<li>$\mu \sim N(\mu_0, \frac{1}{\lambda_0 \tau})$</li>
+<li>$\tau \sim Gamma(a_0, b_0)$</li>
+<li>$x_i \sim N(\mu, \frac{1}{\tau})$</li>
+<li>H : $\mu, \tau$</li>
+<li>E : x</li>
+</ul>
+<p>먼저 joint 부터 구하면</p>
+<p>$$p(H,E | \theta) = p(X,\mu,\tau | \mu_0, \lambda_0, a_0, b_0)$$
+$$ =p(X| \mu, \tau)p(\mu | \tau, \mu_0, \lambda_0)p(\tau | a_0, b_0)$$
+$$=\prod_i p(x_i | \mu, \tau)p(\mu | \tau, \mu_0, \lambda_0)p(\tau | a_0, b_0)$$</p>
+<p>우리는 2개의 variational parameter가 필요하다. by mean field approximation</p>
+<p>$$Q(H|E,\lambda) = Q(\mu,\tau | X,\mu', \tau') = q(\mu | X,\mu')q(\tau | X,\tau')$$</p>
+<p>그럼 이제 optimal variational parameter를 구해보자.</p>
+<ul>
+<li>일단 $\mu$에 관하여 진행</li>
+</ul>
+<p>$$\ln q(\mu | X,\mu') = E_{\tau}[\ln p(X,\mu, \tau | \mu_0,\lambda_0, a_0, b_0)]+C_1 $$
+$$ = E_{\tau}[\ln \prod_i p(x_i | \mu, \tau)p(\mu | \tau, \mu_0, \lambda_0)p(\tau | a_0, b_0)]+C_1 \\ = E_{\tau}[\sum(\frac{1}{2}(\ln \tau - \ln 2\pi) - \frac{(x_i-\mu)^2 \tau}{2})] \\ + E_{\tau}[\frac{1}{2}(\ln \lambda_0 + \ln \tau - \ln 2 \pi) - \frac{(\mu - \mu_0)^2 \lambda_0 \tau}{2}]+C_2 \\ = - \frac{E_{\tau}[\tau]}{2}{ \sum (x_i - \mu)^2 + (\mu - \mu_0)^2 \lambda_0 }+C_3$$
+$$ = - \frac{1}{2}{ (\lambda_0+N)E_{\tau}[\tau] (\mu - \frac{\lambda_0 \mu_0 + \sum x_i}{\lambda_0 + N})^2 } + C_4$$</p>
+<p>그렇다면 이제 $q(\mu | X,\mu')$를 normal이라고 가정해보면 (우리는 $q(\mu;i;p)$에 대한 아무런 가정이 없기 때문에 이렇게 접근하는 것)</p>
+<p>$$q(\mu | X,\mu') \sim N(\frac{\lambda_0 \mu_0 + \sum x_i}{\lambda_0 + N},\frac{1}{(\lambda_0 +N)E_{\tau}[\tau]})$$</p>
+<p>위에서 우리가 모르는 부분은 $E_{\tau}[\tau]$ 이므로 위와 똑같은 과정을 반복해서 모르는 부분에 대해 찾아야 한다.</p>
+<p>$$\ln q(\tau | X,\tau') = E_{\mu}[\ln p(X,\mu,\tau | \mu_0, \lambda_0, a_0, b_0)]+C_1$$
+$$= -\tau{ b_0 + \frac{1}{2}E_{\mu}[\sum(x_i - \mu)^2 + (\mu-\mu_0)^2 \lambda_0]} + (a_0 + \frac{N+1}{2}-1)\ln \tau + C_2$$</p>
+<p>이를 잘 보면 $q(\tau | X,\tau')$ 는 Gamma 꼴이라고 생각할 수 있다.</p>
+<p>$$q(\tau | X,\tau') \sim Gamma(a_0 + \frac{N+1}{2}, b_0 + \frac{1}{2}E_{\tau}[\sum(x_i - \mu)^2 + (\mu - \mu_0)^2\lambda_0])$$</p>
+<p>이를 통해 우리가 구해야 하는 모든 것을 구했다. 정리하면</p>
+<ul>
+<li>$E_{\tau}[\tau] : E_{\mu}[\mu],E_{\mu}[\mu^2]$ 이 필요하다</li>
+<li>$E_{\mu}[\mu]$ 는 바로 구할 수 있음</li>
+<li>$E_{\mu}[\mu^2] : E_{\tau}[\tau]$ 필요</li>
+<li>$\lambda$ 는 임의의 수로 시작</li>
+</ul>
+<p>interlocked 된 상태이기에 iterative하게 구하면 된다.</p>
+<h3 id="기타-예시">기타 예시</h3>
+<ul>
+<li>prof.Moon
+<ul>
+<li>Latent Dirichlet Allocation</li>
+</ul>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-11-29</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/prml-chap10-1/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/approximate-inference/">Approximate Inference</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/prml-chap09-1/" class="prev" rel="prev" title="[PRML] Chapter9 - Mixture Models and EM"><i class="fas fa-angle-left fa-fw"></i>[PRML] Chapter9 - Mixture Models and EM</a>
+            <a href="/prml-chap10-2/" class="next" rel="next" title="[PRML] Chapter10 - Approximate Inference (2)">[PRML] Chapter10 - Approximate Inference (2)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
