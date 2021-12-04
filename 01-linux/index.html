@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Linux] 리눅스 명령어 - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Linux] 리눅스 명령어" />
+<meta property="og:description" content="생활코딩 리눅스 명령어 정리" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/01-linux/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T13:01:00+09:00" />
+<meta property="article:modified_time" content="2021-12-03T13:01:00+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Linux] 리눅스 명령어"/>
+<meta name="twitter:description" content="생활코딩 리눅스 명령어 정리"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/01-linux/" /><link rel="prev" href="http://minsoo9506.github.io/07-vae/" /><link rel="next" href="http://minsoo9506.github.io/02-docker/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Linux] 리눅스 명령어",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/01-linux\/"
+        },"genre": "posts","keywords": "Linux","wordcount":  789 ,
+        "url": "http:\/\/minsoo9506.github.io\/01-linux\/","datePublished": "2021-12-03T13:01:00+09:00","dateModified": "2021-12-03T13:01:00+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Linux] 리눅스 명령어</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/mlops/"><i class="far fa-folder fa-fw"></i>MLOps</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;789 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#file--directory">file &amp; directory</a></li>
+        <li><a href="#help--man">help &amp; man</a></li>
+        <li><a href="#파일이동-복사">파일이동, 복사</a></li>
+        <li><a href="#sudo">sudo</a></li>
+        <li><a href="#package-manager">package manager</a></li>
+        <li><a href="#file-download--wget">file download : wget</a></li>
+        <li><a href="#why-cli">why CLI?</a></li>
+        <li><a href="#pipeline">pipeline</a></li>
+        <li><a href="#io-redirection">IO Redirection</a></li>
+        <li><a href="#directory-structure">Directory structure</a></li>
+        <li><a href="#file-find--locate-find-whereis">file find : locate, find, whereis</a></li>
+        <li><a href="#background-execute">background execute</a></li>
+        <li><a href="#daemon">daemon</a></li>
+        <li><a href="#cron">CRON</a></li>
+        <li><a href="#startup-scipt">startup scipt</a></li>
+        <li><a href="#mult-user">Mult user</a></li>
+        <li><a href="#root-user">Root user</a></li>
+        <li><a href="#add-user">Add user</a></li>
+        <li><a href="#permission">Permission</a></li>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>생활코딩 리눅스 명령어 정리</p>
+<h3 id="file--directory">file &amp; directory</h3>
+<ul>
+<li><code>pwd</code> : 현재 경로 확인</li>
+<li><code>ls</code> : 현재 위치에 있는 파일, 디렉토리들 확인
+<ul>
+<li><code>ls -l</code> : 파일, 디렉토리들 정보도 같이 확인 가능</li>
+<li><code>ls -a</code> : 감춰진 것들도 확인 가능</li>
+<li><code>ls -al</code> : 위 두개를 동시에 확인</li>
+</ul>
+</li>
+<li><code>mkdir 디렉토리이름</code> : 디렉토리 만들기</li>
+<li><code>cd 특정위치</code> : 특정위치로 이동 (절대경로, 상대경로 모두 사용가능)</li>
+<li><code>rm</code> : 파일 삭제
+<ul>
+<li><code>rm -r 디렉토리</code> : directory를 <code>rm</code>으로 삭제가 안되고 이 명령어 사용</li>
+<li><code>rmdir</code> : directory를 삭제</li>
+</ul>
+</li>
+<li><code>touch</code> : 파일 만들때 쓰는듯</li>
+</ul>
+<h3 id="help--man">help &amp; man</h3>
+<ul>
+<li><code>명령어 --help</code> : 해당 명령어에 대한 설명이 나옴</li>
+<li><code>man 명령어</code> : 더 자세히 설명이 나오는듯</li>
+</ul>
+<h3 id="파일이동-복사">파일이동, 복사</h3>
+<ul>
+<li><code>cp 복사당할파일위치 복사할파일위치</code> : 파일복사
+<ul>
+<li>예시) <code>cp /home/a.txt /home/move/b.txt</code></li>
+</ul>
+</li>
+<li><code>mv 이동당할파일위치 이동할파일위치</code> : 파일이동
+<ul>
+<li>파일이름 바꾸때도 <code>mv</code> 쓰면 되겠구나</li>
+</ul>
+</li>
+</ul>
+<h3 id="sudo">sudo</h3>
+<ul>
+<li><code>sudo</code> : super user do</li>
+<li>각각의 사용자마다 권한을 다르게 지정되어있는데 일반적인 사용자의 경우 <code>sudo</code>를 통해 강한 권한</li>
+</ul>
+<h3 id="package-manager">package manager</h3>
+<ul>
+<li>apt라는 package manager를 사용해보자</li>
+<li><code>apt-get update</code> : 이 명령어를 통해 최신상태 소프트웨어 목록을 다운받는다</li>
+<li><code>apt-cache search 원하는소프트웨어</code> : 위에서 다운받은 목록에서 원하는 소프트웨어와 관련한 내용을 보여준다</li>
+<li><code>apt-get install 원하는소프트웨어</code> : 해당 소프트웨어 다운</li>
+<li><code>apt-get upgrade 원하는소프트웨어</code> : 해당 소프트웨어 업그레이드
+<ul>
+<li><code>apt-get upgrade</code> 그냥 이렇게 하면 전부 다 업그레이드</li>
+</ul>
+</li>
+<li><code>apt-get remove 원하는소프트웨어</code> : 해당 소프트웨어 삭제</li>
+</ul>
+<h3 id="file-download--wget">file download : wget</h3>
+<ul>
+<li><code>wget 다운받을주소</code> : 파일다운로드</li>
+<li><code>wget -O 저장하고싶은이름 다운받을주소</code> : 원하는 이름으로 파일이 저장된다</li>
+</ul>
+<h3 id="why-cli">why CLI?</h3>
+<ul>
+<li>GUI보다 메모리도 덜 먹고 편함</li>
+<li>연속적으로 명령이 가능!
+<ul>
+<li>예를 들어 <code>mkdir minsoo; cd minsoo</code></li>
+<li><code>;</code> 세미콜론은 그냥 편의상 명령어를 구분하는 역할</li>
+<li>근데 주의! 앞의 명령어가 오류가 나도 뒤의 명령어가 진행된다</li>
+</ul>
+</li>
+</ul>
+<h3 id="pipeline">pipeline</h3>
+<ul>
+<li><code>cat sample.txt</code> : sample.txt 파일을 보여준다</li>
+<li><code>grep 특정단어 특정파일</code> : 특정파일에 특정단어가 들어가있는 행을 보여준다.</li>
+<li>pipeline 예시 (<code>|</code> 사용)
+<ul>
+<li><code>ls --help | grep sort</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="io-redirection">IO Redirection</h3>
+<ul>
+<li><code>&gt;</code>
+<ul>
+<li><code>ls -l &gt; result.txt</code> : 앞의 내용(standard output)을 result.txt로 redirection해서 파일을 만든다.</li>
+<li>근데 이때 <code>&gt;</code>는 <code>1&gt;</code>을 의미한다. 이는 standard output을 redirection할때 사용하는 것이다.</li>
+<li>근데 <code>rm result.txt</code>이 에러가 나는 명령어라고 가정하면 이는 standard error이고 이를 rediection하기 위해서는 <code>rm result.txt 2&gt; error.txt</code> 해야한다.</li>
+</ul>
+</li>
+<li><code>cat</code>
+<ul>
+<li><code>cat result.txt</code> 와 <code>cat &lt; result.txt</code>는 똑같은 결과는 낸다. 다른점은?</li>
+<li>전자의 경우는 result.txt를 Command-line Argument로 받은 것이고 후자는 Standard input으로 받은 것!</li>
+</ul>
+</li>
+<li><code>&gt;&gt;</code>
+<ul>
+<li>기존에 result.txt 파일이 있다고 하면 예를 들어, <code>ls -al &gt;&gt; result.txt</code> 하면 <code>ls -al</code>의 결과가 result.txt에 append된다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="directory-structure">Directory structure</h3>
+<ul>
+<li><code>/bin</code> : user binaries, 우리가 사용하는 명령어들</li>
+<li><code>/sbin</code> : system binaries</li>
+<li><code>/etc</code> : configuration files, 설정</li>
+<li><code>/var</code> : variable files</li>
+<li><code>/home</code> : home directories, user들의 file</li>
+<li>기타등등</li>
+</ul>
+<h3 id="file-find--locate-find-whereis">file find : locate, find, whereis</h3>
+<ul>
+<li><code>locate 원하는파일</code> : 원하는 파일 찾을 수 있다</li>
+<li><code>find 원하는파일</code> : 원하는 파일 찾을 수 있다
+<ul>
+<li>더 다양한 사용법이 존재</li>
+</ul>
+</li>
+<li><code>whereis</code> : 주로 명령어, binary 파일 위치 찾을 때 쓰는듯</li>
+<li><code>which</code> : 사용하는 명령어의 위치 알려줌</li>
+</ul>
+<h3 id="background-execute">background execute</h3>
+<ul>
+<li>어떤 프로그램을 사용하다가 <code>Ctrl+Z</code>를 누르면 해당 프로그램이 background로 간다</li>
+<li>그리고 <code>jobs</code> 라는 명령어를 치면 background에 돌아가는 프로그램을 보여준다</li>
+<li>원하는 background에 있는 프로그램에 돌아가려면 <code>fg %해당프로그림의번호</code> 명령어를 이용하면 된다</li>
+<li><code>&amp;</code>
+<ul>
+<li>시간이 오래걸리는 프로그램이 있으면 <code>~명령어~ &amp;</code>를 통해서 바로 background로 보내고 나는 다른 일을 하면 된다</li>
+</ul>
+</li>
+</ul>
+<h3 id="daemon">daemon</h3>
+<ul>
+<li><code>ls, rm ...</code> 과 같은 프로그램은 필요할 때만 사용</li>
+<li>그렇다면 항상 켜져있도록하는 프로그램도 있을 것!
+<ul>
+<li>ex) server</li>
+</ul>
+</li>
+<li>이를 daemon이라고 한다</li>
+<li><code>/etc/init.d</code> : 여기에 daemon 파일들이 있다
+<ul>
+<li><code>service 프로그램 start</code>, <code>service 프로그램 stop</code></li>
+</ul>
+</li>
+<li>컴퓨터 시작할 때 자동으로 실행되도록 하고 싶으면 <code>/etc/rc3.d</code>에 link를 만들면 된다</li>
+</ul>
+<h3 id="cron">CRON</h3>
+<ul>
+<li>CRON : 정기적으로 명령을 실행시켜주는 도구</li>
+<li>예를 들어,
+<ul>
+<li>사용자가 server로 메일을 보내면 바로 완료되었다고 뜨지만 server에서는 해당내용을 체크만 하고 cron을 통해서 체크된 내용을 정기적으로 진행한다</li>
+</ul>
+</li>
+<li><code>crontab</code>
+<ul>
+<li><code>crontab -e</code> 명령어를 치면 에디터가 열리고 거기에 명령어를 만들어주면 된다</li>
+</ul>
+</li>
+</ul>
+<h3 id="startup-scipt">startup scipt</h3>
+<ul>
+<li>shell을 시작할 때, 특정 명령어 실행되도록 하는 것</li>
+<li>에디터로 <code>.bashrc</code> 파일을 열어보면 이미 만들어져있다
+<ul>
+<li>여기에 원하는 명령어를 추가하면 된다</li>
+<li>예를 들어, <code>alias l='ls -al'</code> 이렇게 별명을 붙여주기가 가능하는데 이런거는 미리 만들어두면 편하게 이용할 수 있을 것이다</li>
+</ul>
+</li>
+</ul>
+<h3 id="mult-user">Mult user</h3>
+<ul>
+<li><code>id</code>
+<ul>
+<li><code>id</code> 명령어를 치면 지금 user에 대한 정보 보여준다</li>
+</ul>
+</li>
+<li><code>who</code>
+<ul>
+<li><code>who</code> 명령어를 치면 누가 접속했는지 보여준다</li>
+</ul>
+</li>
+</ul>
+<h3 id="root-user">Root user</h3>
+<ul>
+<li>리눅스에는 크게 두 가지 user
+<ul>
+<li>super(root) user</li>
+<li>user</li>
+</ul>
+</li>
+<li><code>sudo</code> 명령어로 user가 root user처럼 명령할 수 있다
+<ul>
+<li>하지만 아무나 사용은 못하고 이를 사용할 수 있도록 명령어를 추가로 해야한다</li>
+</ul>
+</li>
+<li><code>su 사용자이름</code> 명령어를 통해 user를 바꿀 수 있다</li>
+</ul>
+<h3 id="add-user">Add user</h3>
+<ul>
+<li><code>useradd -m 이름</code> : 해당 이름 user가 만들어진다</li>
+<li><code>passwd 이름</code> : 해당 이름에서 사용한 비밀번호 지정</li>
+</ul>
+<h3 id="permission">Permission</h3>
+<ul>
+<li>file, directory에 대해 user의 권한을 지정
+<ul>
+<li>read, write, excute 에 대한 권한을 지정</li>
+</ul>
+</li>
+<li><code>-rw-r--r-- 1 root root 485 Jul  2 12:38 result.txt</code> : <code>ls -l result.txt</code> 라는 명령어를 친 결과
+<ul>
+<li><code>-rw-r--r--</code> 에서 맨 앞은 type(file or directory), 뒷부분은 access mode를 의미</li>
+<li><code>rw-r--r--</code> : 여기에서 <code>rw-</code>는 owner의 권한, <code>r--</code>는 그룹의 권한, <code>r--</code>는 나머지들의 권한</li>
+<li><code>root root</code> 에서 앞부분은 owner, 뒤부분은 group을 의미</li>
+</ul>
+</li>
+<li>directory에서 read를 안에있는 파일을 읽을수있는지, write는 안에있는 파일을 수정할수있는지, execute는 해당 directory에 들어갈수있는지</li>
+<li><code>chmod</code>
+<ul>
+<li><code>r</code> : read, <code>w</code> : write, <code>x</code> : excute</li>
+<li>위에서 <code>chomod o-r result.txt</code>하면 나머지들은 read도 못한다 추가는 <code>chomod o+r result.txt</code> 이런식으로 가능
+<ul>
+<li><code>u</code>, <code>g</code>, <code>o</code>, <code>a</code> 에 <code>+,-,=</code> 연산자와 mode 이용</li>
+</ul>
+</li>
+<li>Octal modes도 있다 예를들어 <code>chomod 111 result.txt</code> 처럼 owner, group, other 모두 한번에 <code>1</code>(excute only)이 되도록 한다</li>
+</ul>
+</li>
+</ul>
+<h3 id="reference">Reference</h3>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLuHgQVnccGMBT57a9dvEtd6OuWpugF9SH" target="_blank" rel="noopener noreffer">https://www.youtube.com/playlist?list=PLuHgQVnccGMBT57a9dvEtd6OuWpugF9SH</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-12-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/01-linux/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/07-vae/" class="prev" rel="prev" title="[Generative Model] VAE"><i class="fas fa-angle-left fa-fw"></i>[Generative Model] VAE</a>
+            <a href="/02-docker/" class="next" rel="next" title="[Docker] 생활코딩 입문 수업 정리">[Docker] 생활코딩 입문 수업 정리<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -67,11 +67,11 @@
     <guid>http://minsoo9506.github.io/causal01/</guid>
     <description><![CDATA[<p>Causal Inference시 주의할 점</p>]]></description>
 </item><item>
-    <title>[Generative Model] VAE</title>
-    <link>http://minsoo9506.github.io/07-vae/</link>
-    <pubDate>Fri, 03 Dec 2021 09:07:00 &#43;0900</pubDate>
+    <title>[Docker] 생활코딩 입문 수업 정리</title>
+    <link>http://minsoo9506.github.io/02-docker/</link>
+    <pubDate>Fri, 03 Dec 2021 13:02:00 &#43;0900</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/07-vae/</guid>
-    <description><![CDATA[<p>Auto-Encoding Variational Bayes (2014)</p>]]></description>
+    <guid>http://minsoo9506.github.io/02-docker/</guid>
+    <description><![CDATA[<p>Docker 기본적인 명령어 정리</p>]]></description>
 </item></channel>
 </rss>
