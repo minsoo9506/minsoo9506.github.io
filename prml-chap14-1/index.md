@@ -1,4 +1,4 @@
-# [PRML] Chapter 14 : Combining Models
+# [PRML] Chapter14 - Combining Models
 
 
 Ensemble method에 대해 정리하였다.
