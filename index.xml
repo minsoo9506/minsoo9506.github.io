@@ -3,12 +3,12 @@
         <title>minsoo9506</title>
         <link>http://minsoo9506.github.io/</link>
         <description>This is My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 21 Dec 2021 21:02:00 &#43;0900</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 20 Dec 2021 21:02:00 &#43;0900</lastBuildDate>
             <atom:link href="http://minsoo9506.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>[Git] 기본 내용 정리</title>
     <link>http://minsoo9506.github.io/03-git-basic/</link>
-    <pubDate>Tue, 21 Dec 2021 21:02:00 &#43;0900</pubDate>
+    <pubDate>Mon, 20 Dec 2021 21:02:00 &#43;0900</pubDate>
     <author>Author</author>
     <guid>http://minsoo9506.github.io/03-git-basic/</guid>
     <description><![CDATA[<p>Git 기본적인 명령어 정리</p>]]></description>

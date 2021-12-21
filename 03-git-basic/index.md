@@ -81,7 +81,7 @@ git commit --amend -m "bugfix commit"
 
 - `git revert HEAD`: HEAD가 가르키는 해당 커밋을 지운다.
     - 지운 이력이 남는다.
-- `git reset --hard HEAD~`: 필요없어지 커밋 지우기
+- `git reset --hard HEAD~`: 필요없어진 커밋 지우기
     - 더 이상 필요 없어진 커밋들을 버릴 수 있다.
     - 명령어 실행 시 어떤 모드로 실행할 지 지정하여 'HEAD' 위치와 인덱스, 작업 트리 내용을 함께 되돌릴지 여부를 선택할 수 있다.
     - 종류는 soft, mixed, hard 가 있다.
