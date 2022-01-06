@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Algorithmic Marketing] 생존분석 기본개념 - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Algorithmic Marketing] 생존분석 기본개념" />
+<meta property="og:description" content="생존분석 방법론의 기본적인 개념을 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/01_survival_analysis/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-06T09:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-06T09:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Algorithmic Marketing] 생존분석 기본개념"/>
+<meta name="twitter:description" content="생존분석 방법론의 기본적인 개념을 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/01_survival_analysis/" /><link rel="next" href="http://minsoo9506.github.io/prml-chap01-1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Algorithmic Marketing] 생존분석 기본개념",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/01_survival_analysis\/"
+        },"genre": "posts","keywords": "생존분석","wordcount":  852 ,
+        "url": "http:\/\/minsoo9506.github.io\/01_survival_analysis\/","datePublished": "2021-01-06T09:00:00+00:00","dateModified": "2021-01-06T09:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Algorithmic Marketing] 생존분석 기본개념</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/algorithmic-marketing/"><i class="far fa-folder fa-fw"></i>Algorithmic Marketing</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-06">2021-01-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;852 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#생존분석">생존분석</a>
+      <ul>
+        <li><a href="#생존분석의-특징">생존분석의 특징</a></li>
+        <li><a href="#notation">Notation</a></li>
+      </ul>
+    </li>
+    <li><a href="#생존분석에서-관심사">생존분석에서 관심사</a></li>
+    <li><a href="#생존함수survival-function">생존함수(Survival function)</a>
+      <ul>
+        <li><a href="#km-추정법">KM 추정법</a></li>
+      </ul>
+    </li>
+    <li><a href="#두-집단-생존함수-비교">두 집단 생존함수 비교</a>
+      <ul>
+        <li><a href="#log-rank-test">log-rank test</a></li>
+      </ul>
+    </li>
+    <li><a href="#위험도함수hazard-function">위험도함수(hazard function)</a></li>
+    <li><a href="#생존분석에서-식들의-관계">생존분석에서 식들의 관계</a></li>
+    <li><a href="#proportional-hazards-model">Proportional Hazards Model</a>
+      <ul>
+        <li><a href="#partial-likelihood">Partial Likelihood</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>생존분석 방법론의 기본적인 개념을 알아보자.</p>
+<p>생존분석은 주로 의학통계에서 많이 사용해왔다. 마케팅쪽에서는 주로 고객이탈(churn)과 관련하여 방법론을 가져와서 사용하기도 한다. 그외에도 특정한 treatment를 취한 뒤에 시간의 흐름에 따른 변화를 보기위해서도 많이 사용된다. 이름이 생존분석이라 엄청 어려워보이지만 실제로는 새로운 개념 몇가지만 이해한다면 regression처럼 어렵지 않게 이해할 수 있다.</p>
+<h2 id="생존분석">생존분석</h2>
+<ul>
+<li>자료의 형태: 어떤 사건이 발생할 때까지 걸리는 시간 (time until an event occurs)
+<ul>
+<li>일반적인 regression 문제 아닌가? censored data가 존재하기 때문에 생존분석 접근이 필요하다.</li>
+</ul>
+</li>
+</ul>
+<p>여기서 <em>censored data</em>라는 것은 중도절단된 데이터라고 할 수 있다. 예를 들어, 신약을 두 환자그룹에 투여하고 사망까지 걸리는 시간을 측정하고자 한다. 그런데 실험대상이던 홛자가 외국으로 떠나서 연락이 두절되었다. 그러면 그 환자는 실제로 사망한 것은 아니지만 실제로 살았는지 죽었는지 알 방법이 없고 데이터를 더 이상 얻을 수 없는 시점을 그 환자의 수명으로 정할 수 밖에 없다. 이처럼 우리가 기대하는 이벤트(여기서는 사망)가 아닌 다른 이유로 해당 정보를 얻을 수 없는 경우 censored data라고 한다.</p>
+<ul>
+<li>자료의 예
+<ul>
+<li>사건: 사망, 질병발생, 구독취소</li>
+<li>시간: 년, 달, 주</li>
+</ul>
+</li>
+<li>분석예시: 전립선 암 치료제 효과 비교
+<ul>
+<li>사건: 전립선 암으로 인한 사망</li>
+<li>시간: randomization시점부터 사망까지의 시간</li>
+<li>분석목적: A라는 약을 먹는 집단이 그렇지 않은 집단보다 생존 시간이 더 긴가?</li>
+</ul>
+</li>
+</ul>
+<h3 id="생존분석의-특징">생존분석의 특징</h3>
+<ul>
+<li>관심자료가 nonnegative
+<ul>
+<li>time until an event occurs</li>
+</ul>
+</li>
+<li>생존시간의 분포는 주로 skewed
+<ul>
+<li>log transformation으로 해결되지 않을 정도</li>
+</ul>
+</li>
+<li>생존자료가 중도절단(censored)되어 관측
+<ul>
+<li>아직 이벤트가 발생하지 않았지만 연구자가 멈추는 경우</li>
+<li>우리가 보고 싶은 이벤트 때문이 아니라 다른 이유로 더 이상 관찰을 못하는 경우</li>
+</ul>
+</li>
+</ul>
+<h3 id="notation">Notation</h3>
+<ul>
+<li>$T$: survival time</li>
+<li>$C$: censoring time</li>
+</ul>
+<p>$$Y=min(T,C)$$</p>
+<ul>
+<li>status indicator:</li>
+</ul>
+<p>$$\delta =
+\begin{cases}
+1,\;if\;T \le C \\
+0,\;if\;T &gt; C
+\end{cases}$$</p>
+<ul>
+<li>우리가 관찰하는 dataset은 $(Y,\delta)$ pair의 형태이다.</li>
+</ul>
+<h2 id="생존분석에서-관심사">생존분석에서 관심사</h2>
+<ul>
+<li>생존시간의 분포 파악 (집단 1개)
+<ul>
+<li>생존 함수 추정: 주로 Kaplan-Meier 추정법</li>
+</ul>
+</li>
+<li>집단 간 생존 분포 비교 (집단 2개 이상)
+<ul>
+<li>생존 함수 비교: 주로 log-rank 검정</li>
+</ul>
+</li>
+<li>생존시간에 대한 변수들의 효과 파악
+<ul>
+<li>Cox 회귀 모형</li>
+</ul>
+</li>
+</ul>
+<h2 id="생존함수survival-function">생존함수(Survival function)</h2>
+<p>$$S(t)=P(T&gt;t)=1-F(t)$$</p>
+<ul>
+<li>특정 시점 $t$보다 더 오래 살 확률</li>
+</ul>
+<h3 id="km-추정법">KM 추정법</h3>
+<p>위의 생존함수를 추정하는 방법은 다양하지만 주로 Kaplan-Meier 추정값을 많이 사용한다. 간단하면서도 유용한 방법이기 때문이다.</p>
+<p>$$S_t = \frac{n_t - d_t}{n_t}$$</p>
+<ul>
+<li>$n_t$ : 시간 $t$에 이벤트를 경험할 위험에 놓인 개체의 수</li>
+<li>$d_t$ : 시간 $t$에 이벤트를 경험한 개체의 수</li>
+</ul>
+<p>$$\hat{S}(t) = \prod_{i \le t} S_i = \prod_{i \le t} (1 - \frac{d_i}{n_i})$$</p>
+<p>위의 식을 Kaplan-Meier 추정값이라고 한다. (MLE이다)</p>
+<ul>
+<li>표준오차를 통해서 신뢰구간도 알 수 있다.</li>
+<li>비모수적 생존함수 추정법</li>
+<li>survival curve 를 항상 그려보자. <a href="https://github.com/minsoo9506/algorithmic-marketing/blob/master/survival_analysis/survival_analysis_example.ipynb" target="_blank" rel="noopener noreffer">(코드예시)</a></li>
+</ul>
+<h2 id="두-집단-생존함수-비교">두 집단 생존함수 비교</h2>
+<p>위와 같은 방법으로 생존함수를 구했다면 집단간의 차이가 있는지 궁금할 수 있다. 예를 들어, 신약을 먹은 집단과 신약을 먹지 않은 집단간의 생존함수가 차이가 있는지 검정하고 싶은 경우를 생각해 볼 수 있다. 신약의 효과에 대해서 검정할 수 있는 것이다. (censored data도 없고 less skewed되어 있다면 그냥 t-test같은 방법도 가능할 것이다)</p>
+<ul>
+<li>두 집단의 생존함수가 같은지 비교, 검정한다.</li>
+<li>특정 시점에서의 비교가 아니라 모든 시점을 비교하는 것이다.</li>
+</ul>
+<p>$$H_0: S_1(t) = S_2(t), \forall t$$</p>
+<h3 id="log-rank-test">log-rank test</h3>
+<ul>
+<li>일관적인 차이를 검출한다.
+<ul>
+<li>여기서 일반적인이란 두 그룹의 survival curve를 그렸을 때, 서로 교차하지 않는 것을 의미한다.</li>
+<li>교차하게 되면 검정할 수 없다.</li>
+</ul>
+</li>
+<li>시점별 다른 가중치를 고려할 수 있다.</li>
+<li>세 집단 이상도 비교 가능하다.</li>
+<li>디테일한 유도과정은 생략 <a href="https://github.com/minsoo9506/algorithmic-marketing/blob/master/survival_analysis/survival_analysis_example.ipynb" target="_blank" rel="noopener noreffer">(코드예시)</a></li>
+</ul>
+<h2 id="위험도함수hazard-function">위험도함수(hazard function)</h2>
+<p>$$h(t) = \lim_{\vartriangle t \rightarrow 0} \frac{P(t &lt; T \le t + \vartriangle t | T &gt; t)}{\vartriangle t}$$</p>
+<ul>
+<li>특정 시점 $t$까지 살아남았을 때, 시간 단위당 순간 사건 발생률</li>
+<li>조건부가 존재하기에 확률은 아니다.</li>
+<li>왜 위험도함수가 필요할까?
+<ul>
+<li>propotional hazards model의 기반이 된다.</li>
+<li>censored data로 인해 바로 접근하기 어렵기 때문에 새로운 개념인 위험도함수를 통해서 (생존함수도 마찬가지) 접근하면 문제를 더 쉽게 해결할 수 있기 때문이다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="생존분석에서-식들의-관계">생존분석에서 식들의 관계</h2>
+<p>$$h(t) = \lim_{\vartriangle t \rightarrow 0} \frac{P(t &lt; T \le t + \vartriangle t | T &gt; t)}{\vartriangle t}$$
+$$= \lim_{\vartriangle t \rightarrow 0} \frac{P( (t &lt; T \le t + \vartriangle t ) \cap (T &gt; t))}{P(T &gt; t) \vartriangle t}$$
+$$=\lim_{\vartriangle t \rightarrow 0} \frac{P(t &lt; T \le t + \vartriangle t )/\vartriangle t}{P(T &gt; t) }=\frac{f(t)}{S(t)}$$</p>
+<ul>
+<li>where $f(t) = \lim_{\vartriangle t \rightarrow 0} \frac{P(t &lt; T \le t + \vartriangle t )}{\vartriangle t}$ : probability density function associated with $T$</li>
+</ul>
+<h2 id="proportional-hazards-model">Proportional Hazards Model</h2>
+<p>survival time을 여러 covariates로 모델링을 하고 싶은 경우 아래와 같이 hazard function의 형태를 가정하여 접근한다. <a href="https://github.com/minsoo9506/algorithmic-marketing/blob/master/survival_analysis/survival_analysis_example.ipynb" target="_blank" rel="noopener noreffer">(코드예시)</a></p>
+<p>$$h(t|x_i) = h_0 (t) \exp (\sum_{j=1}^p x_{ij}\beta_j)$$</p>
+<ul>
+<li>where $h_0(t) \ge 0$ is an unspecified function (baseline hazard)
+<ul>
+<li>functional form에 대한 가정이 없기 때문에 flexible하게 모델링 가능</li>
+</ul>
+</li>
+<li>물론 proportional한 가정자체가 이미 한계가 존재하는 것은 사실이다.</li>
+<li>이외에도 survival forest와 같은 접근법도 존재한다.</li>
+</ul>
+<p>위의 내용을 proportional hazard assumption 이라고 한다.</p>
+<h3 id="partial-likelihood">Partial Likelihood</h3>
+<ul>
+<li>그런데 baseline hazard의 형태를 모르기 때문에 parameter ($\beta$)를 추정할 수 없다.</li>
+<li>하지만 cox&rsquo;s proportional hazards model에서는 가능하다.</li>
+</ul>
+<p>아래의 과정을 보자.</p>
+<ul>
+<li>가정
+<ul>
+<li>일단 이벤트가 발생한 시간이 no ties 를 가정한다.</li>
+<li>$\delta_i = 1$, 따라서 $t_i = y_i$</li>
+</ul>
+</li>
+<li>total hazard at time $y_i$ for the at risk observations:
+$$\sum_{i' : y_{i'} \ge y_i}h_0(y_i) \exp (\sum_{j=1}^p x_{i&rsquo;j}\beta_j)$$</li>
+<li>the probability that the <em>i</em>th observation is the one to fail at time $y_i$:
+$$\frac{h_0(y_i) \exp (\sum_{j=1}^p x_{ij}\beta_j)}{\sum_{i' : y_{i'} \ge y_i}h_0(y_i) \exp (\sum_{j=1}^p x_{i&rsquo;j}\beta_j)} = \frac{ \exp (\sum_{j=1}^p x_{ij}\beta_j)}{\sum_{i' : y_{i'} \ge y_i} \exp (\sum_{j=1}^p x_{i&rsquo;j}\beta_j)}$$</li>
+</ul>
+<p>위의 식을 이용하여 $\delta_i = 1$인 경우만 고려하여 partial likelihood를 구하면</p>
+<p>$$PL(\beta) = \prod_{i:\delta_i = 1} \frac{ \exp (\sum_{j=1}^p x_{ij}\beta_j)}{\sum_{i' : y_{i'} \ge y_i} \exp (\sum_{j=1}^p x_{i&rsquo;j}\beta_j)}$$</p>
+<ul>
+<li>logistic regression 처럼 iterative하게 parameter를 추정한다.</li>
+<li>$\beta$를 추정하면 일반적인 회귀방법론들처럼 계수에 대한 p-value, confidence interval을 구할 수 있다.</li>
+<li>맨처음 가정이 깨지는 경우 (당연히 깨지는 경우가 더 많다), 이를 해결하는 방법들이 있다.</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>ISLR 2nd edition</li>
+<li>연세대학교 응용통계학과 강상욱 교수님 특강자료</li>
+<li>알고리즘 마케팅</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-01-06</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/01_survival_analysis/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%EC%83%9D%EC%A1%B4%EB%B6%84%EC%84%9D/">생존분석</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/prml-chap01-1/" class="next" rel="next" title="[PRML] Chapter1 - Introduction (1)">[PRML] Chapter1 - Introduction (1)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
