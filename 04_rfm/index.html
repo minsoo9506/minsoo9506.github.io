@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Algorithmic Marketing] RFM 분석 기본개념 - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Algorithmic Marketing] RFM 분석 기본개념" />
+<meta property="og:description" content="RFM (Recency, Frequency, Monetary) 분석 의 기본개념을 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/04_rfm/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-12T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-01-12T09:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Algorithmic Marketing] RFM 분석 기본개념"/>
+<meta name="twitter:description" content="RFM (Recency, Frequency, Monetary) 분석 의 기본개념을 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/04_rfm/" /><link rel="prev" href="http://minsoo9506.github.io/03_multi_touch_attr/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Algorithmic Marketing] RFM 분석 기본개념",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/04_rfm\/"
+        },"genre": "posts","keywords": "RFM 분석","wordcount":  213 ,
+        "url": "http:\/\/minsoo9506.github.io\/04_rfm\/","datePublished": "2022-01-12T09:00:00+00:00","dateModified": "2022-01-12T09:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Algorithmic Marketing] RFM 분석 기본개념</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/algorithmic-marketing/"><i class="far fa-folder fa-fw"></i>Algorithmic Marketing</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-12">2022-01-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;213 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#개념설명">개념설명</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>RFM (Recency, Frequency, Monetary) 분석 의 기본개념을 알아보자.</p>
+<h2 id="개념설명">개념설명</h2>
+<ul>
+<li>RFM 분석
+<ul>
+<li>Recency (최근성)</li>
+<li>Frequency (구매의 빈도)</li>
+<li>Monetary (구매액)</li>
+</ul>
+</li>
+</ul>
+<p>위의 3가지 지표를 통해 구매 가능성이 높은 고객을 선정하기 위한 데이터 분석 방법이다. 이를 통해 주로 <strong>고객가치측정</strong>, <strong>고객세분화</strong>를 하려고 한다. 이를 통해 수익성예측, 마케팅 예산 할당. 고객이탈 예측을 할 수 있을 것이다.</p>
+<p>도메인에 따라 각 지표들의 중요성이 달라진다. 이를 고려하여 가중치를 잘 만드는 것이 중요하다.</p>
+<p>모형은 아래와 같은 모습이다. 가중치를 이용하여 각 고객마다 RFM 점수를 구한다. 물론 항상 가중치를 이용할 필요는 없다.</p>
+<p>$$RFM = w_1 Rscore + w_2 Fscore + w_3 Mscore$$</p>
+<p>가중치산출은 어떻게 할까?</p>
+<ul>
+<li>통계적 추정방식
+<ul>
+<li>각 score를 covariate으로 놓고 target을 수익성지표(매출액 등)으로 하여 회귀계수를 구하고 이를 가중치로 이용</li>
+</ul>
+</li>
+<li>거래비율 분할방식
+<ul>
+<li>R,F,M의 각 점수구간(1점~5점)에 포함되는 고객들의 비율을 이용</li>
+</ul>
+</li>
+</ul>
+<p>가중치를 산출하지 않아도 분석을 진행할 수 있다.</p>
+<ul>
+<li>Scoring 기법
+<ul>
+<li>RFM의 요인을 각 5등급으로 분류</li>
+<li>ex1) 각 요인을 5등급으로 나누어서 총 125개의 그룹 만들기</li>
+<li>ex2) 각 요인의 우선순위를 만들고 순차적으로 5등급씩 나누기</li>
+<li>ex2) 군집알고리즘을 통해 총 5개의 그룹 또는 각 요인 5개 그룹이후 총 125개의 그룹 만들기</li>
+</ul>
+</li>
+</ul>
+<p>RFM분석으로 고객세분화를 진행할 떄, 각 요인마다 &lsquo;범위, 고객수, 고객비율, 금액, 금액비율, 매출기여도 등&rsquo; 들을 같이 적어서 보는게 좋다. 물론 목적에 따라 세부적인 내용은 달라질 수 있다.</p>
+<p>그렇다면 실제로 RFM 분석을 이용한 사례는 어떤게 있을까? 고객등급화, 세분화에 다 사용할 수 있다.</p>
+<ul>
+<li>은행에서 고객등급화</li>
+<li>RFM 점수가 낮은 고객에서 마케팅을 하지 않아서 비용절감</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-01-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/04_rfm/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/rfm-%EB%B6%84%EC%84%9D/">RFM 분석</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/03_multi_touch_attr/" class="prev" rel="prev" title="[Algorithmic Marketing] Multi-touch Attribution"><i class="fas fa-angle-left fa-fw"></i>[Algorithmic Marketing] Multi-touch Attribution</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -3,7 +3,35 @@
         <title>All Posts - minsoo9506</title>
         <link>http://minsoo9506.github.io/posts/</link>
         <description>All Posts | minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 20 Dec 2021 21:02:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 12 Jan 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[Algorithmic Marketing] RFM 분석 기본개념</title>
+    <link>http://minsoo9506.github.io/04_rfm/</link>
+    <pubDate>Wed, 12 Jan 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/04_rfm/</guid>
+    <description><![CDATA[<p>RFM (Recency, Frequency, Monetary) 분석 의 기본개념을 알아보자.</p>]]></description>
+</item><item>
+    <title>[Algorithmic Marketing] Multi-touch Attribution</title>
+    <link>http://minsoo9506.github.io/03_multi_touch_attr/</link>
+    <pubDate>Mon, 10 Jan 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/03_multi_touch_attr/</guid>
+    <description><![CDATA[<p>Multi-touch Attribution model에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[Algorithmic Marketing] 온라인 광고</title>
+    <link>http://minsoo9506.github.io/02_online_ad/</link>
+    <pubDate>Sun, 09 Jan 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/02_online_ad/</guid>
+    <description><![CDATA[<p>온라인 광고를 하는 과정과 애트리뷰션 모델에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[Algorithmic Marketing] 생존분석 기본개념</title>
+    <link>http://minsoo9506.github.io/01_survival_analysis/</link>
+    <pubDate>Thu, 06 Jan 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/01_survival_analysis/</guid>
+    <description><![CDATA[<p>생존분석 방법론의 기본적인 개념을 알아보자.</p>]]></description>
+</item><item>
     <title>[Git] 기본 내용 정리</title>
     <link>http://minsoo9506.github.io/03-git-basic/</link>
     <pubDate>Mon, 20 Dec 2021 21:02:00 &#43;0900</pubDate>
@@ -45,33 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/causal05/</guid>
     <description><![CDATA[<p>Randomized Experiment에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[인과추론] Causal Models</title>
-    <link>http://minsoo9506.github.io/causal04/</link>
-    <pubDate>Fri, 03 Dec 2021 11:04:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal04/</guid>
-    <description><![CDATA[<p>Causal Model이란?</p>]]></description>
-</item><item>
-    <title>[인과추론] The Flow of Causation and Association in Graphs</title>
-    <link>http://minsoo9506.github.io/causal03/</link>
-    <pubDate>Fri, 03 Dec 2021 11:03:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal03/</guid>
-    <description><![CDATA[<p>Graph를 통해 causality를 알아보자.</p>]]></description>
-</item><item>
-    <title>[인과추론] Potential Outcomes Framework</title>
-    <link>http://minsoo9506.github.io/causal02/</link>
-    <pubDate>Fri, 03 Dec 2021 11:02:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal02/</guid>
-    <description><![CDATA[<p>Potential Outcomes 이란?</p>]]></description>
-</item><item>
-    <title>[인과추론] Introduction</title>
-    <link>http://minsoo9506.github.io/causal01/</link>
-    <pubDate>Fri, 03 Dec 2021 11:01:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal01/</guid>
-    <description><![CDATA[<p>Causal Inference시 주의할 점</p>]]></description>
 </item></channel>
 </rss>

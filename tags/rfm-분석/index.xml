@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>RFM 분석 - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/rfm-%EB%B6%84%EC%84%9D/</link>
+        <description>RFM 분석 - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 12 Jan 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/rfm-%EB%B6%84%EC%84%9D/" rel="self" type="application/rss+xml" /><item>
+    <title>[Algorithmic Marketing] RFM 분석 기본개념</title>
+    <link>http://minsoo9506.github.io/04_rfm/</link>
+    <pubDate>Wed, 12 Jan 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/04_rfm/</guid>
+    <description><![CDATA[<p>RFM (Recency, Frequency, Monetary) 분석 의 기본개념을 알아보자.</p>]]></description>
+</item></channel>
+</rss>
