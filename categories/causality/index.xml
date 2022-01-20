@@ -3,7 +3,14 @@
         <title>Causality - Category - minsoo9506</title>
         <link>http://minsoo9506.github.io/categories/causality/</link>
         <description>Causality - Category - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 03 Dec 2021 11:09:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/causality/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 20 Jan 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/causality/" rel="self" type="application/rss+xml" /><item>
+    <title>[인과추론] Propensity Score</title>
+    <link>http://minsoo9506.github.io/propensity_score/</link>
+    <pubDate>Thu, 20 Jan 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/propensity_score/</guid>
+    <description><![CDATA[<p>Propensity Score에 대해 알아보자.</p>]]></description>
+</item><item>
     <title>[인과추론] Difference-in-Difference</title>
     <link>http://minsoo9506.github.io/causal09/</link>
     <pubDate>Fri, 03 Dec 2021 11:09:00 &#43;0000</pubDate>

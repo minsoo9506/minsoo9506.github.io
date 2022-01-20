@@ -3,9 +3,16 @@
         <title>minsoo9506</title>
         <link>http://minsoo9506.github.io/</link>
         <description>This is My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 12 Jan 2022 09:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 20 Jan 2022 09:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://minsoo9506.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[인과추론] Propensity Score</title>
+    <link>http://minsoo9506.github.io/propensity_score/</link>
+    <pubDate>Thu, 20 Jan 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/propensity_score/</guid>
+    <description><![CDATA[<p>Propensity Score에 대해 알아보자.</p>]]></description>
+</item><item>
     <title>[Algorithmic Marketing] RFM 분석 기본개념</title>
     <link>http://minsoo9506.github.io/04_rfm/</link>
     <pubDate>Wed, 12 Jan 2022 09:00:00 &#43;0000</pubDate>
@@ -68,12 +75,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/causal06/</guid>
     <description><![CDATA[<p>statistical estimand를 estimate하는 방법을 알아보자.</p>]]></description>
-</item><item>
-    <title>[인과추론] Randomized Experiments and Identification</title>
-    <link>http://minsoo9506.github.io/causal05/</link>
-    <pubDate>Fri, 03 Dec 2021 11:05:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal05/</guid>
-    <description><![CDATA[<p>Randomized Experiment에 대해 알아보자.</p>]]></description>
 </item></channel>
 </rss>
