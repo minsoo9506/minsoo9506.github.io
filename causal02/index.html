@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/causal02\/"
-        },"genre": "posts","keywords": "Potential Outcome","wordcount":  701 ,
+        },"genre": "posts","keywords": "Potential Outcome","wordcount":  719 ,
         "url": "http:\/\/minsoo9506.github.io\/causal02\/","datePublished": "2021-12-03T11:02:00+00:00","dateModified": "2021-12-03T11:02:00+00:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[인과추론] Potential Outcomes Framework</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;701 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;719 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -119,11 +119,8 @@
     <li><a href="#ignorability-exchangeability">Ignorability (exchangeability)</a></li>
     <li><a href="#conditional-exchangeability">Conditional exchangeability</a></li>
     <li><a href="#positivityoverlap-and-extrapolation">Positivity/Overlap and Extrapolation</a></li>
-    <li><a href="#no-interference-consistency">No interference, Consistency</a>
-      <ul>
-        <li><a href="#reference">Reference</a></li>
-      </ul>
-    </li>
+    <li><a href="#no-interference-consistency">No interference, Consistency</a></li>
+    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>Potential Outcomes 이란?</p>
@@ -174,8 +171,7 @@
 <p>$$E[Y(1)|T=1] = E[Y(1)|T=0] \rightarrow = E[Y(1)] \\ E[Y(0)|T=1] = E[Y(0)|T=0] \rightarrow = E[Y(0)]$$</p>
 <p>결국 treatment, non treatment 두 그룹이 comparable해야한다는 것이다. 위의 가정을 만족한다면 우리는 아래와 같은 식을 얻을 수 있다.</p>
 <p>$$E[Y(1)] - E[Y(0)] = E[Y(1)|T=1] - E[Y(0)|T=0]$$</p>
-<p>위의 식을 보면 causal notation에서 점점 statistical notation으로 변화하는 느
-낌을 받을 수 있다. data를 통해 결국 측정하는 것은 statistical inference의 영역인 것이다. 여기서 identifiability라는 개념이 나온다.</p>
+<p>위의 식을 보면 causal notation에서 점점 statistical notation으로 변화하는 느낌을 받을 수 있다. data를 통해 결국 측정하는 것은 statistical inference의 영역인 것이다. 여기서 identifiability라는 개념이 나온다.</p>
 <ul>
 <li>identifiability
 <ul>
@@ -198,6 +194,7 @@
 $$ = E[Y(1)|T=1,X]-E[Y(0)|T=0,X]$$</p>
 <p>marginal effect는</p>
 <p>$$E[Y(1) - Y(0)] = E_X E[Y(1) - Y(0)|X]$$</p>
+<p>근데 주의해야 할 점은 이 assumption은 untestable하다는 것이다. 우리가 conditioning하지 못한 숨겨진 confounder가 있기 때문이다.</p>
 <h2 id="positivityoverlap-and-extrapolation">Positivity/Overlap and Extrapolation</h2>
 <p>위의 unconfoundedness도 중요한 가정이지만 추가적으로 고려해야하는 가정도 존재한다.</p>
 <ul>
@@ -249,9 +246,9 @@ $$ = E[Y(1)|T=1,X]-E[Y(0)|T=0,X]$$</p>
 </ul>
 <p>$$E[Y(1) - Y(0)] = E[Y(1)] - E[Y(0)]\;\text{(linearity of expectation)} \\ =E_X [E[Y(1)|X] - E[Y(0)|X]] \;\text{(law of iterated expectations)} \\ =E_X [E[Y(1)|T=1,X] - E[Y(0)|T=0,X]] \;\text{(unconfoundedness, positivity)} \\ =E_X [E[Y|T=1,X] - E[Y|T=0,X]] \; \text{(consistency)}$$</p>
 <p>최종적으로 우리는 통계적인 추론을 통해 (최종식이 모두 확률변수, 평균 등으로 이루어진 식) 우리가 궁금해했던 ATE를 구할 수 있게 된다.</p>
-<h3 id="reference">Reference</h3>
+<h2 id="reference">Reference</h2>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=5x_pPemAVxs&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=2" target="_blank" rel="noopener noreffer">https://www.youtube.com/watch?v=5x_pPemAVxs&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=2</a></li>
+<li><a href="https://www.youtube.com/watch?v=5x_pPemAVxs&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=2" target="_blank" rel="noopener noreffer">Brady Neal - Causal Inference</a></li>
 </ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

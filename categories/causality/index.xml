@@ -3,8 +3,29 @@
         <title>Causality - Category - minsoo9506</title>
         <link>http://minsoo9506.github.io/categories/causality/</link>
         <description>Causality - Category - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 20 Jan 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/causality/" rel="self" type="application/rss+xml" /><item>
-    <title>[인과추론] Propensity Score</title>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 18 Feb 2022 11:09:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/causality/" rel="self" type="application/rss+xml" /><item>
+    <title>[인과추론] Counterfactual and Mediation</title>
+    <link>http://minsoo9506.github.io/causal14/</link>
+    <pubDate>Fri, 18 Feb 2022 11:09:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal14/</guid>
+    <description><![CDATA[<p>Counterfactual에 관한 기본적인 개념과 Mediation에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[인과추론] Causal Discovery from Interventions</title>
+    <link>http://minsoo9506.github.io/causal11/</link>
+    <pubDate>Tue, 15 Feb 2022 11:09:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal11/</guid>
+    <description><![CDATA[<p>Intervention을 통해 Causal Discovery를 진행해보자.</p>]]></description>
+</item><item>
+    <title>[인과추론] Causal Discovery from Observational Data</title>
+    <link>http://minsoo9506.github.io/causal10/</link>
+    <pubDate>Mon, 14 Feb 2022 11:09:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal10/</guid>
+    <description><![CDATA[<p>causality가 어느정도 인지 파악하기 이전에 observational data에서 causal discovery를 먼저 진행해야 한다. 이에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[Causality] Propensity Score</title>
     <link>http://minsoo9506.github.io/propensity_score/</link>
     <pubDate>Thu, 20 Jan 2022 09:00:00 &#43;0000</pubDate>
     <author>Author</author>
@@ -37,14 +58,14 @@
     <pubDate>Fri, 03 Dec 2021 11:06:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>http://minsoo9506.github.io/causal06/</guid>
-    <description><![CDATA[<p>statistical estimand를 estimate하는 방법을 알아보자.</p>]]></description>
+    <description><![CDATA[<p>causality를 estimate하는 방법을 알아보자.</p>]]></description>
 </item><item>
     <title>[인과추론] Randomized Experiments and Identification</title>
     <link>http://minsoo9506.github.io/causal05/</link>
     <pubDate>Fri, 03 Dec 2021 11:05:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>http://minsoo9506.github.io/causal05/</guid>
-    <description><![CDATA[<p>Randomized Experiment에 대해 알아보자.</p>]]></description>
+    <description><![CDATA[<p>Randomized Experiment에 대해 알아보고 causal effect를 identification하는 방법에 대해 알아보자.</p>]]></description>
 </item><item>
     <title>[인과추론] Causal Models</title>
     <link>http://minsoo9506.github.io/causal04/</link>
@@ -52,26 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/causal04/</guid>
     <description><![CDATA[<p>Causal Model이란?</p>]]></description>
-</item><item>
-    <title>[인과추론] The Flow of Causation and Association in Graphs</title>
-    <link>http://minsoo9506.github.io/causal03/</link>
-    <pubDate>Fri, 03 Dec 2021 11:03:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal03/</guid>
-    <description><![CDATA[<p>Graph를 통해 causality를 알아보자.</p>]]></description>
-</item><item>
-    <title>[인과추론] Potential Outcomes Framework</title>
-    <link>http://minsoo9506.github.io/causal02/</link>
-    <pubDate>Fri, 03 Dec 2021 11:02:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal02/</guid>
-    <description><![CDATA[<p>Potential Outcomes 이란?</p>]]></description>
-</item><item>
-    <title>[인과추론] Introduction</title>
-    <link>http://minsoo9506.github.io/causal01/</link>
-    <pubDate>Fri, 03 Dec 2021 11:01:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal01/</guid>
-    <description><![CDATA[<p>Causal Inference시 주의할 점</p>]]></description>
 </item></channel>
 </rss>

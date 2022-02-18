@@ -1,4 +1,4 @@
-# [인과추론] Propensity Score
+# [Causality] Propensity Score
 
 
 Propensity Score에 대해 알아보자.

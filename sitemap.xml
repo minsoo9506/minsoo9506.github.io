@@ -2,25 +2,33 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://minsoo9506.github.io/propensity_score/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/causality/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/matching/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/propensity-score/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/04_rfm/</loc><lastmod>2022-01-12T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/algorithmic-marketing/</loc><lastmod>2022-01-12T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/rfm-%EB%B6%84%EC%84%9D/</loc><lastmod>2022-01-12T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://minsoo9506.github.io/03_multi_touch_attr/</loc><lastmod>2022-01-10T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/%EC%98%A8%EB%9D%BC%EC%9D%B8-%EA%B4%91%EA%B3%A0/</loc><lastmod>2022-01-10T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://minsoo9506.github.io/02_online_ad/</loc><lastmod>2022-01-09T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://minsoo9506.github.io/01_survival_analysis/</loc><lastmod>2022-01-06T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/%EC%83%9D%EC%A1%B4%EB%B6%84%EC%84%9D/</loc><lastmod>2022-01-06T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>http://minsoo9506.github.io/03-git-basic/</loc><lastmod>2021-12-20T21:02:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/git/</loc><lastmod>2021-12-20T21:02:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/mlops/</loc><lastmod>2021-12-20T21:02:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://minsoo9506.github.io/causal14/</loc><lastmod>2022-02-18T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2022-02-18T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/causality/</loc><lastmod>2022-02-18T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/counterfactual/</loc><lastmod>2022-02-18T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/mediation/</loc><lastmod>2022-02-18T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/</loc><lastmod>2022-02-18T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2022-02-18T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2022-02-18T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/causal11/</loc><lastmod>2022-02-15T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/causal-discovery/</loc><lastmod>2022-02-15T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/causal10/</loc><lastmod>2022-02-14T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/pyspark/</loc><lastmod>2022-02-10T09:21:26&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/pyspark/</loc><lastmod>2022-02-10T09:21:26&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>http://minsoo9506.github.io/propensity_score/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/matching/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/propensity-score/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://minsoo9506.github.io/04_rfm/</loc><lastmod>2022-01-12T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/algorithmic-marketing/</loc><lastmod>2022-01-12T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/rfm-%EB%B6%84%EC%84%9D/</loc><lastmod>2022-01-12T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/03_multi_touch_attr/</loc><lastmod>2022-01-10T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/%EC%98%A8%EB%9D%BC%EC%9D%B8-%EA%B4%91%EA%B3%A0/</loc><lastmod>2022-01-10T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/02_online_ad/</loc><lastmod>2022-01-09T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/01_survival_analysis/</loc><lastmod>2022-01-06T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/%EC%83%9D%EC%A1%B4%EB%B6%84%EC%84%9D/</loc><lastmod>2022-01-06T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/03-git-basic/</loc><lastmod>2021-12-20T21:02:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/git/</loc><lastmod>2021-12-20T21:02:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/mlops/</loc><lastmod>2021-12-20T21:02:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/causal09/</loc><lastmod>2021-12-03T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/did/</loc><lastmod>2021-12-03T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/causal08/</loc><lastmod>2021-12-03T11:08:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -31,6 +39,7 @@
             <loc>http://minsoo9506.github.io/causal06/</loc><lastmod>2021-12-03T11:06:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/estimation/</loc><lastmod>2021-12-03T11:06:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/causal05/</loc><lastmod>2021-12-03T11:05:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/frontdoor-adjustment/</loc><lastmod>2021-12-03T11:05:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/randomized-experiment/</loc><lastmod>2021-12-03T11:05:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/causal04/</loc><lastmod>2021-12-03T11:04:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/causal-model/</loc><lastmod>2021-12-03T11:04:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

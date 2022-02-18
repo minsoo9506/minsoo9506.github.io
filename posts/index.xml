@@ -3,8 +3,36 @@
         <title>All Posts - minsoo9506</title>
         <link>http://minsoo9506.github.io/posts/</link>
         <description>All Posts | minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 20 Jan 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>[인과추론] Propensity Score</title>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 18 Feb 2022 11:09:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[인과추론] Counterfactual and Mediation</title>
+    <link>http://minsoo9506.github.io/causal14/</link>
+    <pubDate>Fri, 18 Feb 2022 11:09:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal14/</guid>
+    <description><![CDATA[<p>Counterfactual에 관한 기본적인 개념과 Mediation에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[인과추론] Causal Discovery from Interventions</title>
+    <link>http://minsoo9506.github.io/causal11/</link>
+    <pubDate>Tue, 15 Feb 2022 11:09:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal11/</guid>
+    <description><![CDATA[<p>Intervention을 통해 Causal Discovery를 진행해보자.</p>]]></description>
+</item><item>
+    <title>[인과추론] Causal Discovery from Observational Data</title>
+    <link>http://minsoo9506.github.io/causal10/</link>
+    <pubDate>Mon, 14 Feb 2022 11:09:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal10/</guid>
+    <description><![CDATA[<p>causality가 어느정도 인지 파악하기 이전에 observational data에서 causal discovery를 먼저 진행해야 한다. 이에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[Tips] Pyspark</title>
+    <link>http://minsoo9506.github.io/pyspark/</link>
+    <pubDate>Thu, 10 Feb 2022 09:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/pyspark/</guid>
+    <description><![CDATA[<p>pyspark와 관련한 tips 정리</p>]]></description>
+</item><item>
+    <title>[Causality] Propensity Score</title>
     <link>http://minsoo9506.github.io/propensity_score/</link>
     <pubDate>Thu, 20 Jan 2022 09:00:00 &#43;0000</pubDate>
     <author>Author</author>
@@ -45,33 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/03-git-basic/</guid>
     <description><![CDATA[<p>Git 기본적인 명령어 정리</p>]]></description>
-</item><item>
-    <title>[인과추론] Difference-in-Difference</title>
-    <link>http://minsoo9506.github.io/causal09/</link>
-    <pubDate>Fri, 03 Dec 2021 11:09:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal09/</guid>
-    <description><![CDATA[<p>DID 방법론에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[인과추론] Instrumental Variables</title>
-    <link>http://minsoo9506.github.io/causal08/</link>
-    <pubDate>Fri, 03 Dec 2021 11:08:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal08/</guid>
-    <description><![CDATA[<p>unobserved confounding이 있는 경우는 어떻게 할까? 이전 chapter에서도 알아봤지만 여기서는 <em>instrumental vairable</em> $Z$을 이용하고자 한다.</p>]]></description>
-</item><item>
-    <title>[인과추론] Unobserved Confounding, Bounds, and Unobserved Confounding</title>
-    <link>http://minsoo9506.github.io/causal07/</link>
-    <pubDate>Fri, 03 Dec 2021 11:07:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal07/</guid>
-    <description><![CDATA[<p>No unobserved confounding은 솔직히 비현실적이다.</p>]]></description>
-</item><item>
-    <title>[인과추론] Estimation</title>
-    <link>http://minsoo9506.github.io/causal06/</link>
-    <pubDate>Fri, 03 Dec 2021 11:06:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal06/</guid>
-    <description><![CDATA[<p>statistical estimand를 estimate하는 방법을 알아보자.</p>]]></description>
 </item></channel>
 </rss>

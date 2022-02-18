@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/causal01\/"
-        },"genre": "posts","keywords": "Correlation","wordcount":  326 ,
+        },"genre": "posts","keywords": "Correlation","wordcount":  374 ,
         "url": "http:\/\/minsoo9506.github.io\/causal01\/","datePublished": "2021-12-03T11:01:00+00:00","dateModified": "2021-12-03T11:01:00+00:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[인과추론] Introduction</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;326 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;374 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -114,11 +114,9 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#simpsons-paradox">Simpson&rsquo;s paradox</a></li>
-    <li><a href="#correlation-does-not-imply-causation">Correlation does not imply causation</a>
-      <ul>
-        <li><a href="#reference">Reference</a></li>
-      </ul>
-    </li>
+    <li><a href="#correlation-does-not-imply-causation">Correlation does not imply causation</a></li>
+    <li><a href="#causation-in-observation-studies">Causation in Observation Studies</a></li>
+    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>Causal Inference시 주의할 점</p>
@@ -177,7 +175,7 @@
 </li>
 </ul>
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_01_02.PNG?raw=true"  width="200">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_01_01.PNG?raw=true"  width="200">
 </center>
 <ul>
 <li>약(Treatment)이 아픈정도(Condition)와 사망률(Outcome) 모두에게 영향을 주는 경우 : 이런 경우는 A 선호
@@ -194,9 +192,11 @@
 <p>&lsquo;신발을 신고 자는 것&rsquo;과 &lsquo;일어나서 두통이 있는 것&rsquo;이 상관관계가 높다. 그러면 신발을 신고자면 다음날 일어나서 두통이 있을 것이라고 말할 수 있을까? 즉, 인과관계가 있다고 할 수 있을까? 그럴 수 없다.</p>
 <p>common cause가 있다면? 술을 마신 경우를 생각해보자. 취해서 신발을 신고 자게된다. 숙취 때문에 다음날 일어나서 두통이 있을 확률이 높다. 즉 total association이 confounding association과 causal association으로 이루어진 것이다. (<em>correlation is technically only a measure of linear statistical dependence. We will largely be using the term &lsquo;association&rsquo; to refer to statistical dependence from now on</em>)</p>
 <p>이처럼 우리는 data를 보고 인과관계를 함부로 판단해서는 안된다. 추후에는 인과관계를 파악하기 위한 방법론들을 알아보자.</p>
-<h3 id="reference">Reference</h3>
+<h2 id="causation-in-observation-studies">Causation in Observation Studies</h2>
+<p>RCT를 하거나 두 그룹이 comparable하게 하여 confounder를 없애서 인과관계를 파악할 수 있다. 하지만 그렇지 못해서 observational study만 가능한 경우가 있다. 이런 경우에는 causal effect를 측정할 수 있을까? 가능하다. 사실 이 부분이 실제 필드에서 가장 많이 필요할 것이다. 뒤에서 차차 배워보자.</p>
+<h2 id="reference">Reference</h2>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=DXBPtpBhGqo&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=2" target="_blank" rel="noopener noreffer">https://www.youtube.com/watch?v=DXBPtpBhGqo&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=2</a></li>
+<li><a href="https://www.youtube.com/watch?v=DXBPtpBhGqo&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=2" target="_blank" rel="noopener noreffer">Brady Neal - Causal Inference</a></li>
 </ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

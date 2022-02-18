@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/causal03\/"
-        },"genre": "posts","keywords": "Causal Graph","wordcount":  567 ,
+        },"genre": "posts","keywords": "Causal Graph","wordcount":  655 ,
         "url": "http:\/\/minsoo9506.github.io\/causal03\/","datePublished": "2021-12-03T11:03:00+00:00","dateModified": "2021-12-03T11:03:00+00:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,8 +104,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[인과추론] The Flow of Causation and Association in Graphs</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;567 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;655 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -115,8 +115,15 @@
   <ul>
     <li><a href="#terminology">Terminology</a></li>
     <li><a href="#baysian-networks-and-causal-graphs">Baysian networks and causal graphs</a></li>
-    <li><a href="#graphical-building-blocks">Graphical building blocks</a></li>
+    <li><a href="#graphical-building-blocks">Graphical building blocks</a>
+      <ul>
+        <li><a href="#chains-forks--dependence">Chains, Forks : dependence</a></li>
+        <li><a href="#chains-forks--independence">Chains, Forks : independence</a></li>
+        <li><a href="#immorality">Immorality</a></li>
+      </ul>
+    </li>
     <li><a href="#the-flow-of-association-and-causation">The flow of association and causation</a></li>
+    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>Graph를 통해 causality를 알아보자.</p>
@@ -141,7 +148,7 @@
 <li>cycle : node가 자기 자신으로 돌아오는 directed path가 있는 경우</li>
 </ul>
 </li>
-<li>Immorality : 아래 사진에서 $A\rightarrow C \leftarrow B$를 의미 (parent가 child를 공유)</li>
+<li>Immorality : 아래 사진에서 $A\rightarrow C \leftarrow B$를 의미 (parent가 child를 공유, parent끼리는 연결되지 않음)</li>
 </ul>
 <center>
     <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_03_01.PNG?raw=true"  width="200">
@@ -152,7 +159,7 @@
 <ul>
 <li>Local markov assumption
 <ul>
-<li>DAG에서 parent가 주어진다면(given) 나머지 descendant들과는 independent</li>
+<li>DAG에서 parent가 주어진다면(given) 나머지 non-descendant들과는 independent 하다.</li>
 </ul>
 </li>
 </ul>
@@ -165,26 +172,27 @@
 <p>$$P(x_1, x_2, x_3, x_4) = P(x_1)P(x_2 | x_1)P(x_3 | x_2, x_1)P(x_4  |x_3)$$</p>
 <p>이처럼 더 간단해진다.</p>
 <ul>
-<li>Bayesian network factorization
+<li>Bayesian network factorization theorem
 <ul>
 <li>확률분포 $P$와 DAG $G$가 주어지고, $P$는 $G$에 따라 아래의 식처럼 factorize될 수 있다. 
 $$P(x_1,&hellip;,x_n) = \prod_i P(x_i | pa_i)$$</li>
 </ul>
 </li>
 </ul>
-<p>Bayesian network factorization과 Local Markov assumption은 사실 같은 내용이다. 지금까지는 independency에 관한 내용이었는데 dependency에 관한 내용도 당연히 있을 것이다.</p>
+<p>Bayesian network factorization과 Local Markov assumption은 사실 같은 내용이다 (증명도 있다). 지금까지는 independency에 관한 내용이었는데 dependency에 관한 내용도 당연히 있을 것이다.</p>
 <ul>
 <li>Minimality assumption
 <ul>
-<li>Local Markov ssumption + Adjacent nodes in the DAG are dependent</li>
+<li>Local Markov assumption + Adjacent nodes in the DAG are dependent</li>
 </ul>
 </li>
 </ul>
-<p>Minimality assumption을 통해 dependency도 다룰 수 있으므로 우리는 이제 DAG에서 association flow를 다룰 수 있게 되었다. 그렇다면 다음은  causation을 다룰 차례!</p>
+<p>이때, 왜 <em>Adjacent nodes in the DAG are dependent</em>라는 가정이 추가로 필요할까? 예시를 통해 이해해보자. 예를 들어, $X$에서 $Y$로 arrow가 향하고 있는 graph가 있다. 이런 상황에서 local markov assumption만 가정한다면 $p(x,y)=p(x)p(y|x)$ 뿐만 아니라 $P(x,y)=p(x)p(y)$도 성립하게 된다. 후자의 상황을 막기 위해 추가적인 가정이 필요한 것이다.</p>
+<p>Minimality assumption을 통해 dependency도 다룰 수 있으므로 우리는 이제 DAG에서 association flow를 다룰 수 있게 되었다. 그렇다면 다음은 causation을 다룰 차례!</p>
 <ul>
 <li>Causal Edges assumption
 <ul>
-<li>In a directed graph, every parent is a direct cause of all its children</li>
+<li>In a directed graph, every parent is a <strong>direct</strong> cause of all its children</li>
 </ul>
 </li>
 </ul>
@@ -197,39 +205,43 @@ $$P(x_1,&hellip;,x_n) = \prod_i P(x_i | pa_i)$$</li>
     <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_03_03.PNG?raw=true"  width="600">
 </center>
 <p>위의 사진들의 모습을 잘 기억하자. 이제 각각의 특징을 살펴보자.</p>
-<ul>
-<li>Chains, Forks : dependence
+<h3 id="chains-forks--dependence">Chains, Forks : dependence</h3>
 <ul>
 <li>$X_1,X_3$는 dependent하다.</li>
 <li>$X_1$에서 $X_3$로 association flow가 흐른다. symmetric하게 $X_3$에서 $X_1$으로도 흐른다.</li>
-<li>causation flow를 symmetric하지 않다. 한쪽의 방향으로만 흐른다.</li>
+<li>causation flow는 symmetric하지 않다. 한쪽의 방향으로만 흐른다.</li>
 </ul>
-</li>
-<li>Chains, Forks : independence
+<h3 id="chains-forks--independence">Chains, Forks : independence</h3>
+<p>$$P(X_1,X_3 | X_2)=P(X_1 | X_2)P(X_3 | X_2)$$</p>
 <ul>
-<li>$X_2$가 given, $P(X_1,X_3 | X_2)=P(X_1 | X_2)P(X_3 | X_2)$</li>
+<li>(proof)
+<ul>
+<li>Bayeisan Network Factorization과 Bayes rule을 이용</li>
 </ul>
 </li>
 </ul>
 <p>$$\text{Chain: }P(X_1,X_3 | X_2) = \frac{P(X_1,X_2,X_3)}{P(X_2)} \\ =\frac{P(X_1)P(X_2|X_1)P(X_3|X_2)}{P(X_2)}=P(X_1 | X_2)P(X_3 | X_2)$$</p>
 <p>$$\text{Forks: } P(X_1,X_3 | X_2) =  \frac{P(X_1,X_2,X_3)}{P(X_2)} \\ =\frac{P(X_2)P(X_1|X_2)P(X_3|X_2)}{P(X_2)}=P(X_1 | X_2)P(X_3 | X_2)$$</p>
 <p>위에서 independent한 상황의 경우 blocked path라고 하고 반대는 unblock path라고 부른다.</p>
+<h3 id="immorality">Immorality</h3>
 <ul>
-<li>Immorality
-<ul>
-<li>$X_2$를 collider라고 한다.</li>
-<li>위에 두 가지의 경우와 반대
+<li>
+<p>$X_2$를 collider라고 한다.</p>
+</li>
+<li>
+<p>위에 두 가지의 경우와 반대</p>
 <ul>
 <li>conditioning on the collider $\rightarrow$ unblocked path</li>
 <li>conditioning을 하지 않으면 아래의 식처럼 block path가 존재한다. (independence)</li>
 </ul>
 </li>
-</ul>
+<li>
+<p>(proof)</p>
 </li>
 </ul>
-<p>$$P(X_1, X_3) = \sum_{X_2} P(X_1, X_2, X_3) \\ =\sum_{X_2} P(X_1)P(X_3)P(X_2|X_1,X_3) \\ =P(X_1)P(X_3) \sum_{X_2} P(X_2|X_1,X_3)$$</p>
+<p>$$P(X_1, X_3) = \sum_{X_2} P(X_1, X_2, X_3) \\ =\sum_{X_2} P(X_1)P(X_3)P(X_2|X_1,X_3) \\ =P(X_1)P(X_3) \sum_{X_2} P(X_2|X_1,X_3) \\ =P(X_1)P(X_3) $$</p>
 <ul>
-<li>conditioning on descendants of colliders는? 이 또한 association을 야기한다.</li>
+<li>conditioning on descendants of colliders는 이 또한 association을 야기한다.</li>
 </ul>
 <h2 id="the-flow-of-association-and-causation">The flow of association and causation</h2>
 <ul>
@@ -240,14 +252,20 @@ $$P(x_1,&hellip;,x_n) = \prod_i P(x_i | pa_i)$$</li>
 </ul>
 </li>
 </ul>
+<p>graph에서 d-separated되면 이를 확률적으로도 conditional independence하게 이용할 수 있다.</p>
+<p>$$X \perp_G Y | Z \rightarrow X\perp_P Y |Z$$</p>
 <p>일반적인 Bayesian network graph의 경우, association만 다룰 수 있다. 하지만 우리가 여기에 추가적인 가정을 더하면 causal association을 구할 수 있는 것이다.</p>
 <ul>
 <li><em>We refer to the flow of association along directed paths as causal association</em></li>
 <li><em>d-separation implies association is causation</em>
 <ul>
-<li>d-separate된 경우, 남아있는 association은 purely non-causal association이므로!</li>
+<li>d-separate된 경우, $T$에서 $Y$로의 path를 살리면 해당하는 association은 purely causal association이므로!</li>
 </ul>
 </li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=BX6hdDH3lqQ&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=3" target="_blank" rel="noopener noreffer">Brady Neal - Causal Inference</a></li>
 </ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

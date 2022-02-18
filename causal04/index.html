@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/causal04\/"
-        },"genre": "posts","keywords": "Causal Model","wordcount":  506 ,
+        },"genre": "posts","keywords": "Causal Model","wordcount":  689 ,
         "url": "http:\/\/minsoo9506.github.io\/causal04\/","datePublished": "2021-12-03T11:04:00+00:00","dateModified": "2021-12-03T11:04:00+00:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,8 +104,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[인과추론] Causal Models</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;506 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;689 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -114,13 +114,26 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#do-operator"><em>do</em>-operator</a></li>
-    <li><a href="#modularity">Modularity</a></li>
-    <li><a href="#backdoor-adjustment">Backdoor adjustment</a></li>
-    <li><a href="#structural-causal-models">Structural causal models</a>
+    <li><a href="#modularity">Modularity</a>
       <ul>
-        <li><a href="#reference">Reference</a></li>
+        <li><a href="#modularity-assumption">Modularity assumption</a></li>
+        <li><a href="#modularity-assumption-formal">Modularity assumption (formal)</a></li>
+        <li><a href="#truncated-factorization">Truncated factorization</a>
+          <ul>
+            <li><a href="#identification-via-truncated-factorizartion">identification via truncated factorizartion</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
+    <li><a href="#backdoor-adjustment">Backdoor adjustment</a>
+      <ul>
+        <li><a href="#backdoor-criterion">Backdoor Criterion</a></li>
+        <li><a href="#backdoor-adjustment-1">Backdoor Adjustment</a></li>
+      </ul>
+    </li>
+    <li><a href="#structural-causal-models">Structural causal models</a></li>
+    <li><a href="#condition-on-descendants-of-treatment">condition on descendants of treatment</a></li>
+    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>Causal Model이란?</p>
@@ -130,25 +143,28 @@
 <li>Conditioing vs intervening
 <ul>
 <li>Conditioning이라함은 population에서 subpopulation을 뽑아서 다루는 것이고</li>
-<li>Intervening이라함은 특정한 treatment를 population에 행하는 것이다.</li>
+<li>Intervening이라함은 특정한 treatment를 population에 행하는 것이다. 특정 subpopulation을 고려하지 않는다.</li>
 </ul>
 </li>
 </ul>
 <p>특정한 intervening을 했다는 것을 나타내는 operator가 $do$-operator이다. 이는 이전에 potential outcome framework에서 사용한 정의와도 연결되어 있다.</p>
 <p>$$P(Y(t)=y) = P(Y=y|do(T=t)) = P(y|do(t))$$</p>
-<p>$P(y|do(t))$처럼 $do$-operator가 있으면 <em>Interventional distibutions</em>이라고 한다. Interventional data는 주로 실험(experiment)이 필요한 경우가 많다. 이전에 배운 Identifiability가 $P(y | do(t))$를 $P(y|t)$로 구하는 것을 의미했다. (confounder가 있다면 $E_X [P(y|t,X)]$)</p>
+<ul>
+<li>$P(Y|do(T=t))$처럼 $do$-operator가 있으면 <em>Interventional distibutions</em>이라고 한다.</li>
+<li>Interventional data는 주로 실험(experiment)이 필요한 경우가 많다. 이전에 배운 Identifiability가 $P(y | do(t))$를 $P(y|t)$로 구하는 것을 의미했다. (confounder가 있다면 $E_X [P(y|t,X)]$)</li>
+</ul>
 <h2 id="modularity">Modularity</h2>
 <p>어떤 causal mechanism에 대한 정의는 다양할 수 있지만 여기서는 $X_i$가 발생하는 causal mechanism은 conditional distribution $P(X_i |pa_i)$라고 할 것이다.</p>
 <p>causal identification을 얻기 위해서 지금 정의할 가정은 invervention이 local하다는 것이다. 이를 Modularity라고 한다.</p>
-<ul>
-<li>Modularity assumption
+<h3 id="modularity-assumption">Modularity assumption</h3>
 <ul>
 <li>If we intervene on a node $X_i$, then only the mechanism $P(x_i|pa_i)$ changes. All other mechanisms $P(x_j | pa_j)$ where $i \neq j$ remain unchanged.</li>
+<li>= independent mechanism, autonomy, invariance, etc</li>
 </ul>
-</li>
-<li>Modularity assumption : formal
+<h3 id="modularity-assumption-formal">Modularity assumption (formal)</h3>
 <ul>
-<li>If we intervene on a set of nodes $S \in [n]$, setting them to constants, then for all $i$, we have the following:</li>
+<li>If we intervene on a set of nodes $S \in [1,2,&hellip;,n]$, setting them to constants, then for all $i$, we have the following:
+<ul>
 <li>
 <ol>
 <li>If $i \notin S$, then $P(x_i | pa_i)$ remains unchanged.</li>
@@ -163,19 +179,32 @@
 </li>
 </ul>
 <p>interventional distribution이 있는 causal graph는 일반적인 observational graph와 동일한 모습이다. 다만 intervened node로 향하는 edge들은 다 지워진다. intervened node는 parent가 없어지는 것이다. 이는 위의 modularity assumption에 의해 intervened node가 발생할 확률이 1이기 때문이다. 다른 시각으로는 intervention하여서 해당 node가 constant이므로 parent들의 영향이 없어진 것으로 바라볼 수도 있다.</p>
-<ul>
-<li>Truncated factorization
+<h3 id="truncated-factorization">Truncated factorization</h3>
 <ul>
 <li>under Markov, modularity assumption</li>
 <li>a set of intervention nodes $S$</li>
 </ul>
-</li>
-</ul>
 <p>$$P(x_1 ,&hellip;, x_n | do(S=s)) = \prod_{i \notin S} P(x_i | pa_i)$$</p>
-<h2 id="backdoor-adjustment">Backdoor adjustment</h2>
-<p>direct path를 통한 causal flow가 아닌 non-causal association flow가 지나는 모든 path를 <em>backdoor path</em>라고 한다. 이들을 잘 block하면 우리가 구하고 싶은 $P(y|do(t))$를 구할 수 있는 것이다. 이를 위해 필요한 조건을 알아보자.</p>
+<p>if $x$ is consistent with the intervention (= if $x_i$ is the value that $X_i$ was set to by the intervention). Otherwise</p>
+<p>$$P(x_1,&hellip;,x_n | do(S=s))=0$$</p>
+<p>예시를 통해 더 잘 이해해보자.</p>
+<h4 id="identification-via-truncated-factorizartion">identification via truncated factorizartion</h4>
 <ul>
-<li>Backdoor Criterion
+<li>Goal: identify $P(y|do(t))$</li>
+<li>graph: $T \leftarrow X \rightarrow Y, T\rightarrow Y$</li>
+</ul>
+<p>위의 상황에서</p>
+<ul>
+<li>Bayesian network factorization:
+$$P(y,t,x)=P(x)P(t|x)P(y|t,x)$$</li>
+<li>Truncated factorization:
+$$P(y,x|do(t))=P(x)P(y|t,x)$$</li>
+<li>Marginalize:
+$$P(y|do(t))=\sum_x P(y|t,x)P(x)$$</li>
+</ul>
+<h2 id="backdoor-adjustment">Backdoor adjustment</h2>
+<p>direct path를 통한 causal flow가 아닌 non-causal association flow가 지나는 모든 path를 <em>backdoor path</em>라고 한다. 이들을 잘 block하면 우리가 구하고 싶은 $P(y|do(t))$를 구할 수 있는 것이다. treatment를 intervention(experiment)할 수 있다면 backdoor path는 사라진다. treatment로 향하는 edge가 다 사라지기 떄문이다. 하지만 observation의 경우는 그럴 수가 없다. 이런 경우 어떻게 할 수 있을까? 이전에 배운대로 conditioning하면 된다.</p>
+<h3 id="backdoor-criterion">Backdoor Criterion</h3>
 <ul>
 <li>A set of variables $W$ satisfies the backdoor criterion relative to $T$ and $Y$ if the following are true:
 <ul>
@@ -184,19 +213,23 @@
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<p>$W$가 backdoor criterion을 만족한다면</p>
-<p>$$P(y|do(t)) = \sum_w P(y|do(t),w)P(w|do(t)) \\ =\sum_w P(y|t,w)P(w|do(t)) \\ =\sum_w P(y|t,w)P(w)$$</p>
+<h3 id="backdoor-adjustment-1">Backdoor Adjustment</h3>
 <ul>
-<li>Backdoor Adjustment
-<ul>
-<li>modularity assumtion, $W$가 backdoor criterion을 만족하고 positivity가 성립하면 causal effect $T$ on $Y$를 identify할 수 있다:</li>
-</ul>
-</li>
+<li>under modularity assumtion, $W$가 backdoor criterion을 만족하고 positivity가 성립하면 causal effect $T$ on $Y$를 identify할 수 있다:</li>
 </ul>
 <p>$$P(y|do(t)) =\sum_w P(y|t,w)P(w)$$</p>
-<p>$do(t)$해서 $T$로 들어오는 edge를 없애서 Backdoor path를 막을 수 있지만 observation data에서는 다른 변수들을 conditioning한다.</p>
+<ul>
+<li>(proof)
+<ul>
+<li>graph: $T \leftarrow W \rightarrow Y, T \rightarrow Y$</li>
+<li>$W$가 backdoor criterion을 만족한다고 가정</li>
+<li>아래 수식에서 두번째 줄은 $W$를 conditioning해서 $T$에서 $Y$로 가는 path만 남기 때문이다.</li>
+<li>아래 수식에서 세번째 줄은 $Y$가 collider가 되기 때문이다.</li>
+</ul>
+</li>
+</ul>
+<p>$$P(y|do(t)) = \sum_w P(y|do(t),w)P(w|do(t)) \\ =\sum_w P(y|t,w)P(w|do(t)) \\ =\sum_w P(y|t,w)P(w)$$</p>
+<p>$do(t)$해서 $T$로 들어오는 edge를 없애서 Backdoor path를 막을 수 있지만 observation data에서는 다른 변수들을 conditioning하는 것이다.</p>
 <h2 id="structural-causal-models">Structural causal models</h2>
 <ul>
 <li>structural equation for A as a cause of B:</li>
@@ -224,9 +257,32 @@
 </ul>
 </li>
 </ul>
-<h3 id="reference">Reference</h3>
+<h2 id="condition-on-descendants-of-treatment">condition on descendants of treatment</h2>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=AuZu0L0PEgk&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=4&amp;t=1s" target="_blank" rel="noopener noreffer">https://www.youtube.com/watch?v=AuZu0L0PEgk&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=4&t=1s</a></li>
+<li>첫번째 그림
+<ul>
+<li>$Z$가 collider 이기 때문에 conditioning 하지 말자.</li>
+</ul>
+</li>
+<li>두번째 그림
+<ul>
+<li>$M$의 descendant도 conditioning하면 하지말자. 왜냐하면 우리가 모르는 $U_M$이 존재하는 경우 $M$도 collider가 되기 때문이다.</li>
+</ul>
+</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_04_02.PNG?raw=true"  width="300">
+</center>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_04_03.PNG?raw=true"  width="300">
+</center>
+<p>따라서 결론은 Don&rsquo;t conditionon post-treatment covariates! 물론 pre-treatment를 항상 conditioning해서도 안된다. <em>M-bias</em>라는 것이 존재하기 때문이다. 아래의 사진처럼 우리가 모르는 $Z_1,Z_3$가 존재하는 경우 $Z_2$를 conditioning하면 backdoor-path가 생겨버린다.</p>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_04_04.PNG?raw=true"  width="300">
+</center>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=AuZu0L0PEgk&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=4&amp;t=1s" target="_blank" rel="noopener noreffer">Brady Neal - Causal Inference</a></li>
 </ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

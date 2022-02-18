@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/causal07\/"
-        },"genre": "posts","keywords": "Unobserved Confounding, Bounds, Unobserved Confounding","wordcount":  408 ,
+        },"genre": "posts","keywords": "Unobserved Confounding, Bounds, Unobserved Confounding","wordcount":  615 ,
         "url": "http:\/\/minsoo9506.github.io\/causal07\/","datePublished": "2021-12-03T11:07:00+00:00","dateModified": "2021-12-03T11:07:00+00:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,8 +104,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[인과추론] Unobserved Confounding, Bounds, and Unobserved Confounding</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;408 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;615 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -113,11 +113,21 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#bounds">Bounds</a></li>
-    <li><a href="#no-assumptions-bound">No-Assumptions Bound</a></li>
-    <li><a href="#monotone-treatment-response">Monotone Treatment Response</a></li>
-    <li><a href="#monotone-treatment-selection">Monotone Treatment Selection</a></li>
-    <li><a href="#optimal-treatment-selection-assumption">Optimal Treatment Selection Assumption</a></li>
+    <li><a href="#bounds">Bounds</a>
+      <ul>
+        <li><a href="#no-assumptions-bound">No-Assumptions Bound</a></li>
+        <li><a href="#monotone-treatment-response">Monotone Treatment Response</a></li>
+        <li><a href="#monotone-treatment-selection">Monotone Treatment Selection</a></li>
+        <li><a href="#optimal-treatment-selection-assumption">Optimal Treatment Selection Assumption</a></li>
+      </ul>
+    </li>
+    <li><a href="#sensitivity-analysis">Sensitivity Analysis</a>
+      <ul>
+        <li><a href="#linear-single-confounder">Linear Single Confounder</a></li>
+        <li><a href="#towards-more-general-settings">Towards More General Settings</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>No unobserved confounding은 솔직히 비현실적이다.</p>
@@ -130,14 +140,16 @@
 </li>
 </ul>
 <h2 id="bounds">Bounds</h2>
-<p>그러면 이 가정을 좀 약하게 하면? point($E[Y(1)-Y(0)]$)가 아니라 interval로 생각하는 것이다.</p>
+<p>unconfoundendness 가정을 좀 약하게 하면? point($E[Y(1)-Y(0)]$)가 아니라 interval(set identification)로 생각하는 것이다.</p>
 <p>일반적으로 potential outcome은 bounded! 그래서 ITE, ATE도 아래와 같은 bound를 갖고 있다.</p>
 <p>$$a \le Y(t) \le b$$</p>
 <p>$$a-b \le E[Y(1)-Y(0)] \le b-a$$</p>
-<p>이제 Bound는 정의하는 다양한 방법을 알아보자.</p>
-<h2 id="no-assumptions-bound">No-Assumptions Bound</h2>
+<p>이제 Bound를 정의하는 다양한 방법을 알아보자. 이 방법에 따라 interval의 length도 달라질 것이다. 우리는 interval의 크기가 작은게 좋다. 그리고 위에서 가장 basic한 접근법으로 interval의 length는 $2(b-a)$이다. 이를 기억하자.</p>
+<h3 id="no-assumptions-bound">No-Assumptions Bound</h3>
 <p>먼저 ATE를 decomposition해보자.</p>
-<p>$$E[Y(1) - Y(0)] = E[Y(1)] - E[Y(0)] \\ = P(T=1)E[Y(1)|T=1] + P(T=0)E[Y(1)|T=0] \\ - (P(T=1)E[Y(0)|T=1] + P(T=0)E[Y(0)|T=0])$$</p>
+<p>$$E[Y(1) - Y(0)] = E[Y(1)] - E[Y(0)] $$
+$$= P(T=1)E[Y(1)|T=1] + P(T=0)E[Y(1)|T=0] \\ - (P(T=1)E[Y(0)|T=1] + P(T=0)E[Y(0)|T=0])$$
+$$= P(T=1)E[Y|T=1] + P(T=0)E[Y(1)|T=0] \\ - (P(T=1)E[Y(0)|T=1] + P(T=0)E[Y|T=0])$$</p>
 <p>이를 Observational-Counterfactual Decomposition이라고 한다. 하지만 $E[Y(1)|T=0],E[Y(0)|T=1]$은 counterfactual이라 우리가 알 수 없다. 대신에 interval을 구할 수 있지 않을까?</p>
 <ul>
 <li>No-Assumptions Bound
@@ -148,6 +160,7 @@
 </li>
 </ul>
 <p>$$E[Y(1)-Y(0)] \le \pi E[Y|T=1] + (1-\pi)b - \pi a - (1-\pi)E[Y|T=0] \\ E[Y(1)-Y(0)] \ge \pi E[Y|T=1] + (1-\pi)a - \pi b - (1-\pi)E[Y|T=0]$$</p>
+<p>이때 interval의 length는 $b-a$ 이다. 별다른 가정도 없었는데 (consistency assumption은 필요) length가 절반으로 줄었다.</p>
 <ul>
 <li>Example
 <ul>
@@ -159,7 +172,7 @@
 </li>
 </ul>
 <p>$$-0.17 \le E[Y(1)-Y(0)] \le 0.83$$</p>
-<h2 id="monotone-treatment-response">Monotone Treatment Response</h2>
+<h3 id="monotone-treatment-response">Monotone Treatment Response</h3>
 <ul>
 <li>
 <p>assume always $Y_i (1) \ge Y_i (0)$</p>
@@ -178,7 +191,7 @@
 </li>
 </ul>
 <p>$$0 \le E[Y(1)-Y(0)] \le 0.83$$</p>
-<h2 id="monotone-treatment-selection">Monotone Treatment Selection</h2>
+<h3 id="monotone-treatment-selection">Monotone Treatment Selection</h3>
 <ul>
 <li>Treatment groups' potential outcomes are better than control groups'</li>
 </ul>
@@ -195,11 +208,13 @@
 </li>
 </ul>
 <p>$$-0.17 \le E[Y(1)-Y(0)] \le 0.7$$</p>
-<h2 id="optimal-treatment-selection-assumption">Optimal Treatment Selection Assumption</h2>
+<h3 id="optimal-treatment-selection-assumption">Optimal Treatment Selection Assumption</h3>
 <ul>
 <li>individuals always receive the treatment that is best for them:</li>
 </ul>
 <p>$$T_i = 1 \rightarrow Y_i (1) \ge Y_i (0) \ T_i = 0 \rightarrow Y_i (0) \ge Y_i (1)$$</p>
+<p>$$\therefore E[Y(1)-Y(0)] \le \pi E[Y|T=1] - \pi a$$
+$$\therefore E[Y(1)-Y(0)] \ge (1 - \pi)a - (1 - \pi)E[Y|T=0] - a$$</p>
 <ul>
 <li>Example
 <ul>
@@ -211,8 +226,9 @@
 </li>
 </ul>
 <p>$$-0.14 \le E[Y(1)-Y(0)] \le 0.27$$</p>
-<h1 id="sensitivity-analysis">Sensitivity Analysis</h1>
-<p>confounder가 $W$뿐만 아니라 unobserved confounder $U$가 있다고 가정해보자. 그러면 confounding bias가 발생한다. 이를 증명과 함께 이해해보자.</p>
+<h2 id="sensitivity-analysis">Sensitivity Analysis</h2>
+<p>confounder가 $W$뿐만 아니라 unobserved confounder $U$가 있다고 가정해보자. 그러면 confounding bias가 발생한다. 이와 관련해서 분석하는 것이 sensitivity analysis라고 할 수 있다. 우리가 구한 ATE에 대해 validataion하는 것이다.</p>
+<h3 id="linear-single-confounder">Linear Single Confounder</h3>
 <p>먼저, noiseless linear data generating process를 가정해보자.</p>
 <center>
     <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_07_01.PNG?raw=true"  width="200">
@@ -225,7 +241,44 @@
 <p>따라서 ATE estimate는</p>
 <p>$$E_W [E[Y|T=1,W]-E[Y|T=0,W]]=\delta + \frac{\beta_u}{\alpha_u}$$</p>
 <p>따라서 bias $\frac{\beta_u}{\alpha_u}$가 발생한다.</p>
-<p>이와 관련해서 다양한 논문들이 존재한다. 나중에 관심이 있으면 더 공부하면 될 것 같다.</p></div><div class="post-footer" id="post-footer">
+<h3 id="towards-more-general-settings">Towards More General Settings</h3>
+<p>이와 관련해서 다양한 논문들이 존재한다. 이들에 대해 간단히 알아보자.</p>
+<ul>
+<li>Binary Treatment
+<ul>
+<li>Rosenbaum &amp; Rubin (1983), Imbens (2003)
+<ul>
+<li>simple parametric form for $Y$, $T$</li>
+<li>$U$ : binary, scalar</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>$$P(T=1|W,U) = sigmoid(\alpha_w W + \alpha_u U)$$
+$$Y = \beta_w W + \beta_u U + \delta T + Noise$$</p>
+<p>그런데 최근에 Cinelli &amp; Hazlett (2020)에서 위를 더 발전시켰다고 한다.</p>
+<ul>
+<li>
+<p>Making Sense of Sensitivity: Extending Omitted Variable Bias (Cinelli &amp; Hazlett 2020)</p>
+<ul>
+<li>no parametric form for structural equation for $T$</li>
+<li>Allows for multiple confounders (can be a vector)</li>
+<li>No assumed distribution on $U$</li>
+</ul>
+</li>
+<li>
+<p>Sense and Sensitivity Analysis (Veitch &amp; Zaveri 2020)</p>
+<ul>
+<li>Both the treatment mechanism and the outcome mechanism can be modeled with arbitrary machine learning models, and we still get a closed-form expression for the bias</li>
+</ul>
+<p>강의 마지막 부분에 논문을 추천해준다. 나중에 필요하면 참고하자.</p>
+<h2 id="reference">Reference</h2>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=K6kwNUsYK7Y&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=8" target="_blank" rel="noopener noreffer">Brady Neal - Causal Inference</a></p>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

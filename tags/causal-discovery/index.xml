@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Causal Discovery - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/causal-discovery/</link>
+        <description>Causal Discovery - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 15 Feb 2022 11:09:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/causal-discovery/" rel="self" type="application/rss+xml" /><item>
+    <title>[인과추론] Causal Discovery from Interventions</title>
+    <link>http://minsoo9506.github.io/causal11/</link>
+    <pubDate>Tue, 15 Feb 2022 11:09:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal11/</guid>
+    <description><![CDATA[<p>Intervention을 통해 Causal Discovery를 진행해보자.</p>]]></description>
+</item><item>
+    <title>[인과추론] Causal Discovery from Observational Data</title>
+    <link>http://minsoo9506.github.io/causal10/</link>
+    <pubDate>Mon, 14 Feb 2022 11:09:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal10/</guid>
+    <description><![CDATA[<p>causality가 어느정도 인지 파악하기 이전에 observational data에서 causal discovery를 먼저 진행해야 한다. 이에 대해 알아보자.</p>]]></description>
+</item></channel>
+</rss>

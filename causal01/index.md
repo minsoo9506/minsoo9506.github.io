@@ -28,7 +28,7 @@ Simpson's paradox는 주로 observational data에 주로 발생하는 경우가 
   - 예를 들어, 의사가 상태가 Mild한 환자에게는 A약을 투여하고 상태가 Severe한 환자에게는 B약을 투여한 상황을 생각해보자. 이미 Severe한 환자는 사망할 확률이 높았고 따라서 A약의 사망률이 더 낮게 나온 것이다. (*Condition confounds the effect of treatment on morality*) 이 예시에서처럼 treatment와 outcome 모두에 영향을 미치는 변수를 **confounder** 라고 부른다.
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_01_02.PNG?raw=true"  width="200">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_01_01.PNG?raw=true"  width="200">
 </center>
 
 
@@ -48,5 +48,8 @@ common cause가 있다면? 술을 마신 경우를 생각해보자. 취해서 �
 
 이처럼 우리는 data를 보고 인과관계를 함부로 판단해서는 안된다. 추후에는 인과관계를 파악하기 위한 방법론들을 알아보자.
 
-### Reference
-- https://www.youtube.com/watch?v=DXBPtpBhGqo&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=2
+## Causation in Observation Studies
+RCT를 하거나 두 그룹이 comparable하게 하여 confounder를 없애서 인과관계를 파악할 수 있다. 하지만 그렇지 못해서 observational study만 가능한 경우가 있다. 이런 경우에는 causal effect를 측정할 수 있을까? 가능하다. 사실 이 부분이 실제 필드에서 가장 많이 필요할 것이다. 뒤에서 차차 배워보자.
+
+## Reference
+- [Brady Neal - Causal Inference](https://www.youtube.com/watch?v=DXBPtpBhGqo&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=2)

@@ -51,8 +51,7 @@ $$E[Y(1)|T=1] = E[Y(1)|T=0] \rightarrow = E[Y(1)] \\\ E[Y(0)|T=1] = E[Y(0)|T=0] 
 
 $$E[Y(1)] - E[Y(0)] = E[Y(1)|T=1] - E[Y(0)|T=0]$$
 
-위의 식을 보면 causal notation에서 점점 statistical notation으로 변화하는 느
-낌을 받을 수 있다. data를 통해 결국 측정하는 것은 statistical inference의 영역인 것이다. 여기서 identifiability라는 개념이 나온다.
+위의 식을 보면 causal notation에서 점점 statistical notation으로 변화하는 느낌을 받을 수 있다. data를 통해 결국 측정하는 것은 statistical inference의 영역인 것이다. 여기서 identifiability라는 개념이 나온다.
 
 - identifiability
   - 만약에 causal quantity (ex, $E[Y(t)]$)를 statistical quantity(ex, $E[Y\|t]$)로 계산할 수 있다면 우리는 이 causal quantity가 identifiable하다고 한다.
@@ -78,6 +77,8 @@ $$ = E[Y(1)|T=1,X]-E[Y(0)|T=0,X]$$
 marginal effect는 
 
 $$E[Y(1) - Y(0)] = E_X E[Y(1) - Y(0)|X]$$
+
+근데 주의해야 할 점은 이 assumption은 untestable하다는 것이다. 우리가 conditioning하지 못한 숨겨진 confounder가 있기 때문이다.
 
 ## Positivity/Overlap and Extrapolation
 위의 unconfoundedness도 중요한 가정이지만 추가적으로 고려해야하는 가정도 존재한다.
@@ -131,5 +132,5 @@ $$E[Y(1) - Y(0)] = E[Y(1)] - E[Y(0)]\\;\text{(linearity of expectation)} \\\ =E_
 
 최종적으로 우리는 통계적인 추론을 통해 (최종식이 모두 확률변수, 평균 등으로 이루어진 식) 우리가 궁금해했던 ATE를 구할 수 있게 된다.
 
-### Reference
-- https://www.youtube.com/watch?v=5x_pPemAVxs&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=2
+## Reference
+- [Brady Neal - Causal Inference](https://www.youtube.com/watch?v=5x_pPemAVxs&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=2)

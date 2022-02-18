@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Counterfactual - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/counterfactual/</link>
+        <description>Counterfactual - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 18 Feb 2022 11:09:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/counterfactual/" rel="self" type="application/rss+xml" /><item>
+    <title>[인과추론] Counterfactual and Mediation</title>
+    <link>http://minsoo9506.github.io/causal14/</link>
+    <pubDate>Fri, 18 Feb 2022 11:09:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causal14/</guid>
+    <description><![CDATA[<p>Counterfactual에 관한 기본적인 개념과 Mediation에 대해 알아보자.</p>]]></description>
+</item></channel>
+</rss>

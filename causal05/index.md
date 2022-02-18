@@ -1,7 +1,7 @@
 # [인과추론] Randomized Experiments and Identification
 
 
-Randomized Experiment에 대해 알아보자.
+Randomized Experiment에 대해 알아보고 causal effect를 identification하는 방법에 대해 알아보자.
 
 <!--more-->
 
@@ -9,7 +9,9 @@ Randomized Experiment에 대해 알아보자.
 
 언제나 우리가 관측하지 못한 confounder가 있다. 이를 conditioning하지 못할 것이다. 따라서 RCT (Randomized control trial)이 아주 강력한 것이다. 기업에서 많이들 A/B test를 하는데 이게 RCT이다. treatment, control group을 random하게 나누는 것이다. RCT를 통해 association이 causation이 되는데 이를 각기 다른 3가지 측면에서 살펴보자.
 
-- covariate balance
+### Comparability and covariate balance
+
+먼저 covariate balance란 두 그룹의 distribution of covariates $X$가 같다는 것을 의미한다.
 
 $$P(X|T=1) = P(X|T=0)$$
 
@@ -22,14 +24,14 @@ $$P(X|T=1) = P(X|T=0) = P(X)$$
 
 $$P(y|do(t)) = \sum_x P(y|t,x)P(x) \\\ = \sum_x \frac{P(y|t,x)P(t|x)P(x)}{P(t|x)}\\ = \sum_x \frac{P(y,t,x)}{P(t|x)} \\\ = \sum_x \frac{P(y,t,x)}{P(t)} \\\ = \sum_x P(y,x|t)\\ =P(y|t)$$
 
-- Exchangeability
+### Exchangeability
   - RCT를 exchangeability의 측면에서 살펴보자. RCT를 하면 exchangeability가 성립할 수 밖에 없다. 동전을 던져서 treatment를 할지 말지 결정하기 때문에 당연히 아래의 식이 성립하고 association이 causation이 되는 것이다.
 
 $$E[Y(1)|T=1] = E[Y(1)|T=0] \\ E[Y(0)|T=0] = E[Y(0)|T=1]$$
 
 $$E[Y(1)]-E[Y(0)] = E[Y(1)|T=1] - E[Y(0)|T=0] \\\ =E[Y|T=1] = E[Y|T=0]$$
 
-- No backdoor paths
+### No backdoor paths
   - graphical causal model에서도 RCT를 통해 association이 causation이 된다. $T$의 incoming edges가 사라지기 때문이다. 따라서 backdoor path들도 사라지고 association이 causal이 되는 것이다.
 
 ## Frontdoor adjustment
@@ -57,7 +59,7 @@ $$P(y|do(m)) = \sum_t P(y|m,t)P(t)$$
 
 $$P(y|do(t))=\sum_m P(m|do(t))P(y|do(m))$$
 
-- proof
+- (proof)
 
 위의 사진으로 진행한다. truncated factorization으로
 
@@ -73,21 +75,20 @@ $$\sum_m \sum_w P(w,m,y|do(t)) = \sum_m \sum_w P(w)P(m|t)P(y|w,m) \\\ P(y|do(t))
 
 $$P(y|do(t)) = \sum_m P(m|t) \sum_w P(w)P(y|w,m) \\\ = \sum_m P(m|t) \sum_w P(y|w,m)\sum_{t'}P(w|t')P(t') \\\ = \sum_m P(m|t) \sum_w P(y|w,m)\sum_{t'}P(w|t',m)P(t') \\\ = \sum_m P(m|t) \sum_{t'}P(t') \sum_w P(y|w,m)P(w|t',m) \\\ = \sum_m P(m|t) \sum_{t'}P(t') \sum_w P(y|w,m,t')P(w|t',m) \\\ = \sum_m P(m|t) \sum_{t'}P(t') \sum_w P(y,w|m,t') \\\ =\sum_m P(m|t) \sum_{t'}P(t')P(y|m,t')$$
 
-- Frontdoor Adjustment
-  - 만약 $(T,M,Y)$이 the frontdoor
-criterion을 만족하고 positivity를 만족하면
+### Frontdoor Criterion
+- 아래의 조건이 사실이면 set of variables $M$들이 $T,Y$에 대해 the
+frontdoor criterion을 만족한다.
+  - $M$ completely mediates the effect of $T$ on $Y$ (all causal paths from $T$ to $Y$ go through $M$)
+  - There is no unblocked backdoor path from $T$ to $M$
+  - All backdoor paths from $M$ to $Y$ are blocked by $T$
+
+### Frontdoor Adjustment
+- 만약 $(T,M,Y)$이 the frontdoor criterion을 만족하고 positivity를 만족하면
 
 $$P(y|do(t))=\sum_m P(m|t) \sum_{t'}P(y|m,t')P(t')$$
 
-- Frontdoor Criterion
-  - 아래의 조건이 사실이면 set of variables $M$들이 $T,Y$에 대해 the
-frontdoor criterion을 만족한다.
-    - $M$ completely mediates the effect of $T$ on $Y$
-    - There is no unblocked backdoor path from $T$ to $M$
-    - All backdoor paths from $M$ to $Y$ are blocked by $T$
-
 ## Pearl's do-calculus
-backdoor adjustment가 성립하지 않더라도 frondoor adjustment라는 방법을 통해 identification이 성립할 수 있음을 알게되었다. 그렇다면 둘다 성립하지 않을 때는 어떻게 해야할까? *do-calculus* ! do-calculus는 causal graph에 녹아있는 causal assumptions을 사용하여 causal effects를 identify할 수 있는 tool을 제공한다. 
+backdoor adjustment가 성립하지 않더라도 frondoor adjustment라는 방법을 통해 identification이 성립할 수 있음을 알게되었다. 그렇다면 둘다 성립하지 않을 때는 어떻게 해야할까? *do-calculus* ! do-calculus는 causal graph에 녹아있는 any causal assumptions을 사용하여 causal effects를 identify할 수 있는 tool을 제공한다. 
 
 - notation
   - $G$ : causal graph
@@ -106,17 +107,43 @@ $$P(y|do(t),z,w)=P(y|do(t),w)$$
 $$P(y|do(t),do(z),w) = P(y|do(t),z,w)$$
 
 - Rule3 : if $Y \perp_{G_{\overline{T}, \overline{Z(W)}}} Z \| T,W$
-  - $Z(W)$ : the set of nodes of $Z$ that aren't ancestors of any node of $W$
+  - $Z(W)$ : the set of nodes of $Z$ that aren't ancestors of any node of $W$ in $G_{\overline{T}}$
 
 $$P(y|do(t),do(z),w) = P(y|do(t),w)$$
+
+위의 rule들을 좀 더 쉽게 이해하기위해 $T$에 해당하는 부분을 없애면 각각은 generalization of
+- d-seperation
+  - if $Y \perp_G Z \| T,W$
+
+$$P(y|z,w)=P(y|w)$$
+
+- backdoor adjustment/criterion
+  - if $Y \perp_{G_{\underline{Z}}} Z \| T,W$
+
+$$P(y|do(z),w) = P(y|z,w)$$
+
+- $Z(W)$ 가정이 없으면 collider 때문에 문제발생
+  - if $Y \perp_{G_{\overline{Z(W)}}} Z \| T,W$
+
+$$P(y|do(z),w) = P(y|w)$$
 
 이에 대한 증명은 'Pearl (1995) Causal diagrams for empirical research'를 읽어보면 될 것이다. 그렇다면 *do*-calculs만 있으면 causal estimands들이 무조건 identifiable할 수 있을까? 2000년대에 나온 논문들이 이를 증명했다고 한다. 즉, 위의 *3가지 rule들이 sufficient to identify all identifiable causal estimands*라는 것을 의미한다.
 
 위의 identification은 nonparametric identification에 속한다. 추후에 parametric identification에 대해서도 살펴볼 것이다.
 
 ## Determining identifiability from the graph
-- skip
+이 부분은 잘 모르겠다.
 
-### Reference
-- https://www.youtube.com/watch?v=9X4pR4jvKmM&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=5
+### Unconfounded children criterion
+- This criterion is satisfied if it is possible to block all backdoor paths from the treatment variable $T$ to all of its children that are ancestors of $Y$ with a single conditioning set (Tian & Pearl, 2002)
+- **Sufficient condition** for identifiability when $T$ is a single variable
+
+### Necessary condition for identifiability
+- For each backdoor path from $T$ to any child $M$ of $T$ that is an ancestor of $Y$, it is possible to block that path.
+
+### Necessary and sufficient condition
+- Shpitser & Pearl, 2006a, 2006b: hedge criterion
+
+## Reference
+- [Brady Neal - Causal Inference](https://www.youtube.com/watch?v=9X4pR4jvKmM&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=5)
 

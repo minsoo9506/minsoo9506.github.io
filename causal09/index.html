@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/causal09\/"
-        },"genre": "posts","keywords": "DID","wordcount":  368 ,
+        },"genre": "posts","keywords": "DID","wordcount":  425 ,
         "url": "http:\/\/minsoo9506.github.io\/causal09\/","datePublished": "2021-12-03T11:09:00+00:00","dateModified": "2021-12-03T11:09:00+00:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[인과추론] Difference-in-Difference</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;368 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;425 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -113,20 +113,20 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#att">ATT</a></li>
+    <li><a href="#introducing-time">Introducing Time</a></li>
     <li><a href="#identification">Identification</a>
       <ul>
         <li><a href="#assumptions">Assumptions</a></li>
         <li><a href="#result-and-proof">Result and Proof</a></li>
       </ul>
     </li>
-    <li><a href="#problem">Problem</a>
-      <ul>
-        <li><a href="#reference">Reference</a></li>
-      </ul>
-    </li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>DID 방법론에 대해 알아보자.</p>
+<h2 id="att">ATT</h2>
 <p>이전에 ATE를 위해 가정했던 것과는 다르게</p>
 <p>$$Y(0) \perp T$$</p>
 <p>이것만 가정하면 (ATE보다 약한 가정) 우리는 <em>average treatment effect on the treated</em> (ATT)를 구할 수 있다.</p>
@@ -134,24 +134,28 @@
 <li>ATT</li>
 </ul>
 <p>$$E[Y(1)-Y(0)|T=1]$$</p>
+<p>$$E[Y(1)-Y(0)|T=1] = E[Y(1)|T=1] - E[Y(0)|T=1] \\ = E[Y|T=1] - E[Y(0)|T=1] \\ = E[Y|T=1] - E[Y(0)|T=0] \\ = E[Y|T=1] - E[Y|T=0]$$</p>
+<h2 id="introducing-time">Introducing Time</h2>
 <p>지금부터는 time(시간)을 추가해서 고민해보자. 지금까지 동일하게 treatment, control group이 있다. 특정 시간 이후에 treatment group에게만 treatment가 행해진다. 특정 시간 ($\tau$)에서 treatment $t$가 행해진 potential outcome을 나타나는 random variable은 $Y_{\tau}(t)$로 표시하자. 시간을 고려하면서 우리가 알고 싶은 것은 treatment group에 treatment가 적용된 causal estimand이다 :</p>
 <p>$$E[Y_1 (1) - Y_1 (0) | T=1]$$</p>
 <p>이제 이 값을 identification하고 estimation하는 방법까지 알아보자.</p>
 <h2 id="identification">Identification</h2>
 <h3 id="assumptions">Assumptions</h3>
 <ul>
-<li>Consistency</li>
+<li>Consistency (extended to Time)</li>
 </ul>
-<p>$$\forall \tau Y_{\tau} = Y_{\tau}(T)$$</p>
+<p>$$\forall \tau , ; T=t \Rightarrow Y_{\tau} = Y_{\tau}(t)$$</p>
 <p>consistency 가정으로 causal estimand $E[T_{\tau}(1)|T=1]$와 statistical estimand $E[T_{\tau}|T=1]$가 같다고 할 수 있다.</p>
 <ul>
 <li>Parallel Trends
 <ul>
 <li>treatment group이 treatment를 받지 않았을 때, 시간에 따른 trend가 control group과 같다</li>
+<li>해당하는 assumption이 있어야 treat를 받지 않은 treatment의 값(counterfactual)을 알 수 있다.</li>
 </ul>
 </li>
 </ul>
-<p>$$E[Y_1 (0) - Y_0 (0) | T=1] = E[Y_1 (0) - Y_0 (0)|T=0]$$</p>
+<p>$$E[Y_1 (0) - Y_0 (0) | T=1] = E[Y_1 (0) - Y_0 (0)|T=0]$$
+$$(Y_1(0) - Y_0(0)) \perp T$$</p>
 <ul>
 <li>No Pretreatment Effect
 <ul>
@@ -171,7 +175,7 @@ parallel trends, and no pretreatment effect, we have the following:</li>
 </ul>
 <p>$$E[Y_1 (1) - Y_1 (0) | T=1] \\ = (E[Y_1|T=1]-E[Y_0 | T=1]) - (E[Y_1|T=0] - E[Y_0|T=0])$$</p>
 <ul>
-<li>proof</li>
+<li>(proof)</li>
 </ul>
 <p>$$E[Y_1 (1) - Y_1 (0) | T=1] = E[Y_1 (1) | T=1] - E[Y_1 (0) | T=1] \\ =E[Y_1 | T=1] - E[Y_1 (0) | T=1] \; \text{(consistency)}$$</p>
 <p>위의 식에서 두 번째 항 $E[Y_1 (0) | T=1]$은 counterfactual이고 이를 알 수 없지만 parallel trends assumption으로 구할 수 있다.</p>
@@ -183,16 +187,19 @@ parallel trends, and no pretreatment effect, we have the following:</li>
 <p>다시 consistency를 이용하면</p>
 <p>$$=E[Y_0 | T=1] + E[Y_1 |T=0] - E[Y_0 | T=0]$$</p>
 <p>드디어 $E[Y_1 (0) | T=1]$를 identify했다. 이제 식을 정리하면 최종 결과가 나온다.</p>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_09_01.PNG?raw=true"  width="300">
+</center>
 <h2 id="problem">Problem</h2>
-<p>parallel trends assumption이 깨질 수 있다. confounder때문이라면 controlled parallel tredns assumption으로 어느 정도 해결 할 수 있다.</p>
+<p>parallel trends assumption이 깨질 수 있다. confounder때문이라면 controlled parallel trends assumption으로 어느 정도 해결 할 수 있다.</p>
 <ul>
 <li>Controlled Parallel Trends</li>
 </ul>
 <p>$$E[Y_1(0) - Y_0(0)|T=1,W] = E[Y_1(0)-Y_0(0)|T=0,W]$$</p>
-<p>그런데 만약 시간과 treatment 사이에 interaction이 있다면 parallel trends를 기대하기 어렵다. 또한 parallel trends assumption은 scale-specific하다. $Y$를 변환시킨다고 해서 trends가 유지된다고 할 수 없다는 의미이다.</p>
-<h3 id="reference">Reference</h3>
+<p>그런데 만약 시간과 treatment 사이에 interaction이 있다면 parallel trends를 기대하기 어렵다. 또한 parallel trends assumption은 scale-specific하다. parallel trends가 성립해도 $Y$를 변환시킨다면 trends가 유지된다고 할 수 없다는 의미이다. (parallel trends assumptions isn&rsquo;t nonparametric)</p>
+<h2 id="reference">Reference</h2>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=2nDgrNP7XSE&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=10&amp;t=1470s" target="_blank" rel="noopener noreffer">https://www.youtube.com/watch?v=2nDgrNP7XSE&list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&index=10&t=1470s</a></li>
+<li><a href="https://www.youtube.com/watch?v=2nDgrNP7XSE&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=10" target="_blank" rel="noopener noreffer">Brady Neal - Causal Inference</a></li>
 </ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

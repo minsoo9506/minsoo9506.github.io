@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[인과추론] Causal Discovery from Interventions - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[인과추론] Causal Discovery from Interventions" />
+<meta property="og:description" content="Intervention을 통해 Causal Discovery를 진행해보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/causal11/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-15T11:09:00+00:00" />
+<meta property="article:modified_time" content="2022-02-15T11:09:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[인과추론] Causal Discovery from Interventions"/>
+<meta name="twitter:description" content="Intervention을 통해 Causal Discovery를 진행해보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/causal11/" /><link rel="prev" href="http://minsoo9506.github.io/causal10/" /><link rel="next" href="http://minsoo9506.github.io/causal14/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[인과추론] Causal Discovery from Interventions",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/causal11\/"
+        },"genre": "posts","keywords": "Causal Discovery","wordcount":  505 ,
+        "url": "http:\/\/minsoo9506.github.io\/causal11\/","datePublished": "2022-02-15T11:09:00+00:00","dateModified": "2022-02-15T11:09:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[인과추론] Causal Discovery from Interventions</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-15">2022-02-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;505 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#structural-interventions">Structural Interventions</a>
+      <ul>
+        <li><a href="#single-node-intervensions">Single-Node Intervensions</a>
+          <ul>
+            <li><a href="#intervention-in-two-variable-setting">Intervention in Two-Variable Setting</a></li>
+          </ul>
+        </li>
+        <li><a href="#multi-node-intervention">Multi-Node Intervention</a></li>
+      </ul>
+    </li>
+    <li><a href="#parametric-interventions">Parametric Interventions</a>
+      <ul>
+        <li><a href="#number-of-parametric-single-node-interventions">Number of Parametric Single-Node Interventions</a></li>
+      </ul>
+    </li>
+    <li><a href="#interventional-markov-equivalence">Interventional Markov Equivalence</a>
+      <ul>
+        <li><a href="#interventions-introduce-immoralities-single-node">Interventions Introduce Immoralities: Single-Node</a></li>
+        <li><a href="#interventional-graph-multi-node-interventions">Interventional Graph: Multi-Node Interventions</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Intervention을 통해 Causal Discovery를 진행해보자.</p>
+<h2 id="structural-interventions">Structural Interventions</h2>
+<h3 id="single-node-intervensions">Single-Node Intervensions</h3>
+<h4 id="intervention-in-two-variable-setting">Intervention in Two-Variable Setting</h4>
+<p>변수가 2개일 때, intervention을 하는 모든 경우를 살펴보자. 우리가 보고 싶은 것은 특정 intervention을 가해졌을 때, True graph를 essential graph로 나타낸 것이다. 여기서 essential graph은 이전에 배웠던 skeleton과 immoralities로 이루어진 graph라고 이해하면 된다.</p>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_11_01.PNG?raw=true"  width="400">
+</center>
+<p>위의 그림을 통해서 이해할 수 있겠지만 하나의 intervention으로 graph를 찾아내기란 어렵다. intervention으로 essential graph를 구했어도 이에 해당하는 true graph가 2개가 존재하기 때문이다. 따라서 <em>Two interventions are sufficient and necessary to identify the graph.</em> 라고 한다. 즉, 위에서 $A$ 또는 $B$를 intervention한 결과가 아니라 두 가지 결과를 모두 알고 있다면 true graph를 파악할 수 있게 된다. 이제 이를 일반화해보자.</p>
+<ul>
+<li>
+<p>Complete Graphs are the worst case</p>
+<ul>
+<li>complete graph에서는 immoralities가 있을 수가 없기 때문에 (collider를 uncoditioning하면 두 node가 independent해야하는데 complete에서는 불가) skeleton graph만 얻을 수 있고 이는 당연히 true graph를 identify하는데 더 어렵게 만든다.</li>
+</ul>
+</li>
+<li>
+<p>Single variable interventions</p>
+<ul>
+<li>$n-1$ are sufficient for $n&gt;2$ (Eberhardt et al., 2006)
+<ul>
+<li>empty set은 제외</li>
+<li>왜 그럴까? 2개의 node가 있을 때, 둘 중 하나만 intervene하고 그 둘이 독립인지 아닌지 확인하면 edge의 방향을 알 수 있다. 이런식으로 n-1번하면 된다.</li>
+</ul>
+</li>
+<li>$n-1$ are necessary in the worst case (complete graph) (Eberhardt et al., 2006)</li>
+</ul>
+</li>
+</ul>
+<h3 id="multi-node-intervention">Multi-Node Intervention</h3>
+<p>한 번에 하나의 node에만 intervention이 아니라 여러개의 node에 할 수 있다면?</p>
+<ul>
+<li>Multiple-Node Interventions
+<ul>
+<li>$\lfloor \log_2 n \rfloor + 1$ are sufficient (Eberhardt et al., 2005)</li>
+<li>$\lfloor \log_2 n \rfloor + 1$ are necessary in the worst case (Eberhardt et al., 2005)</li>
+</ul>
+</li>
+</ul>
+<p>그렇다면 worst case (complete graph)가 아닌 경우에는 interventions가 얼마나 필요할까? (given that we can intervene on unlimited nodes per intervention) 이 때, graph에서 clique로 판단한다고 한다. 아래의 정의를 보자.</p>
+<ul>
+<li>Theorem: $\lceil \log_2 c \rceil$ multi-node interventions are sufficient and necessary in the worst case, where $c$ is the size of the largest clique. (conjectured by Eberhardt (2008) and proven by Hauser &amp; Buhlmann (2014))</li>
+</ul>
+<h2 id="parametric-interventions">Parametric Interventions</h2>
+<p>parametric 방법이 structural을 포함한다고 할 수 있다. 더 general한 개념이라고 이해하면 된다. 따라서 우리가 주로 parametric(soft, imperfect라고도 부름)이라고 부르는 방법은 structural이외의 parametric한 방법이다.</p>
+<p>parametric intervention은 structural와 다르게 기존 node들에 intervention을 가하는게 아니라 parameter를 이용해서 intervention을 가한다. 예를 들어, 원래 $Y := f(A,B,C)$와 같은 형태였다면 $Y := f(A,B,C, \theta)$와 같은 방법으로 intervention을 가하는 것이다.</p>
+<h3 id="number-of-parametric-single-node-interventions">Number of Parametric Single-Node Interventions</h3>
+<ul>
+<li>Number of interventions for identification (Eberhardt &amp; Scheines, 2007)
+<ul>
+<li>$n-1$ interventions are sufficient</li>
+<li>$n-1$ interventions are necessary in the worst case</li>
+</ul>
+</li>
+</ul>
+<h2 id="interventional-markov-equivalence">Interventional Markov Equivalence</h2>
+<h3 id="interventions-introduce-immoralities-single-node">Interventions Introduce Immoralities: Single-Node</h3>
+<p>먼저, 아래와 같은 경우가 존재한다.</p>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_11_02.PNG?raw=true"  width="300">
+</center>
+<p>이제 여기에서 intervention을 가하면 아래처럼 된다.</p>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_11_03.PNG?raw=true"  width="400">
+</center>
+<p>이런 식으로 우리는 true graph를 찾아갈 수 있는 것이다.</p>
+<ul>
+<li>
+<p>Theorem: Two graphs augmented with single-node interventions are interventionally Markov equivalent if any only if they have the same skeletons and immoralities (Tian, &amp; Pearl, 2001)</p>
+</li>
+<li>
+<p>Number of interventions for identification (Eberhardt &amp; Scheines, 2007)</p>
+<ul>
+<li>$n-1$ interventions are sufficient</li>
+<li>$n-1$ interventions are necessary in the worst case</li>
+</ul>
+</li>
+</ul>
+<h3 id="interventional-graph-multi-node-interventions">Interventional Graph: Multi-Node Interventions</h3>
+<p>multi-node intervention이라는 것은 하나의 새로운 node를 통해 동시에 여러개의 기존 node에 intervention을 가하는 것을 의미한다.</p>
+<ul>
+<li>Theorem: Given the observational data, two graphs augmented with multi-node intervetions are interventionally Markov equivalent if and only if the have the same skeletons and immoralities (Yang et al., 2018)</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=2nDgrNP7XSE&amp;list=PLoazKTcS0RzZ1SUgeOgc6SWt51gfT80N0&amp;index=11" target="_blank" rel="noopener noreffer">Brady Neal - Causal Inference</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-02-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/causal11/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/causal-discovery/">Causal Discovery</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/causal10/" class="prev" rel="prev" title="[인과추론] Causal Discovery from Observational Data"><i class="fas fa-angle-left fa-fw"></i>[인과추론] Causal Discovery from Observational Data</a>
+            <a href="/causal14/" class="next" rel="next" title="[인과추론] Counterfactual and Mediation">[인과추론] Counterfactual and Mediation<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
