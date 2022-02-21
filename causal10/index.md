@@ -20,7 +20,7 @@ $$X \perp_G Y \| Z \Leftarrow X \perp_P Y \|Z$$
 하지만 쉽게 위의 반례를 찾을 수 있다. (아래의 그림참조) 그래서 우리는 아래와 같은 경우는 제외하고 가정한다.
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_10_01.PNG?raw=true"  width="400">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_10_01.png?raw=true"  width="400">
 </center>
 
 #### Causal Sufficiency and Acyclicity Assumption
@@ -92,18 +92,18 @@ Linear Non-Gaussian setting에서 graph를 identify하는 과정을 알아보자
 
 In the linear non-Gaussian setting, if the true SCM is
 
-$$Y := f(X) + U,\;\; X\perp U$$
+$$Y := f(X) + U,\\;\\; X\perp U$$
 
 then there does not exist an SCM in the reverse direction,
 
-$$X := g(Y) + \tilde{U},\;\; Y \perp \tilde{U}$$
+$$X := g(Y) + \tilde{U},\\;\\; Y \perp \tilde{U}$$
 
 that can generate data consistent with $P(x,y)$
 
 그렇다면 어떻게 위에서 말하는대로 causal mechanism을 파악할 수 있을까? linear model을 fit하고 residual을 확인하면 된다.
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_10_02.PNG?raw=true"  width="300">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_10_02.png?raw=true"  width="300">
 </center>
 
 이를 좀 더 extension한 경우들도 있다.
@@ -114,7 +114,7 @@ that can generate data consistent with $P(x,y)$
 ### Nonlinear Additive Noise setting
 #### Nonlinear Additive Noise Assumption
 
-$$X_i := f_i (pa_i) + U_i,\;\;\text{for all } i$$
+$$X_i := f_i (pa_i) + U_i,\\;\\;\text{for all } i$$
 
 where $f_i$ is nonlinear.
 

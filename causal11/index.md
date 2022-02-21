@@ -11,7 +11,7 @@ Intervention을 통해 Causal Discovery를 진행해보자.
 변수가 2개일 때, intervention을 하는 모든 경우를 살펴보자. 우리가 보고 싶은 것은 특정 intervention을 가해졌을 때, True graph를 essential graph로 나타낸 것이다. 여기서 essential graph은 이전에 배웠던 skeleton과 immoralities로 이루어진 graph라고 이해하면 된다.
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_11_01.PNG?raw=true"  width="400">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_11_01.png?raw=true"  width="400">
 </center>
 
 위의 그림을 통해서 이해할 수 있겠지만 하나의 intervention으로 graph를 찾아내기란 어렵다. intervention으로 essential graph를 구했어도 이에 해당하는 true graph가 2개가 존재하기 때문이다. 따라서 *Two interventions are sufficient and necessary to identify the graph.* 라고 한다. 즉, 위에서 $A$ 또는 $B$를 intervention한 결과가 아니라 두 가지 결과를 모두 알고 있다면 true graph를 파악할 수 있게 된다. 이제 이를 일반화해보자. 
@@ -49,13 +49,13 @@ parametric intervention은 structural와 다르게 기존 node들에 interventio
 ### Interventions Introduce Immoralities: Single-Node
 먼저, 아래와 같은 경우가 존재한다.
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_11_02.PNG?raw=true"  width="300">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_11_02.png?raw=true"  width="300">
 </center>
 
 이제 여기에서 intervention을 가하면 아래처럼 된다.
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_11_03.PNG?raw=true"  width="400">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_11_03.png?raw=true"  width="400">
 </center>
 
 이런 식으로 우리는 true graph를 찾아갈 수 있는 것이다.

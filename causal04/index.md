@@ -115,17 +115,17 @@ $$B:=f_B(A,U_B) \\\ C:=f_C(A,B,U_C) \\\ D:=f_D(A,C,U_D)$$
   - $M$의 descendant도 conditioning하면 하지말자. 왜냐하면 우리가 모르는 $U_M$이 존재하는 경우 $M$도 collider가 되기 때문이다.
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_04_02.PNG?raw=true"  width="300">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_04_02.png?raw=true"  width="300">
 </center>
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_04_03.PNG?raw=true"  width="300">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_04_03.png?raw=true"  width="300">
 </center>
 
 따라서 결론은 Don't conditionon post-treatment covariates! 물론 pre-treatment를 항상 conditioning해서도 안된다. *M-bias*라는 것이 존재하기 때문이다. 아래의 사진처럼 우리가 모르는 $Z_1,Z_3$가 존재하는 경우 $Z_2$를 conditioning하면 backdoor-path가 생겨버린다.
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_04_04.PNG?raw=true"  width="300">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_04_04.png?raw=true"  width="300">
 </center>
 
 ## Reference

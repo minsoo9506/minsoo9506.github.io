@@ -75,7 +75,7 @@ $$=E[Y_0 | T=1] + E[Y_1 |T=0] - E[Y_0 | T=0]$$
 드디어 $E[Y_1 (0) \| T=1]$를 identify했다. 이제 식을 정리하면 최종 결과가 나온다.
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_09_01.PNG?raw=true"  width="300">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_09_01.png?raw=true"  width="300">
 </center>
 
 ## Problem

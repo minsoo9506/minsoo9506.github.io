@@ -58,7 +58,7 @@ GCOM estimation을 통해 COM estimation에서 발생하는 zero treatment effec
 ## Increasing Data Efficiency
 ### TARNet
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_06_01.PNG?raw=true"  width="300">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/Lec_06_01.png?raw=true"  width="300">
 </center>
 
 ### X-Learner
@@ -67,7 +67,7 @@ GCOM estimation을 통해 COM estimation에서 발생하는 zero treatment effec
 - 2. Impute ITEs
   - Treatment group: $\hat{\tau}_{1,i}=Y_i(1) - \hat{\mu}_0 (x_i)$
   - Control group: $\hat{\tau}_{0,i}=\hat{\mu}_1 (x_i) - Y_i(0)$ 
-- 3.Fit a model $\hat{\tau}_1(x)$ to predict $\hat{\tau}_{1,i}$ from $x_i$ in treatment group and Fit a model $\hat{\tau}_0(x)$ to predict $\hat{\tau}_{0,i}$ from $x_i$ in control group.
+- 3. Fit a model $\hat{\tau}_1 (x)$ to predict $\hat{\tau} _ {1,i}$ from $x_i$ in treatment group and Fit a model $\hat{\tau}_0(x)$ to predict $\hat{\tau} _ {0,i}$ from $x_i$ in control group.
 - 4. $\hat{\tau}(x) = g(x)\hat{\tau}_0(x) + (1-g(x))\hat{\tau}_1(x)$ where $g(x)$ is some weighting function (ex; propensity score)
 
 ## Propensity Scores
