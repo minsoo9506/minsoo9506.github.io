@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[OS] Process Scheduling - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[OS] Process Scheduling" />
+<meta property="og:description" content="Process scheduling에 대한 기본개념 정리" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/os_lec04_processscheduling/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-08T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-03-08T09:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[OS] Process Scheduling"/>
+<meta name="twitter:description" content="Process scheduling에 대한 기본개념 정리"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/os_lec04_processscheduling/" /><link rel="prev" href="http://minsoo9506.github.io/os_lec05_threadmanagement/" /><link rel="next" href="http://minsoo9506.github.io/os_lec06_processsynchronizationmutualexclusion/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[OS] Process Scheduling",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/os_lec04_processscheduling\/"
+        },"genre": "posts","keywords": "Process","wordcount":  294 ,
+        "url": "http:\/\/minsoo9506.github.io\/os_lec04_processscheduling\/","datePublished": "2022-03-08T09:00:00+00:00","dateModified": "2022-03-08T09:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[OS] Process Scheduling</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-science/"><i class="far fa-folder fa-fw"></i>Computer Science</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-08">2022-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;294 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#스케줄링의-목적">스케줄링의 목적</a></li>
+    <li><a href="#스케줄링의-단계">스케줄링의 단계</a></li>
+    <li><a href="#스케줄링-정책">스케줄링 정책</a></li>
+    <li><a href="#기본-스케줄링-알고리즘">기본 스케줄링 알고리즘</a>
+      <ul>
+        <li><a href="#fcfs-first-come-first-service">FCFS (First-Come-First-Service)</a></li>
+        <li><a href="#rr-round-robin">RR (Round-Robin)</a></li>
+        <li><a href="#spn-shortest-process-next">SPN (Shortest-Process-Next)</a></li>
+        <li><a href="#srtn-shortest-remaining-time-next">SRTN (Shortest Remaining Time Next)</a></li>
+        <li><a href="#hrrn-high-response-ratio-next">HRRN (High-Response-Ratio-Next)</a></li>
+        <li><a href="#mlq-multi-level-queue">MLQ (Multi-level Queue)</a></li>
+        <li><a href="#mfq-multi-level-feedback-queue">MFQ (Multi-level Feedback Queue)</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Process scheduling에 대한 기본개념 정리</p>
+<p>여러개의 프로세스가 시스템에 존재하기 때문에 자원을 할당 할 프로세스를 잘 관리해야한다. 이번에는 이런 프로세스를 스케쥴링하는 방법을 알아보자.</p>
+<h2 id="스케줄링의-목적">스케줄링의 목적</h2>
+<ul>
+<li>시스템의 성능 향상</li>
+<li>성능 지표
+<ul>
+<li>응답시간</li>
+<li>작업 처리량</li>
+<li>자원 활용도</li>
+</ul>
+</li>
+</ul>
+<h2 id="스케줄링의-단계">스케줄링의 단계</h2>
+<ul>
+<li>Long-term scheduling
+<ul>
+<li>job scheduling: kernel에 등록할 작업 결정</li>
+</ul>
+</li>
+<li>Mid-term scheduling
+<ul>
+<li>memory allocation</li>
+</ul>
+</li>
+<li>Short-term scheduling
+<ul>
+<li>process scheduling
+<ul>
+<li>프로세서를 할당할 프로세스를 결정</li>
+<li>가장 빈번하게 발생하기에 빨라야 함</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="스케줄링-정책">스케줄링 정책</h2>
+<ul>
+<li>Preemptive/Non-preemptive scheduling
+<ul>
+<li>Non-preemtive
+<ul>
+<li>할당 받을 자원을 스스로 반납할 때까지 사용</li>
+</ul>
+</li>
+<li>Preemptive
+<ul>
+<li>타의에 의해 자원을 빼앗길 수 있음</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Priority
+<ul>
+<li>Static priority
+<ul>
+<li>프로세스 생성시 결정된 priority가 유지 됨</li>
+</ul>
+</li>
+<li>Dynamic priority
+<ul>
+<li>프로세스의 상태 변화에 따라 priority가 변경</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="기본-스케줄링-알고리즘">기본 스케줄링 알고리즘</h2>
+<h3 id="fcfs-first-come-first-service">FCFS (First-Come-First-Service)</h3>
+<ul>
+<li>Non-preemptive</li>
+<li>도착시간 기준, 먼저 도착한 프로세스를 먼저 처리</li>
+<li>대기시간이 길어질 수 있다, 긴 평균 응답시간</li>
+</ul>
+<h3 id="rr-round-robin">RR (Round-Robin)</h3>
+<ul>
+<li>Preemptive</li>
+<li>도착시간 기준, 먼저 도착한 프로세스를 먼저 처리하지만 자원사용 제한시간이 있다</li>
+<li>프로세스는 할당된 시간이 지나면 자원을 반납한다</li>
+<li>context switch overhead가 클 수 있다</li>
+</ul>
+<h3 id="spn-shortest-process-next">SPN (Shortest-Process-Next)</h3>
+<ul>
+<li>Non-preemptive</li>
+<li>실행시간 기준, 실행시간이 가장 작은 프로세스를 먼저 처리</li>
+<li>평균 대기시간이 작고, 시스템 내 프로세스 수도 작다</li>
+<li>실행시간을 예측하기 어렵다, Starvation(무한대기) 발생</li>
+</ul>
+<h3 id="srtn-shortest-remaining-time-next">SRTN (Shortest Remaining Time Next)</h3>
+<ul>
+<li>Preemptive</li>
+<li>잔여 실행 시간이 더 적은 프로세스가 ready가 되면 선점된다</li>
+<li>SPN의 장점 극대화</li>
+<li>실행시간을 예측하기 어렵고 잔여 실행을 계속 추척해야 한다</li>
+</ul>
+<h3 id="hrrn-high-response-ratio-next">HRRN (High-Response-Ratio-Next)</h3>
+<ul>
+<li>SPN + Aging + Non-preemptive</li>
+<li>프로세스이 대기시간(Aging)을 고려하여 기회를 제공한다</li>
+<li>SPN의 장점 + starvation 방지</li>
+<li>실행시간을 예측하기 어렵다</li>
+</ul>
+<h3 id="mlq-multi-level-queue">MLQ (Multi-level Queue)</h3>
+<ul>
+<li>작업(or 우선순위)별 별도의 ready queue를 가진다
+<ul>
+<li>최초 배정된 queue를 바꿀 수 없다</li>
+<li>각각의 queue는 자신만의 스케줄링 기법 사용</li>
+</ul>
+</li>
+<li>queue 사이에는 우선순위 기반의 스케줄링 사용</li>
+<li>여러개의 queue로 인한 장점도 있지만 관리해야 하는 단점도 있다</li>
+<li>우선순위가 낮은 queue는 starvation 현상이 발생 할 수도 있다</li>
+</ul>
+<h3 id="mfq-multi-level-feedback-queue">MFQ (Multi-level Feedback Queue)</h3>
+<ul>
+<li>프로세스의 queue간 이동이 허용된 MLQ</li>
+<li>Feedback을 통해 우선 순위 조정</li>
+<li>프로세스에 대한 사전 정보 없이 SPN ~ HRRN 기법의 효과를 볼 수 있다</li>
+<li>MFQ를 조금씩 변형해서 사용된다</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN" target="_blank" rel="noopener noreffer">HPC Lab. KOREATECH 운영체제 강의</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-03-08</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/os_lec04_processscheduling/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/process/">Process</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/os_lec05_threadmanagement/" class="prev" rel="prev" title="[OS] Thread Management"><i class="fas fa-angle-left fa-fw"></i>[OS] Thread Management</a>
+            <a href="/os_lec06_processsynchronizationmutualexclusion/" class="next" rel="next" title="[OS] Process Synchronization and Mutual Exclusion">[OS] Process Synchronization and Mutual Exclusion<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[OS] Memory Management - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[OS] Memory Management" />
+<meta property="og:description" content="Memory Management에 대해 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/os_lec08_memorymanagement/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-19T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-03-19T09:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[OS] Memory Management"/>
+<meta name="twitter:description" content="Memory Management에 대해 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/os_lec08_memorymanagement/" /><link rel="prev" href="http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/" /><link rel="next" href="http://minsoo9506.github.io/os_lec07_deadlock/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[OS] Memory Management",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/os_lec08_memorymanagement\/"
+        },"genre": "posts","keywords": "Memory","wordcount":  185 ,
+        "url": "http:\/\/minsoo9506.github.io\/os_lec08_memorymanagement\/","datePublished": "2022-03-19T09:00:00+00:00","dateModified": "2022-03-19T09:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[OS] Memory Management</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-science/"><i class="far fa-folder fa-fw"></i>Computer Science</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-19">2022-03-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;185 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#background">Background</a>
+      <ul>
+        <li><a href="#메모리-계층구조">메모리 계층구조</a></li>
+        <li><a href="#address-binding">Address Binding</a></li>
+      </ul>
+    </li>
+    <li><a href="#memory-allocation">Memory allocation</a>
+      <ul>
+        <li><a href="#continuous-memory-allocation">Continuous memory allocation</a>
+          <ul>
+            <li><a href="#multi-programming">Multi-programming</a></li>
+          </ul>
+        </li>
+        <li><a href="#non-continuous-memory-allocation">Non-continuous memory allocation</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Memory Management에 대해 알아보자.</p>
+<h2 id="background">Background</h2>
+<h3 id="메모리-계층구조">메모리 계층구조</h3>
+<ul>
+<li>레지스터</li>
+<li>캐시</li>
+<li>메인 메모리</li>
+<li>보조기억장치</li>
+</ul>
+<p>레지스터쪽으로 갈수록 용량이 작고 비싸다. 레지스터와 캐시는 HW(CPU)가 관리하고 나머지 2개는 SW(OS)가 관리한다.</p>
+<ul>
+<li>block
+<ul>
+<li>보조기억장치와 주기억장치 사이의 데이터 전송 단위</li>
+<li>보조기억장치에서 메인메모리로 1bit에 해당하는 데이터만 올려도 block단위(1~4kb)로 올라간다</li>
+</ul>
+</li>
+<li>word
+<ul>
+<li>메인메모리와 레지스터 사이의 데이터 전송 단위 (16~64bit)</li>
+</ul>
+</li>
+</ul>
+<h3 id="address-binding">Address Binding</h3>
+<ul>
+<li>프로그램의 논리 주소를 실제 메모리의 물리 주소로 매핑하는 과정</li>
+<li>binding 시점에 따라 구분
+<ul>
+<li>complie time binding</li>
+<li>load time binding</li>
+<li>run time binding
+<ul>
+<li>대부분의 OS가 사용하는 방법</li>
+<li>Address binding을 수행시간(running state)까지 연기</li>
+<li>HW(Memory Management Unit)의 도움이 필요</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec08_01.png?raw=true"  width="300">
+</center>
+<h2 id="memory-allocation">Memory allocation</h2>
+<h3 id="continuous-memory-allocation">Continuous memory allocation</h3>
+<p>프로세스를 하나의 <strong>연속된</strong> 메모리 공간에 할당하는 정책이다. 이는 크게 두가지로 나눈다.</p>
+<ul>
+<li>Uni-programming
+<ul>
+<li>하나의 프로세스만 메모리 상에 존재</li>
+</ul>
+</li>
+<li>Multi-programming</li>
+</ul>
+<h4 id="multi-programming">Multi-programming</h4>
+<p>두 가지로 나눠서 생각할 수 있다.</p>
+<ul>
+<li>Fixed(Static) partition multi-programming
+<ul>
+<li>메모리 공간을 고정된 크기로 미리 분할, 메모리 관리는 편함</li>
+<li>각 프로세스는 하나의 partition에 적재</li>
+<li>start address, size를 통해서 partition 관리</li>
+<li>프로세스가 kernel이나 다른 partition을 침범하지 않도록 Boundary address를 통해 방지한다</li>
+<li>문제: Fragmentation (단편화)
+<ul>
+<li>Internal fragmentation: Partition 크기 $&gt;$ Process 크기</li>
+<li>External fragmentation: (남은 메모리 크기 $&gt;$ Process 크기)이지만 연속된 공간이 아니라 사용불가</li>
+<li>메모리가 낭비된다</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Variable(dynamic) partition multi-programming</li>
+</ul>
+<h3 id="non-continuous-memory-allocation">Non-continuous memory allocation</h3>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN" target="_blank" rel="noopener noreffer">HPC Lab. KOREATECH 운영체제 강의</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-03-19</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/os_lec08_memorymanagement/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/memory/">Memory</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/01_tutorial_on_deep_learning_for_anomaly_detection/" class="prev" rel="prev" title="[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)"><i class="fas fa-angle-left fa-fw"></i>[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)</a>
+            <a href="/os_lec07_deadlock/" class="next" rel="next" title="[OS] Deadlock">[OS] Deadlock<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

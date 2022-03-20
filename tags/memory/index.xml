@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Memory - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/memory/</link>
+        <description>Memory - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/memory/" rel="self" type="application/rss+xml" /><item>
+    <title>[OS] Memory Management</title>
+    <link>http://minsoo9506.github.io/os_lec08_memorymanagement/</link>
+    <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec08_memorymanagement/</guid>
+    <description><![CDATA[<p>Memory Management에 대해 알아보자.</p>]]></description>
+</item></channel>
+</rss>

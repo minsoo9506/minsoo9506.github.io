@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Deadlock - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/deadlock/</link>
+        <description>Deadlock - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/deadlock/" rel="self" type="application/rss+xml" /><item>
+    <title>[OS] Deadlock</title>
+    <link>http://minsoo9506.github.io/os_lec07_deadlock/</link>
+    <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec07_deadlock/</guid>
+    <description><![CDATA[<p>Deadlock에 대해 알아보자.</p>]]></description>
+</item></channel>
+</rss>

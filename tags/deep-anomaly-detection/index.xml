@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Deep Anomaly Detection - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/deep-anomaly-detection/</link>
+        <description>Deep Anomaly Detection - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/deep-anomaly-detection/" rel="self" type="application/rss+xml" /><item>
+    <title>[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)</title>
+    <link>http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/</link>
+    <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/</guid>
+    <description><![CDATA[<p>Deep Learning for Anomaly Detection - Challenges, Methods tutorial 정리</p>]]></description>
+</item></channel>
+</rss>

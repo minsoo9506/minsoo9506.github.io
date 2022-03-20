@@ -1,0 +1,49 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Computer Science - Category - minsoo9506</title>
+        <link>http://minsoo9506.github.io/categories/computer-science/</link>
+        <description>Computer Science - Category - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/computer-science/" rel="self" type="application/rss+xml" /><item>
+    <title>[OS] Deadlock</title>
+    <link>http://minsoo9506.github.io/os_lec07_deadlock/</link>
+    <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec07_deadlock/</guid>
+    <description><![CDATA[<p>Deadlock에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[OS] Memory Management</title>
+    <link>http://minsoo9506.github.io/os_lec08_memorymanagement/</link>
+    <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec08_memorymanagement/</guid>
+    <description><![CDATA[<p>Memory Management에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[OS] Process Synchronization and Mutual Exclusion</title>
+    <link>http://minsoo9506.github.io/os_lec06_processsynchronizationmutualexclusion/</link>
+    <pubDate>Fri, 11 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec06_processsynchronizationmutualexclusion/</guid>
+    <description><![CDATA[<p>Process Synchronization and Mutual Exclusion 에 대한 개념 정리 (semaphore)</p>]]></description>
+</item><item>
+    <title>[OS] Process Scheduling</title>
+    <link>http://minsoo9506.github.io/os_lec04_processscheduling/</link>
+    <pubDate>Tue, 08 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec04_processscheduling/</guid>
+    <description><![CDATA[<p>Process scheduling에 대한 기본개념 정리</p>]]></description>
+</item><item>
+    <title>[OS] Thread Management</title>
+    <link>http://minsoo9506.github.io/os_lec05_threadmanagement/</link>
+    <pubDate>Sat, 05 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec05_threadmanagement/</guid>
+    <description><![CDATA[<p>Thread에 대한 개념 정리</p>]]></description>
+</item><item>
+    <title>[OS] Process Management</title>
+    <link>http://minsoo9506.github.io/os_lec03_processmanagement/</link>
+    <pubDate>Fri, 04 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec03_processmanagement/</guid>
+    <description><![CDATA[<p>Process에 대한 개념 정리</p>]]></description>
+</item></channel>
+</rss>

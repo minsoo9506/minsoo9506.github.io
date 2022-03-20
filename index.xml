@@ -3,77 +3,77 @@
         <title>minsoo9506</title>
         <link>http://minsoo9506.github.io/</link>
         <description>This is My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 18 Feb 2022 11:09:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://minsoo9506.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>[인과추론] Counterfactual and Mediation</title>
-    <link>http://minsoo9506.github.io/causal14/</link>
-    <pubDate>Fri, 18 Feb 2022 11:09:00 &#43;0000</pubDate>
+    <title>[OS] Deadlock</title>
+    <link>http://minsoo9506.github.io/os_lec07_deadlock/</link>
+    <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal14/</guid>
-    <description><![CDATA[<p>Counterfactual에 관한 기본적인 개념과 Mediation에 대해 알아보자.</p>]]></description>
+    <guid>http://minsoo9506.github.io/os_lec07_deadlock/</guid>
+    <description><![CDATA[<p>Deadlock에 대해 알아보자.</p>]]></description>
 </item><item>
-    <title>[인과추론] Causal Discovery from Interventions</title>
-    <link>http://minsoo9506.github.io/causal11/</link>
-    <pubDate>Tue, 15 Feb 2022 11:09:00 &#43;0000</pubDate>
+    <title>[OS] Memory Management</title>
+    <link>http://minsoo9506.github.io/os_lec08_memorymanagement/</link>
+    <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal11/</guid>
-    <description><![CDATA[<p>Intervention을 통해 Causal Discovery를 진행해보자.</p>]]></description>
+    <guid>http://minsoo9506.github.io/os_lec08_memorymanagement/</guid>
+    <description><![CDATA[<p>Memory Management에 대해 알아보자.</p>]]></description>
 </item><item>
-    <title>[인과추론] Causal Discovery from Observational Data</title>
-    <link>http://minsoo9506.github.io/causal10/</link>
-    <pubDate>Mon, 14 Feb 2022 11:09:00 &#43;0000</pubDate>
+    <title>[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)</title>
+    <link>http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/</link>
+    <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal10/</guid>
-    <description><![CDATA[<p>causality가 어느정도 인지 파악하기 이전에 observational data에서 causal discovery를 먼저 진행해야 한다. 이에 대해 알아보자.</p>]]></description>
+    <guid>http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/</guid>
+    <description><![CDATA[<p>Deep Learning for Anomaly Detection - Challenges, Methods tutorial 정리</p>]]></description>
+</item><item>
+    <title>[OS] Process Synchronization and Mutual Exclusion</title>
+    <link>http://minsoo9506.github.io/os_lec06_processsynchronizationmutualexclusion/</link>
+    <pubDate>Fri, 11 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec06_processsynchronizationmutualexclusion/</guid>
+    <description><![CDATA[<p>Process Synchronization and Mutual Exclusion 에 대한 개념 정리 (semaphore)</p>]]></description>
+</item><item>
+    <title>[OS] Process Scheduling</title>
+    <link>http://minsoo9506.github.io/os_lec04_processscheduling/</link>
+    <pubDate>Tue, 08 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec04_processscheduling/</guid>
+    <description><![CDATA[<p>Process scheduling에 대한 기본개념 정리</p>]]></description>
+</item><item>
+    <title>[OS] Thread Management</title>
+    <link>http://minsoo9506.github.io/os_lec05_threadmanagement/</link>
+    <pubDate>Sat, 05 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec05_threadmanagement/</guid>
+    <description><![CDATA[<p>Thread에 대한 개념 정리</p>]]></description>
+</item><item>
+    <title>[OS] Process Management</title>
+    <link>http://minsoo9506.github.io/os_lec03_processmanagement/</link>
+    <pubDate>Fri, 04 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec03_processmanagement/</guid>
+    <description><![CDATA[<p>Process에 대한 개념 정리</p>]]></description>
+</item><item>
+    <title>[Python] Generator</title>
+    <link>http://minsoo9506.github.io/generator/</link>
+    <pubDate>Tue, 22 Feb 2022 09:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/generator/</guid>
+    <description><![CDATA[<p>Python generator에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[Python] Iterator</title>
+    <link>http://minsoo9506.github.io/iterator/</link>
+    <pubDate>Mon, 21 Feb 2022 09:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/iterator/</guid>
+    <description><![CDATA[<p>Python iterator애 대해 알아보자.</p>]]></description>
 </item><item>
     <title>[Tips] Pyspark</title>
     <link>http://minsoo9506.github.io/pyspark/</link>
-    <pubDate>Thu, 10 Feb 2022 09:21:26 &#43;0900</pubDate>
+    <pubDate>Sun, 20 Feb 2022 09:21:26 &#43;0900</pubDate>
     <author>Author</author>
     <guid>http://minsoo9506.github.io/pyspark/</guid>
     <description><![CDATA[<p>pyspark와 관련한 tips 정리</p>]]></description>
-</item><item>
-    <title>[Causality] Propensity Score</title>
-    <link>http://minsoo9506.github.io/propensity_score/</link>
-    <pubDate>Thu, 20 Jan 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/propensity_score/</guid>
-    <description><![CDATA[<p>Propensity Score에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[Algorithmic Marketing] RFM 분석 기본개념</title>
-    <link>http://minsoo9506.github.io/04_rfm/</link>
-    <pubDate>Wed, 12 Jan 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/04_rfm/</guid>
-    <description><![CDATA[<p>RFM (Recency, Frequency, Monetary) 분석 의 기본개념을 알아보자.</p>]]></description>
-</item><item>
-    <title>[Algorithmic Marketing] Multi-touch Attribution</title>
-    <link>http://minsoo9506.github.io/03_multi_touch_attr/</link>
-    <pubDate>Mon, 10 Jan 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/03_multi_touch_attr/</guid>
-    <description><![CDATA[<p>Multi-touch Attribution model에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[Algorithmic Marketing] 온라인 광고</title>
-    <link>http://minsoo9506.github.io/02_online_ad/</link>
-    <pubDate>Sun, 09 Jan 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/02_online_ad/</guid>
-    <description><![CDATA[<p>온라인 광고를 하는 과정과 애트리뷰션 모델에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[Algorithmic Marketing] 생존분석 기본개념</title>
-    <link>http://minsoo9506.github.io/01_survival_analysis/</link>
-    <pubDate>Thu, 06 Jan 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/01_survival_analysis/</guid>
-    <description><![CDATA[<p>생존분석 방법론의 기본적인 개념을 알아보자.</p>]]></description>
-</item><item>
-    <title>[Git] 기본 내용 정리</title>
-    <link>http://minsoo9506.github.io/03-git-basic/</link>
-    <pubDate>Mon, 20 Dec 2021 21:02:00 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/03-git-basic/</guid>
-    <description><![CDATA[<p>Git 기본적인 명령어 정리</p>]]></description>
 </item></channel>
 </rss>

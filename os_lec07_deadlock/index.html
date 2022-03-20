@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[OS] Deadlock - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[OS] Deadlock" />
+<meta property="og:description" content="Deadlock에 대해 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/os_lec07_deadlock/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-19T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-03-19T09:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[OS] Deadlock"/>
+<meta name="twitter:description" content="Deadlock에 대해 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/os_lec07_deadlock/" /><link rel="prev" href="http://minsoo9506.github.io/os_lec08_memorymanagement/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[OS] Deadlock",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/os_lec07_deadlock\/"
+        },"genre": "posts","keywords": "Deadlock","wordcount":  698 ,
+        "url": "http:\/\/minsoo9506.github.io\/os_lec07_deadlock\/","datePublished": "2022-03-19T09:00:00+00:00","dateModified": "2022-03-19T09:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[OS] Deadlock</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-science/"><i class="far fa-folder fa-fw"></i>Computer Science</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-19">2022-03-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;698 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#deadlock">Deadlock</a></li>
+    <li><a href="#자원의-분류">자원의 분류</a>
+      <ul>
+        <li><a href="#선점-가능-여부에-따른-분류">선점 가능 여부에 따른 분류</a></li>
+        <li><a href="#할당-단위에-따른-분류">할당 단위에 따른 분류</a></li>
+        <li><a href="#동시-사용-가능-여부에-따른-분류">동시 사용 가능 여부에 따른 분류</a></li>
+        <li><a href="#재사용-가능-여부에-따른-분류">재사용 가능 여부에 따른 분류</a></li>
+      </ul>
+    </li>
+    <li><a href="#deadlock-발생-필요-조건">Deadlock 발생 필요 조건</a></li>
+    <li><a href="#deadlock-해결-방법">Deadlock 해결 방법</a>
+      <ul>
+        <li><a href="#prevention">Prevention</a>
+          <ul>
+            <li><a href="#모든-자원을-공유허용">모든 자원을 공유허용</a></li>
+            <li><a href="#모든-자원에-대해-선점-허용">모든 자원에 대해 선점 허용</a></li>
+            <li><a href="#필요-자원-한번에-모두-할당">필요 자원 한번에 모두 할당</a></li>
+            <li><a href="#circular-wait-조건-제거">Circular wait 조건 제거</a></li>
+          </ul>
+        </li>
+        <li><a href="#avoidance">Avoidance</a>
+          <ul>
+            <li><a href="#가정">가정</a></li>
+            <li><a href="#avoidance-알고리즘">avoidance 알고리즘</a></li>
+            <li><a href="#단점">단점</a></li>
+          </ul>
+        </li>
+        <li><a href="#detection-and-recovery">Detection and Recovery</a>
+          <ul>
+            <li><a href="#resource-allocation-graph-detection">Resource Allocation Graph (Detection)</a></li>
+            <li><a href="#graph-reduction">Graph Reduction</a></li>
+            <li><a href="#recovery">Recovery</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Deadlock에 대해 알아보자.</p>
+<h2 id="deadlock">Deadlock</h2>
+<ul>
+<li>Deadlock state
+<ul>
+<li>프로세스가 <strong>발생 가능성이 없는</strong> 이벤트(or 자원)를 기다리는 경우: 프로세스가 deadlock 상태에 있다고 한다</li>
+</ul>
+</li>
+<li>starvation과 다른 점
+<ul>
+<li>starvation은 발생가능성이 없는게 아니다</li>
+<li>CPU(프로세서)를 기다리는 것이다 (ready state에서 대기)</li>
+</ul>
+</li>
+</ul>
+<p>그렇다면 Deadlock이 발생하는 상황을 생각해보자.</p>
+<ul>
+<li>2개의 프로세스($P1,P2$)와 2개의 자원($R1,R2$)이 있다.</li>
+<li>
+<ol>
+<li>$P1$이 $R2$를 요청한다.</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>$P2$가 $R1$을 요청한다.</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>$P1$이 $R1$을 요청한다.</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>$P2$가 $R2$를 요청한다.</li>
+</ol>
+</li>
+</ul>
+<p>위와 같은 상황이 발생하면 4번에서 deadlock 상태가 되버린다. $P1$은 $R1$을 받아서 일을 끝내고 자원을 반납해야하고 $P2$는 $R2$만 받으면 일을 끝난다. 근데 서로 물고 있어서 끝날 수가 없는 상태가 되는 것이다.</p>
+<h2 id="자원의-분류">자원의 분류</h2>
+<h3 id="선점-가능-여부에-따른-분류">선점 가능 여부에 따른 분류</h3>
+<ul>
+<li>Preemptible resources
+<ul>
+<li>선점 당한 후, 돌아와도 문제가 발생하지 않는 자원</li>
+<li>ex) processor, memory
+<ul>
+<li>processor는 context-switching이 발생할 떄, save와 restore</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Non-preemptible resources
+<ul>
+<li>선점 당하면, 이후 진행에 문제가 발생하는 자원</li>
+<li>rollback, restart 등 특별한 동작이 필요</li>
+<li>ex) disk drive</li>
+</ul>
+</li>
+</ul>
+<h3 id="할당-단위에-따른-분류">할당 단위에 따른 분류</h3>
+<ul>
+<li>Total allocation resources
+<ul>
+<li>자원 전체를 프로세스에게 할당</li>
+<li>ex) processor, disk drive</li>
+</ul>
+</li>
+<li>Partitioned allocation resources
+<ul>
+<li>하나의 자원을 여러 조작으로 나누어, 여러 프로세스들에게 할당</li>
+<li>ex) memory</li>
+</ul>
+</li>
+</ul>
+<h3 id="동시-사용-가능-여부에-따른-분류">동시 사용 가능 여부에 따른 분류</h3>
+<ul>
+<li>Exclusive allocation resources
+<ul>
+<li>한 순간에 한 프로세스만 사용 가능한 자원</li>
+<li>ex) processor, memory, disk drive</li>
+</ul>
+</li>
+<li>Shared allocation resource
+<ul>
+<li>여러 프로세스가 동시에 사용 가능한 자원</li>
+<li>ex) program, shared data
+<ul>
+<li>word 창 여러개 띄워서 쓰는 경우처럼</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="재사용-가능-여부에-따른-분류">재사용 가능 여부에 따른 분류</h3>
+<ul>
+<li>Serially-reusable resources
+<ul>
+<li>시스템 내에 항상 존재하는 자원</li>
+<li>사용이 끝나면, 다른 프로세스가 사용 가능</li>
+<li>ex) processor, memory, disk drive, program</li>
+</ul>
+</li>
+<li>Consumable resources
+<ul>
+<li>한 프로세스가 사용한 후에 사라지는 자원</li>
+<li>ex) signal, message</li>
+</ul>
+</li>
+</ul>
+<h2 id="deadlock-발생-필요-조건">Deadlock 발생 필요 조건</h2>
+<p>아래의 4가지가 성립해야 deadlock이 발생한다.</p>
+<ul>
+<li>Exclusive use of resources</li>
+<li>Non-preemptible resources</li>
+<li>Hold and wait (Partial allocation)
+<ul>
+<li>자원을 하나 hold하고 다른 자원 요청</li>
+</ul>
+</li>
+<li>Circular wait</li>
+</ul>
+<p>이제 Deadlock 해결방법에 대해 알아보자. 크게 3가지로 나누어서 생각할 수 있다.</p>
+<h2 id="deadlock-해결-방법">Deadlock 해결 방법</h2>
+<h3 id="prevention">Prevention</h3>
+<ul>
+<li>4가지의 deadlock 발생 필요 조건 중 하나을 제거</li>
+<li>deadlock이 절대 발생하지 않지만 심각한 자원 낭비가 발생하거나 비현실적인 대안밖에 없다</li>
+</ul>
+<h4 id="모든-자원을-공유허용">모든 자원을 공유허용</h4>
+<ul>
+<li>Exclusive use of resources 조건 제거</li>
+<li>현실적으로 불가능</li>
+</ul>
+<h4 id="모든-자원에-대해-선점-허용">모든 자원에 대해 선점 허용</h4>
+<ul>
+<li>Non-preemptible resources 조건 제거</li>
+<li>현실적으로 불가능</li>
+</ul>
+<h4 id="필요-자원-한번에-모두-할당">필요 자원 한번에 모두 할당</h4>
+<ul>
+<li>hold and wait 조건 제거</li>
+<li>자원 낭비 발생</li>
+<li>무한 대기 발생 가능</li>
+</ul>
+<h4 id="circular-wait-조건-제거">Circular wait 조건 제거</h4>
+<ul>
+<li>자원들에게 순서를 부여해서 순서의 증가 방향으로만 자원 요청 가능하게 하면 된다</li>
+<li>자원 낭비 발생</li>
+</ul>
+<h3 id="avoidance">Avoidance</h3>
+<ul>
+<li>시스템의 상태를 감시하여서 deadlock 상태가 될 가능성이 있는 자원 할당 요청을 보류</li>
+<li>시스템을 항상 safe state로 유지
+<ul>
+<li>safe state
+<ul>
+<li>모든 프로세스가 정상적 종료 가능한 상태</li>
+<li>safe sequence가 존재</li>
+</ul>
+</li>
+<li>unsafe state
+<ul>
+<li>deadlock 상태가 될 가능성이 있음 (반드시 발생한다는 의미는 아님)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="가정">가정</h4>
+<ul>
+<li>프로세스의 수가 고정됨</li>
+<li>자원의 종류와 수가 고정됨</li>
+<li>프로세스가 요구하는 자원 및 최대 수량을 알고 있음</li>
+<li>프로세스는 자원을 사용 후 반드시 반납</li>
+<li>위의 가정도 사실 not practical 하다</li>
+</ul>
+<h4 id="avoidance-알고리즘">avoidance 알고리즘</h4>
+<ul>
+<li>Dijkstra&rsquo;s algorithm
+<ul>
+<li>예시를 통해 이해해보자</li>
+<li>1가지 resource가 10개 있다, 3개의 프로세스가 있다</li>
+<li>각 프로세스의 리소스 관련 (max.claim, cur.alloc, additional need) 은
+<ul>
+<li>p1: (3, 1, 2), p2: (9, 5, 4), p3: (5, 2, 3)</li>
+</ul>
+</li>
+<li>남아 있는 리소스는 2개이고 이를 이용하여 실행 종료 순서를 고려하면</li>
+<li>p1 -&gt; p3 -&gt; p2 : safe sequence가 존재한다, 따라서 safe state라고 할 수 있다</li>
+<li>이런 safe sequence를 구할 수 없는 상황이라면 deadlock이 발생할 수도 있다</li>
+</ul>
+</li>
+<li>위의 알고리즘을 확장한 (여러 종류의 자원 고려) 것이 Habermann&rsquo;s algorithm 이고 원리는 같다</li>
+</ul>
+<h4 id="단점">단점</h4>
+<ul>
+<li>항상 시스템을 감시해야 한다</li>
+<li>safe state 유지를 위해 사용되지 않는 자원이 존재</li>
+<li>가정들이 not practical</li>
+</ul>
+<h3 id="detection-and-recovery">Detection and Recovery</h3>
+<ul>
+<li>deadlock 방지를 위한 사전 작업을 하지 않는다</li>
+<li>Resource Allocation Graph (RAG)를 사용하여 주기적으로 deadlock 발생을 확인하고 해결한다</li>
+</ul>
+<h4 id="resource-allocation-graph-detection">Resource Allocation Graph (Detection)</h4>
+<ul>
+<li>directed, bipartite graph</li>
+<li>edge는 프로세스와 리소스 사이에만 존재</li>
+<li>Graph reduction
+<ul>
+<li>주어진 RAG에서 edge를 하나씩 지워가는 방법</li>
+<li>completely reduced
+<ul>
+<li>모든 edge가 제거 됨</li>
+<li>deadlock에 빠진 프로세스가 없음</li>
+</ul>
+</li>
+<li>irreducible
+<ul>
+<li>지울 수 없는 edge가 존재</li>
+<li>하나 이상의 프로세스가 deadlock 상태</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="graph-reduction">Graph Reduction</h4>
+<ul>
+<li>unblocked process
+<ul>
+<li>필요한 자원을 모두 할당 받을 수 있는 프로세스 (아래 식이 의미하는 바)</li>
+</ul>
+</li>
+</ul>
+<p>The process $P_i$ is unblocked if it satisfies
+$$\forall j, | (P_i, R_j) | \le t_j - \sum_{\text{all k}} | (R_j,P_k) |$$</p>
+<ul>
+<li>graph reduction procedure
+<ul>
+<li>
+<ol>
+<li>unblocked process에 연결된 모든 edge를 제거</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>더이상 unblocked process가 없을 때까지 1번 반복</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec07_01.png?raw=true"  width="300">
+</center>
+<h4 id="recovery">Recovery</h4>
+<ul>
+<li>방법
+<ul>
+<li>process termination
+<ul>
+<li>deadlock 상태에 있는 프로세스를 종료시킴</li>
+<li>강제 종료된 프로세스는 이후 재시작 됨</li>
+</ul>
+</li>
+<li>resource preemption
+<ul>
+<li>deadlock 상태 해결 위해 선점할 자원 선택</li>
+<li>선정된 자원을 가지고 있는 프로세스에서 자원을 빼았음</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>위의 방법들은 각각 여러가지 기준을 통해서 종료한 프로세스와 선점할 자원을 선택한다</p>
+<ul>
+<li>checkpoint-restart method
+<ul>
+<li>프로세스의 수행 중 특점 지점마다 context를 저장</li>
+<li>강제 종료 후, 가장 최근의 check-point에서 재시작 (rollback)</li>
+</ul>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN" target="_blank" rel="noopener noreffer">HPC Lab. KOREATECH 운영체제 강의</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-03-19</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/os_lec07_deadlock/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/deadlock/">Deadlock</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/os_lec08_memorymanagement/" class="prev" rel="prev" title="[OS] Memory Management"><i class="fas fa-angle-left fa-fw"></i>[OS] Memory Management</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

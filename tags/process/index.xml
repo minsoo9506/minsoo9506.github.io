@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Process - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/process/</link>
+        <description>Process - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 08 Mar 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/process/" rel="self" type="application/rss+xml" /><item>
+    <title>[OS] Process Scheduling</title>
+    <link>http://minsoo9506.github.io/os_lec04_processscheduling/</link>
+    <pubDate>Tue, 08 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec04_processscheduling/</guid>
+    <description><![CDATA[<p>Process scheduling에 대한 기본개념 정리</p>]]></description>
+</item><item>
+    <title>[OS] Process Management</title>
+    <link>http://minsoo9506.github.io/os_lec03_processmanagement/</link>
+    <pubDate>Fri, 04 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec03_processmanagement/</guid>
+    <description><![CDATA[<p>Process에 대한 개념 정리</p>]]></description>
+</item></channel>
+</rss>

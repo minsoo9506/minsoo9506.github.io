@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Python - Category - minsoo9506</title>
+        <link>http://minsoo9506.github.io/categories/python/</link>
+        <description>Python - Category - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 22 Feb 2022 09:21:26 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/python/" rel="self" type="application/rss+xml" /><item>
+    <title>[Python] Generator</title>
+    <link>http://minsoo9506.github.io/generator/</link>
+    <pubDate>Tue, 22 Feb 2022 09:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/generator/</guid>
+    <description><![CDATA[<p>Python generator에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[Python] Iterator</title>
+    <link>http://minsoo9506.github.io/iterator/</link>
+    <pubDate>Mon, 21 Feb 2022 09:21:26 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/iterator/</guid>
+    <description><![CDATA[<p>Python iterator애 대해 알아보자.</p>]]></description>
+</item></channel>
+</rss>
