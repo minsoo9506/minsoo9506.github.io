@@ -3,7 +3,14 @@
         <title>CatchMinor - Category - minsoo9506</title>
         <link>http://minsoo9506.github.io/categories/catchminor/</link>
         <description>CatchMinor - Category - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/catchminor/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 20 Mar 2022 10:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/catchminor/" rel="self" type="application/rss+xml" /><item>
+    <title>[OutlierAnalysis] Model Combination for Outlier Ensembles</title>
+    <link>http://minsoo9506.github.io/02_outlieranalysis01/</link>
+    <pubDate>Sun, 20 Mar 2022 10:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/02_outlieranalysis01/</guid>
+    <description><![CDATA[<p>다양한 모델을 통해 구한 outlier score를 ensemble하는 방법 (Outlier Analysis, Charu C. Aggarwal)</p>]]></description>
+</item><item>
     <title>[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)</title>
     <link>http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/</link>
     <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>

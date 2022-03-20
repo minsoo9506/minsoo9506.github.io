@@ -2,18 +2,21 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://minsoo9506.github.io/02_outlieranalysis01/</loc><lastmod>2022-03-20T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/catchminor/</loc><lastmod>2022-03-20T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2022-03-20T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/ensemble/</loc><lastmod>2022-03-20T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/</loc><lastmod>2022-03-20T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/outlier-analysis/</loc><lastmod>2022-03-20T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2022-03-20T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2022-03-20T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/os_lec08_memorymanagement/</loc><lastmod>2022-03-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/computer-science/</loc><lastmod>2022-03-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/memory/</loc><lastmod>2022-03-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/os_lec07_deadlock/</loc><lastmod>2022-03-19T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/os_lec08_memorymanagement/</loc><lastmod>2022-03-19T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/</loc><lastmod>2022-03-19T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/catchminor/</loc><lastmod>2022-03-19T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2022-03-19T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/computer-science/</loc><lastmod>2022-03-19T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/deadlock/</loc><lastmod>2022-03-19T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/deep-anomaly-detection/</loc><lastmod>2022-03-19T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/memory/</loc><lastmod>2022-03-19T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/</loc><lastmod>2022-03-19T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2022-03-19T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2022-03-19T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/os_lec06_processsynchronizationmutualexclusion/</loc><lastmod>2022-03-11T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/mutual-exclusion/</loc><lastmod>2022-03-11T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/process-synchronization/</loc><lastmod>2022-03-11T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
@@ -149,7 +152,6 @@
             <loc>http://minsoo9506.github.io/ds-01/</loc><lastmod>2021-12-01T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/%EB%B0%B0%EC%97%B4/</loc><lastmod>2021-12-01T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/prml-chap14-1/</loc><lastmod>2021-11-29T11:40:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/ensemble/</loc><lastmod>2021-11-29T11:40:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/categories/prml/</loc><lastmod>2021-11-29T11:40:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/prml-chap11-1/</loc><lastmod>2021-11-29T11:38:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/approximate-inference/</loc><lastmod>2021-11-29T11:38:01&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

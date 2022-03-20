@@ -41,7 +41,7 @@ Mutual Exclusino Solutions에 대한 solution들이 많다. 그중에서 os supp
   - else $S \leftarrow S + 1$
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec06_01.png?raw=true"  width="300">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec06_01.png?raw=true"  width="500">
 </center>
 
 - $P_i$가 먼저 들어와서 $P(\text{active})$ 후 critical section에 들어간다.

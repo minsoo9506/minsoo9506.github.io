@@ -3,20 +3,27 @@
         <title>All Posts - minsoo9506</title>
         <link>http://minsoo9506.github.io/posts/</link>
         <description>All Posts | minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 20 Mar 2022 10:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[OutlierAnalysis] Model Combination for Outlier Ensembles</title>
+    <link>http://minsoo9506.github.io/02_outlieranalysis01/</link>
+    <pubDate>Sun, 20 Mar 2022 10:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/02_outlieranalysis01/</guid>
+    <description><![CDATA[<p>다양한 모델을 통해 구한 outlier score를 ensemble하는 방법 (Outlier Analysis, Charu C. Aggarwal)</p>]]></description>
+</item><item>
+    <title>[OS] Memory Management</title>
+    <link>http://minsoo9506.github.io/os_lec08_memorymanagement/</link>
+    <pubDate>Sun, 20 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec08_memorymanagement/</guid>
+    <description><![CDATA[<p>Memory Management에 대해 알아보자.</p>]]></description>
+</item><item>
     <title>[OS] Deadlock</title>
     <link>http://minsoo9506.github.io/os_lec07_deadlock/</link>
     <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>http://minsoo9506.github.io/os_lec07_deadlock/</guid>
     <description><![CDATA[<p>Deadlock에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[OS] Memory Management</title>
-    <link>http://minsoo9506.github.io/os_lec08_memorymanagement/</link>
-    <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/os_lec08_memorymanagement/</guid>
-    <description><![CDATA[<p>Memory Management에 대해 알아보자.</p>]]></description>
 </item><item>
     <title>[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)</title>
     <link>http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/</link>
@@ -66,12 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/iterator/</guid>
     <description><![CDATA[<p>Python iterator애 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[Tips] Pyspark</title>
-    <link>http://minsoo9506.github.io/pyspark/</link>
-    <pubDate>Sun, 20 Feb 2022 09:21:26 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/pyspark/</guid>
-    <description><![CDATA[<p>pyspark와 관련한 tips 정리</p>]]></description>
 </item></channel>
 </rss>

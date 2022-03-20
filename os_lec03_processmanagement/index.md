@@ -87,7 +87,7 @@ Process에 대한 개념 정리
 - Context: 프로세스와 관련한 정보들
   - cpu register context는 cpu register에 저장
   - code & data, stack, PCB는 memory에 저장
-- Context saving: 현재 프로세스의 regisster context를 저장하는 작업
+- Context saving: 현재 프로세스의 register context를 저장하는 작업
 - Context restoring: Register context를 프로세스로 복구하는 작업
 
 위의 두가지 과정을 Context switching (process switching) 이라고 한다.

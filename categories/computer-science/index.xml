@@ -3,20 +3,20 @@
         <title>Computer Science - Category - minsoo9506</title>
         <link>http://minsoo9506.github.io/categories/computer-science/</link>
         <description>Computer Science - Category - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/computer-science/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 20 Mar 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/computer-science/" rel="self" type="application/rss+xml" /><item>
+    <title>[OS] Memory Management</title>
+    <link>http://minsoo9506.github.io/os_lec08_memorymanagement/</link>
+    <pubDate>Sun, 20 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec08_memorymanagement/</guid>
+    <description><![CDATA[<p>Memory Management에 대해 알아보자.</p>]]></description>
+</item><item>
     <title>[OS] Deadlock</title>
     <link>http://minsoo9506.github.io/os_lec07_deadlock/</link>
     <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>http://minsoo9506.github.io/os_lec07_deadlock/</guid>
     <description><![CDATA[<p>Deadlock에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[OS] Memory Management</title>
-    <link>http://minsoo9506.github.io/os_lec08_memorymanagement/</link>
-    <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/os_lec08_memorymanagement/</guid>
-    <description><![CDATA[<p>Memory Management에 대해 알아보자.</p>]]></description>
 </item><item>
     <title>[OS] Process Synchronization and Mutual Exclusion</title>
     <link>http://minsoo9506.github.io/os_lec06_processsynchronizationmutualexclusion/</link>

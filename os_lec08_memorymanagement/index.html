@@ -9,8 +9,8 @@
 <meta property="og:description" content="Memory Management에 대해 알아보자." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://minsoo9506.github.io/os_lec08_memorymanagement/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-03-19T09:00:00+00:00" />
-<meta property="article:modified_time" content="2022-03-19T09:00:00+00:00" />
+<meta property="article:published_time" content="2022-03-20T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-03-20T09:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[OS] Memory Management"/>
@@ -18,7 +18,7 @@
 <meta name="application-name" content="minsoo9506">
 <meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/os_lec08_memorymanagement/" /><link rel="prev" href="http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/" /><link rel="next" href="http://minsoo9506.github.io/os_lec07_deadlock/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/os_lec08_memorymanagement/" /><link rel="prev" href="http://minsoo9506.github.io/os_lec07_deadlock/" /><link rel="next" href="http://minsoo9506.github.io/02_outlieranalysis01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -28,7 +28,7 @@
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/os_lec08_memorymanagement\/"
         },"genre": "posts","keywords": "Memory","wordcount":  185 ,
-        "url": "http:\/\/minsoo9506.github.io\/os_lec08_memorymanagement\/","datePublished": "2022-03-19T09:00:00+00:00","dateModified": "2022-03-19T09:00:00+00:00","publisher": {
+        "url": "http:\/\/minsoo9506.github.io\/os_lec08_memorymanagement\/","datePublished": "2022-03-20T09:00:00+00:00","dateModified": "2022-03-20T09:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
                 "@type": "Person",
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[OS] Memory Management</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-science/"><i class="far fa-folder fa-fw"></i>Computer Science</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-19">2022-03-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;185 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-20">2022-03-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;185 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -173,7 +173,7 @@
 </li>
 </ul>
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec08_01.png?raw=true"  width="300">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec08_01.png?raw=true"  width="500">
 </center>
 <h2 id="memory-allocation">Memory allocation</h2>
 <h3 id="continuous-memory-allocation">Continuous memory allocation</h3>
@@ -214,7 +214,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-03-19</span>
+                <span>Updated on 2022-03-20</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -235,8 +235,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/01_tutorial_on_deep_learning_for_anomaly_detection/" class="prev" rel="prev" title="[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)"><i class="fas fa-angle-left fa-fw"></i>[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)</a>
-            <a href="/os_lec07_deadlock/" class="next" rel="next" title="[OS] Deadlock">[OS] Deadlock<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/os_lec07_deadlock/" class="prev" rel="prev" title="[OS] Deadlock"><i class="fas fa-angle-left fa-fw"></i>[OS] Deadlock</a>
+            <a href="/02_outlieranalysis01/" class="next" rel="next" title="[OutlierAnalysis] Model Combination for Outlier Ensembles">[OutlierAnalysis] Model Combination for Outlier Ensembles<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">

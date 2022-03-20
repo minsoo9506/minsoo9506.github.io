@@ -30,7 +30,7 @@ Memory Management에 대해 알아보자.
     - HW(Memory Management Unit)의 도움이 필요
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec08_01.png?raw=true"  width="300">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec08_01.png?raw=true"  width="500">
 </center>
 
 ## Memory allocation

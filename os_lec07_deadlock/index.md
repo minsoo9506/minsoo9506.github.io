@@ -141,7 +141,7 @@ $$\forall j, \| (P_i, R_j) \| \le t_j - \sum_{\text{all k}} \| (R_j,P_k) \|$$
   - 2. 더이상 unblocked process가 없을 때까지 1번 반복
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec07_01.png?raw=true"  width="300">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec07_01.png?raw=true"  width="500">
 </center>
 
 #### Recovery
