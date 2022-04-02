@@ -3,9 +3,23 @@
         <title>minsoo9506</title>
         <link>http://minsoo9506.github.io/</link>
         <description>This is My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 20 Mar 2022 10:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 27 Mar 2022 09:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://minsoo9506.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)</title>
+    <link>http://minsoo9506.github.io/03_anomalyexplanationindeepdetectors/</link>
+    <pubDate>Sun, 27 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/03_anomalyexplanationindeepdetectors/</guid>
+    <description><![CDATA[<p>Anomaly Detection에서 설명가능한 모델과 관련한 tutorial</p>]]></description>
+</item><item>
+    <title>[OS] Virtual Memory</title>
+    <link>http://minsoo9506.github.io/os_lec09_virtualmemory/</link>
+    <pubDate>Sat, 26 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec09_virtualmemory/</guid>
+    <description><![CDATA[<p>사용자 프로그램을 메모리에 연속하지 않게 할당하는 과정에 대해 알아보자.</p>]]></description>
+</item><item>
     <title>[OutlierAnalysis] Model Combination for Outlier Ensembles</title>
     <link>http://minsoo9506.github.io/02_outlieranalysis01/</link>
     <pubDate>Sun, 20 Mar 2022 10:00:00 &#43;0000</pubDate>
@@ -61,19 +75,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/os_lec03_processmanagement/</guid>
     <description><![CDATA[<p>Process에 대한 개념 정리</p>]]></description>
-</item><item>
-    <title>[Python] Generator</title>
-    <link>http://minsoo9506.github.io/generator/</link>
-    <pubDate>Tue, 22 Feb 2022 09:21:26 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/generator/</guid>
-    <description><![CDATA[<p>Python generator에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[Python] Iterator</title>
-    <link>http://minsoo9506.github.io/iterator/</link>
-    <pubDate>Mon, 21 Feb 2022 09:21:26 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/iterator/</guid>
-    <description><![CDATA[<p>Python iterator애 대해 알아보자.</p>]]></description>
 </item></channel>
 </rss>

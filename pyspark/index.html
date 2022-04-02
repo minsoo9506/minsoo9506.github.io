@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/pyspark\/"
-        },"genre": "posts","wordcount":  202 ,
+        },"genre": "posts","wordcount":  264 ,
         "url": "http:\/\/minsoo9506.github.io\/pyspark\/","datePublished": "2022-02-20T09:21:26+09:00","dateModified": "2022-02-20T09:21:26+09:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,8 +104,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[Tips] Pyspark</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/tips/"><i class="far fa-folder fa-fw"></i>Tips</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-20">2022-02-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;202 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-20">2022-02-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;264 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -124,6 +124,7 @@
         <li><a href="#여러-개의-값들에-해당하는-row를-뽑아내기-isin">여러 개의 값들에 해당하는 row를 뽑아내기 <code>isin</code></a></li>
         <li><a href="#column-wise-sum-하는-법">column-wise sum 하는 법</a></li>
         <li><a href="#usere-defined-function">usere defined function</a></li>
+        <li><a href="#날짜date-order-by">날짜(DATE) <code>ORDER BY</code></a></li>
       </ul>
     </li>
   </ul>
@@ -226,6 +227,43 @@
 <span class="n">my_udf</span> <span class="o">=</span> <span class="n">udf</span><span class="p">(</span><span class="n">get_prob</span><span class="p">,</span> <span class="n">FloatType</span><span class="p">())</span>
 
 <span class="n">user_df</span> <span class="o">=</span> <span class="n">user_df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span> <span class="n">my_udf</span><span class="p">(</span><span class="n">user_df</span><span class="o">.</span><span class="n">probability</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="날짜date-order-by">날짜(DATE) <code>ORDER BY</code></h3>
+<ul>
+<li>pyspark에서 sql쿼리 사용할 때, 날짜를 정렬해야하는 경우
+<ul>
+<li><code>ASC</code>: 날짜가 가장 오래된 것부터 가장 최근 순으로 정렬</li>
+<li><code>DESC</code>: 반대</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    SELECT 
+</span><span class="s2">        *
+</span><span class="s2">    FROM (
+</span><span class="s2">        SELECT 
+</span><span class="s2">            *,
+</span><span class="s2">            ROW_NUMBER() OVER (PARTITION BY id, sex ORDER BY dt ASC) as idx
+</span><span class="s2">        FROM user_df
+</span><span class="s2">    ) u
+</span><span class="s2">    WHERE u.idx == &#34;1&#34;
+</span><span class="s2">&#34;&#34;&#34;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">

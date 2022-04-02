@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/os_lec08_memorymanagement\/"
-        },"genre": "posts","keywords": "Memory","wordcount":  185 ,
+        },"genre": "posts","keywords": "Memory","wordcount":  300 ,
         "url": "http:\/\/minsoo9506.github.io\/os_lec08_memorymanagement\/","datePublished": "2022-03-20T09:00:00+00:00","dateModified": "2022-03-20T09:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,8 +104,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[OS] Memory Management</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-science/"><i class="far fa-folder fa-fw"></i>Computer Science</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-20">2022-03-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;185 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-20">2022-03-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;300 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -121,11 +121,8 @@
     </li>
     <li><a href="#memory-allocation">Memory allocation</a>
       <ul>
-        <li><a href="#continuous-memory-allocation">Continuous memory allocation</a>
-          <ul>
-            <li><a href="#multi-programming">Multi-programming</a></li>
-          </ul>
-        </li>
+        <li><a href="#continuous-memory-allocation">Continuous memory allocation</a></li>
+        <li><a href="#multi-programming">Multi-programming</a></li>
         <li><a href="#non-continuous-memory-allocation">Non-continuous memory allocation</a></li>
       </ul>
     </li>
@@ -186,7 +183,7 @@
 </li>
 <li>Multi-programming</li>
 </ul>
-<h4 id="multi-programming">Multi-programming</h4>
+<h3 id="multi-programming">Multi-programming</h3>
 <p>두 가지로 나눠서 생각할 수 있다.</p>
 <ul>
 <li>Fixed(Static) partition multi-programming
@@ -204,9 +201,40 @@
 </li>
 </ul>
 </li>
-<li>Variable(dynamic) partition multi-programming</li>
+<li>Variable(dynamic) partition multi-programming
+<ul>
+<li>초기에는 전체가 하나의 영역인데 프로세스를 처리하는 과정에서 메모리 공간이 동적으로 분할된다</li>
+<li>프로세스가 필요한 메모리 크기 만큼 할당되는 것이다</li>
+<li>그렇다면 프로세스들이 끝나고 메모리를 반납한 공간이 생기고 새로운 프로세스가 들어가야 할 때, 배치전략이 다양하다
+<ul>
+<li>First-fit
+<ul>
+<li>첫 번째 partition을 선택</li>
+<li>simple, low overhead지만 공간 활용률은 떨어질 수 있다</li>
+</ul>
+</li>
+<li>Best-fit
+<ul>
+<li>프로세스가 들어갈 수 있는 partition 중에서 가장 작은 곳 선택</li>
+<li>탐색시간이 걸린다, 크기가 큰 partition을 낭비하지 않을 수 있다, 작은 크기의 partition이 계속 발생할 수 있다</li>
+</ul>
+</li>
+<li>Worst-fit
+<ul>
+<li>best-fit 과 반대</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>coalescing holes (공간 통합)을 통해서 인접한 빈 메모리를 하나의 patition으로 통합하는 방법도 존재한다</li>
+<li>storage compaction (메모리 압축)은 모든 빈 공간을 하나로 통합하는 방법이다, 모든 process를 중지하고 재배치해야 할 수도 있어서 high overhead라는 단점도 존재</li>
+</ul>
+</li>
 </ul>
 <h3 id="non-continuous-memory-allocation">Non-continuous memory allocation</h3>
+<ul>
+<li>이 부분은 virtual memory에서 다룬다</li>
+</ul>
 <h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.youtube.com/playlist?list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN" target="_blank" rel="noopener noreffer">HPC Lab. KOREATECH 운영체제 강의</a></li>

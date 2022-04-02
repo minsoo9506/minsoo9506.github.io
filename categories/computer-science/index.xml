@@ -3,7 +3,14 @@
         <title>Computer Science - Category - minsoo9506</title>
         <link>http://minsoo9506.github.io/categories/computer-science/</link>
         <description>Computer Science - Category - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 20 Mar 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/computer-science/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 26 Mar 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/computer-science/" rel="self" type="application/rss+xml" /><item>
+    <title>[OS] Virtual Memory</title>
+    <link>http://minsoo9506.github.io/os_lec09_virtualmemory/</link>
+    <pubDate>Sat, 26 Mar 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec09_virtualmemory/</guid>
+    <description><![CDATA[<p>사용자 프로그램을 메모리에 연속하지 않게 할당하는 과정에 대해 알아보자.</p>]]></description>
+</item><item>
     <title>[OS] Memory Management</title>
     <link>http://minsoo9506.github.io/os_lec08_memorymanagement/</link>
     <pubDate>Sun, 20 Mar 2022 09:00:00 &#43;0000</pubDate>

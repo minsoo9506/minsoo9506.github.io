@@ -58,3 +58,22 @@ my_udf = udf(get_prob, FloatType())
 
 user_df = user_df.withColumn('probability', my_udf(user_df.probability))
 ```
+
+### 날짜(DATE) `ORDER BY`
+- pyspark에서 sql쿼리 사용할 때, 날짜를 정렬해야하는 경우
+  - `ASC`: 날짜가 가장 오래된 것부터 가장 최근 순으로 정렬
+  - `DESC`: 반대
+
+```python
+df = spark.sql("""
+    SELECT 
+        *
+    FROM (
+        SELECT 
+            *,
+            ROW_NUMBER() OVER (PARTITION BY id, sex ORDER BY dt ASC) as idx
+        FROM user_df
+    ) u
+    WHERE u.idx == "1"
+""")
+```

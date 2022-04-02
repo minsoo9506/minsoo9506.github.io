@@ -40,7 +40,7 @@ Memory Management에 대해 알아보자.
   - 하나의 프로세스만 메모리 상에 존재
 - Multi-programming
 
-#### Multi-programming
+### Multi-programming
 두 가지로 나눠서 생각할 수 있다.
 - Fixed(Static) partition multi-programming
   - 메모리 공간을 고정된 크기로 미리 분할, 메모리 관리는 편함
@@ -52,9 +52,22 @@ Memory Management에 대해 알아보자.
     - External fragmentation: (남은 메모리 크기 $>$ Process 크기)이지만 연속된 공간이 아니라 사용불가
     - 메모리가 낭비된다
 - Variable(dynamic) partition multi-programming
-
+  - 초기에는 전체가 하나의 영역인데 프로세스를 처리하는 과정에서 메모리 공간이 동적으로 분할된다
+  - 프로세스가 필요한 메모리 크기 만큼 할당되는 것이다
+  - 그렇다면 프로세스들이 끝나고 메모리를 반납한 공간이 생기고 새로운 프로세스가 들어가야 할 때, 배치전략이 다양하다
+    - First-fit
+      - 첫 번째 partition을 선택
+      - simple, low overhead지만 공간 활용률은 떨어질 수 있다
+    - Best-fit
+      - 프로세스가 들어갈 수 있는 partition 중에서 가장 작은 곳 선택
+      - 탐색시간이 걸린다, 크기가 큰 partition을 낭비하지 않을 수 있다, 작은 크기의 partition이 계속 발생할 수 있다
+    - Worst-fit
+      - best-fit 과 반대
+  - coalescing holes (공간 통합)을 통해서 인접한 빈 메모리를 하나의 patition으로 통합하는 방법도 존재한다
+  - storage compaction (메모리 압축)은 모든 빈 공간을 하나로 통합하는 방법이다, 모든 process를 중지하고 재배치해야 할 수도 있어서 high overhead라는 단점도 존재
 
 ### Non-continuous memory allocation
+- 이 부분은 virtual memory에서 다룬다
 
 ## Reference
 - [HPC Lab. KOREATECH 운영체제 강의](https://www.youtube.com/playlist?list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN)
