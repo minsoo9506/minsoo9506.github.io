@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/os_lec09_virtualmemory\/"
-        },"genre": "posts","keywords": "virtual memory","wordcount":  239 ,
+        },"genre": "posts","keywords": "virtual memory","wordcount":  585 ,
         "url": "http:\/\/minsoo9506.github.io\/os_lec09_virtualmemory\/","datePublished": "2022-03-26T09:00:00+00:00","dateModified": "2022-03-26T09:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,8 +104,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[OS] Virtual Memory</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-science/"><i class="far fa-folder fa-fw"></i>Computer Science</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-26">2022-03-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;239 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-26">2022-03-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;585 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -118,9 +118,16 @@
         <li><a href="#block-mapping">Block mapping</a></li>
       </ul>
     </li>
-    <li><a href="#virtual-storage-methods">Virtual storage methods</a>
+    <li><a href="#paging-system">Paging system</a>
       <ul>
-        <li><a href="#paging-system">Paging system</a></li>
+        <li><a href="#direct-mapping">Direct mapping</a></li>
+        <li><a href="#associative-mapping">Associative mapping</a></li>
+        <li><a href="#hybrid-directassociative-mapping">Hybrid direct/associative mapping</a></li>
+      </ul>
+    </li>
+    <li><a href="#segementation-system">Segementation system</a>
+      <ul>
+        <li><a href="#hybrid-pagingsegmentation-system">Hybrid paging/segmentation system</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>
@@ -129,7 +136,7 @@
             </div><div class="content" id="content"><p>사용자 프로그램을 메모리에 연속하지 않게 할당하는 과정에 대해 알아보자.</p>
 <p>memory allocation을 하는 방법중에서 non-continuos memory allocation 방법을 알아보자.</p>
 <h2 id="virtual-memory">Virtual memory</h2>
-<p>사용자 프로그램을 여러 개의 block으로 분할하는 방법이다. 그리고 해당 프로그램 실행 시, 필요한 block들만 메모리에 적재한다. 나머지 block들은 swap device에 있다. 이러한 기법들 3가지 알아보자.</p>
+<p>사용자 프로그램을 여러 개의 block으로 분할하는 방법이다. 그리고 해당 프로그램 실행 시, <strong>필요한 block들만 메모리에 적재</strong>한다. <strong>나머지 block들은 swap device</strong>에 있다. 이러한 기법들 3가지 알아보자.</p>
 <ul>
 <li>paging system</li>
 <li>segmentation system</li>
@@ -162,15 +169,15 @@
 <li>block map table (BMT) 를 통해서 address mapping 정보를 관리
 <ul>
 <li>아래 그림에서 residence bit는 해당 block이 memory에 올라갔는지 여부를 체크</li>
+<li>그래서 block number를 확인하고 table에서 residence bit=1이면 real address로 가서 d를 더하면 main memory에 올라간 위치에 도달할 수 있는 것이다</li>
 </ul>
 </li>
 </ul>
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec08_01.png?raw=true"  width="500">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec09_01.png?raw=true"  width="500">
 </center>
-<h2 id="virtual-storage-methods">Virtual storage methods</h2>
-<p>가상메모리를 이용하는 방법들에 대해 알아보자.</p>
-<h3 id="paging-system">Paging system</h3>
+<p>이제 가상메모리를 이용하는 방법들에 대해 알아보자.</p>
+<h2 id="paging-system">Paging system</h2>
 <p>Paging system은 프로그램을 같은 크기의 block으로 분할하는 방법이다. 여기서 분할된 프로그램 block을 <em>Page</em>라고 한다. 이 방법에서는 메모리도 Page와 동일한 크기로 분할하는데 이 분할영역을 <em>Page Frame</em>이라고 한다. 실제 window에서 성능옵션 -&gt; 고급 에 가보면 페이징에 관련한 내용을 확인할 수 있다.</p>
 <ul>
 <li>특징
@@ -181,8 +188,139 @@
 </ul>
 </li>
 </ul>
-<p>Address mapping 할 차례임 <a href="https://www.youtube.com/watch?v=mTFYeZwPj0s&amp;list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN&amp;index=28" target="_blank" rel="noopener noreffer">https://www.youtube.com/watch?v=mTFYeZwPj0s&list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN&index=28</a>
-9분</p>
+<p>그렇다면 이제 Paging system이 Address mapping을 하는 방법을 알아보자. virtual address는 $v=(p,d)$이고 각각 page number, displacement이다. Paging system에서는 PMT(page map table)을 통해 mapping을 한다. mapping하는 방법으로는 3가지가 있다.</p>
+<ul>
+<li>Direct mapping</li>
+<li>Associative mapping</li>
+<li>Hybrid direct/associative mapping</li>
+</ul>
+<p>먼제 PMT는 아래와 같은 모습이다. 아래에서 secondary storage address는 swap device에서 page들의 위치를 의미한다.</p>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec09_02.png?raw=true"  width="500">
+</center>
+<h3 id="direct-mapping">Direct mapping</h3>
+<ul>
+<li>순서
+<ul>
+<li>
+<ol>
+<li>해당 프로세스의 PMT가 저장되어 있는 주소 b에 접근</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>해당 PMT에서 page p에 대한 entry 찾음</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>찾은 entry의 residence bit 검사</li>
+</ol>
+<ul>
+<li>
+<ol>
+<li>if 0, swap device에서 해당 page를 메모리에 적재하고 PMT를 갱신하고 3-2 수행 (이부분에서 overhead)</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>if 1, 해당 entry에서 page frame 번호 p&rsquo;를 확인</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li>p&rsquo;와 d를 사용하여 실제 주소 r 형성</li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>실제 주소 r로 주기억장치에 접근</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec09_03.png?raw=true"  width="500">
+</center>
+<h3 id="associative-mapping">Associative mapping</h3>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec09_04.png?raw=true"  width="500">
+</center>
+<h3 id="hybrid-directassociative-mapping">Hybrid direct/associative mapping</h3>
+<p>Hybrid direct/associative mapping은 direct와 associative 두 가지 방법을 모두 이용하는 방법이다.</p>
+<ul>
+<li>PMT: 메모리에 저장
+<ul>
+<li>direct mapping에서의 단점: 메모리 접근 횟수가 많아서(overhead) 성능저하, PMT를 위한 메모리 공간 필요</li>
+</ul>
+</li>
+<li>TLB: PMT 중 일부 entry들(최근에 사용된 page들에 대한 entry)을 적재, 이는 locality를 활용하기 위함
+<ul>
+<li>Translation Look-aside Buffer</li>
+<li>associative mapping에서 사용</li>
+<li>PMT를 위한 전용기억장치(공간)로 swap device에서 page를 찾을 때, parallel search가 가능해서 엄청 빠르지만 비싸고 운영이 까다롭다</li>
+</ul>
+</li>
+</ul>
+<p>프로세스의 PMT가 TLB에 적재되어 있는지 확인한다.</p>
+<ul>
+<li>if TLB에 적재되어 있는 경우, residence bit를 검사하고 page frame 번호를 확인</li>
+<li>if TLB에 적재되어 있지 않은 경우, direct mapping으로 page frame 번호를 확인하고 해당 PMT entry를 TLB에 적재</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec09_05.png?raw=true"  width="500">
+</center>
+<p>그렇다면 이제 memory management에 대해 알아보자. memory도 page와 같은 크기로 미리 분할(=page frame)하여 관리/사용한다. memory management를 하기 위해서 Frame table을 이용한다.</p>
+<ul>
+<li>Frame table</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec09_06.png?raw=true"  width="500">
+</center>
+<p>또한 효율성을 위해 page sharing이라는 것도 할 수 있다. 여러 프로세스가 main memory에 있는 page frame을 공유하는 것이다. 물론 이 때, 문제가 발생하지 않도록 유의(page protection)해야한다.</p>
+<h2 id="segementation-system">Segementation system</h2>
+<p>프로그램을 논리적 block으로 분할하는 방법이다. 따라서 block의 크기가 다 다를 수 있다.</p>
+<ul>
+<li>특징
+<ul>
+<li>메모리를 미리 분할하지 않음</li>
+<li>segment sharing/protection이 용이함</li>
+<li>address mapping 및 메모리 관리의 overhead가 큼</li>
+<li>no internal fragmentation, external fragmentation은 발생가능</li>
+</ul>
+</li>
+</ul>
+<p>segmentation system에서도 address mapping은 비슷하다. virtual address v=(s,d)가 있고 SMT(segment map table)를 이용한다. mapping하는 방법은 paging system과 비슷하다.</p>
+<ul>
+<li>segment map table</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec09_07.png?raw=true"  width="500">
+</center>
+<h3 id="hybrid-pagingsegmentation-system">Hybrid paging/segmentation system</h3>
+<ul>
+<li>프로그램 분할
+<ul>
+<li>
+<ol>
+<li>논리 단위의 segment로 분할</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>각 segment를 고정된 크기의 page들로 분할</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>page 단위로 메모리에 적재</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec09_08.png?raw=true"  width="500">
+</center>
 <h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://www.youtube.com/playlist?list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN" target="_blank" rel="noopener noreffer">HPC Lab. KOREATECH 운영체제 강의</a></li>

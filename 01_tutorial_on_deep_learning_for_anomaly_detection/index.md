@@ -7,7 +7,7 @@ Deep Learning for Anomaly Detection - Challenges, Methods tutorial 정리
 
 - Anomalies: points that are significantly different from most of the data
 
-## Part1: challenges
+# Part1: challenges
 
 ### Problem variations
 - Binary output vs scoring
@@ -74,7 +74,7 @@ Deep Learning for Anomaly Detection - Challenges, Methods tutorial 정리
   - assuming have some labels for anomaly classes
   - yet the class labels are partial, inexact, inaccurate
 
-## Part2-1: methods (The modeling perspective) 
+# Part2-1: methods (The modeling perspective) 
 
 ### Deep learning for feature extraction
 - assumption
@@ -230,7 +230,7 @@ Deep Learning for Anomaly Detection - Challenges, Methods tutorial 정리
   - 어느정도의 labeled/synthetic anomalies가 필요하다
   - unseen anomalies에 대해서 성능이 떨어질 수 있다
 
-## Part2-2: methods (The supervision information perspective)
+# Part2-2: methods (The supervision information perspective)
 ### Unsupervised approach
 - Training on anomaly-contaminated unlabeled data
 - 종류

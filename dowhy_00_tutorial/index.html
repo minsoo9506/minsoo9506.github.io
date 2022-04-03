@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[DoWhy] Tutorial - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[DoWhy] Tutorial" />
+<meta property="og:description" content="MS의 causal inference를 공개한 library DoWhy에 대해 알아보자" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/dowhy_00_tutorial/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-02T11:09:00+00:00" />
+<meta property="article:modified_time" content="2022-04-02T11:09:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[DoWhy] Tutorial"/>
+<meta name="twitter:description" content="MS의 causal inference를 공개한 library DoWhy에 대해 알아보자"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/dowhy_00_tutorial/" /><link rel="prev" href="http://minsoo9506.github.io/03_anomalyexplanationindeepdetectors/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[DoWhy] Tutorial",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/dowhy_00_tutorial\/"
+        },"genre": "posts","keywords": "DoWhy","wordcount":  948 ,
+        "url": "http:\/\/minsoo9506.github.io\/dowhy_00_tutorial\/","datePublished": "2022-04-02T11:09:00+00:00","dateModified": "2022-04-02T11:09:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[DoWhy] Tutorial</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/causality/"><i class="far fa-folder fa-fw"></i>Causality</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-02">2022-04-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;948 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#practice">Practice</a>
+      <ul>
+        <li><a href="#data">data</a></li>
+        <li><a href="#model-causal-mechanism">Model causal mechanism</a></li>
+        <li><a href="#identify-the-target-estimand">Identify the target estimand</a></li>
+        <li><a href="#estimate-causal-effect">Estimate causal effect</a></li>
+        <li><a href="#refute-estimate">Refute estimate</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>MS의 causal inference를 공개한 library DoWhy에 대해 알아보자</p>
+<p>DoWhy는 causality에 관련하여 다양한 기능을 제공한다. 이를 사용하는 tutorial을 진행하면서 DoWhy에 대해 이해하고 observational data를 이용한 causal inference의 과정에 대해 이해하고자 한다.</p>
+<p>먼저, DoWhy에서 제공(제안)하는 causal inference의 단계는 다음과 같다.</p>
+<ul>
+<li>
+<ol>
+<li>Modeling: Create a causal graph to encode assumptions</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Identification: Formulate what to estimate</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>Estimation: Compute the estimate</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>Refutation: Validate the assumptions</li>
+</ol>
+</li>
+</ul>
+<p>DoWhy에서는 기본적으로 causal graph를 이용하여 inference를 진행한다. 실제 데이터에서 causal graph를 알아내기는 쉽지 않다. domain 지식을 이용해야한다. 물론 DoWhy에서 causal discovery의 기능도 제공한다.</p>
+<p>causal graph를 찾았으면 이제 identification을 할 차례이다. 이 과정은 causal graph를 이용하여 causality를 추정할 수 있는지 확인하는 과정이라고 할 수 있다. 다양한 방법들이 있다.</p>
+<ul>
+<li>Graphical constraint-based methods
+<ul>
+<li>RCT</li>
+<li>Backdoor criterion</li>
+<li>Frontdoor criterion</li>
+<li>Mediation</li>
+</ul>
+</li>
+<li>Non-graphical constraints methods
+<ul>
+<li>Instrumental variables</li>
+<li>Regression discontinuity</li>
+<li>Difference-in-difference</li>
+</ul>
+</li>
+</ul>
+<p>identification이 잘 됐다면 우리는 estimation할 수 있다. estimation에도 다양한 방법들이 있다.</p>
+<ul>
+<li>conditioning
+<ul>
+<li>Matching</li>
+<li>Stratification</li>
+</ul>
+</li>
+<li>Propensity Score-Based
+<ul>
+<li>Propensity Mathching</li>
+<li>Inverse Propensity Weighting</li>
+</ul>
+</li>
+<li>Synthetic Control</li>
+<li>Outcome-Based
+<ul>
+<li>Double ML</li>
+<li>T-learner</li>
+<li>X-learner</li>
+</ul>
+</li>
+<li>Loss-Based
+<ul>
+<li>R-learner</li>
+</ul>
+</li>
+<li>Threshold-based
+<ul>
+<li>DID</li>
+</ul>
+</li>
+</ul>
+<p>마지막으로 estimation으로 causal inference를 완료하였다면 이를 validation하는 과정도 필요하다. 하지만 causality의 경우 정답지가 없기 때문에 우리가 잘했는지 확인하기 어렵다. 대신에 여러가지 가정들을 확인하면서 틀렸는지는 확인해볼 수 있다.</p>
+<ul>
+<li>Unit test
+<ul>
+<li>Model
+<ul>
+<li>Conditional independence test</li>
+</ul>
+</li>
+<li>Identify
+<ul>
+<li>D-seperatio test</li>
+</ul>
+</li>
+<li>Estimate
+<ul>
+<li>Bootstrap refuter</li>
+<li>data subset refuter</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Integration test
+<ul>
+<li>Placebo treatment refuter</li>
+<li>Dummy outcome refuter</li>
+<li>Random common cause refuter</li>
+<li>sensitivity analysis</li>
+<li>simulated outcome refuter</li>
+</ul>
+</li>
+</ul>
+<h2 id="practice">Practice</h2>
+<p><a href="https://github.com/minsoo9506/causality-study/blob/master/DoWhy/00_tutorial.ipynb" target="_blank" rel="noopener noreffer">전체코드</a>는 github에 올려놓았다. 공홈을 거의 그대로 따라했다.</p>
+<h3 id="data">data</h3>
+<p>먼저 data를 생성해보자. <code>beta</code>가 true causal effect이다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="n">dowhy</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">linear_dataset</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">num_common_causes</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">num_instruments</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">num_effect_modifiers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">num_samples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+        <span class="n">treatment_is_binary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">stddev_treatment_noise</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">num_discrete_common_causes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&#34;df&#34;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>data</code>에 들어있는 값들은 아래와 같다. (<code>df</code>제외, <code>df</code>는 위의 조건대로 만들어진 <code>pandas.DataFrame</code>)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&#39;treatment_name&#39;: [&#39;v0&#39;],
+&#39;outcome_name&#39;: &#39;y&#39;,
+&#39;common_causes_names&#39;: [&#39;W0&#39;, &#39;W1&#39;, &#39;W2&#39;, &#39;W3&#39;, &#39;W4&#39;],
+&#39;instrument_names&#39;: [&#39;Z0&#39;, &#39;Z1&#39;],
+&#39;effect_modifier_names&#39;: [&#39;X0&#39;],
+&#39;frontdoor_variables_names&#39;: [],
+&#39;dot_graph&#39;: &#39;digraph {v0-&gt;y;W0-&gt; v0; W1-&gt; v0; W2-&gt; v0; W3-&gt; v0; W4-&gt; v0;Z0-&gt; v0; Z1-&gt; v0;W0-&gt; y; W1-&gt; y; W2-&gt; y; W3-&gt; y; W4-&gt; y;X0-&gt; y;}&#39;,
+&#39;gml_graph&#39;: &#39;graph[directed 1node[ id &#34;y&#34; label &#34;y&#34;]node[ id &#34;W0&#34; label &#34;W0&#34;] node[ id &#34;W1&#34; label &#34;W1&#34;] node[ id &#34;W2&#34; label &#34;W2&#34;] node[ id &#34;W3&#34; label &#34;W3&#34;] node[ id &#34;W4&#34; label &#34;W4&#34;]node[ id &#34;Z0&#34; label &#34;Z0&#34;] node[ id &#34;Z1&#34; label &#34;Z1&#34;]node[ id &#34;v0&#34; label &#34;v0&#34;]edge[source &#34;v0&#34; target &#34;y&#34;]edge[ source &#34;W0&#34; target &#34;v0&#34;] edge[ source &#34;W1&#34; target &#34;v0&#34;] edge[ source &#34;W2&#34; target &#34;v0&#34;] edge[ source &#34;W3&#34; target &#34;v0&#34;] edge[ source &#34;W4&#34; target &#34;v0&#34;]edge[ source &#34;Z0&#34; target &#34;v0&#34;] edge[ source &#34;Z1&#34; target &#34;v0&#34;]edge[ source &#34;W0&#34; target &#34;y&#34;] edge[ source &#34;W1&#34; target &#34;y&#34;] edge[ source &#34;W2&#34; target &#34;y&#34;] edge[ source &#34;W3&#34; target &#34;y&#34;] edge[ source &#34;W4&#34; target &#34;y&#34;]node[ id &#34;X0&#34; label &#34;X0&#34;] edge[ source &#34;X0&#34; target &#34;y&#34;]]&#39;,
+ &#39;ate&#39;: 12.852576193620925}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="model-causal-mechanism">Model causal mechanism</h3>
+<p>위에서 만든 <code>data</code>를 이용하여 causal graph를 생성한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">model</span><span class="o">=</span><span class="n">CausalModel</span><span class="p">(</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
+        <span class="n">treatment</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&#34;treatment_name&#34;</span><span class="p">],</span>
+        <span class="n">outcome</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&#34;outcome_name&#34;</span><span class="p">],</span>
+        <span class="n">graph</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&#34;gml_graph&#34;</span><span class="p">]</span>
+        <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>생성한 데이터가 아닌 다른 데이터를 이용하려면 위와 같은 format으로 만들면 된다. 갖고 있는 데이터에 대해 저절로 찾아주는게 아니라 사용자가 알려줘야한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 예시</span>
+<span class="n">causal_graph</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">digraph {
+</span><span class="s2">High_limit;
+</span><span class="s2">Churn;
+</span><span class="s2">Income_Category;
+</span><span class="s2">Education_Level;
+</span><span class="s2">Customer_Age;
+</span><span class="s2">U[label=&#34;Unobserved Confounders&#34;];
+</span><span class="s2">Customer_Age -&gt; Education_Level; Customer_Age -&gt; Income_Category;
+</span><span class="s2">Education_Level -&gt; Income_Category; Income_Category-&gt;High_limit;
+</span><span class="s2">U-&gt;Income_Category;U-&gt;High_limit;U-&gt;Churn;
+</span><span class="s2">High_limit-&gt;Churn; Income_Category -&gt; Churn;
+</span><span class="s2">}
+</span><span class="s2">&#34;&#34;&#34;</span>
+
+<span class="n">model</span><span class="o">=</span> <span class="n">CausalModel</span><span class="p">(</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">training</span><span class="p">,</span> <span class="c1"># dataframe</span>
+        <span class="n">graph</span><span class="o">=</span><span class="n">causal_graph</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">),</span>
+        <span class="n">treatment</span><span class="o">=</span><span class="s1">&#39;High_limit&#39;</span><span class="p">,</span>
+        <span class="n">outcome</span><span class="o">=</span><span class="s1">&#39;Churn&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>그러면 어떤 causal graph가 만들어졌는지 확인해보자.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">model</span><span class="o">.</span><span class="n">view_model</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&#34;causal_model.png&#34;</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/DoWhy_00.png?raw=true"  width="400">
+</center>
+<p>각 node가 의미하는 바는 위의 <code>data</code> 설명을 참고하자.</p>
+<h3 id="identify-the-target-estimand">Identify the target estimand</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">identified_estimand</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">identify_effect</span><span class="p">(</span><span class="n">proceed_when_unidentifiable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># proceed_when_unidentifiable. It needs to be set to True</span>
+<span class="c1"># to convey the assumption that we are ignoring any unobserved confounding</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>결과로 아래와 같이 identify하는 방법들에 대한 설명이 나온다. 귀엽게 수식도 나오고 가정도 알려준다. 나중에 시간이 되면 소스코드를 보고 싶다. 이런 오픈소스를 사용하다보면 겸손해진다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Estimand type: nonparametric-ate
+
+### Estimand : 1
+Estimand name: backdoor
+Estimand expression:
+  d                       
+─────(E[y|W3,W1,W2,W4,W0])
+d[v₀]                     
+Estimand assumption 1, Unconfoundedness: If U→{v0} and U→y then P(y|v0,W3,W1,W2,W4,W0,U) = P(y|v0,W3,W1,W2,W4,W0)
+
+### Estimand : 2
+Estimand name: iv
+Estimand expression:
+ ⎡                              -1⎤
+ ⎢    d        ⎛    d          ⎞  ⎥
+E⎢─────────(y)⋅⎜─────────([v₀])⎟  ⎥
+ ⎣d[Z₁  Z₀]    ⎝d[Z₁  Z₀]      ⎠  ⎦
+Estimand assumption 1, As-if-random: If U→→y then ¬(U →→{Z1,Z0})
+Estimand assumption 2, Exclusion: If we remove {Z1,Z0}→{v0}, then ¬({Z1,Z0}→y)
+
+### Estimand : 3
+Estimand name: frontdoor
+No such variable(s) found!
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="estimate-causal-effect">Estimate causal effect</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">causal_estimate</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">estimate_effect</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">,</span>
+        <span class="n">method_name</span><span class="o">=</span><span class="s2">&#34;backdoor.propensity_score_stratification&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">causal_estimate</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>backdoor criterion과 propensity score를 이용하여 causal effect(지금은 ATE)를 구하면 아래와 같은 결과가 나온다. true값과 거의 비슷하게 나왔다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">propensity_score_stratification
+*** Causal Estimate ***
+
+## Identified estimand
+Estimand type: nonparametric-ate
+
+### Estimand : 1
+Estimand name: backdoor
+Estimand expression:
+  d                       
+─────(E[y|W3,W1,W2,W4,W0])
+d[v₀]                     
+Estimand assumption 1, Unconfoundedness: If U→{v0} and U→y then P(y|v0,W3,W1,W2,W4,W0,U) = P(y|v0,W3,W1,W2,W4,W0)
+
+## Realized estimand
+b: y~v0+W3+W1+W2+W4+W0
+Target units: ate
+
+## Estimate
+Mean value: 10.257618758277024
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="refute-estimate">Refute estimate</h3>
+<p>refute의 방법에는 여러가지가 있다. 그 중 두가지만 알아보자.</p>
+<p>먼저 placebo방법은 treatment를 random하게 만들고 causal effect를 구해보는 것이다. 아래 결과의 <code>New effect</code>가 그 결과이다. 거의 0에 가까워야한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Replacing treatment with a random (placebo) variable</span>
+<span class="n">res_placebo</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">refute_estimate</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">,</span> <span class="n">causal_estimate</span><span class="p">,</span>
+        <span class="n">method_name</span><span class="o">=</span><span class="s2">&#34;placebo_treatment_refuter&#34;</span><span class="p">,</span> <span class="n">placebo_type</span><span class="o">=</span><span class="s2">&#34;permute&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res_placebo</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Refute: Use a Placebo Treatment
+Estimated effect:10.257618758277024
+New effect:0.004448677029791578
+p value:0.49
+</code></pre></td></tr></table>
+</div>
+</div><p>다음은 data의 subset을 random하게 없애고 causal effect를 구하는 것이다. 일부를 없애도 <code>New effect</code>는 기존의 effect와 동일하게 나와야한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Removing a random subset of the data</span>
+<span class="n">res_subset</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">refute_estimate</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">,</span> <span class="n">causal_estimate</span><span class="p">,</span>
+        <span class="n">method_name</span><span class="o">=</span><span class="s2">&#34;data_subset_refuter&#34;</span><span class="p">,</span> <span class="n">subset_fraction</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res_subset</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Refute: Use a subset of data
+Estimated effect:10.257618758277024
+New effect:10.220266223065927
+p value:0.37
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://microsoft.github.io/dowhy/example_notebooks/dowhy_simple_example.html" target="_blank" rel="noopener noreffer">Getting started with DoWhy: A simple example</a></li>
+<li><a href="https://www2.slideshare.net/AmitSharma315/dowhy-an-endtoend-library-for-causal-inference" target="_blank" rel="noopener noreffer">Dowhy: An end-to-end library for causal inference slide</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-04-02</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/dowhy_00_tutorial/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/dowhy/">DoWhy</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/03_anomalyexplanationindeepdetectors/" class="prev" rel="prev" title="[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)"><i class="fas fa-angle-left fa-fw"></i>[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
