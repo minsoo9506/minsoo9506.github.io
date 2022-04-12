@@ -13,10 +13,11 @@ Deadlock에 대해 알아보자.
 
 그렇다면 Deadlock이 발생하는 상황을 생각해보자. 
 - 2개의 프로세스($P1,P2$)와 2개의 자원($R1,R2$)이 있다.
-- 1. $P1$이 $R2$를 요청한다.
-- 2. $P2$가 $R1$을 요청한다.
-- 3. $P1$이 $R1$을 요청한다.
-- 4. $P2$가 $R2$를 요청한다.
+
+1. $P1$이 $R2$를 요청한다.
+2. $P2$가 $R1$을 요청한다.
+3. $P1$이 $R1$을 요청한다.
+4. $P2$가 $R2$를 요청한다.
 
 위와 같은 상황이 발생하면 4번에서 deadlock 상태가 되버린다. $P1$은 $R1$을 받아서 일을 끝내고 자원을 반납해야하고 $P2$는 $R2$만 받으면 일을 끝난다. 근데 서로 물고 있어서 끝날 수가 없는 상태가 되는 것이다.
 
@@ -65,24 +66,29 @@ Deadlock에 대해 알아보자.
 이제 Deadlock 해결방법에 대해 알아보자. 크게 3가지로 나누어서 생각할 수 있다.
 
 ## Deadlock 해결 방법
-### Prevention
+- Prevention
+- Avoidance
+- Detection and Recovery
+
+
+## Prevention
 - 4가지의 deadlock 발생 필요 조건 중 하나을 제거
 - deadlock이 절대 발생하지 않지만 심각한 자원 낭비가 발생하거나 비현실적인 대안밖에 없다
-#### 모든 자원을 공유허용
+### 모든 자원을 공유허용
 - Exclusive use of resources 조건 제거
 - 현실적으로 불가능
-#### 모든 자원에 대해 선점 허용
+### 모든 자원에 대해 선점 허용
 - Non-preemptible resources 조건 제거
 - 현실적으로 불가능
-#### 필요 자원 한번에 모두 할당
+### 필요 자원 한번에 모두 할당
 - hold and wait 조건 제거
 - 자원 낭비 발생
 - 무한 대기 발생 가능
-#### Circular wait 조건 제거
+### Circular wait 조건 제거
 - 자원들에게 순서를 부여해서 순서의 증가 방향으로만 자원 요청 가능하게 하면 된다
 - 자원 낭비 발생
 
-### Avoidance
+## Avoidance
 - 시스템의 상태를 감시하여서 deadlock 상태가 될 가능성이 있는 자원 할당 요청을 보류
 - 시스템을 항상 safe state로 유지
   - safe state
@@ -90,14 +96,14 @@ Deadlock에 대해 알아보자.
     - safe sequence가 존재
   - unsafe state
     - deadlock 상태가 될 가능성이 있음 (반드시 발생한다는 의미는 아님)
-#### 가정
-- 프로세스의 수가 고정됨
-- 자원의 종류와 수가 고정됨
-- 프로세스가 요구하는 자원 및 최대 수량을 알고 있음
-- 프로세스는 자원을 사용 후 반드시 반납
-- 위의 가정도 사실 not practical 하다
+- 가정
+  - 프로세스의 수가 고정됨
+  - 자원의 종류와 수가 고정됨
+  - 프로세스가 요구하는 자원 및 최대 수량을 알고 있음
+  - 프로세스는 자원을 사용 후 반드시 반납
+  - 위의 가정도 사실 not practical 하다
 
-#### avoidance 알고리즘
+### avoidance 알고리즘
 - Dijkstra's algorithm 
   - 예시를 통해 이해해보자
   - 1가지 resource가 10개 있다, 3개의 프로세스가 있다
@@ -107,17 +113,16 @@ Deadlock에 대해 알아보자.
   - p1 -> p3 -> p2 : safe sequence가 존재한다, 따라서 safe state라고 할 수 있다
   - 이런 safe sequence를 구할 수 없는 상황이라면 deadlock이 발생할 수도 있다
 - 위의 알고리즘을 확장한 (여러 종류의 자원 고려) 것이 Habermann's algorithm 이고 원리는 같다
+- 단점
+  - 항상 시스템을 감시해야 한다
+  - safe state 유지를 위해 사용되지 않는 자원이 존재
+  - 가정들이 not practical
 
-#### 단점
-- 항상 시스템을 감시해야 한다
-- safe state 유지를 위해 사용되지 않는 자원이 존재
-- 가정들이 not practical
-
-### Detection and Recovery
+## Detection and Recovery
 - deadlock 방지를 위한 사전 작업을 하지 않는다
 - Resource Allocation Graph (RAG)를 사용하여 주기적으로 deadlock 발생을 확인하고 해결한다
 
-#### Resource Allocation Graph (Detection)
+### Resource Allocation Graph (Detection)
 - directed, bipartite graph
 - edge는 프로세스와 리소스 사이에만 존재
 - Graph reduction
@@ -129,7 +134,7 @@ Deadlock에 대해 알아보자.
     - 지울 수 없는 edge가 존재
     - 하나 이상의 프로세스가 deadlock 상태
 
-#### Graph Reduction
+### Graph Reduction
 - unblocked process
   - 필요한 자원을 모두 할당 받을 수 있는 프로세스 (아래 식이 의미하는 바)
 
@@ -137,14 +142,14 @@ The process $P_i$ is unblocked if it satisfies
 $$\forall j, \| (P_i, R_j) \| \le t_j - \sum_{\text{all k}} \| (R_j,P_k) \|$$
 
 - graph reduction procedure
-  - 1. unblocked process에 연결된 모든 edge를 제거
-  - 2. 더이상 unblocked process가 없을 때까지 1번 반복
+1. unblocked process에 연결된 모든 edge를 제거
+2. 더이상 unblocked process가 없을 때까지 1번 반복
 
 <center>
     <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec07_01.png?raw=true"  width="500">
 </center>
 
-#### Recovery
+### Recovery
 - 방법
   - process termination
     - deadlock 상태에 있는 프로세스를 종료시킴

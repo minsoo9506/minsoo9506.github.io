@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[OS] I/O system and Disk Management - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[OS] I/O system and Disk Management" />
+<meta property="og:description" content="입출력 시스템과 디스크 관리에 대해 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/os_lec12_iosystemanddiskmanagement/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-12T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-12T09:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[OS] I/O system and Disk Management"/>
+<meta name="twitter:description" content="입출력 시스템과 디스크 관리에 대해 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/os_lec12_iosystemanddiskmanagement/" /><link rel="prev" href="http://minsoo9506.github.io/os_lec11_filesystem/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[OS] I/O system and Disk Management",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/os_lec12_iosystemanddiskmanagement\/"
+        },"genre": "posts","keywords": "I\/O system, Disk Management","wordcount":  642 ,
+        "url": "http:\/\/minsoo9506.github.io\/os_lec12_iosystemanddiskmanagement\/","datePublished": "2022-04-12T09:00:00+00:00","dateModified": "2022-04-12T09:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[OS] I/O system and Disk Management</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-science/"><i class="far fa-folder fa-fw"></i>Computer Science</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-12">2022-04-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;642 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#io-mechanism">I/O Mechanism</a>
+      <ul>
+        <li><a href="#pooling">Pooling</a></li>
+        <li><a href="#interrupt">Interrupt</a></li>
+        <li><a href="#direct-memory-access-dma">Direct memory access (DMA)</a></li>
+      </ul>
+    </li>
+    <li><a href="#io-services-of-os">I/O services of OS</a>
+      <ul>
+        <li><a href="#io-scheduling">I/O scheduling</a></li>
+        <li><a href="#error-handling">Error handling</a></li>
+        <li><a href="#buffering">Buffering</a></li>
+        <li><a href="#caching">Caching</a></li>
+        <li><a href="#spooling">Spooling</a></li>
+      </ul>
+    </li>
+    <li><a href="#disk-scheduling">Disk Scheduling</a>
+      <ul>
+        <li><a href="#first-come-first-service-fcfs">First Come First Service (FCFS)</a></li>
+        <li><a href="#shortest-seek-time-first-sstf">Shortest Seek Time First (SSTF)</a></li>
+        <li><a href="#scan-scheduling">Scan scheduling</a></li>
+        <li><a href="#c-scan-scheduling">C-Scan scheduling</a></li>
+        <li><a href="#look-scheduling">Look scheduling</a></li>
+        <li><a href="#shortest-latency-time-first-sltf">Shortest latency time first (SLTF)</a></li>
+        <li><a href="#shortest-positioning-time-first-sptf">Shortest Positioning Time First (SPTF)</a></li>
+      </ul>
+    </li>
+    <li><a href="#raid-architecture">RAID Architecture</a>
+      <ul>
+        <li><a href="#raid-0">RAID 0</a></li>
+        <li><a href="#raid-1">RAID 1</a></li>
+        <li><a href="#raid-3">RAID 3</a></li>
+        <li><a href="#raid-4">RAID 4</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>입출력 시스템과 디스크 관리에 대해 알아보자.</p>
+<h2 id="io-mechanism">I/O Mechanism</h2>
+<p>I/O 에서는 크게 두 가지 방식이 있다.</p>
+<ul>
+<li>Processor controlled memory access
+<ul>
+<li>pooling</li>
+<li>interrupt</li>
+</ul>
+</li>
+<li>direct memory access</li>
+</ul>
+<h3 id="pooling">Pooling</h3>
+<ul>
+<li>processor가 주기적으로 I/O 장치들을 순환하면서 상태를 확인</li>
+<li>장점
+<ul>
+<li>simple</li>
+<li>I/O 장치가 빠르고 데이터 전송이 잦은 경우 효율적</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>processor의 부담이 큼 (특히 I/O device가 느린 경우)</li>
+</ul>
+</li>
+</ul>
+<h3 id="interrupt">Interrupt</h3>
+<ul>
+<li>I/O 장치가 작업을 완료한 후, 자신의 상태를 processor에게 전달</li>
+<li>interrupt 발생 시, processor는 데이터 전송 수행</li>
+<li>장점
+<ul>
+<li>pooling 대비 low overhead</li>
+<li>불규칙적인 요청 처리에 적합</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>interrupt handling overhead</li>
+</ul>
+</li>
+</ul>
+<p>Processor controlled memory access 방법은 processor가 모든 데이터 전송을 처리해야하는 단점이 존재한다. 전송하는 모든 과정에 참여해야 하기에 overhead가 있다.</p>
+<h3 id="direct-memory-access-dma">Direct memory access (DMA)</h3>
+<ul>
+<li>processor는 I/O 장치와 memory 사이의 데이터 전송을 시작/종료에만 관여</li>
+<li>processor가 명령 &amp; 관련정보 들을 DMA 제어기에 보내고 DMA가 I/O 작업을 진행하고 끝나면 processor에게 알린다</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec12_01.png?raw=true"  width="400">
+</center>
+<h2 id="io-services-of-os">I/O services of OS</h2>
+<p>I/O performance를 올리기 위해 OS가 제공하는 방법들을 알아보자.</p>
+<h3 id="io-scheduling">I/O scheduling</h3>
+<ul>
+<li>입출력 요청에 대한 처리 순서 결정</li>
+</ul>
+<h3 id="error-handling">Error handling</h3>
+<ul>
+<li>입출력 중 발생하는 오류 처리</li>
+</ul>
+<h3 id="buffering">Buffering</h3>
+<ul>
+<li>I/O 장치와 program 사이에 전송되는 데이터를 buffer에 임시저장</li>
+<li>전송속도(or 처리단위) 차이 문제를 해결</li>
+</ul>
+<h3 id="caching">Caching</h3>
+<ul>
+<li>자주 사용하는 데이터를 미리 복사해 둠</li>
+<li>cache hit 시 I/O를 생략 할 수 있음</li>
+</ul>
+<h3 id="spooling">Spooling</h3>
+<ul>
+<li>한 I/O 장치에 여러 program이 요청을 보낼 시, 출력이 섞이지 않도록 하는 기법
+<ul>
+<li>각 program에 대응하는 disk file에 기록 (spooling)</li>
+</ul>
+</li>
+<li>예를 들어, 프린트에 여러 개의 요청이 쌓이면 섞이지 않도록 해야함</li>
+</ul>
+<h2 id="disk-scheduling">Disk Scheduling</h2>
+<p>Disk access 요청들의 처리 순서를 결정하고 disk system의 성능을 향상시키기 위해서 스케쥴링을 잘해야 한다. 이 과정에 있어서 고려해야하는 주요 기준은 Throughput (단위 시간당 처리량), mean response time (평균 응답 시간), predictability (응답 시간의 예측성, 요청이 무기한 연기되지 않도록 방지) 이라고 할 수 있다. 아래는 방법론들이다.</p>
+<ul>
+<li>Optimizing seek time (head 이동)
+<ul>
+<li>FCFS</li>
+<li>SSTF</li>
+<li>Scan scheduling</li>
+<li>C-Scan scheduling</li>
+<li>Look scheduling</li>
+</ul>
+</li>
+<li>Optimizing rotational delay (돌아서 필요한 sector가 head로)
+<ul>
+<li>SLTF</li>
+</ul>
+</li>
+<li>SPTF (Shortest Positioning Time First)</li>
+</ul>
+<h3 id="first-come-first-service-fcfs">First Come First Service (FCFS)</h3>
+<ul>
+<li>요청이 도착한 순서에 따라 처리</li>
+<li>simple, 공평한 처리</li>
+<li>최적 성능 달성에 대한 고려가 없음</li>
+<li>disk access 부하가 적은 경우에 적합</li>
+</ul>
+<h3 id="shortest-seek-time-first-sstf">Shortest Seek Time First (SSTF)</h3>
+<ul>
+<li>현재 head 위치에서 가장 까까운 요청 먼저 처리</li>
+<li>throughput은 mean response time은 낮은 장점</li>
+<li>하지만 predictability가 낮고 starvation 현상이 발생가능</li>
+<li>따라서 일괄처리 시스템에 적합하다</li>
+</ul>
+<h3 id="scan-scheduling">Scan scheduling</h3>
+<ul>
+<li>현재 head의 진행방향에서 head와 가장 가까운 요청 먼저 처리</li>
+<li>진행방향 기준 마지막 cylinder 도착 후, 반대 방향으로 진행</li>
+<li>SSTF의 starcation 문제 해결</li>
+<li>Throughput 및 mean response time 우수</li>
+<li>진행 방향 반대쪽 끝의 요청들의 응답시간이 길어진다</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec12_02.png?raw=true"  width="400">
+</center>
+<h3 id="c-scan-scheduling">C-Scan scheduling</h3>
+<ul>
+<li>scan과 유사하지만 head가 미리 정해진 방향으로만 이동</li>
+<li>즉, 진행방향으로 가다가 끝 cylinder에 도착하면 그 반대 cylinder로 이동하여 같은 진행방향으로 진행</li>
+<li>scan에 비해 균등한 기회제공</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec12_03.png?raw=true"  width="400">
+</center>
+<h3 id="look-scheduling">Look scheduling</h3>
+<ul>
+<li>scan(C-scan)에서 현재 진행 방향에 요청이 없으면 방향 전환</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec12_04.png?raw=true"  width="400">
+</center>
+<h3 id="shortest-latency-time-first-sltf">Shortest latency time first (SLTF)</h3>
+<ul>
+<li>fixed head dist 시스템에 사용
+<ul>
+<li>각 track마다 head가 있는 disk, head의 이동이 없음</li>
+</ul>
+</li>
+<li>sector queuing algorithm
+<ul>
+<li>head 아래 도착한 sector의 queue에 있는 요청을 먼저 처리함</li>
+</ul>
+</li>
+<li>moving head disk의 경우는 같은 cylinder에 도착하면 queue에 있는 여러 개의 요청을 모두 처리</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec12_05.png?raw=true"  width="400">
+</center>
+<h3 id="shortest-positioning-time-first-sptf">Shortest Positioning Time First (SPTF)</h3>
+<ul>
+<li>positioning time = seek time + rotational delay</li>
+<li>positioning time이 가장 작은 요청 먼저 처리</li>
+<li>throughput 높고, mean response time은 낮다는 장점</li>
+<li>가장 안쪽과 바깥쪽 cylinder의 요청에 대해 starvation 발생 가능</li>
+</ul>
+<h2 id="raid-architecture">RAID Architecture</h2>
+<ul>
+<li>RAID (Redundant Array of Inexpensive Disks)
+<ul>
+<li>여러 개의 물리 disk를 하나의 논리 disk로 사용</li>
+<li>disk system의 성능 향상을 위해 사용</li>
+</ul>
+</li>
+</ul>
+<h3 id="raid-0">RAID 0</h3>
+<ul>
+<li>disk striping
+<ul>
+<li>block을 일정한 크기로 나누어 각 disk에 나누어 저장</li>
+</ul>
+</li>
+<li>모든 disk에 입출력 부하 균등 분배, parallel access, performance 향상</li>
+<li>한 disk에서 장애시 데이터 손실 발생 (low reliability)</li>
+</ul>
+<h3 id="raid-1">RAID 1</h3>
+<ul>
+<li>Disk mirroring
+<ul>
+<li>동일한 데이터를 mirroring disk에 중복 저장</li>
+</ul>
+</li>
+<li>최소 2개의 disk로 구성되어야 함 (입출력은 둘 중 어느 disk에서 가능)</li>
+<li>한 disk에서 장애가 생겨도 데이터를 중복 저장해서 괜찮다 (high reliability)</li>
+<li>가용 disk 용량 = (전체 disk 용량 / 2)</li>
+</ul>
+<h3 id="raid-3">RAID 3</h3>
+<ul>
+<li>RAID 0 + parity disk
+<ul>
+<li>byte 단위 분할 저장</li>
+<li>모든 disk에 입출력 부하 균등 분배</li>
+<li>parity라는 disk를 통해 나머지는 관리하는 느낌 (hadoop master node처럼)</li>
+</ul>
+</li>
+<li>한 disk에 장애 발생 시, parity 정보를 이용하여 복구</li>
+<li>write 시 parity 계산 필요</li>
+</ul>
+<h3 id="raid-4">RAID 4</h3>
+<ul>
+<li>RAID 3와 유사, 단 block 단위로 분산저장</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN" target="_blank" rel="noopener noreffer">HPC Lab. KOREATECH 운영체제 강의</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-04-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/os_lec12_iosystemanddiskmanagement/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/i/o-system/">I/O system</a>,&nbsp;<a href="/tags/disk-management/">Disk Management</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/os_lec11_filesystem/" class="prev" rel="prev" title="[OS] File System"><i class="fas fa-angle-left fa-fw"></i>[OS] File System</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

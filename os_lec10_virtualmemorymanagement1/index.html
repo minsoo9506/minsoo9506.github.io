@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[OS] Virtual Memory Management (1) - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[OS] Virtual Memory Management (1)" />
+<meta property="og:description" content="virtual memory를 다루는 방법들을 알아보자" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/os_lec10_virtualmemorymanagement1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-03T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-03T09:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[OS] Virtual Memory Management (1)"/>
+<meta name="twitter:description" content="virtual memory를 다루는 방법들을 알아보자"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/os_lec10_virtualmemorymanagement1/" /><link rel="prev" href="http://minsoo9506.github.io/dowhy_00_tutorial/" /><link rel="next" href="http://minsoo9506.github.io/os_lec10_virtualmemorymanagement2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[OS] Virtual Memory Management (1)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/os_lec10_virtualmemorymanagement1\/"
+        },"genre": "posts","keywords": "virtual memory management","wordcount":  502 ,
+        "url": "http:\/\/minsoo9506.github.io\/os_lec10_virtualmemorymanagement1\/","datePublished": "2022-04-03T09:00:00+00:00","dateModified": "2022-04-03T09:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[OS] Virtual Memory Management (1)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-science/"><i class="far fa-folder fa-fw"></i>Computer Science</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-03">2022-04-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;502 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#hardware-component">Hardware component</a></li>
+    <li><a href="#software-component">Software component</a>
+      <ul>
+        <li><a href="#allocation-strategy">Allocation strategy</a></li>
+        <li><a href="#fetch-strategy">Fetch strategy</a></li>
+        <li><a href="#placement-strategy">Placement strategy</a></li>
+        <li><a href="#replacement-strategy">Replacement strategy</a></li>
+        <li><a href="#cleaning-strategy">Cleaning strategy</a></li>
+        <li><a href="#load-control-strategy">Load control strategy</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>virtual memory를 다루는 방법들을 알아보자</p>
+<p>이전에 virtual memory에 대해서 공부했었다. 그렇다면 이제 virtual memory를 관리하는 방법에 대해 알아보자. 왜 virtual memory를 잘 관리해야할까? 당연히 시스템 성능을 높이기 위해서다. vitual memory는 상당히 유용한 방법이지만 이를 잘 관리해야 유용한 방법이 된다. 따라서 다양한 최적화기법을 이번 챕터에서 공부하고자 한다.</p>
+<p>먼저 관리를 잘하는지 평가하기 위해서는 cost model이 필요하다. virtual memory에서 주로 사용하는 cost model은 page fault에 관한 것이다.</p>
+<ul>
+<li>page fault frequency</li>
+<li>page fault rate ($F(w)$)
+<ul>
+<li>page reference string: 프로세스 수행 중 참조한 페이지 번호 순서
+<ul>
+<li>$w = r_1 r_2&hellip;r_T$, $r_i$: 페이지 번호</li>
+</ul>
+</li>
+<li>$F(w)=\frac{\text{num of page faults during } w}{|w|}$</li>
+</ul>
+</li>
+</ul>
+<p>cost model을 page fault rate로 정했다면 이를 최소화하기 위해 노력해야한다. 이제 어떤 방법들이 있는지 알아보자.</p>
+<h2 id="hardware-component">Hardware component</h2>
+<p>Hardware적인 방법을 알아보자. 먼저 Address translation device가 있다. 이는 이전 Lec09에서 본 TLB같은 것들이다. 그 다음으로는 Bit Vectors에 대해 알아보자. Bit Vectors는 page 사용상황에 대한 정보를 기록하는 것이다. 두 가지 종류가 있다.</p>
+<ul>
+<li>Reference bits (used bits)
+<ul>
+<li>메모리에 적대된 각각의 page가 최근에 참조 되었는지를 표시</li>
+<li>이를 통해 최근에 참조된 page들을 확인할 수 있다</li>
+<li>프로세스에 의해 참조되면 해당 page의 Ref.bit를 1로 설정하고 이를 계속 유지하는게 아니라 주기적으로 모든 Ref.bit를 0으로 초기화</li>
+</ul>
+</li>
+<li>Update bits (write bits, dirty bits)
+<ul>
+<li>page가 메모리에 적대된 후, 프로세스에 의해 수정되었는지를 표시</li>
+<li>이를 통해 해당 page에 대한 write-back to swap device를 해야하는지 판단할 수 있다</li>
+<li>주기적으로 초기화하지 않고 메모리에서 나올때 0으로 초기화 (write-back하면서)</li>
+</ul>
+</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec10_01.png?raw=true"  width="400">
+</center>
+<h2 id="software-component">Software component</h2>
+<p>software적으로 virtual memory 성능 향상을 위한 관리 기법들에 대해 알아보자.</p>
+<ul>
+<li>Allocation strategy</li>
+<li>Fetch strategy</li>
+<li>Placement strategy</li>
+<li>Replacement strategy</li>
+<li>Cleaning strategy</li>
+<li>Load control strategy</li>
+</ul>
+<h3 id="allocation-strategy">Allocation strategy</h3>
+<p>각 프로세스에게 메모리를 얼마만큼, 어떻게 줄 것인가?</p>
+<ul>
+<li>Fixed allocation (고정할당)
+<ul>
+<li>프로세스의 실행동안 고정된 크기의 메모리 할당</li>
+</ul>
+</li>
+<li>Variable allocation (가변할당)
+<ul>
+<li>프로세스의 실행동안 할당하는 메모리의 크기가 유동적</li>
+<li>프로세스 실행에 필요한 메모리 양을 예측해야 함 (어려움)</li>
+</ul>
+</li>
+</ul>
+<p>너무 큰 메모리를 할당하면 메모리가 낭비되고 너무 적은 메모리를 할당하면 page fault rate가 올라가서 시스템성능이 떨어진다.</p>
+<h3 id="fetch-strategy">Fetch strategy</h3>
+<p>특정 page를 메모리에 언제 적재할 것인가?</p>
+<ul>
+<li>Demand fetch (demand paging)
+<ul>
+<li>프로세스가 참조하는 페이지들만 적재</li>
+<li>page fault overhead</li>
+</ul>
+</li>
+<li>Anticipatory fetch (pre-paging)
+<ul>
+<li>참조될 가능이 높은 page 예측</li>
+<li>가까운 미래에 참조될 가능성이 높은 page를 미리 적재</li>
+<li>예측 성공 시, page fault overhead가 없음 (어려움, prediction overhead)</li>
+</ul>
+</li>
+</ul>
+<p>일반적으로 대부분의 시스템은 Demand fetch를 사용한다고 한다.</p>
+<h3 id="placement-strategy">Placement strategy</h3>
+<p>page/segment를 어디에 적재할 것인가?</p>
+<ul>
+<li>paging system에는 불필요</li>
+<li>sementation system에서는
+<ul>
+<li>first-fit, best-fit, worst-fit, next-fit</li>
+</ul>
+</li>
+</ul>
+<h3 id="replacement-strategy">Replacement strategy</h3>
+<p>새로운 page를 어떤 page와 교체할 것인가? (빈 page frame이 없는 경우) 이 부분은 뒤에서 좀 더 자세히 볼 예정이다.</p>
+<ul>
+<li>Fixed allocation을 위한 기법
+<ul>
+<li>MIN, Random, FIFO, LRU, LFU, NUR, Clock, Second chance algorithm</li>
+</ul>
+</li>
+<li>Variable allocation을 위한 기법
+<ul>
+<li>VMIN, WE, PFF algorithm</li>
+</ul>
+</li>
+</ul>
+<h3 id="cleaning-strategy">Cleaning strategy</h3>
+<p>변경된 page를 언제 write-back 할 것인가?</p>
+<ul>
+<li>Demand cleaning
+<ul>
+<li>해당 page에 메모리에서 내려올 떄 write-back</li>
+</ul>
+</li>
+<li>Anticipatory cleaning (pre-cleaning)
+<ul>
+<li>더 이상 변경될 가능성이 없다고 판단 할 떄, 미리 write-back (어려움, prediction overhead)</li>
+<li>page 교체 시 발생하는 write-back 시간 절약</li>
+<li>근데 write-back 이후, page 내용이 또 수정되면 overhead</li>
+</ul>
+</li>
+</ul>
+<p>여기서도 대부분의 시스템은 Demand cleaning 기법을 사용한다고 한다.</p>
+<h3 id="load-control-strategy">Load control strategy</h3>
+<p>시스템의 multi-programming degree를 조절하는 방법이다. 적정 수준의 multi-programming degree를 유지해야 한다.</p>
+<ul>
+<li>if 저부하 상태
+<ul>
+<li>시스템 자원 낭비 &amp; 성능 저하</li>
+</ul>
+</li>
+<li>if 고부하 상태
+<ul>
+<li>자원에 대한 경쟁이 심해져서 성능 저하</li>
+<li>Thrashing(스레싱) 현상 발생: 과도한 page fault발생하는 현상</li>
+</ul>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN" target="_blank" rel="noopener noreffer">HPC Lab. KOREATECH 운영체제 강의</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-04-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/os_lec10_virtualmemorymanagement1/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/virtual-memory-management/">virtual memory management</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/dowhy_00_tutorial/" class="prev" rel="prev" title="[DoWhy] Tutorial"><i class="fas fa-angle-left fa-fw"></i>[DoWhy] Tutorial</a>
+            <a href="/os_lec10_virtualmemorymanagement2/" class="next" rel="next" title="[OS] Virtual Memory Management (2)">[OS] Virtual Memory Management (2)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

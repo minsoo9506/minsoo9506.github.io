@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial) - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)" />
+<meta property="og:description" content="Anomaly Detection에서 설명가능한 모델과 관련한 tutorial" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/survey02_anomalyexplanationindeepdetectors/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-27T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-03-27T09:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)"/>
+<meta name="twitter:description" content="Anomaly Detection에서 설명가능한 모델과 관련한 tutorial"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/survey02_anomalyexplanationindeepdetectors/" /><link rel="prev" href="http://minsoo9506.github.io/os_lec09_virtualmemory/" /><link rel="next" href="http://minsoo9506.github.io/dowhy_00_tutorial/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/survey02_anomalyexplanationindeepdetectors\/"
+        },"genre": "posts","keywords": "Anomaly Detection, XAI","wordcount":  407 ,
+        "url": "http:\/\/minsoo9506.github.io\/survey02_anomalyexplanationindeepdetectors\/","datePublished": "2022-03-27T09:00:00+00:00","dateModified": "2022-03-27T09:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/catchminor/"><i class="far fa-folder fa-fw"></i>CatchMinor</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-27">2022-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;407 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#outlying-aspect-mining">Outlying aspect mining</a>
+      <ul>
+        <li><a href="#finding-relevant-features-for-imbalanced-binary-classificaion">Finding relevant features for imbalanced binary classificaion</a></li>
+        <li><a href="#score-and-search-approach">Score-and-search approach</a></li>
+      </ul>
+    </li>
+    <li><a href="#unified-anomaly-detection-and-explanation">Unified anomaly detection and explanation</a>
+      <ul>
+        <li><a href="#shallow-method">shallow method</a></li>
+        <li><a href="#deep-method">Deep method</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Anomaly Detection에서 설명가능한 모델과 관련한 tutorial</p>
+<p>Anomaly Detection과 관련한 분야 중 하나로 anomaly explanation이 있다. 해당 데이터가 왜 anomaly로 판단되는지 설명할 수 있다면 상당히 유용할 것이다. 이러한 방법론들은 어떤게 있는지 알아보자. 먼저 해당 tutorial에서는 크게 2가지로 나누어서 설명한다.</p>
+<ul>
+<li>outlying aspect mining</li>
+<li>unified anomaly detection and explanation</li>
+</ul>
+<h2 id="outlying-aspect-mining">Outlying aspect mining</h2>
+<p>해당 방법론은 detector가 anomaly를 찾았을 때, 다른 normal data와 다른 부분(the most unusal aspects)을 찾으려고 하는 방법이다. 크게 아래같은 절차로 진행된다.</p>
+<ol>
+<li>anomaly detector를 통해 anomaly를 찾는다.</li>
+<li>anomaly와 관련한 the most outlying feature subspace를 찾는다.</li>
+</ol>
+<p>따라서 단점은 detection과 explanation 단계가 서로 독립적이라는 것이다. 이제 접근방법을 2가지 정도 알아보자.</p>
+<h3 id="finding-relevant-features-for-imbalanced-binary-classificaion">Finding relevant features for imbalanced binary classificaion</h3>
+<p>outlying aspects mining을 imbalanced binary classification에서 feature selection/weighting 하는 것으로 생각하는 것이다.</p>
+<ul>
+<li>classification accuracy as outlierness
+<ul>
+<li>Explaining outliers by subspace separability (2013)</li>
+<li>subset feature를 통해 분류를 하고 classification accuracy가 가장 높은 subset을 찾는다.</li>
+</ul>
+</li>
+<li>Attention-guided feature weighting
+<ul>
+<li>Beyond Outlier Detection: Outlier Interpretation by Attention-Guided Triplet Deviation Network 2021)</li>
+</ul>
+</li>
+<li>장단점
+<ul>
+<li>일반적인 imbalanced binary classification에서 사용하는 방법론들을 사용할 수 있다</li>
+<li>efficient, scalable</li>
+<li>Difficult to generate multiple complementary outlying feature subspaces</li>
+<li>Dependent on the quality of outlier oversampling and/or inlier downsampling</li>
+</ul>
+</li>
+<li>other similar methods
+<ul>
+<li>Outlier detection in axis-parallel subspaces of high dimensional data (2009)</li>
+<li>Discriminative features for identifying and interpreting outliers (2014)</li>
+<li>Learning homophily couplings from non-IID data for joint feature selection and noise-resilient outlier detection (2017)</li>
+</ul>
+</li>
+</ul>
+<h3 id="score-and-search-approach">Score-and-search approach</h3>
+<ul>
+<li>방법
+<ol>
+<li>Define a measure of the outlyingness degree for a data point in any specified subspace</li>
+<li>The outlyingness degree of the query object will be compared across all possible subspaces</li>
+<li>The subspaces with the highest outlyingness degree will be selected for user further inspection</li>
+</ol>
+</li>
+</ul>
+<p>다양한 모델과 방법론을 이용해서 outlierness degree가 가장 큰 값을 갖는 feature subspaces를 찾는다. 가능한 전체 경우의 수는 $2^d - 1$일 것이다.</p>
+<ul>
+<li>2-D pictorial explanation
+<ul>
+<li>LP-Explain: Local Pictorial Explanation for Outliers (2020)</li>
+<li>a set of detected anomalies의 outlierness degree가 가장 큰 2-D feature subspaces를 찾는 방법</li>
+</ul>
+</li>
+<li>장단점
+<ul>
+<li>Many anomaly detection measures can be adapted for the scoring in feature subspace</li>
+<li>Multiple relevant feature subspaces can be easily returned</li>
+<li>dimensionality와 관련이 있는 measure들은 dimensionality bias를 고려해야 한다</li>
+<li>feature subspace search를 하는 cost</li>
+</ul>
+</li>
+<li>other similar methods
+<ul>
+<li>Outlying property detection with numerical attributes (2017)</li>
+<li>Contextual outlier interpretation (2018)</li>
+<li>Sequential feature explanations for anomaly detection (2019)</li>
+</ul>
+</li>
+</ul>
+<h2 id="unified-anomaly-detection-and-explanation">Unified anomaly detection and explanation</h2>
+<p>detection과 explanation이 독립적으로 이루어지는 것이 아니라 detection을 하는 과정에 녹아들어 있다고 할 수 있다.</p>
+<h3 id="shallow-method">shallow method</h3>
+<ul>
+<li>Sequential anomaly ensemble of surrogate sparse regression
+<ul>
+<li>Sparse modeling-based sequential ensemble learning for effective outlier detection in high-dimensional numeric data (2018)</li>
+</ul>
+</li>
+</ul>
+<h3 id="deep-method">Deep method</h3></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-03-27</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/survey02_anomalyexplanationindeepdetectors/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/anomaly-detection/">Anomaly Detection</a>,&nbsp;<a href="/tags/xai/">XAI</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/os_lec09_virtualmemory/" class="prev" rel="prev" title="[OS] Virtual Memory"><i class="fas fa-angle-left fa-fw"></i>[OS] Virtual Memory</a>
+            <a href="/dowhy_00_tutorial/" class="next" rel="next" title="[DoWhy] Tutorial">[DoWhy] Tutorial<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -13,13 +13,13 @@ memory allocation을 하는 방법중에서 non-continuos memory allocation 방�
 - hybrid system
 
 먼저 non-continuous allocation의 경우 address mapping에 대해 알아보자. 이전에 continous의 경우와 비슷하게 가상주소와 실제주소가 있다.
-- virtual address (=relative address)
+- virtual address (= relative address)
   - logical address
   - 연속된 메모리 할당을 가정한 주소
-- real address (=absolute, physical address)
+- real address (= absolute, physical address)
   - 실제 메모리에 적재된 주소
 
-사용자/프로세스는 address mapping을 통해 실행 프로그램 전체가 메모리에 연속적으로 적재되었다고 가정하고 실행할 수 있다. 그렇다면 구체적으로 어떤식으로 address mapping을 해서 프로그램이 실행되는지 알아보자. 간단한 방법중 하나인 block mapping에 대해 알아보자.
+사용자/프로세스는 address mapping을 통해 실행 프로그램 전체가 메모리에 연속적으로 적재되었다고 가정하고 실행할 수 있다. 그렇다면 구체적으로 어떤식으로 address mapping을 해서 프로그램이 실행되는지 알아보자. 간단한 방법 중 하나인 block mapping에 대해 알아보자.
 
 ### Block mapping
 - 사용자 프로그램을 block 단위로 분할/관리
@@ -55,19 +55,21 @@ Paging system은 프로그램을 같은 크기의 block으로 분할하는 방�
 
 ### Direct mapping
 - 순서
-  - 1. 해당 프로세스의 PMT가 저장되어 있는 주소 b에 접근
-  - 2. 해당 PMT에서 page p에 대한 entry 찾음
-  - 3. 찾은 entry의 residence bit 검사
-    - 1. if 0, swap device에서 해당 page를 메모리에 적재하고 PMT를 갱신하고 3-2 수행 (이부분에서 overhead)
-    - 2. if 1, 해당 entry에서 page frame 번호 p'를 확인
-  - 4. p'와 d를 사용하여 실제 주소 r 형성
-  - 5. 실제 주소 r로 주기억장치에 접근
+  1. 해당 프로세스의 PMT가 저장되어 있는 주소 b에 접근
+  2. 해당 PMT에서 page p에 대한 entry 찾음
+  3. 찾은 entry의 residence bit 검사
+      1. if 0, swap device에서 해당 page를 메모리에 적재하고 PMT를 갱신하고 3-2 수행 (이부분에서 overhead)
+      2. if 1, 해당 entry에서 page frame 번호 p'를 확인
+  4. p'와 d를 사용하여 실제 주소 r 형성
+  5. 실제 주소 r로 주기억장치에 접근
 
 <center>
     <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec09_03.png?raw=true"  width="500">
 </center>
 
 ### Associative mapping
+- TLB 이용
+  - PMT를 위한 전용기억장치(공간)로 swap device에서 page를 찾을 때, parallel search가 가능해서 엄청 빠르지만 비싸고 운영이 까다롭다
 
 <center>
     <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec09_04.png?raw=true"  width="500">
@@ -80,7 +82,6 @@ Hybrid direct/associative mapping은 direct와 associative 두 가지 방법을 
 - TLB: PMT 중 일부 entry들(최근에 사용된 page들에 대한 entry)을 적재, 이는 locality를 활용하기 위함
   - Translation Look-aside Buffer
   - associative mapping에서 사용
-  - PMT를 위한 전용기억장치(공간)로 swap device에서 page를 찾을 때, parallel search가 가능해서 엄청 빠르지만 비싸고 운영이 까다롭다
 
 프로세스의 PMT가 TLB에 적재되어 있는지 확인한다.
 - if TLB에 적재되어 있는 경우, residence bit를 검사하고 page frame 번호를 확인
@@ -116,8 +117,8 @@ segmentation system에서도 address mapping은 비슷하다. virtual address v=
 
 ### Hybrid paging/segmentation system
 - 프로그램 분할
-  - 1. 논리 단위의 segment로 분할
-  - 2. 각 segment를 고정된 크기의 page들로 분할
+1. 논리 단위의 segment로 분할
+2. 각 segment를 고정된 크기의 page들로 분할
 - page 단위로 메모리에 적재
 
 <center>

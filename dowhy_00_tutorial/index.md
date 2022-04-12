@@ -7,10 +7,11 @@ MS의 causal inference를 공개한 library DoWhy에 대해 알아보자
 DoWhy는 causality에 관련하여 다양한 기능을 제공한다. 이를 사용하는 tutorial을 진행하면서 DoWhy에 대해 이해하고 observational data를 이용한 causal inference의 과정에 대해 이해하고자 한다.
 
 먼저, DoWhy에서 제공(제안)하는 causal inference의 단계는 다음과 같다.
-- 1. Modeling: Create a causal graph to encode assumptions
-- 2. Identification: Formulate what to estimate
-- 3. Estimation: Compute the estimate
-- 4. Refutation: Validate the assumptions
+
+1. Modeling: Create a causal graph to encode assumptions
+2. Identification: Formulate what to estimate
+3. Estimation: Compute the estimate
+4. Refutation: Validate the assumptions
 
 DoWhy에서는 기본적으로 causal graph를 이용하여 inference를 진행한다. 실제 데이터에서 causal graph를 알아내기는 쉽지 않다. domain 지식을 이용해야한다. 물론 DoWhy에서 causal discovery의 기능도 제공한다.
 

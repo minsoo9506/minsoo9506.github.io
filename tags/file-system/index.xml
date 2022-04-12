@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>File System - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/file-system/</link>
+        <description>File System - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 10 Apr 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/file-system/" rel="self" type="application/rss+xml" /><item>
+    <title>[OS] File System</title>
+    <link>http://minsoo9506.github.io/os_lec11_filesystem/</link>
+    <pubDate>Sun, 10 Apr 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec11_filesystem/</guid>
+    <description><![CDATA[<p>File System에 대해 알아보자</p>]]></description>
+</item></channel>
+</rss>

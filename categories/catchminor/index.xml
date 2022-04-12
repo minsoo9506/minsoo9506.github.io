@@ -5,24 +5,24 @@
         <description>CatchMinor - Category - minsoo9506</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 27 Mar 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/catchminor/" rel="self" type="application/rss+xml" /><item>
     <title>[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)</title>
-    <link>http://minsoo9506.github.io/03_anomalyexplanationindeepdetectors/</link>
+    <link>http://minsoo9506.github.io/survey02_anomalyexplanationindeepdetectors/</link>
     <pubDate>Sun, 27 Mar 2022 09:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/03_anomalyexplanationindeepdetectors/</guid>
+    <guid>http://minsoo9506.github.io/survey02_anomalyexplanationindeepdetectors/</guid>
     <description><![CDATA[<p>Anomaly Detection에서 설명가능한 모델과 관련한 tutorial</p>]]></description>
 </item><item>
     <title>[OutlierAnalysis] Model Combination for Outlier Ensembles</title>
-    <link>http://minsoo9506.github.io/02_outlieranalysis01/</link>
+    <link>http://minsoo9506.github.io/outlieranalysis01/</link>
     <pubDate>Sun, 20 Mar 2022 10:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/02_outlieranalysis01/</guid>
+    <guid>http://minsoo9506.github.io/outlieranalysis01/</guid>
     <description><![CDATA[<p>다양한 모델을 통해 구한 outlier score를 ensemble하는 방법 (Outlier Analysis, Charu C. Aggarwal)</p>]]></description>
 </item><item>
     <title>[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)</title>
-    <link>http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/</link>
+    <link>http://minsoo9506.github.io/survey01_tutorialondeeplearningforanomalydetection/</link>
     <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/</guid>
+    <guid>http://minsoo9506.github.io/survey01_tutorialondeeplearningforanomalydetection/</guid>
     <description><![CDATA[<p>Deep Learning for Anomaly Detection - Challenges, Methods tutorial 정리</p>]]></description>
 </item></channel>
 </rss>

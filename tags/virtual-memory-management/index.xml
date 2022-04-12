@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>virtual memory management - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/virtual-memory-management/</link>
+        <description>virtual memory management - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 09 Apr 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/virtual-memory-management/" rel="self" type="application/rss+xml" /><item>
+    <title>[OS] Virtual Memory Management (2)</title>
+    <link>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement2/</link>
+    <pubDate>Sat, 09 Apr 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement2/</guid>
+    <description><![CDATA[<p>virtual memory를 다루는 방법들을 알아보자</p>]]></description>
+</item><item>
+    <title>[OS] Virtual Memory Management (1)</title>
+    <link>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement1/</link>
+    <pubDate>Sun, 03 Apr 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement1/</guid>
+    <description><![CDATA[<p>virtual memory를 다루는 방법들을 알아보자</p>]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial) - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)" />
+<meta property="og:description" content="Deep Learning for Anomaly Detection - Challenges, Methods tutorial 정리" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/survey01_tutorialondeeplearningforanomalydetection/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-19T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-03-19T09:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)"/>
+<meta name="twitter:description" content="Deep Learning for Anomaly Detection - Challenges, Methods tutorial 정리"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/survey01_tutorialondeeplearningforanomalydetection/" /><link rel="prev" href="http://minsoo9506.github.io/os_lec06_processsynchronizationmutualexclusion/" /><link rel="next" href="http://minsoo9506.github.io/os_lec07_deadlock/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Survey] Deep Learning for Anomaly Detection (WSDM'21 tutorial)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/survey01_tutorialondeeplearningforanomalydetection\/"
+        },"genre": "posts","keywords": "Deep Anomaly Detection","wordcount":  1211 ,
+        "url": "http:\/\/minsoo9506.github.io\/survey01_tutorialondeeplearningforanomalydetection\/","datePublished": "2022-03-19T09:00:00+00:00","dateModified": "2022-03-19T09:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/catchminor/"><i class="far fa-folder fa-fw"></i>CatchMinor</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-19">2022-03-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1211 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#problem-variations">Problem variations</a></li>
+        <li><a href="#application-specifi-complexities">application-specifi complexities</a></li>
+        <li><a href="#key-challenges">Key Challenges</a></li>
+        <li><a href="#traditional-shallow-methods-and-disadvantages">Traditional (Shallow) methods and Disadvantages</a></li>
+        <li><a href="#advantages-of-deep-learning">Advantages of Deep Learning</a></li>
+        <li><a href="#3-principal-categories">3 principal categories</a></li>
+        <li><a href="#categorization-based-on-supervision">Categorization Based on Supervision</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#deep-learning-for-feature-extraction">Deep learning for feature extraction</a>
+          <ul>
+            <li><a href="#summary">summary</a></li>
+          </ul>
+        </li>
+        <li><a href="#learning-feature-representation-of-normality">Learning feature representation of normality</a>
+          <ul>
+            <li><a href="#generic-normality-feature-learning">Generic normality feature learning</a></li>
+            <li><a href="#summary-1">summary</a></li>
+            <li><a href="#anomaly-measure-dependent-feature-learning">Anomaly measure-dependent feature learning</a></li>
+            <li><a href="#summary-2">summary</a></li>
+          </ul>
+        </li>
+        <li><a href="#end-to-end-anomaly-score-learning">End-to-end anomaly score learning</a>
+          <ul>
+            <li><a href="#ranking-models">Ranking models</a></li>
+            <li><a href="#prior-driven-models">Prior-driven models</a></li>
+            <li><a href="#sotfmax-likelihood-models">Sotfmax likelihood models</a></li>
+            <li><a href="#end-to-end-one-class-classification">End-to-End one-class classification</a></li>
+            <li><a href="#summary-3">summary</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#unsupervised-approach">Unsupervised approach</a></li>
+        <li><a href="#weakly-supervised-approach">Weakly-supervised approach</a></li>
+        <li><a href="#semi-supervised-approach">Semi-supervised approach</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#six-possible-directions-for-future-research">six possible directions for future research</a>
+      <ul>
+        <li><a href="#1-exploring-anomaly-supervisory-signals">1. Exploring anomaly-supervisory signals</a></li>
+        <li><a href="#2-deep-weakly-supervised-anomaly-detection">2. Deep weakly-supervised anomaly detection</a></li>
+        <li><a href="#3-large-scale-normality-learning">3. Large-scale normality learning</a></li>
+        <li><a href="#4-deep-detection-of-complex-anomalies">4. Deep detection of complex anomalies</a></li>
+        <li><a href="#5-interpretable-and-actionable-deep-anomaly-detection">5. Interpretable and actionable deep anomaly detection</a></li>
+        <li><a href="#6-novel-applications-and-settings">6. Novel applications and settings</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Deep Learning for Anomaly Detection - Challenges, Methods tutorial 정리</p>
+<ul>
+<li>Anomalies: points that are significantly different from most of the data</li>
+</ul>
+<h1 id="part1-challenges">Part1: challenges</h1>
+<h3 id="problem-variations">Problem variations</h3>
+<ul>
+<li>Binary output vs scoring</li>
+<li>mulitple ways to define what makes an anomaly different 3 common types of anomalies:
+<ul>
+<li>point anomalies</li>
+<li>conditional anomalies (contextual anomalies)</li>
+<li>group anomlies</li>
+</ul>
+</li>
+</ul>
+<h3 id="application-specifi-complexities">application-specifi complexities</h3>
+<ul>
+<li>Heterogeneity
+<ul>
+<li>different anomalies may exhibit different expression</li>
+<li>anomalies도 다같은 anoamlies가 아니다</li>
+</ul>
+</li>
+<li>Application-specific methodologies</li>
+<li>Unknown Nature (unsupervised setting)
+<ul>
+<li>anomalies는 발생하기 전까지 그게 있는지 조차도 모름</li>
+</ul>
+</li>
+<li>Coverage
+<ul>
+<li>모든 anomalies를 모으는 것도 힘들다</li>
+</ul>
+</li>
+</ul>
+<h3 id="key-challenges">Key Challenges</h3>
+<ul>
+<li>Low anomaly detection accuracy</li>
+<li>Contextual and high-dimensional data</li>
+<li>sample-efficient learning
+<ul>
+<li>building generalized detection models with a limited amount of labeled anomaly data</li>
+</ul>
+</li>
+<li>Noise-Resilient anomaly detection</li>
+<li>complex anomalies</li>
+<li>anomaly explanation</li>
+</ul>
+<h3 id="traditional-shallow-methods-and-disadvantages">Traditional (Shallow) methods and Disadvantages</h3>
+<ul>
+<li>
+<p>statistical/probabilistic-based approaches</p>
+<ul>
+<li>statistical-test, depth-based, deviation-based</li>
+</ul>
+</li>
+<li>
+<p>proximity-based approach</p>
+<ul>
+<li>distance-based, density-based, clustering-based</li>
+</ul>
+</li>
+<li>
+<p>shallow ML models</p>
+<ul>
+<li>unsupervised ML model (one-class svm, pca)</li>
+</ul>
+</li>
+<li>
+<p>others</p>
+<ul>
+<li>information-theoretic, subspace method</li>
+</ul>
+</li>
+<li>
+<p>weakness</p>
+<ul>
+<li>weak capability of capturing intricate relationships</li>
+<li>lots of hand-crafting of algorithms and features</li>
+<li>Ad hoc nature make it difficult to incorporate supervision</li>
+</ul>
+</li>
+</ul>
+<h3 id="advantages-of-deep-learning">Advantages of Deep Learning</h3>
+<ul>
+<li>Integrates feature learning and anomaly scoring
+<ul>
+<li>generates newly learned feature space</li>
+<li>end-to-end learning</li>
+<li>diverse neural architectures</li>
+<li>unified detection and localization of anomalies
+<ul>
+<li>localization을 통해 anomalies에 대한 해석을 더 쉽게 할 수 있다</li>
+</ul>
+</li>
+<li>anomaly-informed models with improved accuracy</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-principal-categories">3 principal categories</h3>
+<ul>
+<li>Deep learning for Feature Extraction
+<ul>
+<li>DL을 이용해서 feature를 뽑아내고 이를 다른 모델에 넣어서 찾는 방법</li>
+</ul>
+</li>
+<li>Learning Feature Representations of Normality (가장 많이 연구됨)</li>
+<li>End-to-End Anomaly Score Learning</li>
+</ul>
+<h3 id="categorization-based-on-supervision">Categorization Based on Supervision</h3>
+<ul>
+<li>Unsupervised approach
+<ul>
+<li>anomaly-contaminated unlabeled data; no manually labeled training data</li>
+</ul>
+</li>
+<li>Semi-supervised approach (가장 많이 연구됨)
+<ul>
+<li>assuming the availability of a set of manually labeled normal training data</li>
+</ul>
+</li>
+<li>Weakly-supervised approach
+<ul>
+<li>assuming have some labels for anomaly classes</li>
+<li>yet the class labels are partial, inexact, inaccurate</li>
+</ul>
+</li>
+</ul>
+<h1 id="part2-1-methods-the-modeling-perspective">Part2-1: methods (The modeling perspective)</h1>
+<h3 id="deep-learning-for-feature-extraction">Deep learning for feature extraction</h3>
+<ul>
+<li>assumption
+<ul>
+<li>extracted features preserve the discriminative information that helps separate anomalies from normal instances</li>
+</ul>
+</li>
+<li>방법
+<ul>
+<li>pre-trained model을 사용
+<ul>
+<li>pre-trained model에서 feature를 추출한 뒤 다른 classifier를 학습시켜서 anomaly score를 구한다</li>
+<li>ex) (paper) unmasking the abnormal events in video</li>
+</ul>
+</li>
+<li>training deep feature extraction models
+<ul>
+<li>주로 autoencoder를 이용해서 feature extract한 뒤에 다른 분퓨 모델을 이용한다</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="summary">summary</h4>
+<ul>
+<li>장점
+<ul>
+<li>구현하기 쉽다</li>
+<li>linear model보다 dimensionaliy reduction이 성능이 좋다</li>
+<li>다양한 sota 모델을 활용할 수 있다</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>feature extraction이 anomaly soring이 disjointing한 과정이라서 유용한 정보가 추출되지 않을수도 있다</li>
+<li>pre-trained model은 데이터의 종류가 제한적이다</li>
+</ul>
+</li>
+</ul>
+<h3 id="learning-feature-representation-of-normality">Learning feature representation of normality</h3>
+<p>크게 두가지로 구분 할 수 있다</p>
+<ul>
+<li>Generic normality feature learning</li>
+<li>Anomaly measure-dependent feature learning</li>
+</ul>
+<h4 id="generic-normality-feature-learning">Generic normality feature learning</h4>
+<ul>
+<li>Autoencoders
+<ul>
+<li>assumption
+<ul>
+<li>normal instances can be better reconstructed from compressed feature space than anomalies</li>
+</ul>
+</li>
+<li>gerneral framewok
+<ol>
+<li>Bottleneck architecture + reconstruction loss</li>
+<li>The larger reconstruction errors the more abnormal</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>GAN
+<ul>
+<li>assumption
+<ul>
+<li>Normal data instances can be better generated than anomalies from the latent feature space of the generative network in GANs</li>
+</ul>
+</li>
+<li>general framework
+<ol>
+<li>Train a GAN-based model</li>
+<li>Calculate anomaly scores by looking into the difference bewteen an input instance and its counterpart generated from the latent space of the generator</li>
+</ol>
+</li>
+<li>종류
+<ul>
+<li>AnoGAN, EBGAN &hellip;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Predictability modeling
+<ul>
+<li>assumption
+<ul>
+<li>Normal instances are temporally more predictable than anomalies</li>
+</ul>
+</li>
+<li>general framework
+<ol>
+<li>Train a current/future instance prediction network</li>
+<li>Calculate the difference between the predicted instance and the actual instance as anomaly score</li>
+</ol>
+</li>
+<li>종류
+<ul>
+<li>Future frame prediction</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Self-supervised classification
+<ul>
+<li>assumption
+<ul>
+<li>Normal instances are more consistent to self-supervised classifiers than anomalies</li>
+</ul>
+</li>
+<li>general framework
+<ol>
+<li>Apply different augmentation operations to the data</li>
+<li>Learn a multi-class classification model using instances</li>
+<li>Calculate the inconsistency of the instance to the model as anomaly score</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="summary-1">summary</h4>
+<ul>
+<li>장점
+<ul>
+<li>Deep learning for feature extraction 보다 효율적이다</li>
+<li>다양한 모델을 활용할 수 있다</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>GAN 같은 경우 훈련이 쉽지 않다</li>
+<li>unsupervised setting 이기 떄문에 anomaly contamination에 취약하다</li>
+</ul>
+</li>
+</ul>
+<h4 id="anomaly-measure-dependent-feature-learning">Anomaly measure-dependent feature learning</h4>
+<ul>
+<li>Distance-based measures
+<ul>
+<li>assumption
+<ul>
+<li>Anomalies are distributed far from their closest neighbors while normal instances are located in dense neighborhoods</li>
+</ul>
+</li>
+<li>general framework
+<ol>
+<li>orginal data를 새로운 representation space로 map하는 feature mapping function $\pi$를 만든다</li>
+<li>feature representation을 anomalies가 특정 reference instances와 거리가 더 커지도록 optimize한다.</li>
+<li>그렇게 만들어진 space에서 거리를 측정하여 anomaly score로 이용한다</li>
+</ol>
+</li>
+<li>종류
+<ul>
+<li>REPEN</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>One-class classification measure
+<ul>
+<li>assumption
+<ul>
+<li>All normal instances come from a single (abstract) class andn can be summarized by a compact model, to which anomalies do not conform</li>
+</ul>
+</li>
+<li>general framework
+<ol>
+<li>orginal data를 새로운 representation space로 map하는 feature mapping function $\pi$를 만든다</li>
+<li>one-class classification loss를 이용하여 feature representation을 optimize한다</li>
+<li>그렇게 만들어진 space에서 one-class classification model을 통해 anomaly score를 구한다</li>
+</ol>
+</li>
+<li>종류
+<ul>
+<li>Deep SVDD</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cluster-based measure
+<ul>
+<li>assumption
+<ul>
+<li>Normal isntances have stronger adherence to clusters than anomalies</li>
+</ul>
+</li>
+<li>general framework
+<ol>
+<li>orginal data를 새로운 representation space로 map하는 feature mapping function $\pi$를 만든다</li>
+<li>cluster-based loss를 이용하여 feature representation을 optimize한다</li>
+<li>그렇게 만들어진 space에서 cluster-based model을 통해 anomaly score를 구한다</li>
+</ol>
+</li>
+<li>종류
+<ul>
+<li>DAGMM</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="summary-2">summary</h4>
+<ul>
+<li>장점
+<ul>
+<li>전통적인 방법론들이라 비교적 연구가 탄탄하다</li>
+<li>특정 anomaly measure를 기준으로 잡고 representation을 만들기 때문에 해당 measure에 알맞는 data를 만나면 효과가 좋다</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>성능이 anomaly measure에 heavily dependent하다</li>
+<li>clustering 과정에 있어서 contaminated anomalies가 training data에 있는 경우 biased 될 수 있다</li>
+</ul>
+</li>
+</ul>
+<h3 id="end-to-end-anomaly-score-learning">End-to-end anomaly score learning</h3>
+<ul>
+<li>anomaly score가 있는 상태에서 학습을 하는 (지도학습) 방법이다</li>
+<li>크게 4가지로 구분한다
+<ul>
+<li>Ranking models</li>
+<li>Prior-driven models</li>
+<li>Softmax likelihood models</li>
+<li>End-to-End one-class classfication</li>
+</ul>
+</li>
+</ul>
+<h4 id="ranking-models">Ranking models</h4>
+<ul>
+<li>assumption
+<ul>
+<li>There exists an observable ordinal variable that captures some data abnormality</li>
+</ul>
+</li>
+<li>general framework
+<ol>
+<li>Definen the (synthtic) ordinal variable</li>
+<li>Use the variable to define a surrogate loss functions for anomaly ranking and train the detection model</li>
+<li>Given a test instance, the model firectly gives its anomaly score</li>
+</ol>
+</li>
+<li>종류
+<ul>
+<li>SDOR(Deep ordinal regression), PReNet(Pairwise relation prediction)</li>
+</ul>
+</li>
+</ul>
+<h4 id="prior-driven-models">Prior-driven models</h4>
+<ul>
+<li>assumption
+<ul>
+<li>The imposed prior captures the underlying (ab)normality of the dataset</li>
+</ul>
+</li>
+<li>general framework
+<ol>
+<li>Impose a prior over the weight parameters of a network-based anomaly scoring measure, or over the expected anomaly scores</li>
+<li>Optimize the anomaly ranking/classification with the prior</li>
+<li>Given a test instance, the model directly gives its anomaly score</li>
+</ol>
+</li>
+<li>종류
+<ul>
+<li>DevNet</li>
+</ul>
+</li>
+</ul>
+<h4 id="sotfmax-likelihood-models">Sotfmax likelihood models</h4>
+<ul>
+<li>assumption
+<ul>
+<li>Anomalies and normal instances are respectively low- and high-probability events</li>
+</ul>
+</li>
+<li>general framework
+<ol>
+<li>The probability of an event is modeled using a softmax function $p(x;\theta) = \frac{\exp (\tau(x;\theta))}{\sum_x \exp (\tau(x;\theta))}$</li>
+<li>The parameters are then learned by a maximum likelihood function</li>
+<li>Given a test instance, the model directly gives its anomaly score by the event probability</li>
+</ol>
+</li>
+<li>종류
+<ul>
+<li>APE</li>
+</ul>
+</li>
+</ul>
+<h4 id="end-to-end-one-class-classification">End-to-End one-class classification</h4>
+<ul>
+<li>assumption
+<ul>
+<li>Data instances that are approximated to anomalies can be effectively synthesized</li>
+<li>All normal instances can be summarized by a discriminative one-class model</li>
+</ul>
+</li>
+<li>general framework
+<ol>
+<li>Generate artificial outliers</li>
+<li>Train a GAN to discriminate whether a given instance is normal or an artificial outlier</li>
+</ol>
+</li>
+<li>종류
+<ul>
+<li>Fence GAN, OCAN</li>
+</ul>
+</li>
+</ul>
+<h4 id="summary-3">summary</h4>
+<ul>
+<li>장점
+<ul>
+<li>anomaly scoring/ranking/classification의 과정이 end-to-end로 이뤄지기에 더 효율적일 수 있다</li>
+<li>anomly measures에 depend하지 않는다</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>어느정도의 labeled/synthetic anomalies가 필요하다</li>
+<li>unseen anomalies에 대해서 성능이 떨어질 수 있다</li>
+</ul>
+</li>
+</ul>
+<h1 id="part2-2-methods-the-supervision-information-perspective">Part2-2: methods (The supervision information perspective)</h1>
+<h3 id="unsupervised-approach">Unsupervised approach</h3>
+<ul>
+<li>Training on anomaly-contaminated unlabeled data</li>
+<li>종류
+<ul>
+<li>outlier-aware autoencoders
+<ul>
+<li>robust deep autoencoders</li>
+</ul>
+</li>
+<li>one-class method
+<ul>
+<li>Deep SVDD</li>
+</ul>
+</li>
+<li>pseudo labeling
+<ul>
+<li>Deep distance-based method</li>
+<li>Deep ordinal regressioin</li>
+</ul>
+</li>
+<li>augmented deep clustering
+<ul>
+<li>DAGMM</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="weakly-supervised-approach">Weakly-supervised approach</h3>
+<ul>
+<li>A limited number of partially labeled anomalies and large unlabeled data</li>
+<li>종류
+<ul>
+<li>Contrastive feature learning
+<ul>
+<li>Deep distance-based method</li>
+</ul>
+</li>
+<li>Prior-driven method
+<ul>
+<li>Deviation network</li>
+</ul>
+</li>
+<li>Surrogate learning
+<ul>
+<li>Pairwise relation prediction</li>
+</ul>
+</li>
+<li>Multiple instance learning</li>
+</ul>
+</li>
+</ul>
+<h3 id="semi-supervised-approach">Semi-supervised approach</h3>
+<ul>
+<li>Training on a large labeled normal dataset</li>
+</ul>
+<h1 id="part3-conclusions-and-future-opportunities">Part3: Conclusions and future opportunities</h1>
+<h2 id="six-possible-directions-for-future-research">six possible directions for future research</h2>
+<h3 id="1-exploring-anomaly-supervisory-signals">1. Exploring anomaly-supervisory signals</h3>
+<h3 id="2-deep-weakly-supervised-anomaly-detection">2. Deep weakly-supervised anomaly detection</h3>
+<h3 id="3-large-scale-normality-learning">3. Large-scale normality learning</h3>
+<h3 id="4-deep-detection-of-complex-anomalies">4. Deep detection of complex anomalies</h3>
+<ul>
+<li>deep models for conditional/group anomalies</li>
+<li>multimodal anomaly detection</li>
+</ul>
+<h3 id="5-interpretable-and-actionable-deep-anomaly-detection">5. Interpretable and actionable deep anomaly detection</h3>
+<ul>
+<li>Interpretable deep anomaly detection</li>
+<li>Quantifyiing the impact of detected anomalies and mitigation actions</li>
+</ul>
+<h3 id="6-novel-applications-and-settings">6. Novel applications and settings</h3>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>WSDM 2021 Tutorial on Deep Learning for Anomaly Detection</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-03-19</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/survey01_tutorialondeeplearningforanomalydetection/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/deep-anomaly-detection/">Deep Anomaly Detection</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/os_lec06_processsynchronizationmutualexclusion/" class="prev" rel="prev" title="[OS] Process Synchronization and Mutual Exclusion"><i class="fas fa-angle-left fa-fw"></i>[OS] Process Synchronization and Mutual Exclusion</a>
+            <a href="/os_lec07_deadlock/" class="next" rel="next" title="[OS] Deadlock">[OS] Deadlock<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

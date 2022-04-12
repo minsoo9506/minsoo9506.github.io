@@ -33,7 +33,7 @@ Process에 대한 개념 정리
 
 ## 프로세스 상태 변화
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec03_01.png?raw=true"  width="300">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec03_01.png?raw=true"  width="500">
 </center>
 
 ### Create State

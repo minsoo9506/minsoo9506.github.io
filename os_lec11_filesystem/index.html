@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[OS] File System - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[OS] File System" />
+<meta property="og:description" content="File System에 대해 알아보자" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/os_lec11_filesystem/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-10T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-10T09:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[OS] File System"/>
+<meta name="twitter:description" content="File System에 대해 알아보자"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/os_lec11_filesystem/" /><link rel="prev" href="http://minsoo9506.github.io/os_lec10_virtualmemorymanagement2/" /><link rel="next" href="http://minsoo9506.github.io/os_lec12_iosystemanddiskmanagement/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[OS] File System",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/os_lec11_filesystem\/"
+        },"genre": "posts","keywords": "File System","wordcount":  718 ,
+        "url": "http:\/\/minsoo9506.github.io\/os_lec11_filesystem\/","datePublished": "2022-04-10T09:00:00+00:00","dateModified": "2022-04-10T09:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[OS] File System</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-science/"><i class="far fa-folder fa-fw"></i>Computer Science</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-10">2022-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;718 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#disk-system">Disk System</a>
+      <ul>
+        <li><a href="#disk-pack">Disk Pack</a></li>
+        <li><a href="#disk-drive">Disk drive</a></li>
+        <li><a href="#disk-address">Disk address</a></li>
+      </ul>
+    </li>
+    <li><a href="#file-system">File System</a></li>
+    <li><a href="#directory-structure">Directory Structure</a>
+      <ul>
+        <li><a href="#flat-directory-structure">Flat Directory Structure</a></li>
+        <li><a href="#2-level-directory-structure">2-Level Directory Structure</a></li>
+        <li><a href="#hierarchinal-directory-structure">Hierarchinal Directory Structure</a></li>
+        <li><a href="#acyclic-graph-directory-structure">Acyclic Graph Directory Structure</a></li>
+        <li><a href="#general-graph-directory-structure">General Graph Directory Structure</a></li>
+      </ul>
+    </li>
+    <li><a href="#file-protection">File Protection</a>
+      <ul>
+        <li><a href="#access-matrix">Access matrix</a></li>
+      </ul>
+    </li>
+    <li><a href="#file-system-implementation">File system implementation</a>
+      <ul>
+        <li><a href="#continuous-allocation">Continuous Allocation</a></li>
+        <li><a href="#linked-allocation">Linked Allocation</a></li>
+        <li><a href="#indexed-allocation">Indexed Allocation</a></li>
+      </ul>
+    </li>
+    <li><a href="#free-space-management">Free space management</a>
+      <ul>
+        <li><a href="#bit-vector">Bit vector</a></li>
+        <li><a href="#linked-list">Linked list</a></li>
+        <li><a href="#grouping">Grouping</a></li>
+        <li><a href="#counting">Counting</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>File System에 대해 알아보자</p>
+<h2 id="disk-system">Disk System</h2>
+<h3 id="disk-pack">Disk Pack</h3>
+<p>먼저 Disk Pack에 대해 알아보자. Disk Pack은 데이터를 영구적으로 저장할 수 있는 비휘발성 장치를 의미한다. 그렇다면 Disk Pack의 구성요소에 대해 알아보자.</p>
+<ul>
+<li>Platter
+<ul>
+<li>양면에 자성물질을 입힌 원형 금속판</li>
+<li>데이터의 기록/판독이 가능한 기록매체</li>
+</ul>
+</li>
+<li>Sector
+<ul>
+<li>데이터 기록/핀독의 물리적 단위</li>
+</ul>
+</li>
+<li>Track
+<ul>
+<li>Platter 한 면에서 중심으로 같은 거리에 있는 sector들의 집합</li>
+</ul>
+</li>
+<li>Cylinder
+<ul>
+<li>같은 반지름을 갖는 track들의 집합</li>
+<li>여러 개의 platter를 관통하는 집합</li>
+</ul>
+</li>
+<li>Surface
+<ul>
+<li>platter의 윗면과 아랫면</li>
+</ul>
+</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec11_01.png?raw=true"  width="300">
+</center>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec11_02.png?raw=true"  width="300">
+</center>
+<h3 id="disk-drive">Disk drive</h3>
+<p>Disk drive는 Disk Pack에 데이터를 기록/판독할 수 있도록 구정된 장치이다. 구성요소를 알아보자.</p>
+<ul>
+<li>Head
+<ul>
+<li>디스크 표면에 데이터를 기록/판독</li>
+</ul>
+</li>
+<li>Arm
+<ul>
+<li>Head를 고정/지탱</li>
+</ul>
+</li>
+<li>Positioner (boom)
+<ul>
+<li>Arm을 지탱</li>
+<li>Head를 원하는 track으로 이동</li>
+</ul>
+</li>
+<li>Spindle
+<ul>
+<li>Disk pack을 고정 (회전축)</li>
+<li>RPM (Revolutions Per Minute): 분당 회전 수</li>
+</ul>
+</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec11_03.png?raw=true"  width="300">
+</center>
+<h3 id="disk-address">Disk address</h3>
+<p>Disk Pack에 있는 데이터를 기록/판독하기 위해서는 Disk address를 알아야한다. 먼저 Physical disk address는 cylinder number, surface number, sector number 이 3가지를 통해 해당하는 sector로 이동할 수 있다. 하지만 OS는 Logical disk address만 알고 사용한다. Disk system 데이터 전체를 block들의 나열로 취급한다. 따라서 os는 block number만 다루고 이를 disk driver가 physical address로 변환하여 disk에 접근하게 된다.</p>
+<p>Disk system에서 Data에 Access하는 시간은 아래와 같이 크게 3가지로 구분한다. (실행순서도)</p>
+<ol>
+<li>Seek time
+<ul>
+<li>디스크 head를 필요한 cylinder로 이동하는 시간</li>
+</ul>
+</li>
+<li>Rotational delay
+<ul>
+<li>필요한 sector가 head 위치로 도착하는 시간</li>
+</ul>
+</li>
+<li>Data transmission time
+<ul>
+<li>해당 sector를 읽어서 기록/전송하는 시간</li>
+</ul>
+</li>
+</ol>
+<h2 id="file-system">File System</h2>
+<ul>
+<li>File system의 구성
+<ul>
+<li>File: 보조 기억 장치에 저장된 연관된 정보들의 집합</li>
+<li>Directory structure: 시스템 내 파일들의 정보를 구성 및 제공</li>
+<li>Partitions: Directory들의 집합을 논리적/물리적으로 구분</li>
+</ul>
+</li>
+</ul>
+<h2 id="directory-structure">Directory Structure</h2>
+<h3 id="flat-directory-structure">Flat Directory Structure</h3>
+<ul>
+<li>File system에 directory가 하나만 존재하는 경우이다. 옛날 mp3 생각하면 될 것 같다.</li>
+<li>문제
+<ul>
+<li>file naming</li>
+<li>file protection</li>
+<li>file management</li>
+<li>다중 사용자 환경에서 문제가 더욱 커진다</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-level-directory-structure">2-Level Directory Structure</h3>
+<ul>
+<li>사용자마다 하나의 directory 배정</li>
+<li>문제
+<ul>
+<li>flat과 거의 유사</li>
+</ul>
+</li>
+</ul>
+<h3 id="hierarchinal-directory-structure">Hierarchinal Directory Structure</h3>
+<ul>
+<li>tree 형태의 계층적 directory 사용 가능</li>
+<li>사용자가 하부 directory 생성/관리 가능</li>
+<li>대부분의 OS가 사용</li>
+</ul>
+<h3 id="acyclic-graph-directory-structure">Acyclic Graph Directory Structure</h3>
+<ul>
+<li>Hierachinal directory structure의 확장</li>
+<li>directory안에 shared directory, shared file를 담을 수 있다. 이는 link의 개념을 사용했다고 할 수 있다.</li>
+</ul>
+<h3 id="general-graph-directory-structure">General Graph Directory Structure</h3>
+<ul>
+<li>cycle을 허용</li>
+<li>하지만 infinite loop 가 생성되지 않도록 조심해야 한다</li>
+</ul>
+<h2 id="file-protection">File Protection</h2>
+<p>File에 대한 부적절한 접근을 방지하는 것은 특히 다중 사용자 시스템에서 더 필요하다. 접근 제어가 필요한 연산들은 주로 read, write, execute, append이다. 그렇다면 파일을 보호하는 방법들은 어떤게 있을까?</p>
+<ul>
+<li>File Protection mechanism
+<ul>
+<li>password 기법
+<ul>
+<li>모든 file과 접근제어연산 마다 pw를 부여하기 현실적으로 어렵다</li>
+<li>따라서 몇 가지 중요한 file에만 사용</li>
+</ul>
+</li>
+<li>access matrix 기법</li>
+</ul>
+</li>
+</ul>
+<h3 id="access-matrix">Access matrix</h3>
+<p>범위(domain)와 개체(object) 사이의 접근 권한을 명시한 것이다.</p>
+<ul>
+<li>object: 접근 대상 (file , device&hellip;)</li>
+<li>domain: 접근 권한의 집합</li>
+<li>access right: &lt;object-name, right&gt;</li>
+</ul>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec11_04.png?raw=true"  width="500">
+</center>
+<p>그렇다면 이런 access matrix를 실제로 어떻게 구현하는지에 대해 알아보자.</p>
+<ul>
+<li>Access List
+<ul>
+<li>Access matrix의 열을 list로 표현</li>
+<li>object 생성 시, 각 domain에 대한 권한 부여</li>
+<li>object 접근 시, 권한을 검사</li>
+<li>실제 os에서 많이 사용됨 <code>ls- l</code> 명령어 치면 나오는 것처럼</li>
+</ul>
+</li>
+<li>Capability List
+<ul>
+<li>Access matrix의 행을 list로 표현</li>
+<li>각 domain별로 obejct와 관련 접근권한을 나열</li>
+<li>프로세스가 권한을 제시하고 시스템이 검증을 승인</li>
+</ul>
+</li>
+</ul>
+<p>Access list의 경우 object별 권한 관리가 용이하다. 하지만 모든 접근마다 권한을 검사해야하는 하기 때문에 느려질 수도 있다. 반면에 Capability list는 list내 object들에 대한 접근에 유리하지만 object별 권한관리가 어렵다. 그래서 많은 OS에서 이를 모두 이용한다.</p>
+<ol>
+<li>object에 대한 첫 접근 $\rightarrow$ access list 탐색</li>
+<li>접근이 허용된다면 capability를 생성하여 프로세스에게 전달
+<ul>
+<li>따라서 이후 접근시에는 권한검사가 필요없이 프로세스가 capability를 제시하고 접근</li>
+</ul>
+</li>
+<li>마지막 접근 후에 capability를 삭제</li>
+</ol>
+<h2 id="file-system-implementation">File system implementation</h2>
+<p>이번에는 file 저장을 위한 디스크 공간 할당 방법을 알아보자.</p>
+<ul>
+<li>Allocation
+<ul>
+<li>Continuous</li>
+<li>Discontinuous (linked, indexed)</li>
+</ul>
+</li>
+</ul>
+<h3 id="continuous-allocation">Continuous Allocation</h3>
+<ul>
+<li>한 file을 디스크의 연속된 block에 저장</li>
+<li>장점
+<ul>
+<li>효율적인 file 접근</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>새로운 file을 위한 공간 확보가 어려움</li>
+<li>external fragmentation</li>
+<li>file 공간 크기 결정이 어려움, 나중에 파일이 커지게 된다면?</li>
+</ul>
+</li>
+</ul>
+<h3 id="linked-allocation">Linked Allocation</h3>
+<ul>
+<li>file이 저장된 block들을 linked list로 연결</li>
+<li>directory는 각 file에 대한 첫번째 block에 대한 포인터를 가짐</li>
+<li>장점
+<ul>
+<li>순처적 접근에는 효율적</li>
+<li>no external fragmentation</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>직접 접근에 비효율적</li>
+<li>포인터 저장을 위한 공간이 필요, 포인터를 사용자가 건드릴수도 있음</li>
+</ul>
+</li>
+</ul>
+<h3 id="indexed-allocation">Indexed Allocation</h3>
+<ul>
+<li>file이 저장된 block의 정보(pointer)를 index block에 모아둔다</li>
+<li>장점
+<ul>
+<li>직접 접근에는 효율적</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>순차적 접근에는 비효율적</li>
+<li>file당 index block을 유지해야 되서 space overhead가 발생할 수 있다</li>
+</ul>
+</li>
+</ul>
+<h2 id="free-space-management">Free space management</h2>
+<p>빈 공간을 다루는 방법을 알아보자.</p>
+<ul>
+<li>Bit vector</li>
+<li>Linked list</li>
+<li>Grouping</li>
+<li>Counting</li>
+</ul>
+<h3 id="bit-vector">Bit vector</h3>
+<ul>
+<li>시스템 내 모든 block들에 대한 사용여부를 1 bit flag로 표시</li>
+<li>bit vector 전체를 메모리에 보관해야 한다</li>
+</ul>
+<h3 id="linked-list">Linked list</h3>
+<ul>
+<li>빈 block을 linked list로 연결</li>
+<li>비효율적 (공간, 직접접근)</li>
+</ul>
+<h3 id="grouping">Grouping</h3>
+<ul>
+<li>n개의 빈 block을 그룹으로 묶고, 그룹 단위로 linked list로 연결</li>
+<li>연속된 빈 block을 쉽게 찾을 수 있음</li>
+</ul>
+<h3 id="counting">Counting</h3>
+<ul>
+<li>연속된 빈 block들 중에서 첫번째 block의 주소와 연속된 block의 수를 table로 유지</li>
+<li>continuous allocation 시스템에 유리한 기법</li>
+<li>예시: (0번위치, 6개), (13번위치,10개)</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PLBrGAFAIyf5rby7QylRc6JxU5lzQ9c4tN" target="_blank" rel="noopener noreffer">HPC Lab. KOREATECH 운영체제 강의</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-04-10</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/os_lec11_filesystem/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/file-system/">File System</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/os_lec10_virtualmemorymanagement2/" class="prev" rel="prev" title="[OS] Virtual Memory Management (2)"><i class="fas fa-angle-left fa-fw"></i>[OS] Virtual Memory Management (2)</a>
+            <a href="/os_lec12_iosystemanddiskmanagement/" class="next" rel="next" title="[OS] I/O system and Disk Management">[OS] I/O system and Disk Management<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

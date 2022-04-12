@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[OutlierAnalysis] Model Combination for Outlier Ensembles - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[OutlierAnalysis] Model Combination for Outlier Ensembles" />
+<meta property="og:description" content="다양한 모델을 통해 구한 outlier score를 ensemble하는 방법 (Outlier Analysis, Charu C. Aggarwal)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/outlieranalysis01/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-20T10:00:00+00:00" />
+<meta property="article:modified_time" content="2022-03-20T10:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[OutlierAnalysis] Model Combination for Outlier Ensembles"/>
+<meta name="twitter:description" content="다양한 모델을 통해 구한 outlier score를 ensemble하는 방법 (Outlier Analysis, Charu C. Aggarwal)"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/outlieranalysis01/" /><link rel="prev" href="http://minsoo9506.github.io/os_lec08_memorymanagement/" /><link rel="next" href="http://minsoo9506.github.io/os_lec09_virtualmemory/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[OutlierAnalysis] Model Combination for Outlier Ensembles",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/outlieranalysis01\/"
+        },"genre": "posts","keywords": "Outlier Analysis, Ensemble","wordcount":  272 ,
+        "url": "http:\/\/minsoo9506.github.io\/outlieranalysis01\/","datePublished": "2022-03-20T10:00:00+00:00","dateModified": "2022-03-20T10:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[OutlierAnalysis] Model Combination for Outlier Ensembles</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/catchminor/"><i class="far fa-folder fa-fw"></i>CatchMinor</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-20">2022-03-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;272 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#combining-bias-and-variance-reduction">Combining Bias and Variance Reduction</a>
+      <ul>
+        <li><a href="#aomaverage-of-maximum-method">AOM(Average-of-Maximum) method</a></li>
+      </ul>
+    </li>
+    <li><a href="#related-paper">Related Paper</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>다양한 모델을 통해 구한 outlier score를 ensemble하는 방법 (Outlier Analysis, Charu C. Aggarwal)</p>
+<h2 id="introduction">Introduction</h2>
+<p>다양한 detector 모델들을 통해 구한 outlier score를 최종적으로 ensemble할 때 (detector들의 score들이 스케일이 다르면 normalize해야 한다), 다양한 방법들이 있다. 이 책에서는 크게 3가지를 설명한다.</p>
+<ul>
+<li>최종 score ensemble 방법
+<ul>
+<li>Averaging</li>
+<li>Median</li>
+<li>Maximum</li>
+</ul>
+</li>
+</ul>
+<p>이제 이들의 특징과 장단점에 대해 알아보자. 이전의 연구들이 [1,2,3] 상황에 따라서 좋은 성능이 나오는 방법들이 다름을 밝혔다. 따라서 우리는 최종 score를 ensemble할 때, 다양한 방법을 시도하고 가장 성능이 좋은 방법을 선택해야할 것이다. Averaging, median 방법은 상대적으로 stable해서 가장 많이 사용하는 방법이다. bias-variance trade-off 관계에서 이 둘은 variance를 줄이는데 효과가 있는 방법이다. (주의! outlier analysis에서 bias-variance는 classification에서와 완전히 동일하지는 않다, 이에 관해서는 추후에 다뤄보고자 한다) 이에 반해 maximum 방법은 stablility가 떨어지고 bias를 줄이는 것과 관련이 있다. maximum 방법을 통해 irrelevent하거나 weak한 detector들을 de-emphasize할 수 있다. 그런데 maximum 방법을 이용하면 score를 너무 overestimate하는 것 아닌가? 라는 의문이 들 수 있다. 하지만 일단 outlier score는 상대적인 것이기 때문에 괜찮다. 오히려 detector들이 찾기 어려워하는 outlier를 잘 찾을 수 있는 가능성이 존재한다. 찾기 어려워하는 outlier의 score는 inlier에 비해 상대적으로 underestimate될 것이기 때문이다. 물론 maximum의 가장 큰 문제는 variance가 증가할 수도 있다는 것이다. 특히 dataset의 크기가 작으면 그 확률이 올라간다.</p>
+<ul>
+<li>결론: 상황마다 다르기 때문에 다 해보고 선택해야 한다</li>
+</ul>
+<h2 id="combining-bias-and-variance-reduction">Combining Bias and Variance Reduction</h2>
+<p>그렇다면 bias와 variance 모두를 고려하는 방법도 당연히 있을 것이다. 다양한 방법이 있겠지만 AOM 방법 [1] 에 대해서 알아보고자 한다. 간단하다.</p>
+<h3 id="aomaverage-of-maximum-method">AOM(Average-of-Maximum) method</h3>
+<ol>
+<li>$m$개의 components가 있다고 한다면 이들을 각 $m/q$개의 buckets으로 나눈다. (각 bucket에는 $q$개의 components)</li>
+<li>각 bucket 마다 maximum을 취한다.</li>
+<li>bucket들의 maximum score를 average한다.</li>
+</ol>
+<p>그 반대도 가능할 것이다. MOA!</p>
+<h2 id="related-paper">Related Paper</h2>
+<ol>
+<li>Theoretical Foundations and Algorithms for Outlier Ensembles (2015)</li>
+<li>Outlier Ensembles: An Introduction (2017)</li>
+<li>Feature Bagging for Outlier Detection (2005)</li>
+</ol></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-03-20</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/outlieranalysis01/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/outlier-analysis/">Outlier Analysis</a>,&nbsp;<a href="/tags/ensemble/">Ensemble</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/os_lec08_memorymanagement/" class="prev" rel="prev" title="[OS] Memory Management"><i class="fas fa-angle-left fa-fw"></i>[OS] Memory Management</a>
+            <a href="/os_lec09_virtualmemory/" class="next" rel="next" title="[OS] Virtual Memory">[OS] Virtual Memory<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

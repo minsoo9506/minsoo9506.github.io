@@ -18,7 +18,7 @@
 <meta name="application-name" content="minsoo9506">
 <meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/os_lec09_virtualmemory/" /><link rel="prev" href="http://minsoo9506.github.io/02_outlieranalysis01/" /><link rel="next" href="http://minsoo9506.github.io/03_anomalyexplanationindeepdetectors/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/os_lec09_virtualmemory/" /><link rel="prev" href="http://minsoo9506.github.io/outlieranalysis01/" /><link rel="next" href="http://minsoo9506.github.io/survey02_anomalyexplanationindeepdetectors/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/os_lec09_virtualmemory\/"
-        },"genre": "posts","keywords": "virtual memory","wordcount":  585 ,
+        },"genre": "posts","keywords": "virtual memory","wordcount":  590 ,
         "url": "http:\/\/minsoo9506.github.io\/os_lec09_virtualmemory\/","datePublished": "2022-03-26T09:00:00+00:00","dateModified": "2022-03-26T09:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[OS] Virtual Memory</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/computer-science/"><i class="far fa-folder fa-fw"></i>Computer Science</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-26">2022-03-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;585 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-26">2022-03-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;590 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -144,19 +144,19 @@
 </ul>
 <p>먼저 non-continuous allocation의 경우 address mapping에 대해 알아보자. 이전에 continous의 경우와 비슷하게 가상주소와 실제주소가 있다.</p>
 <ul>
-<li>virtual address (=relative address)
+<li>virtual address (= relative address)
 <ul>
 <li>logical address</li>
 <li>연속된 메모리 할당을 가정한 주소</li>
 </ul>
 </li>
-<li>real address (=absolute, physical address)
+<li>real address (= absolute, physical address)
 <ul>
 <li>실제 메모리에 적재된 주소</li>
 </ul>
 </li>
 </ul>
-<p>사용자/프로세스는 address mapping을 통해 실행 프로그램 전체가 메모리에 연속적으로 적재되었다고 가정하고 실행할 수 있다. 그렇다면 구체적으로 어떤식으로 address mapping을 해서 프로그램이 실행되는지 알아보자. 간단한 방법중 하나인 block mapping에 대해 알아보자.</p>
+<p>사용자/프로세스는 address mapping을 통해 실행 프로그램 전체가 메모리에 연속적으로 적재되었다고 가정하고 실행할 수 있다. 그렇다면 구체적으로 어떤식으로 address mapping을 해서 프로그램이 실행되는지 알아보자. 간단한 방법 중 하나인 block mapping에 대해 알아보자.</p>
 <h3 id="block-mapping">Block mapping</h3>
 <ul>
 <li>사용자 프로그램을 block 단위로 분할/관리</li>
@@ -201,51 +201,31 @@
 <h3 id="direct-mapping">Direct mapping</h3>
 <ul>
 <li>순서
-<ul>
-<li>
 <ol>
 <li>해당 프로세스의 PMT가 저장되어 있는 주소 b에 접근</li>
-</ol>
-</li>
-<li>
-<ol start="2">
 <li>해당 PMT에서 page p에 대한 entry 찾음</li>
-</ol>
-</li>
-<li>
-<ol start="3">
-<li>찾은 entry의 residence bit 검사</li>
-</ol>
-<ul>
-<li>
+<li>찾은 entry의 residence bit 검사
 <ol>
 <li>if 0, swap device에서 해당 page를 메모리에 적재하고 PMT를 갱신하고 3-2 수행 (이부분에서 overhead)</li>
-</ol>
-</li>
-<li>
-<ol start="2">
 <li>if 1, 해당 entry에서 page frame 번호 p&rsquo;를 확인</li>
 </ol>
 </li>
-</ul>
-</li>
-<li>
-<ol start="4">
 <li>p&rsquo;와 d를 사용하여 실제 주소 r 형성</li>
-</ol>
-</li>
-<li>
-<ol start="5">
 <li>실제 주소 r로 주기억장치에 접근</li>
 </ol>
-</li>
-</ul>
 </li>
 </ul>
 <center>
     <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec09_03.png?raw=true"  width="500">
 </center>
 <h3 id="associative-mapping">Associative mapping</h3>
+<ul>
+<li>TLB 이용
+<ul>
+<li>PMT를 위한 전용기억장치(공간)로 swap device에서 page를 찾을 때, parallel search가 가능해서 엄청 빠르지만 비싸고 운영이 까다롭다</li>
+</ul>
+</li>
+</ul>
 <center>
     <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/os_Lec09_04.png?raw=true"  width="500">
 </center>
@@ -261,7 +241,6 @@
 <ul>
 <li>Translation Look-aside Buffer</li>
 <li>associative mapping에서 사용</li>
-<li>PMT를 위한 전용기억장치(공간)로 swap device에서 page를 찾을 때, parallel search가 가능해서 엄청 빠르지만 비싸고 운영이 까다롭다</li>
 </ul>
 </li>
 </ul>
@@ -302,20 +281,13 @@
 </center>
 <h3 id="hybrid-pagingsegmentation-system">Hybrid paging/segmentation system</h3>
 <ul>
-<li>프로그램 분할
-<ul>
-<li>
+<li>프로그램 분할</li>
+</ul>
 <ol>
 <li>논리 단위의 segment로 분할</li>
-</ol>
-</li>
-<li>
-<ol start="2">
 <li>각 segment를 고정된 크기의 page들로 분할</li>
 </ol>
-</li>
-</ul>
-</li>
+<ul>
 <li>page 단위로 메모리에 적재</li>
 </ul>
 <center>
@@ -349,8 +321,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/02_outlieranalysis01/" class="prev" rel="prev" title="[OutlierAnalysis] Model Combination for Outlier Ensembles"><i class="fas fa-angle-left fa-fw"></i>[OutlierAnalysis] Model Combination for Outlier Ensembles</a>
-            <a href="/03_anomalyexplanationindeepdetectors/" class="next" rel="next" title="[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)">[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/outlieranalysis01/" class="prev" rel="prev" title="[OutlierAnalysis] Model Combination for Outlier Ensembles"><i class="fas fa-angle-left fa-fw"></i>[OutlierAnalysis] Model Combination for Outlier Ensembles</a>
+            <a href="/survey02_anomalyexplanationindeepdetectors/" class="next" rel="next" title="[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)">[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">

@@ -3,7 +3,35 @@
         <title>All Posts - minsoo9506</title>
         <link>http://minsoo9506.github.io/posts/</link>
         <description>All Posts | minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 02 Apr 2022 11:09:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 12 Apr 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[OS] I/O system and Disk Management</title>
+    <link>http://minsoo9506.github.io/os_lec12_iosystemanddiskmanagement/</link>
+    <pubDate>Tue, 12 Apr 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec12_iosystemanddiskmanagement/</guid>
+    <description><![CDATA[<p>입출력 시스템과 디스크 관리에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[OS] File System</title>
+    <link>http://minsoo9506.github.io/os_lec11_filesystem/</link>
+    <pubDate>Sun, 10 Apr 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec11_filesystem/</guid>
+    <description><![CDATA[<p>File System에 대해 알아보자</p>]]></description>
+</item><item>
+    <title>[OS] Virtual Memory Management (2)</title>
+    <link>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement2/</link>
+    <pubDate>Sat, 09 Apr 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement2/</guid>
+    <description><![CDATA[<p>virtual memory를 다루는 방법들을 알아보자</p>]]></description>
+</item><item>
+    <title>[OS] Virtual Memory Management (1)</title>
+    <link>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement1/</link>
+    <pubDate>Sun, 03 Apr 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement1/</guid>
+    <description><![CDATA[<p>virtual memory를 다루는 방법들을 알아보자</p>]]></description>
+</item><item>
     <title>[DoWhy] Tutorial</title>
     <link>http://minsoo9506.github.io/dowhy_00_tutorial/</link>
     <pubDate>Sat, 02 Apr 2022 11:09:00 &#43;0000</pubDate>
@@ -12,10 +40,10 @@
     <description><![CDATA[<p>MS의 causal inference를 공개한 library DoWhy에 대해 알아보자</p>]]></description>
 </item><item>
     <title>[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)</title>
-    <link>http://minsoo9506.github.io/03_anomalyexplanationindeepdetectors/</link>
+    <link>http://minsoo9506.github.io/survey02_anomalyexplanationindeepdetectors/</link>
     <pubDate>Sun, 27 Mar 2022 09:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/03_anomalyexplanationindeepdetectors/</guid>
+    <guid>http://minsoo9506.github.io/survey02_anomalyexplanationindeepdetectors/</guid>
     <description><![CDATA[<p>Anomaly Detection에서 설명가능한 모델과 관련한 tutorial</p>]]></description>
 </item><item>
     <title>[OS] Virtual Memory</title>
@@ -26,10 +54,10 @@
     <description><![CDATA[<p>사용자 프로그램을 메모리에 연속하지 않게 할당하는 과정에 대해 알아보자.</p>]]></description>
 </item><item>
     <title>[OutlierAnalysis] Model Combination for Outlier Ensembles</title>
-    <link>http://minsoo9506.github.io/02_outlieranalysis01/</link>
+    <link>http://minsoo9506.github.io/outlieranalysis01/</link>
     <pubDate>Sun, 20 Mar 2022 10:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/02_outlieranalysis01/</guid>
+    <guid>http://minsoo9506.github.io/outlieranalysis01/</guid>
     <description><![CDATA[<p>다양한 모델을 통해 구한 outlier score를 ensemble하는 방법 (Outlier Analysis, Charu C. Aggarwal)</p>]]></description>
 </item><item>
     <title>[OS] Memory Management</title>
@@ -45,33 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/os_lec07_deadlock/</guid>
     <description><![CDATA[<p>Deadlock에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[Survey] Deep Learning for Anomaly Detection (WSDM&#39;21 tutorial)</title>
-    <link>http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/</link>
-    <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/01_tutorial_on_deep_learning_for_anomaly_detection/</guid>
-    <description><![CDATA[<p>Deep Learning for Anomaly Detection - Challenges, Methods tutorial 정리</p>]]></description>
-</item><item>
-    <title>[OS] Process Synchronization and Mutual Exclusion</title>
-    <link>http://minsoo9506.github.io/os_lec06_processsynchronizationmutualexclusion/</link>
-    <pubDate>Fri, 11 Mar 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/os_lec06_processsynchronizationmutualexclusion/</guid>
-    <description><![CDATA[<p>Process Synchronization and Mutual Exclusion 에 대한 개념 정리 (semaphore)</p>]]></description>
-</item><item>
-    <title>[OS] Process Scheduling</title>
-    <link>http://minsoo9506.github.io/os_lec04_processscheduling/</link>
-    <pubDate>Tue, 08 Mar 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/os_lec04_processscheduling/</guid>
-    <description><![CDATA[<p>Process scheduling에 대한 기본개념 정리</p>]]></description>
-</item><item>
-    <title>[OS] Thread Management</title>
-    <link>http://minsoo9506.github.io/os_lec05_threadmanagement/</link>
-    <pubDate>Sat, 05 Mar 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/os_lec05_threadmanagement/</guid>
-    <description><![CDATA[<p>Thread에 대한 개념 정리</p>]]></description>
 </item></channel>
 </rss>

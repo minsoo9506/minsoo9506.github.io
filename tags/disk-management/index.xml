@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Disk Management - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/disk-management/</link>
+        <description>Disk Management - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 12 Apr 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/disk-management/" rel="self" type="application/rss+xml" /><item>
+    <title>[OS] I/O system and Disk Management</title>
+    <link>http://minsoo9506.github.io/os_lec12_iosystemanddiskmanagement/</link>
+    <pubDate>Tue, 12 Apr 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/os_lec12_iosystemanddiskmanagement/</guid>
+    <description><![CDATA[<p>입출력 시스템과 디스크 관리에 대해 알아보자.</p>]]></description>
+</item></channel>
+</rss>
