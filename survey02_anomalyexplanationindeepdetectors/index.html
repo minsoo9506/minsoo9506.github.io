@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/survey02_anomalyexplanationindeepdetectors\/"
-        },"genre": "posts","keywords": "Anomaly Detection, XAI","wordcount":  407 ,
+        },"genre": "posts","keywords": "Anomaly Detection, XAI","wordcount":  499 ,
         "url": "http:\/\/minsoo9506.github.io\/survey02_anomalyexplanationindeepdetectors\/","datePublished": "2022-03-27T09:00:00+00:00","dateModified": "2022-03-27T09:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,8 +104,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[Survey] Anomaly Explanation in Deep Detectors (KDD 21 tutorial)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/catchminor/"><i class="far fa-folder fa-fw"></i>CatchMinor</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-27">2022-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;407 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-03-27">2022-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;499 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -213,8 +213,28 @@
 <li>Sparse modeling-based sequential ensemble learning for effective outlier detection in high-dimensional numeric data (2018)</li>
 </ul>
 </li>
+<li>Data reconstruction using random forest
+<ul>
+<li>Reconstruction-based Anomaly Detection with Completely Random Forest (2021)</li>
+<li>data space를 random하게 나누면서 tree들을 만들어서 reconstruction error를 통해 주요 feature를 찾아낸다</li>
 </ul>
-<h3 id="deep-method">Deep method</h3></div><div class="post-footer" id="post-footer">
+</li>
+<li>장단점
+<ul>
+<li>model-specific한 anomaly explanation이므로 해당 detection model에 한해서 더 faithful하다고 할 수 있다</li>
+<li>detection model의 성능에 anomaly explanation도 달려있다</li>
+<li>intrinsically interpretable인 모델이 제한적이다</li>
+</ul>
+</li>
+</ul>
+<h3 id="deep-method">Deep method</h3>
+<p>크게 두 가지로 이루어져 있다.</p>
+<ul>
+<li>Data reconstruction</li>
+<li>Back-propagation</li>
+</ul>
+<p>Data reconstruction의 경우는 feature-wise reconstruction error를 이용하여 explanation을 하려고 한다. 주로 AE 계열의 모델에서 많이 사용된다. 하지만 단점은 feature-wise하게 reconstruction error를 계산하므로 feature끼리 independent하다고 가정한다는 것이다.</p>
+<p>Back-propagation의 경우는 가장 유명한 visioin계열에서 가장 유명한 Grad-CAM에 해당하는 방법이다.</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

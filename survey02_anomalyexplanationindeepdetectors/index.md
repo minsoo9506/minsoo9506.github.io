@@ -59,5 +59,19 @@ detection과 explanation이 독립적으로 이루어지는 것이 아니라 det
 ### shallow method
 - Sequential anomaly ensemble of surrogate sparse regression
   - Sparse modeling-based sequential ensemble learning for effective outlier detection in high-dimensional numeric data (2018)
+- Data reconstruction using random forest
+  - Reconstruction-based Anomaly Detection with Completely Random Forest (2021)
+  - data space를 random하게 나누면서 tree들을 만들어서 reconstruction error를 통해 주요 feature를 찾아낸다
+- 장단점
+  - model-specific한 anomaly explanation이므로 해당 detection model에 한해서 더 faithful하다고 할 수 있다
+  - detection model의 성능에 anomaly explanation도 달려있다
+  - intrinsically interpretable인 모델이 제한적이다
 
 ### Deep method
+크게 두 가지로 이루어져 있다.
+- Data reconstruction
+- Back-propagation
+
+Data reconstruction의 경우는 feature-wise reconstruction error를 이용하여 explanation을 하려고 한다. 주로 AE 계열의 모델에서 많이 사용된다. 하지만 단점은 feature-wise하게 reconstruction error를 계산하므로 feature끼리 independent하다고 가정한다는 것이다.
+
+Back-propagation의 경우는 가장 유명한 visioin계열에서 가장 유명한 Grad-CAM에 해당하는 방법이다.

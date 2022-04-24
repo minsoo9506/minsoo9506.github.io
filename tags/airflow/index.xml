@@ -1,0 +1,35 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Airflow - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/airflow/</link>
+        <description>Airflow - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 23 Apr 2022 10:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/airflow/" rel="self" type="application/rss+xml" /><item>
+    <title>[Airflow] Database and Executor</title>
+    <link>http://minsoo9506.github.io/airflow04/</link>
+    <pubDate>Sat, 23 Apr 2022 10:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/airflow04/</guid>
+    <description><![CDATA[<p>multiple task를 execute하는 방법과 관련한 내용을 공부해보자.</p>]]></description>
+</item><item>
+    <title>[Airflow] Pipeline</title>
+    <link>http://minsoo9506.github.io/airflow03/</link>
+    <pubDate>Sun, 17 Apr 2022 10:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/airflow03/</guid>
+    <description><![CDATA[<p>Airflow pipeline을 만들어보자</p>]]></description>
+</item><item>
+    <title>[Airflow] 기본 CLI 명령어</title>
+    <link>http://minsoo9506.github.io/airflow02/</link>
+    <pubDate>Sun, 17 Apr 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/airflow02/</guid>
+    <description><![CDATA[<p>Airflow의 기본적인 CLI 명령어를 정리</p>]]></description>
+</item><item>
+    <title>[Airflow] 설치</title>
+    <link>http://minsoo9506.github.io/airflow01/</link>
+    <pubDate>Sat, 16 Apr 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/airflow01/</guid>
+    <description><![CDATA[<p>Airflow를 공부하기 위해 vitualBox를 이용하여 세팅해보자.</p>]]></description>
+</item></channel>
+</rss>

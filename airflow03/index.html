@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Airflow] Pipeline - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Airflow] Pipeline" />
+<meta property="og:description" content="Airflow pipeline을 만들어보자" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/airflow03/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-17T10:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-17T10:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Airflow] Pipeline"/>
+<meta name="twitter:description" content="Airflow pipeline을 만들어보자"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/airflow03/" /><link rel="prev" href="http://minsoo9506.github.io/airflow02/" /><link rel="next" href="http://minsoo9506.github.io/airflow04/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Airflow] Pipeline",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/airflow03\/"
+        },"genre": "posts","keywords": "Airflow","wordcount":  1318 ,
+        "url": "http:\/\/minsoo9506.github.io\/airflow03\/","datePublished": "2022-04-17T10:00:00+00:00","dateModified": "2022-04-17T10:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Airflow] Pipeline</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/airflow/"><i class="far fa-folder fa-fw"></i>Airflow</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-17">2022-04-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1318 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#dag">DAG</a></li>
+        <li><a href="#operator">Operator</a></li>
+      </ul>
+    </li>
+    <li><a href="#pipeline-만들기">pipeline 만들기</a>
+      <ul>
+        <li><a href="#creating_table"><code>creating_table</code></a></li>
+        <li><a href="#is_api_available"><code>is_api_available</code></a></li>
+        <li><a href="#extracting_user"><code>extracting_user</code></a></li>
+        <li><a href="#processing_user"><code>processing_user</code></a></li>
+        <li><a href="#storing_user"><code>storing_user</code></a></li>
+        <li><a href="#task-순서dependency정하기">task 순서(dependency)정하기</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Airflow pipeline을 만들어보자</p>
+<h3 id="dag">DAG</h3>
+<ul>
+<li>DAG
+<ul>
+<li>node들이 task이고 edge가 각 task의 dependency를 의미한다</li>
+</ul>
+</li>
+</ul>
+<h3 id="operator">Operator</h3>
+<ul>
+<li>
+<p>operator</p>
+<ul>
+<li>one task in data pipeline</li>
+<li>하나의 operator에는 하나의 task만 넣어라</li>
+<li>특히 dependency가 있는 task의 경우는 더 그래야한다</li>
+</ul>
+</li>
+<li>
+<p>3 types of operator</p>
+<ul>
+<li>Action operators: Execute an action</li>
+<li>Transfer operators: Transfer data</li>
+<li>Sensors: Wait for a condition to be met</li>
+</ul>
+</li>
+</ul>
+<h2 id="pipeline-만들기">pipeline 만들기</h2>
+<p>만들고자 하는 pipeline은 다음과 같다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">creating_table &gt;&gt; is_api_available &gt;&gt; extracting_user &gt;&gt; processing_user &gt;&gt; storing_user
+</code></pre></td></tr></table>
+</div>
+</div><p>먼저 webserver와 scheduler를 활성화한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">airflow</span> <span class="n">webserver</span>
+<span class="n">airflow</span> <span class="n">scheduler</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="creating_table"><code>creating_table</code></h3>
+<p>airflow를 설치하면 최소한의 패키지만 설치되기 때문에 추가적으로 패키지가 필요하면 설치해야 한다. 지금 만드려고 하는 db의 경우 sqlite를 이용할 것이기 때문에 sqlite operator가 필요하다. <a href="https://airflow.apache.org/docs/" target="_blank" rel="noopener noreffer">링크</a>에 가면 third-party와의 연결을 위한 package들이 있다. <code>pip install apache-airflow-providers-sqlite</code>으로 설치를 해준다.</p>
+<p>파이썬 가상환경을 활성화해주면</p>
+<p>그리고 아래와 같이 <code>user_processing.py</code> 파일을 만들어준다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="c1"># default로 넣고 싶은 인자들</span>
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag id는 unique 해야한다: &#39;user_processing&#39;</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span> <span class="c1"># start_date이후로 얼마나 자주 DAG가 run되야하는지</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+
+    <span class="c1"># define the task/operator</span>
+    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
+        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            CREATE TABLE users (
+</span><span class="s1">                firstname TEXT NOT NULL,
+</span><span class="s1">                lastname TEXT NOT NULL,
+</span><span class="s1">                country TEXT NOT NULL,
+</span><span class="s1">                username TEXT NOT NULL,
+</span><span class="s1">                password TEXT NOT NULL,
+</span><span class="s1">                email TEXT NOT NULL PRIMARY KEY
+</span><span class="s1">            );
+</span><span class="s1">            &#39;&#39;&#39;</span>
+    <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>그리고 Admin -&gt; Connections 에 가서 connection을 아래와 같이 추가해줘야 한다. conn_id는 위에서 정한 <code>db_sqlite</code>로 해줘야하고 <code>Host</code>는 아래와 같이 <code>airflow.db</code>가 있는 path를 해주면 된다.</p>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/airflow01.PNG?raw=true"  width="500">
+</center>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/airflow02.PNG?raw=true"  width="500">
+</center>
+<ul>
+<li>test
+<ul>
+<li><code>airflow tasks test user_processing creating_table 2022-04-23</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="is_api_available"><code>is_api_available</code></h3>
+<p>task이름 그래도 api가 작동하는지 확인하는 것이다. 기존 airflow의 example 데이터를 이용한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.providers.http.sensors.http</span> <span class="kn">import</span> <span class="n">HttpSensor</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="c1"># default로 넣고 싶은 인자들</span>
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag_id는 unique 해야한다: &#39;user_processing&#39;</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+
+    <span class="c1"># define the task/operator</span>
+
+    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
+        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            CREATE TABLE users (
+</span><span class="s1">                firstname TEXT NOT NULL,
+</span><span class="s1">                lastname TEXT NOT NULL,
+</span><span class="s1">                country TEXT NOT NULL,
+</span><span class="s1">                username TEXT NOT NULL,
+</span><span class="s1">                password TEXT NOT NULL,
+</span><span class="s1">                email TEXT NOT NULL PRIMARY KEY
+</span><span class="s1">            );
+</span><span class="s1">            &#39;&#39;&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">is_api_available</span> <span class="o">=</span> <span class="n">HttpSensor</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;is_api_available&#39;</span><span class="p">,</span>
+        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span>
+    <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>test
+<ul>
+<li><code>airflow tasks test user_processing is_api_available 2022-04-23</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="extracting_user"><code>extracting_user</code></h3>
+<p>airflow example 데이터를 extract하는 task를 생성한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.providers.http.sensors.http</span> <span class="kn">import</span> <span class="n">HttpSensor</span>
+<span class="kn">from</span> <span class="nn">airflow.providers.http.operators.http</span> <span class="kn">import</span> <span class="n">SimpleHttpOperator</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># default로 넣고 싶은 인자들</span>
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag_id는 unique 해야한다: &#39;user_processing&#39;</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+
+    <span class="c1"># define the task/operator</span>
+
+    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
+        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            CREATE TABLE users (
+</span><span class="s1">                firstname TEXT NOT NULL,
+</span><span class="s1">                lastname TEXT NOT NULL,
+</span><span class="s1">                country TEXT NOT NULL,
+</span><span class="s1">                username TEXT NOT NULL,
+</span><span class="s1">                password TEXT NOT NULL,
+</span><span class="s1">                email TEXT NOT NULL PRIMARY KEY
+</span><span class="s1">            );
+</span><span class="s1">            &#39;&#39;&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">is_api_available</span> <span class="o">=</span> <span class="n">HttpSensor</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;is_api_available&#39;</span><span class="p">,</span>
+        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">extracting_user</span> <span class="o">=</span> <span class="n">SimpleHttpOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">,</span>
+        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+        <span class="n">response_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">response</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+        <span class="n">log_response</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>test
+<ul>
+<li><code>airflow tasks test user_processing is_api_available 2022-04-23</code></li>
+</ul>
+</li>
+</ul>
+<p>test를 진행하면 그 결과가 나온다. 아래는 GET을 통해 가져온 데이터를 의미한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[2022-04-23 06:35:15,589] {http.py:140} INFO - Sending &#39;GET&#39; to url: https://randomuser.me/api/
+[2022-04-23 06:35:16,104] {http.py:115} INFO - {&#34;results&#34;:[{&#34;gender&#34;:&#34;female&#34;,&#34;name&#34;:{&#34;title&#34;:&#34;Mrs&#34;,&#34;first&#34;:&#34;Lonne&#34;,&#34;last&#34;:&#34;Schilstra&#34;},&#34;location&#34;:{&#34;street&#34;:{&#34;number&#34;:4722,&#34;name&#34;:&#34;Jaspis&#34;},&#34;city&#34;:&#34;Zutphen&#34;,&#34;state&#34;:&#34;Flevoland&#34;,&#34;country&#34;:&#34;Netherlands&#34;,&#34;postcode&#34;:64338,&#34;coordinates&#34;:{&#34;latitude&#34;:&#34;40.3466&#34;,&#34;longitude&#34;:&#34;58.3229&#34;},&#34;timezone&#34;:{&#34;offset&#34;:&#34;+4:30&#34;,&#34;description&#34;:&#34;Kabul&#34;}},&#34;email&#34;:&#34;lonne.schilstra@example.com&#34;,&#34;login&#34;:{&#34;uuid&#34;:&#34;897a7df1-9964-4baf-9b3c-001f9cc815ef&#34;,&#34;username&#34;:&#34;smallbear142&#34;,&#34;password&#34;:&#34;chrysler&#34;,&#34;salt&#34;:&#34;LysRP72T&#34;,&#34;md5&#34;:&#34;92f39f731719df04767870a0cdcfb43d&#34;,&#34;sha1&#34;:&#34;2cedb9b8ae797b56ddf40e8425db36df1f4866ee&#34;,&#34;sha256&#34;:&#34;a1fd36358cf8d94e243ccfba37d9478b4b129bff367aa2ff218a4c975851ef11&#34;},&#34;dob&#34;:{&#34;date&#34;:&#34;1949-10-26T18:21:22.653Z&#34;,&#34;age&#34;:73},&#34;registered&#34;:{&#34;date&#34;:&#34;2019-06-05T08:17:56.847Z&#34;,&#34;age&#34;:3},&#34;phone&#34;:&#34;(875)-139-9718&#34;,&#34;cell&#34;:&#34;(524)-611-0968&#34;,&#34;id&#34;:{&#34;name&#34;:&#34;BSN&#34;,&#34;value&#34;:&#34;47403055&#34;},&#34;picture&#34;:{&#34;large&#34;:&#34;https://randomuser.me/api/portraits/women/55.jpg&#34;,&#34;medium&#34;:&#34;https://randomuser.me/api/portraits/med/women/55.jpg&#34;,&#34;thumbnail&#34;:&#34;https://randomuser.me/api/portraits/thumb/women/55.jpg&#34;},&#34;nat&#34;:&#34;NL&#34;}],&#34;info&#34;:{&#34;seed&#34;:&#34;ff9863d9e80ca539&#34;,&#34;results&#34;:1,&#34;page&#34;:1,&#34;version&#34;:&#34;1.3&#34;}}
+[2022-04-23 06:35:16,123] {taskinstance.py:1184} INFO - Marking task as SUCCESS. dag_id=user_processing, task_id=extracting_user, execution_date=20220423T000000, start_date=20220423T060222, end_date=20220423T063516
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="processing_user"><code>processing_user</code></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.providers.http.sensors.http</span> <span class="kn">import</span> <span class="n">HttpSensor</span>
+<span class="kn">from</span> <span class="nn">airflow.providers.http.operators.http</span> <span class="kn">import</span> <span class="n">SimpleHttpOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.python</span> <span class="kn">import</span> <span class="n">PythonOperator</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">json_normalize</span>
+
+<span class="c1"># default로 넣고 싶은 인자들</span>
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># extracting_user 를 통해 얻은 결과를 이용</span>
+<span class="c1"># airflow tasks test user_processing extracting_user 2022-04-23</span>
+<span class="k">def</span> <span class="nf">_processing_user</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
+    <span class="c1"># extracting_user task의 결과가 metastore에 저장이 되고 이 결과를 pull 한다</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">ti</span><span class="o">.</span><span class="n">xcom_pull</span><span class="p">(</span><span class="n">task_ids</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;results&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;User is empty&#39;</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># json_normalize로 dict를 pd.DataFrame으로 변환</span>
+    <span class="n">processed_user</span> <span class="o">=</span> <span class="n">json_normalize</span><span class="p">({</span>
+        <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;first&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;lastname&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;last&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;country&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
+    <span class="p">})</span>
+    <span class="n">processed_user</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/tmp/processed_user.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag_id는 unique 해야한다: &#39;user_processing&#39;</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+
+    <span class="c1"># define the task/operator</span>
+
+    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
+        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            CREATE TABLE users (
+</span><span class="s1">                firstname TEXT NOT NULL,
+</span><span class="s1">                lastname TEXT NOT NULL,
+</span><span class="s1">                country TEXT NOT NULL,
+</span><span class="s1">                username TEXT NOT NULL,
+</span><span class="s1">                password TEXT NOT NULL,
+</span><span class="s1">                email TEXT NOT NULL PRIMARY KEY
+</span><span class="s1">            );
+</span><span class="s1">            &#39;&#39;&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">is_api_available</span> <span class="o">=</span> <span class="n">HttpSensor</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;is_api_available&#39;</span><span class="p">,</span>
+        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">extracting_user</span> <span class="o">=</span> <span class="n">SimpleHttpOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">,</span>
+        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+        <span class="n">response_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">response</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+        <span class="n">log_response</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">processing_user</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;processing_user&#39;</span><span class="p">,</span>
+        <span class="n">python_callable</span><span class="o">=</span><span class="n">_processing_user</span>
+    <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>test
+<ul>
+<li><code>airflow tasks test user_processing is_api_available 2022-04-23</code></li>
+</ul>
+</li>
+</ul>
+<p>test를 진행하면 processed_user.csv가 생성된다. <code>cat /tmp/processed_user.csv</code>를 하면 아래와 같은 결과가 나온다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Mercedes,Jimenez,Spain,goldenbutterfly721,darius,mercedes.jimenez@example.com
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="storing_user"><code>storing_user</code></h3>
+<p>이제 <code>/home/airflow/airflow/airflow.db</code>에 user를 저장해보자. 처음에  <code>sqlite3 airflow.db</code>로 sqlite에 접속하고 <code>SELECT * FROM users;</code>하면 아무것도 없다가 나중에 <code>storing_user</code> task를 실행하면 그 유저가 들어간 것을 확인 할 수 있다.</p>
+<h3 id="task-순서dependency정하기">task 순서(dependency)정하기</h3>
+<p><code>&gt;&gt;</code> 를 통해서 dependency를 알려준다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.providers.http.sensors.http</span> <span class="kn">import</span> <span class="n">HttpSensor</span>
+<span class="kn">from</span> <span class="nn">airflow.providers.http.operators.http</span> <span class="kn">import</span> <span class="n">SimpleHttpOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.python</span> <span class="kn">import</span> <span class="n">PythonOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.bash</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">json_normalize</span>
+
+<span class="c1"># default로 넣고 싶은 인자들</span>
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1"># extracting_user 를 통해 얻은 결과를 이용</span>
+<span class="c1"># airflow tasks test user_processing extracting_user 2022-04-23</span>
+<span class="k">def</span> <span class="nf">_processing_user</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
+    <span class="c1"># extracting_user task의 결과가 metastore에 저장이 되고 이 결과를 pull 한다</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">ti</span><span class="o">.</span><span class="n">xcom_pull</span><span class="p">(</span><span class="n">task_ids</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;results&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;User is empty&#39;</span><span class="p">)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># json_normalize로 dict를 pd.DataFrame으로 변환</span>
+    <span class="n">processed_user</span> <span class="o">=</span> <span class="n">json_normalize</span><span class="p">({</span>
+        <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;first&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;lastname&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;last&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;country&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
+    <span class="p">})</span>
+    <span class="n">processed_user</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/tmp/processed_user.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag_id는 unique 해야한다: &#39;user_processing&#39;</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+
+    <span class="c1"># define the task/operator</span>
+
+    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
+        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
+        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            CREATE TABLE IF NOT EXISTS users (
+</span><span class="s1">                firstname TEXT NOT NULL,
+</span><span class="s1">                lastname TEXT NOT NULL,
+</span><span class="s1">                country TEXT NOT NULL,
+</span><span class="s1">                username TEXT NOT NULL,
+</span><span class="s1">                password TEXT NOT NULL,
+</span><span class="s1">                email TEXT NOT NULL PRIMARY KEY
+</span><span class="s1">            );
+</span><span class="s1">            &#39;&#39;&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">is_api_available</span> <span class="o">=</span> <span class="n">HttpSensor</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;is_api_available&#39;</span><span class="p">,</span>
+        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">extracting_user</span> <span class="o">=</span> <span class="n">SimpleHttpOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">,</span>
+        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+        <span class="n">response_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">response</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+        <span class="n">log_response</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="n">processing_user</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;processing_user&#39;</span><span class="p">,</span>
+        <span class="n">python_callable</span><span class="o">=</span><span class="n">_processing_user</span>
+    <span class="p">)</span>
+
+    <span class="n">storing_user</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;storing_user&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;echo -e &#34;.separator &#34;,&#34;</span><span class="se">\n</span><span class="s1">.import /tmp/processed_user.csv&#34; | sqlite3 /home/airflow/airflow/airflow.db&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">creating_table</span> <span class="o">&gt;&gt;</span> <span class="n">is_api_available</span> <span class="o">&gt;&gt;</span> <span class="n">extracting_user</span> <span class="o">&gt;&gt;</span> <span class="n">processing_user</span> <span class="o">&gt;&gt;</span> <span class="n">storing_user</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.udemy.com/course/the-complete-hands-on-course-to-master-apache-airflow" target="_blank" rel="noopener noreffer">udemy: the complete hands on course to master apache airflow</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-04-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/airflow03/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/airflow/">Airflow</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/airflow02/" class="prev" rel="prev" title="[Airflow] 기본 CLI 명령어"><i class="fas fa-angle-left fa-fw"></i>[Airflow] 기본 CLI 명령어</a>
+            <a href="/airflow04/" class="next" rel="next" title="[Airflow] Database and Executor">[Airflow] Database and Executor<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -3,7 +3,35 @@
         <title>All Posts - minsoo9506</title>
         <link>http://minsoo9506.github.io/posts/</link>
         <description>All Posts | minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 12 Apr 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 23 Apr 2022 10:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[Airflow] Database and Executor</title>
+    <link>http://minsoo9506.github.io/airflow04/</link>
+    <pubDate>Sat, 23 Apr 2022 10:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/airflow04/</guid>
+    <description><![CDATA[<p>multiple task를 execute하는 방법과 관련한 내용을 공부해보자.</p>]]></description>
+</item><item>
+    <title>[Airflow] Pipeline</title>
+    <link>http://minsoo9506.github.io/airflow03/</link>
+    <pubDate>Sun, 17 Apr 2022 10:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/airflow03/</guid>
+    <description><![CDATA[<p>Airflow pipeline을 만들어보자</p>]]></description>
+</item><item>
+    <title>[Airflow] 기본 CLI 명령어</title>
+    <link>http://minsoo9506.github.io/airflow02/</link>
+    <pubDate>Sun, 17 Apr 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/airflow02/</guid>
+    <description><![CDATA[<p>Airflow의 기본적인 CLI 명령어를 정리</p>]]></description>
+</item><item>
+    <title>[Airflow] 설치</title>
+    <link>http://minsoo9506.github.io/airflow01/</link>
+    <pubDate>Sat, 16 Apr 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/airflow01/</guid>
+    <description><![CDATA[<p>Airflow를 공부하기 위해 vitualBox를 이용하여 세팅해보자.</p>]]></description>
+</item><item>
     <title>[OS] I/O system and Disk Management</title>
     <link>http://minsoo9506.github.io/os_lec12_iosystemanddiskmanagement/</link>
     <pubDate>Tue, 12 Apr 2022 09:00:00 &#43;0000</pubDate>
@@ -45,33 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/survey02_anomalyexplanationindeepdetectors/</guid>
     <description><![CDATA[<p>Anomaly Detection에서 설명가능한 모델과 관련한 tutorial</p>]]></description>
-</item><item>
-    <title>[OS] Virtual Memory</title>
-    <link>http://minsoo9506.github.io/os_lec09_virtualmemory/</link>
-    <pubDate>Sat, 26 Mar 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/os_lec09_virtualmemory/</guid>
-    <description><![CDATA[<p>사용자 프로그램을 메모리에 연속하지 않게 할당하는 과정에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[OutlierAnalysis] Model Combination for Outlier Ensembles</title>
-    <link>http://minsoo9506.github.io/outlieranalysis01/</link>
-    <pubDate>Sun, 20 Mar 2022 10:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/outlieranalysis01/</guid>
-    <description><![CDATA[<p>다양한 모델을 통해 구한 outlier score를 ensemble하는 방법 (Outlier Analysis, Charu C. Aggarwal)</p>]]></description>
-</item><item>
-    <title>[OS] Memory Management</title>
-    <link>http://minsoo9506.github.io/os_lec08_memorymanagement/</link>
-    <pubDate>Sun, 20 Mar 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/os_lec08_memorymanagement/</guid>
-    <description><![CDATA[<p>Memory Management에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[OS] Deadlock</title>
-    <link>http://minsoo9506.github.io/os_lec07_deadlock/</link>
-    <pubDate>Sat, 19 Mar 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/os_lec07_deadlock/</guid>
-    <description><![CDATA[<p>Deadlock에 대해 알아보자.</p>]]></description>
 </item></channel>
 </rss>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Airflow] Database and Executor - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Airflow] Database and Executor" />
+<meta property="og:description" content="multiple task를 execute하는 방법과 관련한 내용을 공부해보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/airflow04/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-23T10:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-23T10:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Airflow] Database and Executor"/>
+<meta name="twitter:description" content="multiple task를 execute하는 방법과 관련한 내용을 공부해보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/airflow04/" /><link rel="prev" href="http://minsoo9506.github.io/airflow03/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Airflow] Database and Executor",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/airflow04\/"
+        },"genre": "posts","keywords": "Airflow","wordcount":  646 ,
+        "url": "http:\/\/minsoo9506.github.io\/airflow04\/","datePublished": "2022-04-23T10:00:00+00:00","dateModified": "2022-04-23T10:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Airflow] Database and Executor</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/airflow/"><i class="far fa-folder fa-fw"></i>Airflow</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-23">2022-04-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;646 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#default-configuration">default configuration</a></li>
+        <li><a href="#scaling-with-the-local-executor">Scaling with the Local Executor</a></li>
+        <li><a href="#scale-to-the-infinity-with-the-celery-executor">Scale to the infinity with the Celery Executor</a></li>
+        <li><a href="#concurrency">Concurrency</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>multiple task를 execute하는 방법과 관련한 내용을 공부해보자.</p>
+<ul>
+<li>airflow.cfg를 바꿔서 적용하려면 webserver, scheduler를 재시작해야한다</li>
+</ul>
+<h3 id="default-configuration">default configuration</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">airflow</span> <span class="n">config</span> <span class="n">get</span><span class="o">-</span><span class="n">value</span> <span class="n">core</span> <span class="n">sql_alchemy_conn</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>위의 명령어를 치면 <code>sqlite:////home/airflow/airflow/airflow.db</code> 라고 나온다. 이는 현재 airflow에서 SQLite가 default db라고 이해할 수 있다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">airflow</span> <span class="n">config</span> <span class="n">get</span><span class="o">-</span><span class="n">value</span> <span class="n">core</span> <span class="n">executor</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>위의 명령어를 치면 <code>SequentialExecutor</code> 라고 나온다.</p>
+<p>이러한 default의 상황에서 아래 예시는 sequential하게 task1을 하고 task2, 3를 하고 task4를 하는 과정이다. task2, 3 중에서 누가 먼저 진행될지는 알 수 없다. 순차적으로 진행된다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.bash</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">&#39;parallel_dag&#39;</span><span class="p">,</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+
+    <span class="n">task_1</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_1&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">task_2</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_2&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">task_3</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_3&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">task_4</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_4&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">task_1</span> <span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">task_2</span><span class="p">,</span> <span class="n">task_3</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">task_4</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>위의 내용들이 현재 airflow의 default configuration이라고 할 수 있다. 이제 목적에 맞게 이를 조금씩 수정하는 과정을 알아보자.</p>
+<h3 id="scaling-with-the-local-executor">Scaling with the Local Executor</h3>
+<ul>
+<li>local executor
+<ul>
+<li>sequential executor와 다르게 multiple tasks를 parallel하게 execute할 수 있다</li>
+</ul>
+</li>
+</ul>
+<p>위의 예시에서 task2, 3를 parallel하게 진행해보자. 또한, 이번에는 sqlite가 아니라 PostgreSQL을 사용해보자. 이는 SQLite는 한번에 하나의 writer만이 가능하기에 동시에 task를 해야하는 local, celery executor를 사용하기에 적절하지 않기 때문이다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt update
+<span class="c1"># 설치</span>
+sudo apt install postgresql
+<span class="c1"># 비밀번호 지정</span>
+sudo -u postgres psql
+ALTER USER postgres PASSWORD <span class="s1">&#39;postgres&#39;</span><span class="p">;</span>
+<span class="c1"># 추가 패키지 설치</span>
+pip install <span class="s1">&#39;apache-airflow[postgres]&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>그리고 default configure를 바꾸기 위해 <code>airflow.cfg</code>에 들어가서 <code>sql_alchemy_conn</code>의 값을 바꿔준다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sql_alchemy_conn = postgresql+psycopg2://postgres:postgres@localhost/postgres
+# 원래는 아래값이 default
+# sql_alchemy_conn = sqlite:////home/airflow/airflow/airflow.db
+</code></pre></td></tr></table>
+</div>
+</div><p>그리고 잘됐는지 확인하기 위해 <code>airflow db check</code>해서 확인해보자. 이제 metastore db가 postgres로 바뀌었다. 추가로 executor도 바꿔주고 websever, scheduler 모두 끄고 다시 db init 부터 시작한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">executor = LocalExecutor
+# executor = SequentialExecutor
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">airflow db init
+airflow users create -u admin -p admin -r Admin -f admin -l admin -e admin@airflow.com
+</code></pre></td></tr></table>
+</div>
+</div><p>그리고 다시 webserver, scheduler를 키고 dag를 실행시키면 task2, 3가 정말 동시에 parallel하게 진행됨을 확인할 수 있다.</p>
+<h3 id="scale-to-the-infinity-with-the-celery-executor">Scale to the infinity with the Celery Executor</h3>
+<ul>
+<li>celery executor
+<ul>
+<li>allows distributing the execution of task instances to multiple worker nodes</li>
+</ul>
+</li>
+</ul>
+<p>task는 queue(redis를 이용할 예정)에 있다가 실행될 때, node(worker)로 보내져서 실행된다. node(worker)의 수를 늘리면 더 많은 task를 할 수 있다. 또한 각 node(worker)마다 또한 여러 개의 task를 진행할 수 있고 이는 worker_concurruency를 통해서 조절 할 수 있다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># celery 설치</span>
+pip install <span class="s1">&#39;apache-airflow[celery]&#39;</span>
+<span class="c1"># redis server 설치</span>
+sudo install redis-server
+<span class="c1"># 설정 바꾸기</span>
+sudo vi /etc/redis/redis.conf <span class="c1"># 여기서 supervised no 를 찾아서 no를 systemd로 바꾼다</span>
+<span class="c1"># redis restart하고 잘되는지 확인</span>
+sudo systemctl restart redis.service
+sudo systemctl status redis.service
+</code></pre></td></tr></table>
+</div>
+</div><p>redis가 잘 돌아가면 이제 airflow.cfg헤서 몇 가지 수정한다.</p>
+<ul>
+<li>executor를 <code>CeleryExecutor</code>로 바꾼다.</li>
+<li><code>broker_url = redis://redis:6379/0</code>를 <code>broker_url = redis://localhost:6379/0</code>로 바꾼다.</li>
+<li><code>result_backend = db+postgresql://postgres:airflow@postgres/airflow</code>를 <code>result_backend = postgresql+psycopg2://postgres:postgres@localhost/postgres</code>로 바꾼다.
+<ul>
+<li><code>result_backend</code>는 task가 완료되면 관련한 metadata를 저장하는 곳을 의미</li>
+</ul>
+</li>
+</ul>
+<p>다음으로 redis와 airflow의 연결을 위해 <code>pip install 'apache-airflow[redis]'</code>으로 관련 패키지를 설치한다. 그리고 다른 bash창에서 <code>airflow celery flower</code>를 통해 worker들을 웹으로 확인해볼 수 있다. 그러면 지금은 worker가 없는 것을 확인할 수 있다. <code>airflow celery worker</code>로 worker를 추가하면 Flower웹에서 확인할 수 있다. 그리고 dag를 돌려서 확인해볼 수도 있다.</p>
+<h3 id="concurrency">Concurrency</h3>
+<p>airflow.cfg에서 <code>parallelism</code>을 찾아보면 airflow instance 전체에서 parallel하게 task가 동시에 최대 몇 개 까지 진행될 수 있는지 나와있다. <code>executor = LocalExecutor</code>였을 때 원래 task2, 3가 동시에 진행되었는데 <code>parallelism=1</code>로 지정하면 동시에 진행되지 않는다.</p>
+<p><code>dag_concurrency</code>를 통해서 하나의 DAG에서 parallel하게 동시에 돌아갈 수 있는 task 수를 제한 할 수 있다. 이 값은 default이고 당연히 각 DAG에 각각 다르게 지정할 수 있다.</p>
+<p><code>max_active_runs_per_dag</code>은 maximum number of active DAG runs per DAG을 의미한다. 이 값도 DAG에 따라 다르게 지정할 수 있다.</p>
+<p>이들을 통해 동시에 진행되는 DAG, Task를 조절할 수 있다.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.udemy.com/course/the-complete-hands-on-course-to-master-apache-airflow" target="_blank" rel="noopener noreffer">udemy: the complete hands on course to master apache airflow</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-04-23</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/airflow04/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/airflow/">Airflow</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/airflow03/" class="prev" rel="prev" title="[Airflow] Pipeline"><i class="fas fa-angle-left fa-fw"></i>[Airflow] Pipeline</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
