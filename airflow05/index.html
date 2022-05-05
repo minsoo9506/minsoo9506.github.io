@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Airflow] Advanced Concepts in Airflow - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Airflow] Advanced Concepts in Airflow" />
+<meta property="og:description" content="Airflow에 대한 좀 더 advanced한 내용을 공부해보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/airflow05/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-02T10:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-02T10:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Airflow] Advanced Concepts in Airflow"/>
+<meta name="twitter:description" content="Airflow에 대한 좀 더 advanced한 내용을 공부해보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/airflow05/" /><link rel="prev" href="http://minsoo9506.github.io/airflow06/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Airflow] Advanced Concepts in Airflow",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/airflow05\/"
+        },"genre": "posts","keywords": "Airflow","wordcount":  1023 ,
+        "url": "http:\/\/minsoo9506.github.io\/airflow05\/","datePublished": "2022-05-02T10:00:00+00:00","dateModified": "2022-05-02T10:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Airflow] Advanced Concepts in Airflow</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/airflow/"><i class="far fa-folder fa-fw"></i>Airflow</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-02">2022-05-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1023 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#remove-repetive-patterns-with-subdags">Remove repetive patterns with SubDags</a></li>
+    <li><a href="#subdags가-아닌-taskgroup를-사용해보자">SubDags가 아닌 TaskGroup를 사용해보자</a></li>
+    <li><a href="#share-data-with-xcom">Share data with XCom</a></li>
+    <li><a href="#특정-condition에-따라-실행할-task-선택하기">특정 condition에 따라 실행할 task 선택하기</a></li>
+    <li><a href="#trigger-rules">Trigger Rules</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Airflow에 대한 좀 더 advanced한 내용을 공부해보자.</p>
+<h2 id="remove-repetive-patterns-with-subdags">Remove repetive patterns with SubDags</h2>
+<p>반복적인 task의 경우 좀 더 깔끔한 패턴을 만들기 위해 subdags라는 개념을 이용할 수 있다. 이전에 봤던 예시인 <code>task_1 &gt;&gt; [task_2, task_3] &gt;&gt; task_4</code> 에서 <code>task_2</code>, <code>task_3</code>를 묶어보자.</p>
+<p><code>SubDagOperator</code>는 인자로 subdag을 return하는 함수가 필요하다. 이를 위해 일단 <code>dags</code> 폴더에 <code>subdags</code>라는 폴더를 만든다. 그리고 그 폴더에 subdag_parallel_dag.py 파일을 만들고 함수를 만들어보자. 해당함수는 dag을 return하는 함수여야 한다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+
+<span class="k">def</span> <span class="nf">subdag_parallel_dag</span><span class="p">(</span><span class="n">parent_dag_id</span><span class="p">,</span> <span class="n">child_dag_id</span><span class="p">,</span> <span class="n">default_args</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">DAG</span><span class="p">(</span><span class="n">dag_id</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">parent_dag_id</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">child_dag_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+
+        <span class="n">task_2</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+            <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_2&#39;</span><span class="p">,</span>
+            <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+        <span class="p">)</span>
+
+        <span class="n">task_3</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+            <span class="n">task_ud</span><span class="o">=</span><span class="s1">&#39;task_3&#39;</span><span class="p">,</span>
+            <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dag</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>그리고 이 함수를 import해서 아래와 같이 DAG를 만들어준다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.bash</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.subdag</span> <span class="kn">import</span> <span class="n">SubDagOperator</span>
+
+<span class="kn">from</span> <span class="nn">subdags.subdag_parallel_dag</span> <span class="kn">import</span> <span class="n">subdag_parallel_dag</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">&#39;parallel_subdag&#39;</span><span class="p">,</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+
+    <span class="n">task_1</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_1&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+    <span class="p">)</span>
+    
+    <span class="n">processing</span> <span class="o">=</span> <span class="n">SubDagOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;processing_tasks&#39;</span><span class="p">,</span>
+        <span class="n">subdag</span><span class="o">=</span><span class="n">subdag_parallel_dag</span><span class="p">(</span><span class="s1">&#39;parallel_subdag&#39;</span><span class="p">,</span> <span class="s1">&#39;processing_tasks&#39;</span><span class="p">,</span> <span class="n">default_args</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">task_4</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_4&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">task_1</span> <span class="o">&gt;&gt;</span> <span class="n">processing</span> <span class="o">&gt;&gt;</span> <span class="n">task_4</span>
+</code></pre></td></tr></table>
+</div>
+</div><center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/airflow03.PNG?raw=true"  width="500">
+</center>
+<p>이렇게 subdag으로 task를 묶을 수 있다. 하지만 subdag을 사용하는 것을 추천하지는 않는다고 한다. 이유는 Deadlock, complexity, subdag은 sequential excutor를 default로 사용 이라고 한다.</p>
+<h2 id="subdags가-아닌-taskgroup를-사용해보자">SubDags가 아닌 TaskGroup를 사용해보자</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.bash</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.utils.task_group</span> <span class="kn">import</span> <span class="n">TaskGroup</span>
+
+<span class="kn">from</span> <span class="nn">subdags.subdag_parallel_dag</span> <span class="kn">import</span> <span class="n">subdag_parallel_dag</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">&#39;parallel_subdag&#39;</span><span class="p">,</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+
+    <span class="n">task_1</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_1&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+    <span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="s1">&#39;processing_tasks&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">processing_tasks</span><span class="p">:</span>
+        <span class="n">task_2</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+            <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_2&#39;</span><span class="p">,</span>
+            <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+        <span class="p">)</span>
+
+        <span class="n">task_3</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+            <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_3&#39;</span><span class="p">,</span>
+            <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+        <span class="p">)</span>
+
+    <span class="n">task_4</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_4&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">task_1</span> <span class="o">&gt;&gt;</span> <span class="n">processing_tasks</span> <span class="o">&gt;&gt;</span> <span class="n">task_4</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>TaskGroup</code>을 사용하면 따로 함수를 만들 필요도 없어서 편하다.</p>
+<h2 id="share-data-with-xcom">Share data with XCom</h2>
+<p>XCom을 이용하여 task끼리 data를 주고받을 수 있다. Airflow에서 어떤 database를 쓰냐에 따라 data의 크기도 정해져 있다. 다만, 작은 양의 data를 사용하기를 추천한다. task를 통해 생성된 값은 key, value 형태로 보존된다.</p>
+<p>예시를 통해 이해해보자. 머신러닝 모델을 3개 만들어보고 가장 성능이 좋은 모델을 선택하는 pipeline을 만들고 싶다. 아래 코드에서는 <code>processing_tasks</code>에서 모델을 훈련시키고 성능점수를 <code>choose_model</code>에서 확인하고 있다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.bash</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.python</span> <span class="kn">import</span> <span class="n">PythonOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.task_group</span> <span class="kn">import</span> <span class="n">TaskGroup</span>
+
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">uniform</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">_training_model</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model</span><span class="se">\&#39;</span><span class="s1">s acc = </span><span class="si">{</span><span class="n">acc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># database에 push</span>
+    <span class="n">ti</span><span class="o">.</span><span class="n">xcom_push</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;model_acc&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">acc</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_choose_best_model</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;choose best model&#39;</span><span class="p">)</span>
+    <span class="c1"># database에서 pull</span>
+    <span class="n">accs</span> <span class="o">=</span> <span class="n">ti</span><span class="o">.</span><span class="n">xcom_pull</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;model_acc&#39;</span><span class="p">,</span> <span class="n">task_ids</span><span class="o">=</span><span class="p">[</span>
+        <span class="s1">&#39;processing_tasks.training_model_a&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;processing_tasks.training_model_b&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;processing_tasks.training_model_c&#39;</span><span class="p">,</span>
+    <span class="p">])</span>
+    <span class="c1"># webserver나 terminal에서 확인 할 수 있다</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">accs</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">&#39;xcom_dag&#39;</span><span class="p">,</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+
+
+    <span class="n">downloading_data</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;downloading_data&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+    <span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="s1">&#39;processing_tasks&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">processing_tasks</span><span class="p">:</span>
+        <span class="n">training_model_a</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+            <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;training_model_a&#39;</span><span class="p">,</span>
+            <span class="n">python_callable</span><span class="o">=</span><span class="n">_training_model</span>
+        <span class="p">)</span>
+
+        <span class="n">training_model_b</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+            <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;training_model_b&#39;</span><span class="p">,</span>
+            <span class="n">python_callable</span><span class="o">=</span><span class="n">_training_model</span>
+        <span class="p">)</span>
+
+        <span class="n">training_model_c</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+            <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;training_model_c&#39;</span><span class="p">,</span>
+            <span class="n">python_callable</span><span class="o">=</span><span class="n">_training_model</span>
+        <span class="p">)</span>
+
+    <span class="n">choose_model</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_4&#39;</span><span class="p">,</span>
+        <span class="n">python_callable</span><span class="o">=</span><span class="n">_choose_best_model</span>
+    <span class="p">)</span>
+
+    <span class="n">downloading_data</span> <span class="o">&gt;&gt;</span> <span class="n">processing_tasks</span> <span class="o">&gt;&gt;</span> <span class="n">choose_model</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>webserver에서 Admin -&gt; xcom 에서 결과를 확인할 수 있다. 로그를 보면 <code>accs</code>가 print된 것을 확인할 수 있다.</p>
+<h2 id="특정-condition에-따라-실행할-task-선택하기">특정 condition에 따라 실행할 task 선택하기</h2>
+<p>아래 코드예시처럼 return 값에 다음에 진행할 task_id를 넣어주면 된다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.bash</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.python</span> <span class="kn">import</span> <span class="n">PythonOperator</span><span class="p">,</span> <span class="n">BranchPythonOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.dummy</span> <span class="kn">import</span> <span class="n">DummyOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.utils.task_group</span> <span class="kn">import</span> <span class="n">TaskGroup</span>
+
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">uniform</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">_training_model</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;model</span><span class="se">\&#39;</span><span class="s1">s acc = </span><span class="si">{</span><span class="n">acc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># database에 push</span>
+    <span class="n">ti</span><span class="o">.</span><span class="n">xcom_push</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;model_acc&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">acc</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_choose_best_model</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;choose best model&#39;</span><span class="p">)</span>
+    <span class="c1"># database에서 pull</span>
+    <span class="n">accs</span> <span class="o">=</span> <span class="n">ti</span><span class="o">.</span><span class="n">xcom_pull</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;model_acc&#39;</span><span class="p">,</span> <span class="n">task_ids</span><span class="o">=</span><span class="p">[</span>
+        <span class="s1">&#39;processing_tasks.training_model_a&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;processing_tasks.training_model_b&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;processing_tasks.training_model_c&#39;</span><span class="p">,</span>
+    <span class="p">])</span>
+    <span class="c1"># 조건에 맞는 task를 return하게 한다</span>
+    <span class="k">for</span> <span class="n">acc</span> <span class="ow">in</span> <span class="n">accs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">acc</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;accurate&#39;</span> <span class="c1"># [&#39;accurate&#39;, &#39;inaccurate&#39;] 이런식으로 여러개도 가능</span>
+    <span class="k">return</span> <span class="s1">&#39;inaccurate&#39;</span>
+
+<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">&#39;xcom_dag&#39;</span><span class="p">,</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+
+
+    <span class="n">downloading_data</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;downloading_data&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span><span class="p">,</span>
+        <span class="c1"># default로 push를 하기 때문에 이런식으로 못하게 할 수 있다</span>
+        <span class="c1"># False안하고 xcom을 보면 key, value에 아무것도 없음을 알 수 있다</span>
+        <span class="n">do_xcom_push</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">TaskGroup</span><span class="p">(</span><span class="s1">&#39;processing_tasks&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">processing_tasks</span><span class="p">:</span>
+        <span class="n">training_model_a</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+            <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;training_model_a&#39;</span><span class="p">,</span>
+            <span class="n">python_callable</span><span class="o">=</span><span class="n">_training_model</span>
+        <span class="p">)</span>
+
+        <span class="n">training_model_b</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+            <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;training_model_b&#39;</span><span class="p">,</span>
+            <span class="n">python_callable</span><span class="o">=</span><span class="n">_training_model</span>
+        <span class="p">)</span>
+
+        <span class="n">training_model_c</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+            <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;training_model_c&#39;</span><span class="p">,</span>
+            <span class="n">python_callable</span><span class="o">=</span><span class="n">_training_model</span>
+        <span class="p">)</span>
+
+    <span class="n">choose_model</span> <span class="o">=</span> <span class="n">BranchPythonOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_4&#39;</span><span class="p">,</span>
+        <span class="n">python_callable</span><span class="o">=</span><span class="n">_choose_best_model</span>
+    <span class="p">)</span>
+
+    <span class="n">accurate</span> <span class="o">=</span> <span class="n">DummyOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;accurate&#39;</span>
+    <span class="p">)</span>
+    <span class="n">inaccurate</span> <span class="o">=</span> <span class="n">DummyOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;inaccurate&#39;</span>
+    <span class="p">)</span>
+
+    <span class="n">downloading_data</span> <span class="o">&gt;&gt;</span> <span class="n">processing_tasks</span> <span class="o">&gt;&gt;</span> <span class="n">choose_model</span>
+    <span class="n">choose_model</span> <span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">accurate</span><span class="p">,</span> <span class="n">inaccurate</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="trigger-rules">Trigger Rules</h2>
+<p>task가 trigger되는 default값을 바꿔서 특정 조건이 되면 trigger되도록 (사용자가 원하는대로) 할 수 있다. task마다 <code>trigger_rule</code>을 통해서 규칙을 정해주면 된다.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.bash</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">&#39;trigger_rule&#39;</span><span class="p">,</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+    <span class="n">task_1</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_1&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;exit 1&#39;</span><span class="p">,</span>
+        <span class="n">do_xcom_push</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="n">task_2</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_2&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;exit 0&#39;</span><span class="p">,</span>
+        <span class="n">do_xcom_push</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="n">task_3</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_3&#39;</span><span class="p">,</span>
+        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;exit 0&#39;</span><span class="p">,</span>
+        <span class="n">do_xcom_push</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="c1"># 이렇게 지정가능</span>
+        <span class="n">trigger_rule</span><span class="o">=</span><span class="s1">&#39;one_failed&#39;</span>
+    <span class="p">)</span>
+
+    <span class="p">[</span><span class="n">task_1</span><span class="p">,</span> <span class="n">task_2</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">task_3</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.udemy.com/course/the-complete-hands-on-course-to-master-apache-airflow" target="_blank" rel="noopener noreffer">udemy: the complete hands on course to master apache airflow</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-05-02</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/airflow05/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/airflow/">Airflow</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/airflow06/" class="prev" rel="prev" title="[Airflow] Use plugin in Airflow"><i class="fas fa-angle-left fa-fw"></i>[Airflow] Use plugin in Airflow</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

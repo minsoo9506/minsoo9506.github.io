@@ -5,16 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>[Airflow] 기본 CLI 명령어 - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Airflow] 기본 CLI 명령어" />
-<meta property="og:description" content="Airflow의 기본적인 CLI 명령어를 정리" />
+        <title>[Airflow] 기본 구조, CLI 명령어 - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Airflow] 기본 구조, CLI 명령어" />
+<meta property="og:description" content="Airflow의 기본적인 구조와 CLI 명령어를 정리" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://minsoo9506.github.io/airflow02/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-04-17T09:00:00+00:00" />
 <meta property="article:modified_time" content="2022-04-17T09:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[Airflow] 기본 CLI 명령어"/>
-<meta name="twitter:description" content="Airflow의 기본적인 CLI 명령어를 정리"/>
+<meta name="twitter:title" content="[Airflow] 기본 구조, CLI 명령어"/>
+<meta name="twitter:description" content="Airflow의 기본적인 구조와 CLI 명령어를 정리"/>
 <meta name="application-name" content="minsoo9506">
 <meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -22,12 +22,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "[Airflow] 기본 CLI 명령어",
+        "headline": "[Airflow] 기본 구조, CLI 명령어",
         "inLanguage": "en",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/airflow02\/"
-        },"genre": "posts","keywords": "Airflow","wordcount":  88 ,
+        },"genre": "posts","keywords": "Airflow","wordcount":  109 ,
         "url": "http:\/\/minsoo9506.github.io\/airflow02\/","datePublished": "2022-04-17T09:00:00+00:00","dateModified": "2022-04-17T09:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -102,9 +102,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">[Airflow] 기본 CLI 명령어</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Airflow] 기본 구조, CLI 명령어</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/airflow/"><i class="far fa-folder fa-fw"></i>Airflow</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-17">2022-04-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;88 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-04-17">2022-04-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;109 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -113,6 +113,7 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#구조">구조</a></li>
     <li><a href="#명령어">명령어</a>
       <ul>
         <li><a href="#db"><code>db</code></a></li>
@@ -124,7 +125,26 @@
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>Airflow의 기본적인 CLI 명령어를 정리</p>
+            </div><div class="content" id="content"><p>Airflow의 기본적인 구조와 CLI 명령어를 정리</p>
+<h2 id="구조">구조</h2>
+<ul>
+<li>webserver</li>
+<li>scheduler
+<ul>
+<li>설정한 시간에 맞춰 DAG를 실행할 수 있게 해줌</li>
+</ul>
+</li>
+<li>worker(excecutor)
+<ul>
+<li>실제 작업을 실행하는 주체</li>
+</ul>
+</li>
+<li>metaDB
+<ul>
+<li>작업관련 데이터들이 저장됨</li>
+</ul>
+</li>
+</ul>
 <h2 id="명령어">명령어</h2>
 <h3 id="db"><code>db</code></h3>
 <ul>

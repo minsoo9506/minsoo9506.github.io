@@ -28,7 +28,7 @@ creating_table >> is_api_available >> extracting_user >> processing_user >> stor
 
 먼저 webserver와 scheduler를 활성화한다.
 
-```python
+```bash
 airflow webserver
 airflow scheduler
 ```

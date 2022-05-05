@@ -3,7 +3,21 @@
         <title>Airflow - Tag - minsoo9506</title>
         <link>http://minsoo9506.github.io/tags/airflow/</link>
         <description>Airflow - Tag - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 23 Apr 2022 10:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/airflow/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 02 May 2022 10:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/airflow/" rel="self" type="application/rss+xml" /><item>
+    <title>[Airflow] Advanced Concepts in Airflow</title>
+    <link>http://minsoo9506.github.io/airflow05/</link>
+    <pubDate>Mon, 02 May 2022 10:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/airflow05/</guid>
+    <description><![CDATA[<p>Airflow에 대한 좀 더 advanced한 내용을 공부해보자.</p>]]></description>
+</item><item>
+    <title>[Airflow] Use plugin in Airflow</title>
+    <link>http://minsoo9506.github.io/airflow06/</link>
+    <pubDate>Mon, 02 May 2022 10:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/airflow06/</guid>
+    <description><![CDATA[<p>Airflow에서 plugin을 이용하여 사용반경을 넓혀보자.</p>]]></description>
+</item><item>
     <title>[Airflow] Database and Executor</title>
     <link>http://minsoo9506.github.io/airflow04/</link>
     <pubDate>Sat, 23 Apr 2022 10:00:00 &#43;0000</pubDate>
@@ -18,12 +32,12 @@
     <guid>http://minsoo9506.github.io/airflow03/</guid>
     <description><![CDATA[<p>Airflow pipeline을 만들어보자</p>]]></description>
 </item><item>
-    <title>[Airflow] 기본 CLI 명령어</title>
+    <title>[Airflow] 기본 구조, CLI 명령어</title>
     <link>http://minsoo9506.github.io/airflow02/</link>
     <pubDate>Sun, 17 Apr 2022 09:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>http://minsoo9506.github.io/airflow02/</guid>
-    <description><![CDATA[<p>Airflow의 기본적인 CLI 명령어를 정리</p>]]></description>
+    <description><![CDATA[<p>Airflow의 기본적인 구조와 CLI 명령어를 정리</p>]]></description>
 </item><item>
     <title>[Airflow] 설치</title>
     <link>http://minsoo9506.github.io/airflow01/</link>
