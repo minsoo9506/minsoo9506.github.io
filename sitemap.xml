@@ -2,29 +2,33 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://minsoo9506.github.io/05_uplift/</loc><lastmod>2022-05-08T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/algorithmic-marketing/</loc><lastmod>2022-05-08T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2022-05-08T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/</loc><lastmod>2022-05-08T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2022-05-08T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2022-05-08T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/targeting/</loc><lastmod>2022-05-08T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/uplift-model/</loc><lastmod>2022-05-08T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/airflow05/</loc><lastmod>2022-05-02T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/airflow06/</loc><lastmod>2022-05-02T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/airflow/</loc><lastmod>2022-05-02T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://minsoo9506.github.io/categories/airflow/</loc><lastmod>2022-05-02T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2022-05-02T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/</loc><lastmod>2022-05-02T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2022-05-02T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2022-05-02T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/airflow04/</loc><lastmod>2022-04-23T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://minsoo9506.github.io/airflow03/</loc><lastmod>2022-04-17T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>http://minsoo9506.github.io/airflow02/</loc><lastmod>2022-04-17T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>http://minsoo9506.github.io/airflow01/</loc><lastmod>2022-04-16T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>http://minsoo9506.github.io/airflow04/</loc><lastmod>2022-04-23T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>http://minsoo9506.github.io/airflow03/</loc><lastmod>2022-04-17T10:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>http://minsoo9506.github.io/airflow02/</loc><lastmod>2022-04-17T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>http://minsoo9506.github.io/airflow01/</loc><lastmod>2022-04-16T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://minsoo9506.github.io/os_lec12_iosystemanddiskmanagement/</loc><lastmod>2022-04-12T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://minsoo9506.github.io/categories/computer-science/</loc><lastmod>2022-04-12T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/disk-management/</loc><lastmod>2022-04-12T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>http://minsoo9506.github.io/os_lec11_filesystem/</loc><lastmod>2022-04-10T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/file-system/</loc><lastmod>2022-04-10T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement2/</loc><lastmod>2022-04-09T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/virtual-memory-management/</loc><lastmod>2022-04-09T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement1/</loc><lastmod>2022-04-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>http://minsoo9506.github.io/dowhy_00_tutorial/</loc><lastmod>2022-04-02T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/causality/</loc><lastmod>2022-04-02T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/dowhy/</loc><lastmod>2022-04-02T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://minsoo9506.github.io/os_lec11_filesystem/</loc><lastmod>2022-04-10T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/file-system/</loc><lastmod>2022-04-10T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement2/</loc><lastmod>2022-04-09T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/virtual-memory-management/</loc><lastmod>2022-04-09T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement1/</loc><lastmod>2022-04-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/dowhy_00_tutorial/</loc><lastmod>2022-04-02T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/causality/</loc><lastmod>2022-04-02T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/dowhy/</loc><lastmod>2022-04-02T11:09:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/survey02_anomalyexplanationindeepdetectors/</loc><lastmod>2022-03-27T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/anomaly-detection/</loc><lastmod>2022-03-27T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/categories/catchminor/</loc><lastmod>2022-03-27T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -63,7 +67,6 @@
             <loc>http://minsoo9506.github.io/tags/matching/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/propensity-score/</loc><lastmod>2022-01-20T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/04_rfm/</loc><lastmod>2022-01-12T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/algorithmic-marketing/</loc><lastmod>2022-01-12T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/rfm-%EB%B6%84%EC%84%9D/</loc><lastmod>2022-01-12T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/03_multi_touch_attr/</loc><lastmod>2022-01-10T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/%EC%98%A8%EB%9D%BC%EC%9D%B8-%EA%B4%91%EA%B3%A0/</loc><lastmod>2022-01-10T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

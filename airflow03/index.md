@@ -75,11 +75,11 @@ with DAG(
 그리고 Admin -> Connections 에 가서 connection을 아래와 같이 추가해줘야 한다. conn_id는 위에서 정한 `db_sqlite`로 해줘야하고 `Host`는 아래와 같이 `airflow.db`가 있는 path를 해주면 된다.
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/airflow01.PNG?raw=true"  width="500">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/airflow01.png?raw=true"  width="500">
 </center>
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/airflow02.PNG?raw=true"  width="500">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/airflow02.png?raw=true"  width="500">
 </center>
 
 - test

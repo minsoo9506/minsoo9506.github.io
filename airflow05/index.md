@@ -68,7 +68,7 @@ with DAG(
 ```
 
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/airflow03.PNG?raw=true"  width="500">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/airflow03.png?raw=true"  width="500">
 </center>
 
 이렇게 subdag으로 task를 묶을 수 있다. 하지만 subdag을 사용하는 것을 추천하지는 않는다고 한다. 이유는 Deadlock, complexity, subdag은 sequential excutor를 default로 사용 이라고 한다.

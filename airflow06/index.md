@@ -153,7 +153,7 @@ with DAG(
 
 web에서 connection을 추가해준다.
 <center>
-    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/airflow04.PNG?raw=true"  width="500">
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/airflow04.png?raw=true"  width="500">
 </center>
 
 그리고 postgresql에 들어가서 user를 추가해준다.

@@ -3,7 +3,14 @@
         <title>Algorithmic Marketing - Category - minsoo9506</title>
         <link>http://minsoo9506.github.io/categories/algorithmic-marketing/</link>
         <description>Algorithmic Marketing - Category - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 12 Jan 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/algorithmic-marketing/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 08 May 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/algorithmic-marketing/" rel="self" type="application/rss+xml" /><item>
+    <title>[Algorithmic Marketing] Uplift Model</title>
+    <link>http://minsoo9506.github.io/05_uplift/</link>
+    <pubDate>Sun, 08 May 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/05_uplift/</guid>
+    <description><![CDATA[<p>타겟팅을 할 때, 주로 사용하는 uplift 모형에 대한 기본개념을 알아보자.</p>]]></description>
+</item><item>
     <title>[Algorithmic Marketing] RFM 분석 기본개념</title>
     <link>http://minsoo9506.github.io/04_rfm/</link>
     <pubDate>Wed, 12 Jan 2022 09:00:00 &#43;0000</pubDate>

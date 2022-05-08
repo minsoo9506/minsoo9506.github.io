@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Algorithmic Marketing] Uplift Model - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Algorithmic Marketing] Uplift Model" />
+<meta property="og:description" content="타겟팅을 할 때, 주로 사용하는 uplift 모형에 대한 기본개념을 알아보자." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/05_uplift/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-08T09:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-08T09:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Algorithmic Marketing] Uplift Model"/>
+<meta name="twitter:description" content="타겟팅을 할 때, 주로 사용하는 uplift 모형에 대한 기본개념을 알아보자."/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/05_uplift/" /><link rel="prev" href="http://minsoo9506.github.io/airflow05/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Algorithmic Marketing] Uplift Model",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/05_uplift\/"
+        },"genre": "posts","keywords": "Uplift Model, Targeting","wordcount":  394 ,
+        "url": "http:\/\/minsoo9506.github.io\/05_uplift\/","datePublished": "2022-05-08T09:00:00+00:00","dateModified": "2022-05-08T09:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Algorithmic Marketing] Uplift Model</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/algorithmic-marketing/"><i class="far fa-folder fa-fw"></i>Algorithmic Marketing</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-08">2022-05-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;394 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>타겟팅을 할 때, 주로 사용하는 uplift 모형에 대한 기본개념을 알아보자.</p>
+<p>예를 들어, 앱 사용자들에게 푸시알람을 보내서 전환율(물건구매라고 생각해도 됨)을 높이고 싶은 상황이라고 생각해보자. 모든 유저에게 푸시알람을 보낼 수 없거나 푸시알람이 비용이 발생하는 경우, 전환율이 높을 것 같은 유저에게 푸시를 보내는 것이 맞을 것이다. 이를 모델링으로 해결하고자 한다면 어떻게 해야 할까?</p>
+<p>일단 크게 두 가지를 생각할 수 있다. response model (classification), uplift model 이 있다. response model의 경우 이전에 푸시알람을 보낸 데이터를 이용하여 전환여부를 target값으로 놓고 classification model을 만들고 predict하여 확률값으로 sort하여 상위 %에서 보내는 방법이다. 우리가 살펴볼 uplift model의 경우는 조금 다르다. 실험데이터가 필요하기 때문이다. 두 model 모두 공통적으로 covariates와 target은 있지만 uplift model은 RCT를 이용해 구한 treatment여부가 있는 데이터가 필요하다. 예시에서는 푸시알람이 treatment이다. 그래서 각 고객들 중에서 treatment effect가 큰 고객들에게 먼저 보내려고 하는 것이다. 이에 대해 아래 그림을 참고하자.</p>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/uplift01.png?raw=true"  width="500">
+</center>
+<p>아래 그림에서 uplift model이 찾고자하는 그룹은 persuadables이다. 즉, 푸시알람을 보내야만 구매를 하는 사람에게 푸시알람을 보내고 싶은 것이다. 푸시알람을 보내지 않더라도 어차피 물건을 구매하는 사람에게는 보낼 필요가 없고 푸시알람에 상관없이 구매하지 않을 사람, 푸시알람을 받으면 오히려 역효과가 나는 사람들에게도 보낼 필요가 없기 때문이다. 하지만 멀티버스가 존재하지 않는 한 우리는 특정 고객이 푸시알람을 받아야 구매할지 아닐지 알 수가 없다. 둘 중 하나의 결과만 알 수 있기 때문이다. 따라서 uplift model은 이러한 문제를 해결하기 위한 접근이라고 할 수 있다.</p>
+<p>마케팅쪽에서는 uplift model이라고 하고 causality쪽에서는 Heterogeneous treatment effect estimation 이라고 불리는 분야이다. 당연히 이와 관련하여 다양한 모델들이 존재한다. Uber나 Microsoft의 오픈소스들을 참고하면 이해하기 더 좋다.</p>
+<p>여기서는 다양한 모델중에서 T-Learner에 대해 간단히 정리해보고자 한다. 실제 데이터를 통해 구한 모델링 과정의 코드는 <a href="https://github.com/minsoo9506/causality-study/blob/master/Applied%20Project/Heterogeneous_treatment_effect_estimation/metaLearner%28T-learner%29.ipynb" target="_blank" rel="noopener noreffer">여기</a>서 확인하면 된다.</p>
+<p>모델링 과정은 다음과 같다.</p>
+<ol>
+<li>데이터는 train, valid로 나눈다.</li>
+<li>train data에서 treat, control 그룹을 각각 나누어서 모델을 각자 만든다.
+<ul>
+<li>이 때 모델의 X에는 treatment여부는 빠지고 target은 전환여부(binary)이고 이를 예측하는 위한 covariate들로 이루어져 있다.</li>
+<li>모델은 classification 모델 아무거나 상관없다.</li>
+</ul>
+</li>
+<li>그리고 각 모델에 valid data를 넣어서 prediction한다. 이 때, 우리는 확률을 이용할 것이다.
+<ul>
+<li>이 valid data에는 treat, control 그룹 모두 들어있다.</li>
+<li>즉, 2번에서 만든 모델을 통해 valid data에 있는 유저들이 treatment를 받았을 때와 그렇지 않았을 때 target이 어떨지 각각 구할 수 있는 것이다.</li>
+</ul>
+</li>
+<li>위의 확률값을 통해서 uplift score를 구한다.
+<ul>
+<li>treatment 받았을 때의 전환확률 - treatment 받지 않았을 때의 전환확률</li>
+</ul>
+</li>
+<li>uplift score에 따라 sort하여서 10%씩 실제 전환율을 살펴보자.</li>
+</ol>
+<p>위의 과정을 통해 구한 결과는 아래 사진과 같다. uplift가 0보다 큰 상위 60%정도까지는 실제 treat 그룹의 response rate가 더 높다. 우리는 uplift score가 높은 고객들, 즉 푸시알람을 받았을 때 effect가 큰 유저들에게 보내도 되겠다는 증거가 되는 것이다.</p>
+<center>
+    <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/uplift02.png?raw=true"  width="500">
+</center>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://matheusfacure.github.io/python-causality-handbook/21-Meta-Learners.html" target="_blank" rel="noopener noreffer">https://matheusfacure.github.io/python-causality-handbook/21-Meta-Learners.html</a></li>
+<li><a href="https://partrita.github.io/posts/python-uplift/" target="_blank" rel="noopener noreffer">https://partrita.github.io/posts/python-uplift/</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-05-08</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/05_uplift/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/uplift-model/">Uplift Model</a>,&nbsp;<a href="/tags/targeting/">Targeting</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/airflow05/" class="prev" rel="prev" title="[Airflow] Advanced Concepts in Airflow"><i class="fas fa-angle-left fa-fw"></i>[Airflow] Advanced Concepts in Airflow</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

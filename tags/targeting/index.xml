@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Targeting - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/targeting/</link>
+        <description>Targeting - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 08 May 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/targeting/" rel="self" type="application/rss+xml" /><item>
+    <title>[Algorithmic Marketing] Uplift Model</title>
+    <link>http://minsoo9506.github.io/05_uplift/</link>
+    <pubDate>Sun, 08 May 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/05_uplift/</guid>
+    <description><![CDATA[<p>타겟팅을 할 때, 주로 사용하는 uplift 모형에 대한 기본개념을 알아보자.</p>]]></description>
+</item></channel>
+</rss>

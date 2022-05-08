@@ -3,9 +3,16 @@
         <title>minsoo9506</title>
         <link>http://minsoo9506.github.io/</link>
         <description>This is My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 02 May 2022 10:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 08 May 2022 09:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://minsoo9506.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[Algorithmic Marketing] Uplift Model</title>
+    <link>http://minsoo9506.github.io/05_uplift/</link>
+    <pubDate>Sun, 08 May 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/05_uplift/</guid>
+    <description><![CDATA[<p>타겟팅을 할 때, 주로 사용하는 uplift 모형에 대한 기본개념을 알아보자.</p>]]></description>
+</item><item>
     <title>[Airflow] Advanced Concepts in Airflow</title>
     <link>http://minsoo9506.github.io/airflow05/</link>
     <pubDate>Mon, 02 May 2022 10:00:00 &#43;0000</pubDate>
@@ -67,13 +74,6 @@
     <pubDate>Sat, 09 Apr 2022 09:00:00 &#43;0000</pubDate>
     <author>Author</author>
     <guid>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement2/</guid>
-    <description><![CDATA[<p>virtual memory를 다루는 방법들을 알아보자</p>]]></description>
-</item><item>
-    <title>[OS] Virtual Memory Management (1)</title>
-    <link>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement1/</link>
-    <pubDate>Sun, 03 Apr 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement1/</guid>
     <description><![CDATA[<p>virtual memory를 다루는 방법들을 알아보자</p>]]></description>
 </item></channel>
 </rss>
