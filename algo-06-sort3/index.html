@@ -213,33 +213,33 @@
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># recursive</span>
-<span class="k">def</span> <span class="nf">max_heapify</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
-    <span class="n">left</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span>
-    <span class="n">right</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="c1"># 자식이 없는 경우</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">right</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">return</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># i의 자식 중에 큰 값 찾기</span>
-        <span class="c1"># 2*i+1 &gt; len(A)-1 : 왼쪽 자식만 있거나 </span>
-        <span class="c1"># A[2*i] &gt;= A[2*i+1] : 왼쪽 자식이 오른쪽 자식보다 크거나 같은 경우</span>
-        <span class="k">if</span> <span class="n">right</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">A</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">A</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="n">left</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="n">right</span>
-
-        <span class="c1"># 부모(i)보다 자식(k)이 더 작으면 swap</span>
-        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
-            <span class="k">return</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">max_heapify</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-
-<span class="c1"># index 1 아래의 subtree들은 이미 heap이라고 가정하고 진행한 것</span>
-<span class="n">max_heapify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># recursive</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">max_heapify</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">left</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span>
+</span></span><span class="line"><span class="cl">    <span class="n">right</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 자식이 없는 경우</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">right</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># i의 자식 중에 큰 값 찾기</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 2*i+1 &gt; len(A)-1 : 왼쪽 자식만 있거나 </span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># A[2*i] &gt;= A[2*i+1] : 왼쪽 자식이 오른쪽 자식보다 크거나 같은 경우</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">right</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">A</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">A</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">k</span> <span class="o">=</span> <span class="n">left</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">k</span> <span class="o">=</span> <span class="n">right</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 부모(i)보다 자식(k)이 더 작으면 swap</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">max_heapify</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># index 1 아래의 subtree들은 이미 heap이라고 가정하고 진행한 것</span>
+</span></span><span class="line"><span class="cl"><span class="n">max_heapify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="정렬할-배열을-힙으로-만들기">정렬할 배열을 힙으로 만들기</h2>
 <p>배열을 사용하는데 이를 complete binary tree의 형태로 이해하자. heap정렬을 하기위해서는 먼저 tree를 heap으로 만들어야한다.</p>
@@ -272,14 +272,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># pseudo code</span>
-<span class="n">HEAPSORT</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-  <span class="n">BUILD</span><span class="o">-</span><span class="n">MAX</span><span class="o">-</span><span class="n">HEAP</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>               <span class="p">:</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">heap_size</span> <span class="n">downto</span> <span class="mi">2</span> <span class="n">do</span>  <span class="p">:</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="n">times</span>
-    <span class="n">exchange</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;-&gt;</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>        <span class="p">:</span> <span class="n">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">heap_size</span> <span class="o">&lt;-</span> <span class="n">heap_size</span> <span class="o">-</span> <span class="mi">1</span>    <span class="p">:</span> <span class="n">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">MAX</span><span class="o">-</span><span class="n">HEAPIFY</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>              <span class="p">:</span> <span class="n">O</span><span class="p">(</span><span class="n">log</span> <span class="n">n</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># pseudo code</span>
+</span></span><span class="line"><span class="cl"><span class="n">HEAPSORT</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">BUILD</span><span class="o">-</span><span class="n">MAX</span><span class="o">-</span><span class="n">HEAP</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>               <span class="p">:</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="n">i</span> <span class="o">&lt;-</span> <span class="n">heap_size</span> <span class="n">downto</span> <span class="mi">2</span> <span class="n">do</span>  <span class="p">:</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="n">times</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exchange</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;-&gt;</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>        <span class="p">:</span> <span class="n">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">heap_size</span> <span class="o">&lt;-</span> <span class="n">heap_size</span> <span class="o">-</span> <span class="mi">1</span>    <span class="p">:</span> <span class="n">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MAX</span><span class="o">-</span><span class="n">HEAPIFY</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>              <span class="p">:</span> <span class="n">O</span><span class="p">(</span><span class="n">log</span> <span class="n">n</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -320,42 +320,42 @@
 </span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># max-heap sort</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;no use&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">max_heapify</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
-    <span class="n">left</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span>
-    <span class="n">right</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">right</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">return</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">right</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">A</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">A</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="n">left</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="n">right</span>
-        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
-            <span class="k">return</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">max_heapify</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">heap_sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="c1"># max heap 생성</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">max_heapify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-    
-    <span class="c1"># sort</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="c1"># heap에서 root가 max이므로</span>
-        <span class="c1"># 맨뒤로 보낸다</span>
-        <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="c1"># heap size(n)을 하나씩 줄인다</span>
-        <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">max_heapify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-
-<span class="n">heap_sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># max-heap sort</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;no use&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">max_heapify</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">left</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span>
+</span></span><span class="line"><span class="cl">    <span class="n">right</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">right</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">right</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">A</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">A</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">k</span> <span class="o">=</span> <span class="n">left</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">k</span> <span class="o">=</span> <span class="n">right</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">max_heapify</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">heap_sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># max heap 생성</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">max_heapify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># sort</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># heap에서 root가 max이므로</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 맨뒤로 보낸다</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># heap size(n)을 하나씩 줄인다</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">max_heapify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">heap_sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>시간복잡도
@@ -401,7 +401,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

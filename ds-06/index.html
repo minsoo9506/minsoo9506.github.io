@@ -174,35 +174,35 @@
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 인접리스트</span>
-<span class="n">graph</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="mi">1</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
-    <span class="mi">2</span> <span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
-    <span class="mi">3</span> <span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
-    <span class="mi">4</span> <span class="p">:</span> <span class="p">[],</span>
-    <span class="mi">5</span> <span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span>
-    <span class="mi">6</span> <span class="p">:</span> <span class="p">[],</span>
-    <span class="mi">7</span> <span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span>
-<span class="p">}</span>
-<span class="c1"># DFS (재귀)</span>
-<span class="k">def</span> <span class="nf">recursive_dfs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">discovered</span><span class="o">=</span><span class="p">[]):</span>
-    <span class="n">discovered</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">discovered</span><span class="p">:</span>
-            <span class="n">discovered</span> <span class="o">=</span> <span class="n">recursive_dfs</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">discovered</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">discovered</span>
-<span class="c1"># BFS</span>
-<span class="k">def</span> <span class="nf">iterative_bfs</span><span class="p">(</span><span class="n">start_v</span><span class="p">):</span>
-    <span class="n">discovered</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_v</span><span class="p">]</span>
-    <span class="n">queue</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_v</span><span class="p">]</span>
-    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">discovered</span><span class="p">:</span>
-                <span class="n">discovered</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-                <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">discovered</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 인접리스트</span>
+</span></span><span class="line"><span class="cl"><span class="n">graph</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">1</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">2</span> <span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">3</span> <span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">4</span> <span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">5</span> <span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">6</span> <span class="p">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">7</span> <span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># DFS (재귀)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">recursive_dfs</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">discovered</span><span class="o">=</span><span class="p">[]):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">discovered</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">discovered</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">discovered</span> <span class="o">=</span> <span class="n">recursive_dfs</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">discovered</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">discovered</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># BFS</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">iterative_bfs</span><span class="p">(</span><span class="n">start_v</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">discovered</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_v</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">queue</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_v</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">v</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">w</span> <span class="ow">is</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">discovered</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">discovered</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">discovered</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="python-예시">Python 예시</h2>
 <ul>
@@ -277,7 +277,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

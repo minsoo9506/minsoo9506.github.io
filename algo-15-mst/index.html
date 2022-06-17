@@ -287,12 +287,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># parent는 list이고 해당 index 노드의 부모를 갖고 있다</span>
-<span class="k">def</span> <span class="nf">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-  <span class="k">if</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span><span class="p">:</span>
-    <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
-  <span class="k">return</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># parent는 list이고 해당 index 노드의 부모를 갖고 있다</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="weighted-union-with-path-compression-wupc">Weighted Union with Path Compression (WUPC)</h3>
 <ul>
@@ -350,44 +350,44 @@
 </span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Kruskal 알고리즘</span>
-
-<span class="k">def</span> <span class="nf">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span><span class="p">:</span>
-        <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">union_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-    <span class="c1"># 여기서는 Weighted Union을 사용하지는 않음</span>
-    <span class="c1"># 수가 작을수록 root로 만드는 기준만 사용</span>
-    <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
-        <span class="n">parent</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">parent</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span>
-
-<span class="n">v</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-<span class="n">parent</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 부모 테이블 초기화</span>
-<span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
-    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-    <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">cost</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
-
-<span class="c1"># edge값에 따라 정렬</span>
-<span class="n">edges</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-
-<span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
-    <span class="n">cost</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">edge</span>
-    <span class="k">if</span> <span class="n">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">!=</span> <span class="n">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-        <span class="n">union_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">+=</span> <span class="n">cost</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Kruskal 알고리즘</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">union_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">=</span> <span class="n">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="n">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 여기서는 Weighted Union을 사용하지는 않음</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 수가 작을수록 root로 만드는 기준만 사용</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parent</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parent</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">v</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">parent</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 부모 테이블 초기화</span>
+</span></span><span class="line"><span class="cl"><span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">cost</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">cost</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># edge값에 따라 정렬</span>
+</span></span><span class="line"><span class="cl"><span class="n">edges</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cost</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">edge</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">!=</span> <span class="n">find_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">union_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">+=</span> <span class="n">cost</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="prim의-알고리즘">Prim의 알고리즘</h2>
 <ul>
@@ -482,39 +482,39 @@
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">mygraph</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;a&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">},</span>
-    <span class="s1">&#39;b&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,},</span>
-    <span class="s1">&#39;c&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">},</span>
-    <span class="s1">&#39;d&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kn">from</span> <span class="nn">heapdict</span> <span class="kn">import</span> <span class="n">heapdict</span> 
-
-<span class="k">def</span> <span class="nf">prim</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
-    <span class="n">mst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
-    <span class="c1"># keys, pi, result 초기화</span>
-    <span class="n">keys</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">heapdict</span><span class="p">(),</span> <span class="nb">dict</span><span class="p">(),</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="n">keys</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
-        <span class="n">pi</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">keys</span><span class="p">[</span><span class="n">start</span><span class="p">],</span> <span class="n">pi</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">start</span>
-
-    <span class="k">while</span> <span class="n">keys</span><span class="p">:</span>
-        <span class="c1"># extract-min 연산</span>
-        <span class="c1"># 우선순위 큐를 통해서 쉽게 진행</span>
-        <span class="n">current_node</span><span class="p">,</span> <span class="n">current_key</span> <span class="o">=</span> <span class="n">keys</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>
-        <span class="n">result</span> <span class="o">+=</span> <span class="n">current_key</span>
-        <span class="c1"># mst를 구해야하는 경우</span>
-        <span class="n">mst</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">pi</span><span class="p">[</span><span class="n">current_node</span><span class="p">],</span> <span class="n">current_node</span><span class="p">,</span> <span class="n">current_key</span><span class="p">])</span>
-        <span class="c1"># decrease-key 연산</span>
-        <span class="k">for</span> <span class="n">adjacent</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">current_node</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">adjacent</span> <span class="ow">in</span> <span class="n">keys</span> <span class="ow">and</span> <span class="n">weight</span> <span class="o">&lt;</span> <span class="n">keys</span><span class="p">[</span><span class="n">adjacent</span><span class="p">]:</span>
-                <span class="n">keys</span><span class="p">[</span><span class="n">adjacent</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span>
-                <span class="n">pi</span><span class="p">[</span><span class="n">adjacent</span><span class="p">]</span> <span class="o">=</span>  <span class="n">current_node</span>
-    
-    <span class="k">return</span> <span class="n">result</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">mygraph</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;a&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;b&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">,},</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;c&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">8</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;d&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">9</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">heapdict</span> <span class="kn">import</span> <span class="n">heapdict</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">prim</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># keys, pi, result 초기화</span>
+</span></span><span class="line"><span class="cl">    <span class="n">keys</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">heapdict</span><span class="p">(),</span> <span class="nb">dict</span><span class="p">(),</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="n">keys</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pi</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="n">keys</span><span class="p">[</span><span class="n">start</span><span class="p">],</span> <span class="n">pi</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">start</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">keys</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># extract-min 연산</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 우선순위 큐를 통해서 쉽게 진행</span>
+</span></span><span class="line"><span class="cl">        <span class="n">current_node</span><span class="p">,</span> <span class="n">current_key</span> <span class="o">=</span> <span class="n">keys</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">+=</span> <span class="n">current_key</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># mst를 구해야하는 경우</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mst</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">pi</span><span class="p">[</span><span class="n">current_node</span><span class="p">],</span> <span class="n">current_node</span><span class="p">,</span> <span class="n">current_key</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># decrease-key 연산</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">adjacent</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">current_node</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">adjacent</span> <span class="ow">in</span> <span class="n">keys</span> <span class="ow">and</span> <span class="n">weight</span> <span class="o">&lt;</span> <span class="n">keys</span><span class="p">[</span><span class="n">adjacent</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">keys</span><span class="p">[</span><span class="n">adjacent</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span>
+</span></span><span class="line"><span class="cl">                <span class="n">pi</span><span class="p">[</span><span class="n">adjacent</span><span class="p">]</span> <span class="o">=</span>  <span class="n">current_node</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -553,7 +553,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

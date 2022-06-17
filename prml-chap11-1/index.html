@@ -410,12 +410,12 @@
 <ul>
 <li>Metropolis-Hastings은 detailed balance condition을 만족한다.</li>
 </ul>
-<p>$$p(\textbf{z}) T_{\textbf{z},\textbf{z}'} $$
-$$= p(\textbf{z})q(\textbf{z}'|\textbf{z})A(\textbf{z}' , \textbf{z}) $$
-$$ = \min {p(\textbf{z})q(\textbf{z}'|\textbf{z}), p(\textbf{z}')q(\textbf{z}|\textbf{z}') }$$
-$$= \min { p(\textbf{z}')q(\textbf{z}|\textbf{z}'),p(\textbf{z})q(\textbf{z}'|\textbf{z}) }$$
-$$= p(\textbf{z}')q(\textbf{z}|\textbf{z}')A(\textbf{z} , \textbf{z}') $$
-$$= p(\textbf{z}') T_{\textbf{z}',\textbf{z}} $$</p>
+<p>$$p(\textbf{z}) T_{\textbf{z},\textbf{z}&rsquo;} $$
+$$= p(\textbf{z})q(\textbf{z}&rsquo;|\textbf{z})A(\textbf{z}&rsquo; , \textbf{z}) $$
+$$ = \min {p(\textbf{z})q(\textbf{z}&rsquo;|\textbf{z}), p(\textbf{z}&rsquo;)q(\textbf{z}|\textbf{z}&rsquo;) }$$
+$$= \min { p(\textbf{z}&rsquo;)q(\textbf{z}|\textbf{z}&rsquo;),p(\textbf{z})q(\textbf{z}&rsquo;|\textbf{z}) }$$
+$$= p(\textbf{z}&rsquo;)q(\textbf{z}|\textbf{z}&rsquo;)A(\textbf{z} , \textbf{z}&rsquo;) $$
+$$= p(\textbf{z}&rsquo;) T_{\textbf{z}&rsquo;,\textbf{z}} $$</p>
 <p>detailed balance condition을 만족하기에 우리가 sampling하여 만들어지는 MC가 stationary distribution을 갖게 된다. 따라서 stationary distribution으로 수렴하기전의 sampling 초반의 sample들은 버리고 (해당 구간을 burn-in period 라고 한다) 뒷부분의 sample들을 이용한다. 해당 sample list는 stationary distribution의 형태를 갖고 있을 것이다. 결국 우리가 구하고자하는 (unormalized) density를 구할 수 있는 것이다. 주로 posterior distribution을 구하는 것이 목적인 경우가 많다.</p>
 <h2 id="113-gibbs-sampling">11.3 Gibbs sampling</h2>
 <p>Metropolis-Hastings algorithm의 특별한 케이스이다. 우리가 sample을 뽑고 싶어하는 $p(\textbf{z}) = p(z_1,z_1,&hellip;,z_M)$ distribution이 있다. 이전에 우리는 proposal distribution을 따로 정해서 사용하였지만 Gibbs sampling에서는 그렇지 않다. 먼저 1부터 순서대로 $z_i$를 distribution $p(z_i|\textbf{z}_{-i})$에서 뽑는다. 이를 M까지 반복한다.</p>
@@ -432,12 +432,12 @@ $$= p(\textbf{z}') T_{\textbf{z}',\textbf{z}} $$</p>
 </ul>
 <p>즉, Gibbs sampling에서는 acceptance probability를 사용하지 않는다. 모든 sample을 그대로 사용한다. 그렇게 해도 detailed balance condition을 만족하는지 살펴보자. 즉, 특정한 distribution으로 수렴하는지 확인.</p>
 <ul>
-<li>Gibbs sampling에서 $q(\textbf{z}|\textbf{z}') = p(z_i | \textbf{z}_{-i}')$ 이고</li>
-<li>$p(\textbf{z}')q(\textbf{z} | \textbf{z}') = p(\textbf{z})q(\textbf{z}' | \textbf{z})$ 임을 확인해보자.</li>
+<li>Gibbs sampling에서 $q(\textbf{z}|\textbf{z}&rsquo;) = p(z_i | \textbf{z}_{-i}&rsquo;)$ 이고</li>
+<li>$p(\textbf{z}&rsquo;)q(\textbf{z} | \textbf{z}&rsquo;) = p(\textbf{z})q(\textbf{z}&rsquo; | \textbf{z})$ 임을 확인해보자.</li>
 </ul>
-<p>$$p(\textbf{z}')q(\textbf{z} | \textbf{z}') = p(z_i', \textbf{z} _ {-i}')p(z_i| \textbf{z} _ {-i}')$$
-$$=p(z_i'|\textbf{z} _ {-i}')p(\textbf{z} _ {-i}')p(z_i| \textbf{z} _ {-i}') $$
-$$= p(z_i'|\textbf{z} _ {-i}') p(z_i , \textbf{z} _ {-i}') = q(\textbf{z}'| \textbf{z})p(\textbf{z})$$</p>
+<p>$$p(\textbf{z}&rsquo;)q(\textbf{z} | \textbf{z}&rsquo;) = p(z_i&rsquo;, \textbf{z} _ {-i}&rsquo;)p(z_i| \textbf{z} _ {-i}&rsquo;)$$
+$$=p(z_i&rsquo;|\textbf{z} _ {-i}&rsquo;)p(\textbf{z} _ {-i}&rsquo;)p(z_i| \textbf{z} _ {-i}&rsquo;) $$
+$$= p(z_i&rsquo;|\textbf{z} _ {-i}&rsquo;) p(z_i , \textbf{z} _ {-i}&rsquo;) = q(\textbf{z}&rsquo;| \textbf{z})p(\textbf{z})$$</p>
 <p>항상 detailed balance condition이 성립한다.</p>
 <p>더 advanced한 MCMC 알고리즘으로는 Hamilton이 있는 것 같다. MCMC가 주 관심분야는 아니기 때문에 여기까지만 정리하기로 한다.</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -469,7 +469,7 @@ $$= p(z_i'|\textbf{z} _ {-i}') p(z_i , \textbf{z} _ {-i}') = q(\textbf{z}'| \tex
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

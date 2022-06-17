@@ -139,7 +139,7 @@
 <li>Determining $p(x,t)$ from a training data set : <strong>inference</strong></li>
 <li>이를 통하여 새로운 데이터에 대해 결정(분류,회귀) : <strong>decision</strong></li>
 </ul>
-<p>Decision Theory의 목표는 적절한 Probability들을 이용하여 optimal한 decision을 내리는 것이다. 2-class classification의 상황을 예시로 뒤의 내용을 진행한다. 우리는 input data를 통해 해당 data의 class를 구분하고 싶기에 $p(C_k / \textbf{x})$를 구해야 한다. Bayes' theorem을 생각해보면 posterior를 구해야 하는 것이다.</p>
+<p>Decision Theory의 목표는 적절한 Probability들을 이용하여 optimal한 decision을 내리는 것이다. 2-class classification의 상황을 예시로 뒤의 내용을 진행한다. 우리는 input data를 통해 해당 data의 class를 구분하고 싶기에 $p(C_k / \textbf{x})$를 구해야 한다. Bayes&rsquo; theorem을 생각해보면 posterior를 구해야 하는 것이다.</p>
 <p>$$p(C_k | \textbf{x}) = \frac{p(\textbf{x} | C_k)p(C_k)}{p(\textbf{x})}$$</p>
 <p>우리는 misclassfication을 최소화하기 위해서 둘 중 더 큰 posterior probability갖는 class에 input data를 분류한다.</p>
 <h3 id="151-minimizing-the-misclassfication-rate">1.5.1 Minimizing the misclassfication rate</h3>
@@ -254,15 +254,15 @@
 <p>$$E[L(Y, \hat{Y})] = E[L(Y, f(X))] = \sum_{x,y}L(y, f(x))P(x,y)$$</p>
 <p>$$ = \sum_{x}{\sum_y L(y, f(x))P(y  | x)}P(x) = \sum_{x}g(x,f(x))p(x) = E_x[g(x,f(x))]$$</p>
 <ul>
-<li>suppose for some $x', t$
+<li>suppose for some $x&rsquo;, t$
 <ul>
-<li>$g(x', f(x')) \ge g(x', t)$</li>
+<li>$g(x&rsquo;, f(x&rsquo;)) \ge g(x&rsquo;, t)$</li>
 </ul>
 </li>
 <li>$f_0(x) =$
 <ul>
-<li>if $x \neq x', f(x)$</li>
-<li>if $x = x', t$</li>
+<li>if $x \neq x&rsquo;, f(x)$</li>
+<li>if $x = x&rsquo;, t$</li>
 </ul>
 </li>
 <li>모든 $x,; g(x,f(x)) \ge g(x, f_0(x))$</li>
@@ -345,7 +345,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

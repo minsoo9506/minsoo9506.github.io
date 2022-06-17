@@ -139,23 +139,23 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch <span class="p">|</span> sudo apt-key add -
-
-<span class="c1"># 그리고 비밀번호 친다</span>
-
-<span class="nb">echo</span> <span class="s2">&#34;deb https://artifacts.elastic.co/packages/7.x/apt stable main&#34;</span> <span class="p">|</span> sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
-
-sudo apt update <span class="o">&amp;&amp;</span> sudo apt install elasticsearch
-
-<span class="c1"># 설치</span>
-pip install <span class="nv">elasticsearch</span><span class="o">==</span>7.10.1
-
-<span class="c1"># 시작</span>
-sudo systemctl start elasticsearch
-
-<span class="c1"># 잘 되는지 확인</span>
-curl -X GET <span class="s1">&#39;http://localhost:9200&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch <span class="p">|</span> sudo apt-key add -
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 그리고 비밀번호 친다</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;deb https://artifacts.elastic.co/packages/7.x/apt stable main&#34;</span> <span class="p">|</span> sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo apt update <span class="o">&amp;&amp;</span> sudo apt install elasticsearch
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 설치</span>
+</span></span><span class="line"><span class="cl">pip install <span class="nv">elasticsearch</span><span class="o">==</span>7.10.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 시작</span>
+</span></span><span class="line"><span class="cl">sudo systemctl start elasticsearch
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 잘 되는지 확인</span>
+</span></span><span class="line"><span class="cl">curl -X GET <span class="s1">&#39;http://localhost:9200&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="plugin">Plugin</h2>
 <ul>
@@ -212,45 +212,45 @@ curl -X GET <span class="s1">&#39;http://localhost:9200&#39;</span>
 </span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow.hooks.base</span> <span class="kn">import</span> <span class="n">BaseHook</span>
-<span class="kn">from</span> <span class="nn">elasticsearch</span> <span class="kn">import</span> <span class="n">Elasticsearch</span>
-
-<span class="k">class</span> <span class="nc">ElasticHook</span><span class="p">(</span><span class="n">BaseHook</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">conn_id</span><span class="o">=</span><span class="s1">&#39;elasticsearch_default&#39;</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span>
-        <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        
-        <span class="c1"># BaseHook에 있는 함수</span>
-        <span class="n">conn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conntetion</span><span class="p">(</span><span class="n">conn_id</span><span class="p">)</span>
-
-        <span class="n">conn_config</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">hosts</span> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">host</span><span class="p">:</span>
-            <span class="n">hosts</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">port</span><span class="p">:</span>
-            <span class="n">conn_config</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">login</span><span class="p">:</span>
-            <span class="n">conn_config</span><span class="p">[</span><span class="s1">&#39;http_auth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">login</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">es</span> <span class="o">=</span> <span class="n">Elasticsearch</span><span class="p">(</span><span class="n">hosts</span><span class="p">,</span> <span class="o">**</span><span class="n">conn_config</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">schema</span>
-
-    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">es</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">set_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
-
-    <span class="k">def</span> <span class="nf">add_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">doc_type</span><span class="p">,</span> <span class="n">doc</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
-        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">es</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">doc_type</span><span class="o">=</span><span class="n">doc_type</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">doc</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">res</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.hooks.base</span> <span class="kn">import</span> <span class="n">BaseHook</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">elasticsearch</span> <span class="kn">import</span> <span class="n">Elasticsearch</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ElasticHook</span><span class="p">(</span><span class="n">BaseHook</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">conn_id</span><span class="o">=</span><span class="s1">&#39;elasticsearch_default&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="o">**</span><span class="n">kwargs</span>
+</span></span><span class="line"><span class="cl">        <span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># BaseHook에 있는 함수</span>
+</span></span><span class="line"><span class="cl">        <span class="n">conn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_conntetion</span><span class="p">(</span><span class="n">conn_id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">conn_config</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">hosts</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">host</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">hosts</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">port</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">conn_config</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">login</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">conn_config</span><span class="p">[</span><span class="s1">&#39;http_auth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">login</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">password</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">es</span> <span class="o">=</span> <span class="n">Elasticsearch</span><span class="p">(</span><span class="n">hosts</span><span class="p">,</span> <span class="o">**</span><span class="n">conn_config</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">schema</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">es</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">set_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">add_doc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">doc_type</span><span class="p">,</span> <span class="n">doc</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">es</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">doc_type</span><span class="o">=</span><span class="n">doc_type</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">doc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">res</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -290,41 +290,41 @@ curl -X GET <span class="s1">&#39;http://localhost:9200&#39;</span>
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">BaseOperator</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.postgres.hooks.postgres</span> <span class="kn">import</span> <span class="n">PostgresHook</span>
-<span class="kn">from</span> <span class="nn">elasticsearch_plugin.hooks.elastic_hook</span> <span class="kn">import</span> <span class="n">ElasticHook</span>
-
-<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">closing</span>
-<span class="kn">import</span> <span class="nn">json</span>
-
-<span class="k">class</span> <span class="nc">PostgresToElasticOperator</span><span class="p">(</span><span class="n">BaseOperator</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">sql</span><span class="p">,</span>
-        <span class="n">index</span><span class="p">,</span>
-        <span class="n">postgres_conn_id</span><span class="o">=</span><span class="s1">&#39;postgres_default&#39;</span><span class="p">,</span>
-        <span class="n">elastic_conn_id</span><span class="o">=</span><span class="s1">&#39;elasticsearch_default&#39;</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span>
-        <span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">PostgresToElasticOperator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="n">sql</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">postgres_conn_id</span> <span class="o">=</span> <span class="n">postgres_conn_id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elastic_conn_id</span> <span class="o">=</span> <span class="n">elastic_conn_id</span>
-
-    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
-        <span class="n">es</span> <span class="o">=</span> <span class="n">ElasticHook</span><span class="p">(</span><span class="n">conn_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">elastic_conn_id</span><span class="p">)</span>
-        <span class="n">pg</span> <span class="o">=</span> <span class="n">PostgreHook</span><span class="p">(</span><span class="n">postgres_conn_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">postgres_conn_id</span><span class="p">)</span>
-        <span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="n">pg</span><span class="o">.</span><span class="n">get_conn</span><span class="p">())</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
-            <span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">())</span> <span class="k">as</span> <span class="n">cur</span><span class="p">:</span>
-                <span class="n">cur</span><span class="o">.</span><span class="n">itersize</span> <span class="o">=</span> <span class="mi">1000</span>
-                <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">:</span>
-                    <span class="n">doc</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-                    <span class="n">es</span><span class="o">.</span><span class="n">add_doc</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">doc_type</span><span class="o">=</span><span class="s1">&#39;external&#39;</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="n">doc</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">BaseOperator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.postgres.hooks.postgres</span> <span class="kn">import</span> <span class="n">PostgresHook</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">elasticsearch_plugin.hooks.elastic_hook</span> <span class="kn">import</span> <span class="n">ElasticHook</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">closing</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">PostgresToElasticOperator</span><span class="p">(</span><span class="n">BaseOperator</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sql</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">index</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">postgres_conn_id</span><span class="o">=</span><span class="s1">&#39;postgres_default&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">elastic_conn_id</span><span class="o">=</span><span class="s1">&#39;elasticsearch_default&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="o">**</span><span class="n">kwargs</span>
+</span></span><span class="line"><span class="cl">        <span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">PostgresToElasticOperator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="n">sql</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">postgres_conn_id</span> <span class="o">=</span> <span class="n">postgres_conn_id</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">elastic_conn_id</span> <span class="o">=</span> <span class="n">elastic_conn_id</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">es</span> <span class="o">=</span> <span class="n">ElasticHook</span><span class="p">(</span><span class="n">conn_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">elastic_conn_id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pg</span> <span class="o">=</span> <span class="n">PostgreHook</span><span class="p">(</span><span class="n">postgres_conn_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">postgres_conn_id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="n">pg</span><span class="o">.</span><span class="n">get_conn</span><span class="p">())</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">())</span> <span class="k">as</span> <span class="n">cur</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cur</span><span class="o">.</span><span class="n">itersize</span> <span class="o">=</span> <span class="mi">1000</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">doc</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">es</span><span class="o">.</span><span class="n">add_doc</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">doc_type</span><span class="o">=</span><span class="s1">&#39;external&#39;</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="n">doc</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>그리고 dag을 만들어준다.</p>
 <div class="highlight"><div class="chroma">
@@ -364,40 +364,40 @@ curl -X GET <span class="s1">&#39;http://localhost:9200&#39;</span>
 </span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
-<span class="kn">from</span> <span class="nn">elasticsearch_plugin.hooks.elastic_hook</span> <span class="kn">import</span> <span class="n">ElasticHook</span>
-<span class="kn">from</span> <span class="nn">elasticsearch_plugin.operators.postgres_to_elastic</span> <span class="kn">import</span> <span class="n">PostgresToElasticOperator</span>
-<span class="kn">from</span> <span class="nn">airflow.operators.python</span> <span class="kn">import</span> <span class="n">PythonOperator</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-
-<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="k">def</span> <span class="nf">_print_es_info</span><span class="p">():</span>
-    <span class="n">hook</span> <span class="o">=</span> <span class="n">ElasticHook</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-
-<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
-    <span class="s1">&#39;elastcisearch_dag&#39;</span><span class="p">,</span>
-    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
-    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
-    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
-
-    <span class="n">print_es_info</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=-</span><span class="s1">&#39;print_es_info&#39;</span><span class="p">,</span>
-        <span class="n">python_callable</span><span class="o">=</span><span class="n">_print_es_info</span>
-    <span class="p">)</span>
-
-    <span class="n">connections_to_es</span> <span class="o">=</span> <span class="n">PostgresToElasticOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;connections_to_es&#39;</span><span class="p">,</span>
-        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;SELECT * FROM connection&#39;</span><span class="p">,</span>
-        <span class="n">index</span><span class="o">=</span><span class="s1">&#39;connections&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">print_es_info</span> <span class="o">&gt;&gt;</span> <span class="n">connections_to_es</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">elasticsearch_plugin.hooks.elastic_hook</span> <span class="kn">import</span> <span class="n">ElasticHook</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">elasticsearch_plugin.operators.postgres_to_elastic</span> <span class="kn">import</span> <span class="n">PostgresToElasticOperator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.operators.python</span> <span class="kn">import</span> <span class="n">PythonOperator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_print_es_info</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hook</span> <span class="o">=</span> <span class="n">ElasticHook</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">hook</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;elastcisearch_dag&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">print_es_info</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=-</span><span class="s1">&#39;print_es_info&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">python_callable</span><span class="o">=</span><span class="n">_print_es_info</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">connections_to_es</span> <span class="o">=</span> <span class="n">PostgresToElasticOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;connections_to_es&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;SELECT * FROM connection&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">index</span><span class="o">=</span><span class="s1">&#39;connections&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">print_es_info</span> <span class="o">&gt;&gt;</span> <span class="n">connections_to_es</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>web에서 connection을 추가해준다.</p>
 <center>
@@ -410,9 +410,9 @@ curl -X GET <span class="s1">&#39;http://localhost:9200&#39;</span>
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo -u postgres psql
-ALTER USER postgres PASSWORD <span class="s1">&#39;postgres&#39;</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo -u postgres psql
+</span></span><span class="line"><span class="cl">ALTER USER postgres PASSWORD <span class="s1">&#39;postgres&#39;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>이제 dag을 실행시키고 아래 명령어를 통해 postgreSQL에서 Elasticsearch로 데이터를 보낸 것을 확인할 수 있다.</p>
 <div class="highlight"><div class="chroma">
@@ -420,8 +420,8 @@ ALTER USER postgres PASSWORD <span class="s1">&#39;postgres&#39;</span><span cla
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">curl -X GET <span class="s2">&#34;http://localhost:9200/connections/_search&#34;</span> -H <span class="s2">&#34;Content -type: application/json&#34;</span> -d <span class="s1">&#39;{&#34;query&#34;:{&#34;match_all&#34;:{}}}&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -X GET <span class="s2">&#34;http://localhost:9200/connections/_search&#34;</span> -H <span class="s2">&#34;Content -type: application/json&#34;</span> -d <span class="s1">&#39;{&#34;query&#34;:{&#34;match_all&#34;:{}}}&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -456,7 +456,7 @@ ALTER USER postgres PASSWORD <span class="s1">&#39;postgres&#39;</span><span cla
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

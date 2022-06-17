@@ -174,42 +174,42 @@
 </span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
-
-<span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-<span class="n">maze</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">maze</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">())))</span>
-
-<span class="k">def</span> <span class="nf">findMaze</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="n">on_path</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># visited이며 아직 출구로 가는 경로가 될 가능성 존재</span>
-    <span class="n">wall</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">blocked</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># visited이며 출구로 가는 경로가 안됨</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="mi">3</span>    <span class="c1"># 출구로 가는 경로</span>
-
-    <span class="c1"># maze의 크기를 벗어나는 경우</span>
-    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">&gt;=</span><span class="n">n</span> <span class="ow">or</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">m</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span>
-    <span class="c1"># 출구로 가는 경로가 될 가능성이 없는 경우 제외</span>
-    <span class="k">elif</span> <span class="n">maze</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">!=</span> <span class="n">on_path</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span>
-    <span class="c1"># 길을 찾은 경우</span>
-    <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="n">y</span> <span class="o">==</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">maze</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span>
-        <span class="k">return</span> <span class="kc">True</span>
-    <span class="c1"># recursion</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">maze</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span>
-        <span class="k">if</span> <span class="n">findMaze</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">or</span> <span class="n">findMaze</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span>\
-            <span class="n">findMaze</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">or</span> <span class="n">findMaze</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="n">maze</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">blocked</span> <span class="c1"># 위에서 True가 아니면 경로에 포함이 안되니까</span>
-        <span class="k">return</span> <span class="kc">False</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">maze</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">findMaze</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">maze</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">maze</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">maze</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">())))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">findMaze</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">on_path</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># visited이며 아직 출구로 가는 경로가 될 가능성 존재</span>
+</span></span><span class="line"><span class="cl">    <span class="n">wall</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">blocked</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># visited이며 출구로 가는 경로가 안됨</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="mi">3</span>    <span class="c1"># 출구로 가는 경로</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># maze의 크기를 벗어나는 경우</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">&gt;=</span><span class="n">n</span> <span class="ow">or</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">m</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 출구로 가는 경로가 될 가능성이 없는 경우 제외</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">maze</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">!=</span> <span class="n">on_path</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 길을 찾은 경우</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="n">y</span> <span class="o">==</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">maze</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># recursion</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">maze</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">findMaze</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">or</span> <span class="n">findMaze</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span>\
+</span></span><span class="line"><span class="cl">            <span class="n">findMaze</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">or</span> <span class="n">findMaze</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">        <span class="n">maze</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">blocked</span> <span class="c1"># 위에서 True가 아니면 경로에 포함이 안되니까</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">maze</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">findMaze</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">maze</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="counting-cells-in-a-blob">Counting Cells in a Blob</h2>
 <ul>
@@ -245,31 +245,31 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-<span class="n">image</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">image</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">())))</span>
-
-<span class="k">def</span> <span class="nf">count_cell</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="n">background_color</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">image_color</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">counted_color</span> <span class="o">=</span> <span class="mi">2</span>
-
-    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">n</span> <span class="ow">or</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">m</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">elif</span> <span class="n">image</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">!=</span> <span class="n">image_color</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">image</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">counted_color</span>
-        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span>\
-            <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span>\
-                <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span>\
-                    <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">count_cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">image</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">())))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">count_cell</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">background_color</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">image_color</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">counted_color</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">n</span> <span class="ow">or</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">m</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">image</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">!=</span> <span class="n">image_color</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">image</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">counted_color</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span>\
+</span></span><span class="line"><span class="cl">            <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span>\
+</span></span><span class="line"><span class="cl">                <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span>\
+</span></span><span class="line"><span class="cl">                    <span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">count_cell</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">count_cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="n-queens-problem">n queens problem</h2>
 <ul>
@@ -341,51 +341,51 @@
 </span><span class="lnt">44
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 매개변수 level은 현재 노드의 위치(깊이)</span>
-
-<span class="c1"># 전역변수 배열 cols를 이용하여</span>
-<span class="c1"># cols[i] = j </span>
-<span class="c1"># 으로 여왕이  (i행, j열) 에 있음을 표시한다.</span>
-
-<span class="c1"># level == N 이면 모든 말이 놓였다는 의미 -&gt; 성공!</span>
-
-<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
-
-<span class="k">class</span> <span class="nc">Queen</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="mi">0</span>
-
-    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="c1"># 현재 level이 n이라는 것은 </span>
-        <span class="c1"># 0~n-1 까지 다 여왕을 놓았다는 의미</span>
-        <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">[</span><span class="n">level</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_possible</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_is_possible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="c1"># 0~level-1 까지의 여왕들과 만나는지 확인해야한다.</span>
-        <span class="c1"># 행은 이미 다르므로</span>
-        <span class="c1"># 같은 열 or 대각선에 있는지 확인이 필요하다.</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
-            <span class="c1"># 같은 열에 있는지 확인</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">[</span><span class="n">level</span><span class="p">]:</span>
-                <span class="k">return</span> <span class="kc">False</span>
-            <span class="c1"># 대각선에 있는지 확인</span>
-            <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">level</span><span class="p">)</span> <span class="o">==</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">[</span><span class="n">level</span><span class="p">]):</span>
-                <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">return</span> <span class="kc">True</span>
-
-<span class="n">q</span> <span class="o">=</span> <span class="n">Queen</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 매개변수 level은 현재 노드의 위치(깊이)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 전역변수 배열 cols를 이용하여</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># cols[i] = j </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 으로 여왕이  (i행, j열) 에 있음을 표시한다.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># level == N 이면 모든 말이 놓였다는 의미 -&gt; 성공!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Queen</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 현재 level이 n이라는 것은 </span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 0~n-1 까지 다 여왕을 놓았다는 의미</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">counts</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">[</span><span class="n">level</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_possible</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                    <span class="bp">self</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_is_possible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 0~level-1 까지의 여왕들과 만나는지 확인해야한다.</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 행은 이미 다르므로</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 같은 열 or 대각선에 있는지 확인이 필요하다.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 같은 열에 있는지 확인</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">[</span><span class="n">level</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 대각선에 있는지 확인</span>
+</span></span><span class="line"><span class="cl">            <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">level</span><span class="p">)</span> <span class="o">==</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">[</span><span class="n">level</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">q</span> <span class="o">=</span> <span class="n">Queen</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -424,7 +424,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

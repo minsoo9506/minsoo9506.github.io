@@ -134,8 +134,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">airflow</span> <span class="n">config</span> <span class="n">get</span><span class="o">-</span><span class="n">value</span> <span class="n">core</span> <span class="n">sql_alchemy_conn</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">airflow</span> <span class="n">config</span> <span class="n">get</span><span class="o">-</span><span class="n">value</span> <span class="n">core</span> <span class="n">sql_alchemy_conn</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>위의 명령어를 치면 <code>sqlite:////home/airflow/airflow/airflow.db</code> 라고 나온다. 이는 현재 airflow에서 SQLite가 default db라고 이해할 수 있다.</p>
 <div class="highlight"><div class="chroma">
@@ -143,8 +143,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">airflow</span> <span class="n">config</span> <span class="n">get</span><span class="o">-</span><span class="n">value</span> <span class="n">core</span> <span class="n">executor</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">airflow</span> <span class="n">config</span> <span class="n">get</span><span class="o">-</span><span class="n">value</span> <span class="n">core</span> <span class="n">executor</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>위의 명령어를 치면 <code>SequentialExecutor</code> 라고 나온다.</p>
 <p>이러한 default의 상황에서 아래 예시는 sequential하게 task1을 하고 task2, 3를 하고 task4를 하는 과정이다. task2, 3 중에서 누가 먼저 진행될지는 알 수 없다. 순차적으로 진행된다.</p>
@@ -189,44 +189,44 @@
 </span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
-<span class="kn">from</span> <span class="nn">airflow.operators.bash</span> <span class="kn">import</span> <span class="n">BashOperator</span>
-
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-
-<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
-    <span class="s1">&#39;parallel_dag&#39;</span><span class="p">,</span>
-    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
-    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
-    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
-
-    <span class="n">task_1</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_1&#39;</span><span class="p">,</span>
-        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">task_2</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_2&#39;</span><span class="p">,</span>
-        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">task_3</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_3&#39;</span><span class="p">,</span>
-        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">task_4</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_4&#39;</span><span class="p">,</span>
-        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">task_1</span> <span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">task_2</span><span class="p">,</span> <span class="n">task_3</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">task_4</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">DAG</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.operators.bash</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;parallel_dag&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">task_1</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_1&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">task_2</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_2&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">task_3</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_3&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">task_4</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;task_4&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;sleep 3&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">task_1</span> <span class="o">&gt;&gt;</span> <span class="p">[</span><span class="n">task_2</span><span class="p">,</span> <span class="n">task_3</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">task_4</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>위의 내용들이 현재 airflow의 default configuration이라고 할 수 있다. 이제 목적에 맞게 이를 조금씩 수정하는 과정을 알아보자.</p>
 <h3 id="scaling-with-the-local-executor">Scaling with the Local Executor</h3>
@@ -250,15 +250,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt update
-<span class="c1"># 설치</span>
-sudo apt install postgresql
-<span class="c1"># 비밀번호 지정</span>
-sudo -u postgres psql
-ALTER USER postgres PASSWORD <span class="s1">&#39;postgres&#39;</span><span class="p">;</span>
-<span class="c1"># 추가 패키지 설치</span>
-pip install <span class="s1">&#39;apache-airflow[postgres]&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt update
+</span></span><span class="line"><span class="cl"><span class="c1"># 설치</span>
+</span></span><span class="line"><span class="cl">sudo apt install postgresql
+</span></span><span class="line"><span class="cl"><span class="c1"># 비밀번호 지정</span>
+</span></span><span class="line"><span class="cl">sudo -u postgres psql
+</span></span><span class="line"><span class="cl">ALTER USER postgres PASSWORD <span class="s1">&#39;postgres&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 추가 패키지 설치</span>
+</span></span><span class="line"><span class="cl">pip install <span class="s1">&#39;apache-airflow[postgres]&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>그리고 default configure를 바꾸기 위해 <code>airflow.cfg</code>에 들어가서 <code>sql_alchemy_conn</code>의 값을 바꿔준다.</p>
 <div class="highlight"><div class="chroma">
@@ -268,10 +268,10 @@ pip install <span class="s1">&#39;apache-airflow[postgres]&#39;</span>
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">sql_alchemy_conn = postgresql+psycopg2://postgres:postgres@localhost/postgres
-# 원래는 아래값이 default
-# sql_alchemy_conn = sqlite:////home/airflow/airflow/airflow.db
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sql_alchemy_conn = postgresql+psycopg2://postgres:postgres@localhost/postgres
+</span></span><span class="line"><span class="cl"># 원래는 아래값이 default
+</span></span><span class="line"><span class="cl"># sql_alchemy_conn = sqlite:////home/airflow/airflow/airflow.db
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>그리고 잘됐는지 확인하기 위해 <code>airflow db check</code>해서 확인해보자. 이제 metastore db가 postgres로 바뀌었다. 추가로 executor도 바꿔주고 websever, scheduler 모두 끄고 다시 db init 부터 시작한다.</p>
 <div class="highlight"><div class="chroma">
@@ -280,9 +280,9 @@ pip install <span class="s1">&#39;apache-airflow[postgres]&#39;</span>
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">executor = LocalExecutor
-# executor = SequentialExecutor
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">executor = LocalExecutor
+</span></span><span class="line"><span class="cl"># executor = SequentialExecutor
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -290,9 +290,9 @@ pip install <span class="s1">&#39;apache-airflow[postgres]&#39;</span>
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">airflow db init
-airflow users create -u admin -p admin -r Admin -f admin -l admin -e admin@airflow.com
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">airflow db init
+</span></span><span class="line"><span class="cl">airflow users create -u admin -p admin -r Admin -f admin -l admin -e admin@airflow.com
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>그리고 다시 webserver, scheduler를 키고 dag를 실행시키면 task2, 3가 정말 동시에 parallel하게 진행됨을 확인할 수 있다.</p>
 <h3 id="scale-to-the-infinity-with-the-celery-executor">Scale to the infinity with the Celery Executor</h3>
@@ -317,16 +317,16 @@ airflow users create -u admin -p admin -r Admin -f admin -l admin -e admin@airfl
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># celery 설치</span>
-pip install <span class="s1">&#39;apache-airflow[celery]&#39;</span>
-<span class="c1"># redis server 설치</span>
-sudo install redis-server
-<span class="c1"># 설정 바꾸기</span>
-sudo vi /etc/redis/redis.conf <span class="c1"># 여기서 supervised no 를 찾아서 no를 systemd로 바꾼다</span>
-<span class="c1"># redis restart하고 잘되는지 확인</span>
-sudo systemctl restart redis.service
-sudo systemctl status redis.service
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># celery 설치</span>
+</span></span><span class="line"><span class="cl">pip install <span class="s1">&#39;apache-airflow[celery]&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># redis server 설치</span>
+</span></span><span class="line"><span class="cl">sudo install redis-server
+</span></span><span class="line"><span class="cl"><span class="c1"># 설정 바꾸기</span>
+</span></span><span class="line"><span class="cl">sudo vi /etc/redis/redis.conf <span class="c1"># 여기서 supervised no 를 찾아서 no를 systemd로 바꾼다</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># redis restart하고 잘되는지 확인</span>
+</span></span><span class="line"><span class="cl">sudo systemctl restart redis.service
+</span></span><span class="line"><span class="cl">sudo systemctl status redis.service
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>redis가 잘 돌아가면 이제 airflow.cfg헤서 몇 가지 수정한다.</p>
 <ul>
@@ -377,7 +377,7 @@ sudo systemctl status redis.service
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

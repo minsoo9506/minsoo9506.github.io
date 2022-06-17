@@ -167,8 +167,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">creating_table &gt;&gt; is_api_available &gt;&gt; extracting_user &gt;&gt; processing_user &gt;&gt; storing_user
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">creating_table &gt;&gt; is_api_available &gt;&gt; extracting_user &gt;&gt; processing_user &gt;&gt; storing_user
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>먼저 webserver와 scheduler를 활성화한다.</p>
 <div class="highlight"><div class="chroma">
@@ -177,9 +177,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">airflow webserver
-airflow scheduler
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">airflow webserver
+</span></span><span class="line"><span class="cl">airflow scheduler
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="creating_table"><code>creating_table</code></h3>
 <p>airflow를 설치하면 최소한의 패키지만 설치되기 때문에 추가적으로 패키지가 필요하면 설치해야 한다. 지금 만드려고 하는 db의 경우 sqlite를 이용할 것이기 때문에 sqlite operator가 필요하다. <a href="https://airflow.apache.org/docs/" target="_blank" rel="noopener noreffer">링크</a>에 가면 third-party와의 연결을 위한 package들이 있다. <code>pip install apache-airflow-providers-sqlite</code>으로 설치를 해준다.</p>
@@ -220,38 +220,38 @@ airflow scheduler
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-
-<span class="c1"># default로 넣고 싶은 인자들</span>
-<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
-    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag id는 unique 해야한다: &#39;user_processing&#39;</span>
-    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span> <span class="c1"># start_date이후로 얼마나 자주 DAG가 run되야하는지</span>
-    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
-    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
-
-    <span class="c1"># define the task/operator</span>
-    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
-        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
-        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
-</span><span class="s1">            CREATE TABLE users (
-</span><span class="s1">                firstname TEXT NOT NULL,
-</span><span class="s1">                lastname TEXT NOT NULL,
-</span><span class="s1">                country TEXT NOT NULL,
-</span><span class="s1">                username TEXT NOT NULL,
-</span><span class="s1">                password TEXT NOT NULL,
-</span><span class="s1">                email TEXT NOT NULL PRIMARY KEY
-</span><span class="s1">            );
-</span><span class="s1">            &#39;&#39;&#39;</span>
-    <span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># default로 넣고 싶은 인자들</span>
+</span></span><span class="line"><span class="cl"><span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag id는 unique 해야한다: &#39;user_processing&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span> <span class="c1"># start_date이후로 얼마나 자주 DAG가 run되야하는지</span>
+</span></span><span class="line"><span class="cl">    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># define the task/operator</span>
+</span></span><span class="line"><span class="cl">    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">            CREATE TABLE users (
+</span></span></span><span class="line"><span class="cl"><span class="s1">                firstname TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                lastname TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                country TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                username TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                password TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                email TEXT NOT NULL PRIMARY KEY
+</span></span></span><span class="line"><span class="cl"><span class="s1">            );
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>그리고 Admin -&gt; Connections 에 가서 connection을 아래와 같이 추가해줘야 한다. conn_id는 위에서 정한 <code>db_sqlite</code>로 해줘야하고 <code>Host</code>는 아래와 같이 <code>airflow.db</code>가 있는 path를 해주면 된다.</p>
 <center>
@@ -313,47 +313,47 @@ airflow scheduler
 </span><span class="lnt">40
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.http.sensors.http</span> <span class="kn">import</span> <span class="n">HttpSensor</span>
-
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-
-<span class="c1"># default로 넣고 싶은 인자들</span>
-<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
-    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag_id는 unique 해야한다: &#39;user_processing&#39;</span>
-    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
-    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
-    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
-
-    <span class="c1"># define the task/operator</span>
-
-    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
-        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
-        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
-</span><span class="s1">            CREATE TABLE users (
-</span><span class="s1">                firstname TEXT NOT NULL,
-</span><span class="s1">                lastname TEXT NOT NULL,
-</span><span class="s1">                country TEXT NOT NULL,
-</span><span class="s1">                username TEXT NOT NULL,
-</span><span class="s1">                password TEXT NOT NULL,
-</span><span class="s1">                email TEXT NOT NULL PRIMARY KEY
-</span><span class="s1">            );
-</span><span class="s1">            &#39;&#39;&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">is_api_available</span> <span class="o">=</span> <span class="n">HttpSensor</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;is_api_available&#39;</span><span class="p">,</span>
-        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
-        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span>
-    <span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.http.sensors.http</span> <span class="kn">import</span> <span class="n">HttpSensor</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># default로 넣고 싶은 인자들</span>
+</span></span><span class="line"><span class="cl"><span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag_id는 unique 해야한다: &#39;user_processing&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># define the task/operator</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">            CREATE TABLE users (
+</span></span></span><span class="line"><span class="cl"><span class="s1">                firstname TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                lastname TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                country TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                username TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                password TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                email TEXT NOT NULL PRIMARY KEY
+</span></span></span><span class="line"><span class="cl"><span class="s1">            );
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">is_api_available</span> <span class="o">=</span> <span class="n">HttpSensor</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;is_api_available&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>test
@@ -419,58 +419,58 @@ airflow scheduler
 </span><span class="lnt">51
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.http.sensors.http</span> <span class="kn">import</span> <span class="n">HttpSensor</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.http.operators.http</span> <span class="kn">import</span> <span class="n">SimpleHttpOperator</span>
-
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">json</span>
-
-<span class="c1"># default로 넣고 싶은 인자들</span>
-<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
-    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag_id는 unique 해야한다: &#39;user_processing&#39;</span>
-    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
-    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
-    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
-
-    <span class="c1"># define the task/operator</span>
-
-    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
-        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
-        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
-</span><span class="s1">            CREATE TABLE users (
-</span><span class="s1">                firstname TEXT NOT NULL,
-</span><span class="s1">                lastname TEXT NOT NULL,
-</span><span class="s1">                country TEXT NOT NULL,
-</span><span class="s1">                username TEXT NOT NULL,
-</span><span class="s1">                password TEXT NOT NULL,
-</span><span class="s1">                email TEXT NOT NULL PRIMARY KEY
-</span><span class="s1">            );
-</span><span class="s1">            &#39;&#39;&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">is_api_available</span> <span class="o">=</span> <span class="n">HttpSensor</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;is_api_available&#39;</span><span class="p">,</span>
-        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
-        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">extracting_user</span> <span class="o">=</span> <span class="n">SimpleHttpOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">,</span>
-        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
-        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span><span class="p">,</span>
-        <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-        <span class="n">response_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">response</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
-        <span class="n">log_response</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.http.sensors.http</span> <span class="kn">import</span> <span class="n">HttpSensor</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.http.operators.http</span> <span class="kn">import</span> <span class="n">SimpleHttpOperator</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># default로 넣고 싶은 인자들</span>
+</span></span><span class="line"><span class="cl"><span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag_id는 unique 해야한다: &#39;user_processing&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># define the task/operator</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">            CREATE TABLE users (
+</span></span></span><span class="line"><span class="cl"><span class="s1">                firstname TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                lastname TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                country TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                username TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                password TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                email TEXT NOT NULL PRIMARY KEY
+</span></span></span><span class="line"><span class="cl"><span class="s1">            );
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">is_api_available</span> <span class="o">=</span> <span class="n">HttpSensor</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;is_api_available&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">extracting_user</span> <span class="o">=</span> <span class="n">SimpleHttpOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">response</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">log_response</span><span class="o">=</span><span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>test
@@ -487,10 +487,10 @@ airflow scheduler
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[2022-04-23 06:35:15,589] {http.py:140} INFO - Sending &#39;GET&#39; to url: https://randomuser.me/api/
-[2022-04-23 06:35:16,104] {http.py:115} INFO - {&#34;results&#34;:[{&#34;gender&#34;:&#34;female&#34;,&#34;name&#34;:{&#34;title&#34;:&#34;Mrs&#34;,&#34;first&#34;:&#34;Lonne&#34;,&#34;last&#34;:&#34;Schilstra&#34;},&#34;location&#34;:{&#34;street&#34;:{&#34;number&#34;:4722,&#34;name&#34;:&#34;Jaspis&#34;},&#34;city&#34;:&#34;Zutphen&#34;,&#34;state&#34;:&#34;Flevoland&#34;,&#34;country&#34;:&#34;Netherlands&#34;,&#34;postcode&#34;:64338,&#34;coordinates&#34;:{&#34;latitude&#34;:&#34;40.3466&#34;,&#34;longitude&#34;:&#34;58.3229&#34;},&#34;timezone&#34;:{&#34;offset&#34;:&#34;+4:30&#34;,&#34;description&#34;:&#34;Kabul&#34;}},&#34;email&#34;:&#34;lonne.schilstra@example.com&#34;,&#34;login&#34;:{&#34;uuid&#34;:&#34;897a7df1-9964-4baf-9b3c-001f9cc815ef&#34;,&#34;username&#34;:&#34;smallbear142&#34;,&#34;password&#34;:&#34;chrysler&#34;,&#34;salt&#34;:&#34;LysRP72T&#34;,&#34;md5&#34;:&#34;92f39f731719df04767870a0cdcfb43d&#34;,&#34;sha1&#34;:&#34;2cedb9b8ae797b56ddf40e8425db36df1f4866ee&#34;,&#34;sha256&#34;:&#34;a1fd36358cf8d94e243ccfba37d9478b4b129bff367aa2ff218a4c975851ef11&#34;},&#34;dob&#34;:{&#34;date&#34;:&#34;1949-10-26T18:21:22.653Z&#34;,&#34;age&#34;:73},&#34;registered&#34;:{&#34;date&#34;:&#34;2019-06-05T08:17:56.847Z&#34;,&#34;age&#34;:3},&#34;phone&#34;:&#34;(875)-139-9718&#34;,&#34;cell&#34;:&#34;(524)-611-0968&#34;,&#34;id&#34;:{&#34;name&#34;:&#34;BSN&#34;,&#34;value&#34;:&#34;47403055&#34;},&#34;picture&#34;:{&#34;large&#34;:&#34;https://randomuser.me/api/portraits/women/55.jpg&#34;,&#34;medium&#34;:&#34;https://randomuser.me/api/portraits/med/women/55.jpg&#34;,&#34;thumbnail&#34;:&#34;https://randomuser.me/api/portraits/thumb/women/55.jpg&#34;},&#34;nat&#34;:&#34;NL&#34;}],&#34;info&#34;:{&#34;seed&#34;:&#34;ff9863d9e80ca539&#34;,&#34;results&#34;:1,&#34;page&#34;:1,&#34;version&#34;:&#34;1.3&#34;}}
-[2022-04-23 06:35:16,123] {taskinstance.py:1184} INFO - Marking task as SUCCESS. dag_id=user_processing, task_id=extracting_user, execution_date=20220423T000000, start_date=20220423T060222, end_date=20220423T063516
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[2022-04-23 06:35:15,589] {http.py:140} INFO - Sending &#39;GET&#39; to url: https://randomuser.me/api/
+</span></span><span class="line"><span class="cl">[2022-04-23 06:35:16,104] {http.py:115} INFO - {&#34;results&#34;:[{&#34;gender&#34;:&#34;female&#34;,&#34;name&#34;:{&#34;title&#34;:&#34;Mrs&#34;,&#34;first&#34;:&#34;Lonne&#34;,&#34;last&#34;:&#34;Schilstra&#34;},&#34;location&#34;:{&#34;street&#34;:{&#34;number&#34;:4722,&#34;name&#34;:&#34;Jaspis&#34;},&#34;city&#34;:&#34;Zutphen&#34;,&#34;state&#34;:&#34;Flevoland&#34;,&#34;country&#34;:&#34;Netherlands&#34;,&#34;postcode&#34;:64338,&#34;coordinates&#34;:{&#34;latitude&#34;:&#34;40.3466&#34;,&#34;longitude&#34;:&#34;58.3229&#34;},&#34;timezone&#34;:{&#34;offset&#34;:&#34;+4:30&#34;,&#34;description&#34;:&#34;Kabul&#34;}},&#34;email&#34;:&#34;lonne.schilstra@example.com&#34;,&#34;login&#34;:{&#34;uuid&#34;:&#34;897a7df1-9964-4baf-9b3c-001f9cc815ef&#34;,&#34;username&#34;:&#34;smallbear142&#34;,&#34;password&#34;:&#34;chrysler&#34;,&#34;salt&#34;:&#34;LysRP72T&#34;,&#34;md5&#34;:&#34;92f39f731719df04767870a0cdcfb43d&#34;,&#34;sha1&#34;:&#34;2cedb9b8ae797b56ddf40e8425db36df1f4866ee&#34;,&#34;sha256&#34;:&#34;a1fd36358cf8d94e243ccfba37d9478b4b129bff367aa2ff218a4c975851ef11&#34;},&#34;dob&#34;:{&#34;date&#34;:&#34;1949-10-26T18:21:22.653Z&#34;,&#34;age&#34;:73},&#34;registered&#34;:{&#34;date&#34;:&#34;2019-06-05T08:17:56.847Z&#34;,&#34;age&#34;:3},&#34;phone&#34;:&#34;(875)-139-9718&#34;,&#34;cell&#34;:&#34;(524)-611-0968&#34;,&#34;id&#34;:{&#34;name&#34;:&#34;BSN&#34;,&#34;value&#34;:&#34;47403055&#34;},&#34;picture&#34;:{&#34;large&#34;:&#34;https://randomuser.me/api/portraits/women/55.jpg&#34;,&#34;medium&#34;:&#34;https://randomuser.me/api/portraits/med/women/55.jpg&#34;,&#34;thumbnail&#34;:&#34;https://randomuser.me/api/portraits/thumb/women/55.jpg&#34;},&#34;nat&#34;:&#34;NL&#34;}],&#34;info&#34;:{&#34;seed&#34;:&#34;ff9863d9e80ca539&#34;,&#34;results&#34;:1,&#34;page&#34;:1,&#34;version&#34;:&#34;1.3&#34;}}
+</span></span><span class="line"><span class="cl">[2022-04-23 06:35:16,123] {taskinstance.py:1184} INFO - Marking task as SUCCESS. dag_id=user_processing, task_id=extracting_user, execution_date=20220423T000000, start_date=20220423T060222, end_date=20220423T063516
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="processing_user"><code>processing_user</code></h3>
 <div class="highlight"><div class="chroma">
@@ -574,84 +574,84 @@ airflow scheduler
 </span><span class="lnt">77
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.http.sensors.http</span> <span class="kn">import</span> <span class="n">HttpSensor</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.http.operators.http</span> <span class="kn">import</span> <span class="n">SimpleHttpOperator</span>
-<span class="kn">from</span> <span class="nn">airflow.operators.python</span> <span class="kn">import</span> <span class="n">PythonOperator</span>
-
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">json_normalize</span>
-
-<span class="c1"># default로 넣고 싶은 인자들</span>
-<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c1"># extracting_user 를 통해 얻은 결과를 이용</span>
-<span class="c1"># airflow tasks test user_processing extracting_user 2022-04-23</span>
-<span class="k">def</span> <span class="nf">_processing_user</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
-    <span class="c1"># extracting_user task의 결과가 metastore에 저장이 되고 이 결과를 pull 한다</span>
-    <span class="n">users</span> <span class="o">=</span> <span class="n">ti</span><span class="o">.</span><span class="n">xcom_pull</span><span class="p">(</span><span class="n">task_ids</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">])</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;results&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;User is empty&#39;</span><span class="p">)</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="c1"># json_normalize로 dict를 pd.DataFrame으로 변환</span>
-    <span class="n">processed_user</span> <span class="o">=</span> <span class="n">json_normalize</span><span class="p">({</span>
-        <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;first&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;lastname&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;last&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;country&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
-    <span class="p">})</span>
-    <span class="n">processed_user</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/tmp/processed_user.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
-    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag_id는 unique 해야한다: &#39;user_processing&#39;</span>
-    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
-    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
-    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
-
-    <span class="c1"># define the task/operator</span>
-
-    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
-        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
-        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
-</span><span class="s1">            CREATE TABLE users (
-</span><span class="s1">                firstname TEXT NOT NULL,
-</span><span class="s1">                lastname TEXT NOT NULL,
-</span><span class="s1">                country TEXT NOT NULL,
-</span><span class="s1">                username TEXT NOT NULL,
-</span><span class="s1">                password TEXT NOT NULL,
-</span><span class="s1">                email TEXT NOT NULL PRIMARY KEY
-</span><span class="s1">            );
-</span><span class="s1">            &#39;&#39;&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">is_api_available</span> <span class="o">=</span> <span class="n">HttpSensor</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;is_api_available&#39;</span><span class="p">,</span>
-        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
-        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">extracting_user</span> <span class="o">=</span> <span class="n">SimpleHttpOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">,</span>
-        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
-        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span><span class="p">,</span>
-        <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-        <span class="n">response_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">response</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
-        <span class="n">log_response</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>
-
-    <span class="n">processing_user</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;processing_user&#39;</span><span class="p">,</span>
-        <span class="n">python_callable</span><span class="o">=</span><span class="n">_processing_user</span>
-    <span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.http.sensors.http</span> <span class="kn">import</span> <span class="n">HttpSensor</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.http.operators.http</span> <span class="kn">import</span> <span class="n">SimpleHttpOperator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.operators.python</span> <span class="kn">import</span> <span class="n">PythonOperator</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">json_normalize</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># default로 넣고 싶은 인자들</span>
+</span></span><span class="line"><span class="cl"><span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># extracting_user 를 통해 얻은 결과를 이용</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># airflow tasks test user_processing extracting_user 2022-04-23</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_processing_user</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># extracting_user task의 결과가 metastore에 저장이 되고 이 결과를 pull 한다</span>
+</span></span><span class="line"><span class="cl">    <span class="n">users</span> <span class="o">=</span> <span class="n">ti</span><span class="o">.</span><span class="n">xcom_pull</span><span class="p">(</span><span class="n">task_ids</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;results&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;User is empty&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># json_normalize로 dict를 pd.DataFrame으로 변환</span>
+</span></span><span class="line"><span class="cl">    <span class="n">processed_user</span> <span class="o">=</span> <span class="n">json_normalize</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;first&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;lastname&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;last&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;country&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="n">processed_user</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/tmp/processed_user.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag_id는 unique 해야한다: &#39;user_processing&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># define the task/operator</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">            CREATE TABLE users (
+</span></span></span><span class="line"><span class="cl"><span class="s1">                firstname TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                lastname TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                country TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                username TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                password TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                email TEXT NOT NULL PRIMARY KEY
+</span></span></span><span class="line"><span class="cl"><span class="s1">            );
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">is_api_available</span> <span class="o">=</span> <span class="n">HttpSensor</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;is_api_available&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">extracting_user</span> <span class="o">=</span> <span class="n">SimpleHttpOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">response</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">log_response</span><span class="o">=</span><span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">processing_user</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;processing_user&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">python_callable</span><span class="o">=</span><span class="n">_processing_user</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>test
@@ -666,8 +666,8 @@ airflow scheduler
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Mercedes,Jimenez,Spain,goldenbutterfly721,darius,mercedes.jimenez@example.com
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Mercedes,Jimenez,Spain,goldenbutterfly721,darius,mercedes.jimenez@example.com
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="storing_user"><code>storing_user</code></h3>
 <p>이제 <code>/home/airflow/airflow/airflow.db</code>에 user를 저장해보자. 처음에  <code>sqlite3 airflow.db</code>로 sqlite에 접속하고 <code>SELECT * FROM users;</code>하면 아무것도 없다가 나중에 <code>storing_user</code> task를 실행하면 그 유저가 들어간 것을 확인 할 수 있다.</p>
@@ -762,92 +762,92 @@ airflow scheduler
 </span><span class="lnt">85
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.http.sensors.http</span> <span class="kn">import</span> <span class="n">HttpSensor</span>
-<span class="kn">from</span> <span class="nn">airflow.providers.http.operators.http</span> <span class="kn">import</span> <span class="n">SimpleHttpOperator</span>
-<span class="kn">from</span> <span class="nn">airflow.operators.python</span> <span class="kn">import</span> <span class="n">PythonOperator</span>
-<span class="kn">from</span> <span class="nn">airflow.operators.bash</span> <span class="kn">import</span> <span class="n">BashOperator</span>
-
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">json_normalize</span>
-
-<span class="c1"># default로 넣고 싶은 인자들</span>
-<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c1"># extracting_user 를 통해 얻은 결과를 이용</span>
-<span class="c1"># airflow tasks test user_processing extracting_user 2022-04-23</span>
-<span class="k">def</span> <span class="nf">_processing_user</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
-    <span class="c1"># extracting_user task의 결과가 metastore에 저장이 되고 이 결과를 pull 한다</span>
-    <span class="n">users</span> <span class="o">=</span> <span class="n">ti</span><span class="o">.</span><span class="n">xcom_pull</span><span class="p">(</span><span class="n">task_ids</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">])</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;results&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;User is empty&#39;</span><span class="p">)</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="c1"># json_normalize로 dict를 pd.DataFrame으로 변환</span>
-    <span class="n">processed_user</span> <span class="o">=</span> <span class="n">json_normalize</span><span class="p">({</span>
-        <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;first&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;lastname&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;last&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;country&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
-        <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
-    <span class="p">})</span>
-    <span class="n">processed_user</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/tmp/processed_user.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
-    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag_id는 unique 해야한다: &#39;user_processing&#39;</span>
-    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
-    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
-    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
-
-    <span class="c1"># define the task/operator</span>
-
-    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
-        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
-        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
-</span><span class="s1">            CREATE TABLE IF NOT EXISTS users (
-</span><span class="s1">                firstname TEXT NOT NULL,
-</span><span class="s1">                lastname TEXT NOT NULL,
-</span><span class="s1">                country TEXT NOT NULL,
-</span><span class="s1">                username TEXT NOT NULL,
-</span><span class="s1">                password TEXT NOT NULL,
-</span><span class="s1">                email TEXT NOT NULL PRIMARY KEY
-</span><span class="s1">            );
-</span><span class="s1">            &#39;&#39;&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">is_api_available</span> <span class="o">=</span> <span class="n">HttpSensor</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;is_api_available&#39;</span><span class="p">,</span>
-        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
-        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">extracting_user</span> <span class="o">=</span> <span class="n">SimpleHttpOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">,</span>
-        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
-        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span><span class="p">,</span>
-        <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
-        <span class="n">response_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">response</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
-        <span class="n">log_response</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>
-
-    <span class="n">processing_user</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;processing_user&#39;</span><span class="p">,</span>
-        <span class="n">python_callable</span><span class="o">=</span><span class="n">_processing_user</span>
-    <span class="p">)</span>
-
-    <span class="n">storing_user</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
-        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;storing_user&#39;</span><span class="p">,</span>
-        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;echo -e &#34;.separator &#34;,&#34;</span><span class="se">\n</span><span class="s1">.import /tmp/processed_user.csv&#34; | sqlite3 /home/airflow/airflow/airflow.db&#39;</span>
-    <span class="p">)</span>
-
-    <span class="n">creating_table</span> <span class="o">&gt;&gt;</span> <span class="n">is_api_available</span> <span class="o">&gt;&gt;</span> <span class="n">extracting_user</span> <span class="o">&gt;&gt;</span> <span class="n">processing_user</span> <span class="o">&gt;&gt;</span> <span class="n">storing_user</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.sqlite.operators.sqlite</span> <span class="kn">import</span> <span class="n">SqliteOperator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.http.sensors.http</span> <span class="kn">import</span> <span class="n">HttpSensor</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.providers.http.operators.http</span> <span class="kn">import</span> <span class="n">SimpleHttpOperator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.operators.python</span> <span class="kn">import</span> <span class="n">PythonOperator</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">airflow.operators.bash</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">json_normalize</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># default로 넣고 싶은 인자들</span>
+</span></span><span class="line"><span class="cl"><span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;start_date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2022</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># extracting_user 를 통해 얻은 결과를 이용</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># airflow tasks test user_processing extracting_user 2022-04-23</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_processing_user</span><span class="p">(</span><span class="n">ti</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># extracting_user task의 결과가 metastore에 저장이 되고 이 결과를 pull 한다</span>
+</span></span><span class="line"><span class="cl">    <span class="n">users</span> <span class="o">=</span> <span class="n">ti</span><span class="o">.</span><span class="n">xcom_pull</span><span class="p">(</span><span class="n">task_ids</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">&#39;results&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;User is empty&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;results&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># json_normalize로 dict를 pd.DataFrame으로 변환</span>
+</span></span><span class="line"><span class="cl">    <span class="n">processed_user</span> <span class="o">=</span> <span class="n">json_normalize</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;first&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;lastname&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">][</span><span class="s1">&#39;last&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;country&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;country&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="n">processed_user</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/tmp/processed_user.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">DAG</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;user_processing&#39;</span><span class="p">,</span> <span class="c1"># dag_id는 unique 해야한다: &#39;user_processing&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">&#39;@daily&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">catchup</span><span class="o">=</span><span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span> <span class="k">as</span> <span class="n">dag</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># define the task/operator</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">creating_table</span> <span class="o">=</span> <span class="n">SqliteOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;creating_table&#39;</span><span class="p">,</span> <span class="c1"># 하나의 pipeline에서 unique 해야함</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sqlite_conn_id</span><span class="o">=</span><span class="s1">&#39;db_sqlite&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sql</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">            CREATE TABLE IF NOT EXISTS users (
+</span></span></span><span class="line"><span class="cl"><span class="s1">                firstname TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                lastname TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                country TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                username TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                password TEXT NOT NULL,
+</span></span></span><span class="line"><span class="cl"><span class="s1">                email TEXT NOT NULL PRIMARY KEY
+</span></span></span><span class="line"><span class="cl"><span class="s1">            );
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">is_api_available</span> <span class="o">=</span> <span class="n">HttpSensor</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;is_api_available&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">extracting_user</span> <span class="o">=</span> <span class="n">SimpleHttpOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;extracting_user&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">http_conn_id</span><span class="o">=</span><span class="s1">&#39;user_api&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;api/&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">method</span><span class="o">=</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response_filter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">response</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">log_response</span><span class="o">=</span><span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">processing_user</span> <span class="o">=</span> <span class="n">PythonOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;processing_user&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">python_callable</span><span class="o">=</span><span class="n">_processing_user</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">storing_user</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">task_id</span><span class="o">=</span><span class="s1">&#39;storing_user&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bash_command</span><span class="o">=</span><span class="s1">&#39;echo -e &#34;.separator &#34;,&#34;</span><span class="se">\n</span><span class="s1">.import /tmp/processed_user.csv&#34; | sqlite3 /home/airflow/airflow/airflow.db&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">creating_table</span> <span class="o">&gt;&gt;</span> <span class="n">is_api_available</span> <span class="o">&gt;&gt;</span> <span class="n">extracting_user</span> <span class="o">&gt;&gt;</span> <span class="n">processing_user</span> <span class="o">&gt;&gt;</span> <span class="n">storing_user</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -882,7 +882,7 @@ airflow scheduler
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

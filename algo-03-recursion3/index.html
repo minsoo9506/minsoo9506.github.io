@@ -186,31 +186,31 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">]</span>
-
-<span class="c1"># 전역변수</span>
-<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">include</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
-
-<span class="c1"># 모든 멱집합을 print하는 함수</span>
-<span class="k">def</span> <span class="nf">powerset</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-            <span class="c1"># include가 1인 경우만 print</span>
-            <span class="k">if</span> <span class="n">include</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
-        <span class="k">return</span>
-    <span class="c1"># k번재 원소 제외</span>
-    <span class="n">include</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">powerset</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="c1"># k번째 원소 포함</span>
-    <span class="n">include</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">powerset</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">powerset</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 전역변수</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">include</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 모든 멱집합을 print하는 함수</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">powerset</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># include가 1인 경우만 print</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">include</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">tmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># k번재 원소 제외</span>
+</span></span><span class="line"><span class="cl">    <span class="n">include</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">powerset</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># k번째 원소 포함</span>
+</span></span><span class="line"><span class="cl">    <span class="n">include</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">powerset</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">powerset</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="순열permutation">순열(permutation)</h2>
 <ul>
@@ -245,20 +245,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">perm</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">return</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
-            <span class="n">perm</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-
-<span class="n">perm</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">perm</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">perm</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">perm</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -297,7 +297,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/prml-chap02-2\/"
-        },"genre": "posts","keywords": "Gaussian Distribution","wordcount":  1521 ,
+        },"genre": "posts","keywords": "Gaussian Distribution","wordcount":  1542 ,
         "url": "http:\/\/minsoo9506.github.io\/prml-chap02-2\/","datePublished": "2021-11-26T13:21:26+09:00","dateModified": "2021-11-26T13:21:26+09:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[PRML] Chapter2 - Probability Distribution (2)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/prml/"><i class="far fa-folder fa-fw"></i>PRML</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-26">2021-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1521 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-26">2021-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1542 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -117,7 +117,7 @@
       <ul>
         <li><a href="#231-conditional-gaussian-distributions">2.3.1 Conditional Gaussian distributions</a></li>
         <li><a href="#232-mariginal-gaussian-distributions">2.3.2 Mariginal Gaussian distributions</a></li>
-        <li><a href="#233-bayes-theorem-for-gaussian-variables">2.3.3 Bayes' theorem for Gaussian variables</a></li>
+        <li><a href="#233-bayes-theorem-for-gaussian-variables">2.3.3 Bayes&rsquo; theorem for Gaussian variables</a></li>
         <li><a href="#234-maximum-likelihood-for-the-gaussian">2.3.4 Maximum likelihood for the Gaussian</a></li>
         <li><a href="#235-sequential-estimation">2.3.5 Sequential estimation</a></li>
       </ul>
@@ -246,7 +246,7 @@ $$<![CDATA[
 </ul>
 </li>
 </ul>
-<h3 id="233-bayes-theorem-for-gaussian-variables">2.3.3 Bayes' theorem for Gaussian variables</h3>
+<h3 id="233-bayes-theorem-for-gaussian-variables">2.3.3 Bayes&rsquo; theorem for Gaussian variables</h3>
 <p>Gaussian marginal distribution $p(\textbf{x})$ , Gaussian conditional distribution $p(\textbf{y} | \textbf{x})$가 주어진 상태이다. (2.3.1과 2.3.2에서 알게된 사실을 토대로)</p>
 <p>$$p({\bf x}) = N({\bf x}|{\pmb \mu}, {\pmb \Lambda}^{-1}) $$</p>
 <p>$$p({\bf y}|{\bf x}) = N({\bf y}|{\bf A} {\bf x}+{\bf b} , \textbf{L}^{-1}) $$</p>
@@ -287,7 +287,7 @@ $${\pmb \mu} _ {ML} = \frac{1}{N}\sum_{i=1}^{N}{\bf x}_i = \bar{\bf x}$$</p>
 <p>data sample이 하나 들어오면 바로 계산하고 버린다. MLE를 구하는 예시를 살펴보자.</p>
 <p>$${\pmb \mu} _ {ML}^{(N)} = \frac{1}{N} \sum_{n=1}^{N}{\bf x}_n = \frac{1}{N}{\bf x} _ N + \frac{1}{N} \sum _ {n=1}^{N-1}{\bf x}_n$$</p>
 <p>$$= \frac{1}{N}{\bf x}_N + \frac{N-1}{N}{\pmb \mu} _ {ML}^{(N-1)}={\pmb \mu} _ {ML}^{(N-1)}+\frac{1}{N}({\bf x}_N-{\pmb \mu} _ {ML}^{(N-1)}) $$</p>
-<p>이전에 구한 parameter를 &lsquo;error signal&rsquo; $(\textbf{x} _N - {\pmb \mu} _{ML}^{(N-1)})$ 쪽으로 1/N에 비례하도록 수정하여 parameter를 업데이트한다. $N$이 커질수록 새로운 data의 영향은 작아진다. 이번에는 이런 Sequential estimation에서 사용되는 일반적인 방법에 대해 살펴보자.</p>
+<p>이전에 구한 parameter를 &rsquo;error signal&rsquo; $(\textbf{x} _N - {\pmb \mu} _{ML}^{(N-1)})$ 쪽으로 1/N에 비례하도록 수정하여 parameter를 업데이트한다. $N$이 커질수록 새로운 data의 영향은 작아진다. 이번에는 이런 Sequential estimation에서 사용되는 일반적인 방법에 대해 살펴보자.</p>
 <ul>
 <li>바로 <em>Robbins-Monro</em> algorithm이다.</li>
 </ul>
@@ -357,7 +357,7 @@ $${\pmb \mu} _ {ML} = \frac{1}{N}\sum_{i=1}^{N}{\bf x}_i = \bar{\bf x}$$</p>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

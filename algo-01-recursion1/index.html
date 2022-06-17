@@ -141,14 +141,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="c1"># Base case</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># recursive case</span>
-        <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">func</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Base case</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># recursive case</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">func</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="recursive-thinking">Recursive Thinking</h2>
 <ul>
@@ -193,42 +193,42 @@
 </span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 문자열의 길이 계산</span>
-<span class="k">def</span> <span class="nf">len_str</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-
-<span class="c1"># 문자열의 프린트</span>
-<span class="k">def</span> <span class="nf">print_str</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">s</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">print_str</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-
-<span class="c1"># 문자열을 뒤집어 프린트</span>
-<span class="k">def</span> <span class="nf">reverse_print_str</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">s</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">reverse_print_str</span><span class="p">(</span><span class="n">s</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="c1"># 2진수로 변환하여 출력</span>
-<span class="k">def</span> <span class="nf">print_as_binary</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">print_as_binary</span><span class="p">(</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="c1"># 최대값 찾기</span>
-<span class="k">def</span> <span class="nf">find_max</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">find_max</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">nums</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 문자열의 길이 계산</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">len_str</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 문자열의 프린트</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">print_str</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">s</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">print_str</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 문자열을 뒤집어 프린트</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">reverse_print_str</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">s</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">reverse_print_str</span><span class="p">(</span><span class="n">s</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2진수로 변환하여 출력</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">print_as_binary</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">print_as_binary</span><span class="p">(</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 최대값 찾기</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">find_max</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">find_max</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">nums</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="recursion-vs-iteration">Recursion vs Iteration</h2>
 <ul>
@@ -283,46 +283,46 @@
 </span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 순차 탐색 예시</span>
-<span class="c1"># 여기서 index 0은 보통 생략 -&gt; 즉, 암시적 매개변수</span>
-<span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">i</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-
-<span class="c1"># 매개변수의 명시화 : 순차탐색</span>
-<span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">begin</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">begin</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="n">begin</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="n">begin</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">begin</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-
-<span class="c1"># 매개변수의 명시화 : 최대값 찾기</span>
-<span class="k">def</span> <span class="nf">findmax</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">begin</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">begin</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">begin</span><span class="p">],</span> <span class="n">findmax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">begin</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-
-<span class="c1"># 매개변수의 명시화 : 이진탐색</span>
-<span class="k">def</span> <span class="nf">binarySearch</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
-                 <span class="n">begin</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-                 <span class="n">end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-                 <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">begin</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">begin</span><span class="o">+</span><span class="n">end</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">mid</span>
-        <span class="k">elif</span> <span class="n">data</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">binarySearch</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">binarySearch</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 순차 탐색 예시</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 여기서 index 0은 보통 생략 -&gt; 즉, 암시적 매개변수</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 매개변수의 명시화 : 순차탐색</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">begin</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">begin</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="n">begin</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">begin</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">search</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">begin</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 매개변수의 명시화 : 최대값 찾기</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">findmax</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">begin</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">begin</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">begin</span><span class="p">],</span> <span class="n">findmax</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">begin</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 매개변수의 명시화 : 이진탐색</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">binarySearch</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">begin</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">end</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">begin</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">begin</span><span class="o">+</span><span class="n">end</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">mid</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">data</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">binarySearch</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">binarySearch</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -361,7 +361,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

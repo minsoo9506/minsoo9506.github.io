@@ -147,15 +147,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">python3 -m venv sandbox
-<span class="nb">source</span> sandbox/bin/activate <span class="c1"># 이러면 sandbox가 활성화된다</span>
-
-pip install wheel
-
-pip3 install apache-airflow<span class="o">==</span>2.1.0 --constraint https://gist.githubusercontent.com/marclamberti/742efaef5b2d94f44666b0aec020be7c/raw/21c88601337250b6fd93f1adceb55282fb07b7ed/constraint.txt
-
-airflow db init <span class="c1"># 필요한 파일들 생성</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 -m venv sandbox
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> sandbox/bin/activate <span class="c1"># 이러면 sandbox가 활성화된다</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">pip install wheel
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">pip3 install apache-airflow<span class="o">==</span>2.1.0 --constraint https://gist.githubusercontent.com/marclamberti/742efaef5b2d94f44666b0aec020be7c/raw/21c88601337250b6fd93f1adceb55282fb07b7ed/constraint.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">airflow db init <span class="c1"># 필요한 파일들 생성</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>그러면 <code>airflow</code> 폴더가 만들어져있을 것이다. 그리고 <code>airflow webserver</code>라고 치면 localhost:8080에 들어가면 web이 띄워져 있다. 지금은 사용자를 생성하지 않은 상태이므로 사용자를 생성해보자.</p>
 <div class="highlight"><div class="chroma">
@@ -163,8 +163,8 @@ airflow db init <span class="c1"># 필요한 파일들 생성</span>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">airflow users create -u admin -p admin -f minsoo -l song -r Admin -e admin@airflow.com
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">airflow users create -u admin -p admin -f minsoo -l song -r Admin -e admin@airflow.com
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>이제 web에 로그인할 수 있다. 처음에는 디폴트 예시 DAG들이 있을 것이다.</p>
 <h2 id="reference">Reference</h2>
@@ -200,7 +200,7 @@ airflow db init <span class="c1"># 필요한 파일들 생성</span>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

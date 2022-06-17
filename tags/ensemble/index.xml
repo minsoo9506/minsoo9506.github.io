@@ -19,6 +19,6 @@
     <description><![CDATA[Ensemble method에 대해 정리하였다.
 14. Combining Models 말 그대로 모델들을 섞는 것이다. 머신러닝 예측 모델에서 가장 좋은 성능을 보이고 있다는 Boosting이 이 부분의 내용이다.
 14.1 Bayesian Model Averaging model combination methods 와 Bayesian model averaging 을 구분하는 것은 중요하다. Density estimation using a mixture of Gaussians 예시를 통해 살펴보자.
- model combination  각 data들은 iid, $X = {\textbf{x}_1, \textbf{x}_2,&hellip;,\textbf{x}_n }$ $X$는 전체 dataset을 의미    $$p(X) = \prod_{n=1}^{N}{p(\textbf{x} _ n)} = \prod_{n=1}^{N}{[\sum_{z_n}p(\textbf{x}_n, \textbf{z}_n)]}$$]]></description>
+model combination 각 data들은 iid, $X = {\textbf{x}_1, \textbf{x}_2,&hellip;,\textbf{x}_n }$ $X$는 전체 dataset을 의미 $$p(X) = \prod_{n=1}^{N}{p(\textbf{x} _ n)} = \prod_{n=1}^{N}{[\sum_{z_n}p(\textbf{x}_n, \textbf{z}_n)]}$$]]></description>
 </item></channel>
 </rss>

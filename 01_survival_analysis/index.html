@@ -304,12 +304,12 @@ $$=\lim_{\vartriangle t \rightarrow 0} \frac{P(t &lt; T \le t + \vartriangle t )
 </ul>
 </li>
 <li>total hazard at time $y_i$ for the at risk observations:
-$$\sum_{i' : y_{i'} \ge y_i}h_0(y_i) \exp (\sum_{j=1}^p x_{i&rsquo;j}\beta_j)$$</li>
+$$\sum_{i&rsquo; : y_{i&rsquo;} \ge y_i}h_0(y_i) \exp (\sum_{j=1}^p x_{i&rsquo;j}\beta_j)$$</li>
 <li>the probability that the <em>i</em>th observation is the one to fail at time $y_i$:
-$$\frac{h_0(y_i) \exp (\sum_{j=1}^p x_{ij}\beta_j)}{\sum_{i' : y_{i'} \ge y_i}h_0(y_i) \exp (\sum_{j=1}^p x_{i&rsquo;j}\beta_j)} = \frac{ \exp (\sum_{j=1}^p x_{ij}\beta_j)}{\sum_{i' : y_{i'} \ge y_i} \exp (\sum_{j=1}^p x_{i&rsquo;j}\beta_j)}$$</li>
+$$\frac{h_0(y_i) \exp (\sum_{j=1}^p x_{ij}\beta_j)}{\sum_{i&rsquo; : y_{i&rsquo;} \ge y_i}h_0(y_i) \exp (\sum_{j=1}^p x_{i&rsquo;j}\beta_j)} = \frac{ \exp (\sum_{j=1}^p x_{ij}\beta_j)}{\sum_{i&rsquo; : y_{i&rsquo;} \ge y_i} \exp (\sum_{j=1}^p x_{i&rsquo;j}\beta_j)}$$</li>
 </ul>
 <p>위의 식을 이용하여 $\delta_i = 1$인 경우만 고려하여 partial likelihood를 구하면</p>
-<p>$$PL(\beta) = \prod_{i:\delta_i = 1} \frac{ \exp (\sum_{j=1}^p x_{ij}\beta_j)}{\sum_{i' : y_{i'} \ge y_i} \exp (\sum_{j=1}^p x_{i&rsquo;j}\beta_j)}$$</p>
+<p>$$PL(\beta) = \prod_{i:\delta_i = 1} \frac{ \exp (\sum_{j=1}^p x_{ij}\beta_j)}{\sum_{i&rsquo; : y_{i&rsquo;} \ge y_i} \exp (\sum_{j=1}^p x_{i&rsquo;j}\beta_j)}$$</p>
 <ul>
 <li>logistic regression 처럼 iterative하게 parameter를 추정한다.</li>
 <li>$\beta$를 추정하면 일반적인 회귀방법론들처럼 계수에 대한 p-value, confidence interval을 구할 수 있다.</li>
@@ -350,7 +350,7 @@ $$\frac{h_0(y_i) \exp (\sum_{j=1}^p x_{ij}\beta_j)}{\sum_{i' : y_{i'} \ge y_i}h_
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

@@ -208,55 +208,55 @@
 </span><span class="lnt">48
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 최소힙구현</span>
-<span class="k">class</span> <span class="nc">BinaryHeap</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-
-    <span class="c1"># 삽입 : O(logn)</span>
-    <span class="c1"># 반복 구조</span>
-    <span class="k">def</span> <span class="nf">_percolate_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># 배열 가장 마지막에 먼저 삽입</span>
-        <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="n">parent</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">2</span>
-        <span class="c1"># 부모가 더 큰 값을 가지는 경우 스왑</span>
-        <span class="k">while</span> <span class="n">parent</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">parent</span><span class="p">]:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">parent</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">itmes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> \
-                    <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">parent</span><span class="p">]</span>
-                <span class="n">i</span> <span class="o">=</span> <span class="n">parent</span>
-                <span class="n">parent</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">2</span>
-                
-    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_percolate_up</span><span class="p">()</span>
-
-    <span class="c1"># 추출 : O(logn)</span>
-    <span class="c1"># 재귀 구조</span>
-    <span class="k">def</span> <span class="nf">_percolate_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-        <span class="n">left</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">*</span> <span class="mi">2</span>
-        <span class="n">right</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">smallest</span> <span class="o">=</span> <span class="n">idx</span>
-
-        <span class="k">if</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">smallest</span><span class="p">]:</span>
-            <span class="n">smallest</span> <span class="o">=</span> <span class="n">left</span>
-        <span class="k">if</span> <span class="n">right</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">smallest</span><span class="p">]:</span>
-            <span class="n">smallest</span> <span class="o">=</span> <span class="n">right</span>
-
-        <span class="k">if</span> <span class="n">smallest</span> <span class="o">!=</span> <span class="n">idx</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">smallest</span><span class="p">]</span> <span class="o">=</span> \
-                <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">smallest</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_percolate_down</span><span class="p">(</span><span class="n">smallest</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">extracted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_percolate_down</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">extracted</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 최소힙구현</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BinaryHeap</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 삽입 : O(logn)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 반복 구조</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_percolate_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 배열 가장 마지막에 먼저 삽입</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parent</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 부모가 더 큰 값을 가지는 경우 스왑</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">parent</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">parent</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">parent</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">itmes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> \
+</span></span><span class="line"><span class="cl">                    <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">parent</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="n">i</span> <span class="o">=</span> <span class="n">parent</span>
+</span></span><span class="line"><span class="cl">                <span class="n">parent</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_percolate_up</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 추출 : O(logn)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 재귀 구조</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_percolate_down</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">left</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">*</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">        <span class="n">right</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">smallest</span> <span class="o">=</span> <span class="n">idx</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">smallest</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">smallest</span> <span class="o">=</span> <span class="n">left</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">right</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">smallest</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">smallest</span> <span class="o">=</span> <span class="n">right</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">smallest</span> <span class="o">!=</span> <span class="n">idx</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">smallest</span><span class="p">]</span> <span class="o">=</span> \
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">smallest</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">_percolate_down</span><span class="p">(</span><span class="n">smallest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">extracted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_percolate_down</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">extracted</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="python-예시">Python 예시</h2>
 <ul>
@@ -302,7 +302,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

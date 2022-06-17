@@ -195,7 +195,7 @@
 <p>$$\sum_m \sum_w P(w,m,y|do(t)) = \sum_m \sum_w P(w)P(m|t)P(y|w,m) \\ P(y|do(t)) = \sum_m P(m|t) \sum_w P(w)P(y|w,m) $$</p>
 <p>그런데 우항에 unobserved $w$가 있기에 marginalization을 진행할 수 없다. 따라서 우리는 $w$를 식에서 없애는 작업이 필요할 것이다.</p>
 <p>그림에서 $T$가 주어진다면 $P(w|t)=P(w|t,m)$이므로</p>
-<p>$$P(y|do(t)) = \sum_m P(m|t) \sum_w P(w)P(y|w,m) \\ = \sum_m P(m|t) \sum_w P(y|w,m)\sum_{t'}P(w|t')P(t') \\ = \sum_m P(m|t) \sum_w P(y|w,m)\sum_{t'}P(w|t',m)P(t') \\ = \sum_m P(m|t) \sum_{t'}P(t') \sum_w P(y|w,m)P(w|t',m) \\ = \sum_m P(m|t) \sum_{t'}P(t') \sum_w P(y|w,m,t')P(w|t',m) \\ = \sum_m P(m|t) \sum_{t'}P(t') \sum_w P(y,w|m,t') \\ =\sum_m P(m|t) \sum_{t'}P(t')P(y|m,t')$$</p>
+<p>$$P(y|do(t)) = \sum_m P(m|t) \sum_w P(w)P(y|w,m) \\ = \sum_m P(m|t) \sum_w P(y|w,m)\sum_{t&rsquo;}P(w|t&rsquo;)P(t&rsquo;) \\ = \sum_m P(m|t) \sum_w P(y|w,m)\sum_{t&rsquo;}P(w|t&rsquo;,m)P(t&rsquo;) \\ = \sum_m P(m|t) \sum_{t&rsquo;}P(t&rsquo;) \sum_w P(y|w,m)P(w|t&rsquo;,m) \\ = \sum_m P(m|t) \sum_{t&rsquo;}P(t&rsquo;) \sum_w P(y|w,m,t&rsquo;)P(w|t&rsquo;,m) \\ = \sum_m P(m|t) \sum_{t&rsquo;}P(t&rsquo;) \sum_w P(y,w|m,t&rsquo;) \\ =\sum_m P(m|t) \sum_{t&rsquo;}P(t&rsquo;)P(y|m,t&rsquo;)$$</p>
 <h3 id="frontdoor-criterion">Frontdoor Criterion</h3>
 <ul>
 <li>아래의 조건이 사실이면 set of variables $M$들이 $T,Y$에 대해 the
@@ -211,7 +211,7 @@ frontdoor criterion을 만족한다.
 <ul>
 <li>만약 $(T,M,Y)$이 the frontdoor criterion을 만족하고 positivity를 만족하면</li>
 </ul>
-<p>$$P(y|do(t))=\sum_m P(m|t) \sum_{t'}P(y|m,t')P(t')$$</p>
+<p>$$P(y|do(t))=\sum_m P(m|t) \sum_{t&rsquo;}P(y|m,t&rsquo;)P(t&rsquo;)$$</p>
 <h2 id="pearls-do-calculus">Pearl&rsquo;s do-calculus</h2>
 <p>backdoor adjustment가 성립하지 않더라도 frondoor adjustment라는 방법을 통해 identification이 성립할 수 있음을 알게되었다. 그렇다면 둘다 성립하지 않을 때는 어떻게 해야할까? <em>do-calculus</em> ! do-calculus는 causal graph에 녹아있는 any causal assumptions을 사용하여 causal effects를 identify할 수 있는 tool을 제공한다.</p>
 <ul>
@@ -316,7 +316,7 @@ frontdoor criterion을 만족한다.
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

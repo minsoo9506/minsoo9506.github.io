@@ -187,13 +187,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># iterable</span>
-<span class="n">x_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># iterator로 만들기</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x_iter</span><span class="p">))</span> 
-<span class="c1"># &lt;class &#39;list_iterator&#39;&gt;</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">x_iter</span><span class="p">))</span>
-<span class="c1"># 1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># iterable</span>
+</span></span><span class="line"><span class="cl"><span class="n">x_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># iterator로 만들기</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">x_iter</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl"><span class="c1"># &lt;class &#39;list_iterator&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">x_iter</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -225,33 +225,33 @@
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># iterator</span>
-<span class="c1"># __next__ 가 없으면 iterable</span>
-<span class="k">class</span> <span class="nc">Counter</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span>
-
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span> <span class="c1"># 스스로가 iterator인 상태</span>
-
-    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">:</span>
-            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="k">return</span> <span class="n">r</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">StopIteration</span>
-        
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Counter</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<span class="c1"># 0</span>
-<span class="c1"># 1</span>
-<span class="c1"># 2</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
-<span class="c1"># 0</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># iterator</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># __next__ 가 없으면 iterable</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Counter</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span> <span class="c1"># 스스로가 iterator인 상태</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">StopIteration</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Counter</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 0</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 0</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -285,35 +285,35 @@
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># iterable</span>
-<span class="c1"># __getitem__ 만 구현되어 있으면 for문은 가능</span>
-<span class="k">class</span> <span class="nc">Counter</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span>
-
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">index</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">c</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<span class="c1"># 0</span>
-<span class="c1"># 1</span>
-<span class="c1"># 2</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
-<span class="c1"># TypeError: &#39;Counter&#39; object is not an iterator</span>
-
-<span class="n">c_iter</span>  <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">c_iter</span><span class="p">))</span>
-<span class="c1"># 0</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">c_iter</span><span class="p">))</span>
-<span class="c1"># 1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># iterable</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># __getitem__ 만 구현되어 있으면 for문은 가능</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Counter</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">index</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">IndexError</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">c</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 0</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># TypeError: &#39;Counter&#39; object is not an iterator</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">c_iter</span>  <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">c_iter</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 0</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">c_iter</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -350,7 +350,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

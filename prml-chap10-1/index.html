@@ -256,21 +256,21 @@ $$ = E_{q_{i \neq j} }[\ln P(H,E | \theta)]+C$$</p>
 $$ =p(X| \mu, \tau)p(\mu | \tau, \mu_0, \lambda_0)p(\tau | a_0, b_0)$$
 $$=\prod_i p(x_i | \mu, \tau)p(\mu | \tau, \mu_0, \lambda_0)p(\tau | a_0, b_0)$$</p>
 <p>우리는 2개의 variational parameter가 필요하다. by mean field approximation</p>
-<p>$$Q(H|E,\lambda) = Q(\mu,\tau | X,\mu', \tau') = q(\mu | X,\mu')q(\tau | X,\tau')$$</p>
+<p>$$Q(H|E,\lambda) = Q(\mu,\tau | X,\mu&rsquo;, \tau&rsquo;) = q(\mu | X,\mu&rsquo;)q(\tau | X,\tau&rsquo;)$$</p>
 <p>그럼 이제 optimal variational parameter를 구해보자.</p>
 <ul>
 <li>일단 $\mu$에 관하여 진행</li>
 </ul>
-<p>$$\ln q(\mu | X,\mu') = E_{\tau}[\ln p(X,\mu, \tau | \mu_0,\lambda_0, a_0, b_0)]+C_1 $$
+<p>$$\ln q(\mu | X,\mu&rsquo;) = E_{\tau}[\ln p(X,\mu, \tau | \mu_0,\lambda_0, a_0, b_0)]+C_1 $$
 $$ = E_{\tau}[\ln \prod_i p(x_i | \mu, \tau)p(\mu | \tau, \mu_0, \lambda_0)p(\tau | a_0, b_0)]+C_1 \\ = E_{\tau}[\sum(\frac{1}{2}(\ln \tau - \ln 2\pi) - \frac{(x_i-\mu)^2 \tau}{2})] \\ + E_{\tau}[\frac{1}{2}(\ln \lambda_0 + \ln \tau - \ln 2 \pi) - \frac{(\mu - \mu_0)^2 \lambda_0 \tau}{2}]+C_2 \\ = - \frac{E_{\tau}[\tau]}{2}{ \sum (x_i - \mu)^2 + (\mu - \mu_0)^2 \lambda_0 }+C_3$$
 $$ = - \frac{1}{2}{ (\lambda_0+N)E_{\tau}[\tau] (\mu - \frac{\lambda_0 \mu_0 + \sum x_i}{\lambda_0 + N})^2 } + C_4$$</p>
-<p>그렇다면 이제 $q(\mu | X,\mu')$를 normal이라고 가정해보면 (우리는 $q(\mu;i;p)$에 대한 아무런 가정이 없기 때문에 이렇게 접근하는 것)</p>
-<p>$$q(\mu | X,\mu') \sim N(\frac{\lambda_0 \mu_0 + \sum x_i}{\lambda_0 + N},\frac{1}{(\lambda_0 +N)E_{\tau}[\tau]})$$</p>
+<p>그렇다면 이제 $q(\mu | X,\mu&rsquo;)$를 normal이라고 가정해보면 (우리는 $q(\mu;i;p)$에 대한 아무런 가정이 없기 때문에 이렇게 접근하는 것)</p>
+<p>$$q(\mu | X,\mu&rsquo;) \sim N(\frac{\lambda_0 \mu_0 + \sum x_i}{\lambda_0 + N},\frac{1}{(\lambda_0 +N)E_{\tau}[\tau]})$$</p>
 <p>위에서 우리가 모르는 부분은 $E_{\tau}[\tau]$ 이므로 위와 똑같은 과정을 반복해서 모르는 부분에 대해 찾아야 한다.</p>
-<p>$$\ln q(\tau | X,\tau') = E_{\mu}[\ln p(X,\mu,\tau | \mu_0, \lambda_0, a_0, b_0)]+C_1$$
+<p>$$\ln q(\tau | X,\tau&rsquo;) = E_{\mu}[\ln p(X,\mu,\tau | \mu_0, \lambda_0, a_0, b_0)]+C_1$$
 $$= -\tau{ b_0 + \frac{1}{2}E_{\mu}[\sum(x_i - \mu)^2 + (\mu-\mu_0)^2 \lambda_0]} + (a_0 + \frac{N+1}{2}-1)\ln \tau + C_2$$</p>
-<p>이를 잘 보면 $q(\tau | X,\tau')$ 는 Gamma 꼴이라고 생각할 수 있다.</p>
-<p>$$q(\tau | X,\tau') \sim Gamma(a_0 + \frac{N+1}{2}, b_0 + \frac{1}{2}E_{\tau}[\sum(x_i - \mu)^2 + (\mu - \mu_0)^2\lambda_0])$$</p>
+<p>이를 잘 보면 $q(\tau | X,\tau&rsquo;)$ 는 Gamma 꼴이라고 생각할 수 있다.</p>
+<p>$$q(\tau | X,\tau&rsquo;) \sim Gamma(a_0 + \frac{N+1}{2}, b_0 + \frac{1}{2}E_{\tau}[\sum(x_i - \mu)^2 + (\mu - \mu_0)^2\lambda_0])$$</p>
 <p>이를 통해 우리가 구해야 하는 모든 것을 구했다. 정리하면</p>
 <ul>
 <li>$E_{\tau}[\tau] : E_{\mu}[\mu],E_{\mu}[\mu^2]$ 이 필요하다</li>
@@ -316,7 +316,7 @@ $$= -\tau{ b_0 + \frac{1}{2}E_{\mu}[\sum(x_i - \mu)^2 + (\mu-\mu_0)^2 \lambda_0]
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

@@ -173,16 +173,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="최소값-최대값">최소값, 최대값</h3>
 <ul>
@@ -224,18 +224,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
-  <span class="o">...</span>
-  <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-  <span class="k">def</span> <span class="nf">_find_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">root</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
-      <span class="k">return</span> <span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-    <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">root</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_value</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_value</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">_find_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">root</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">root</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_value</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_value</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>시간복잡도 : $O(h)$
@@ -267,22 +267,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
-  <span class="o">...</span>
-  <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_insert_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-
-  <span class="k">def</span> <span class="nf">_insert_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-      <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="k">if</span> <span class="n">data</span> <span class="o">&lt;=</span> <span class="n">node</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_insert_value</span><span class="p">(</span><span class="n">node</span><span class="p">,</span><span class="n">left</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-      <span class="k">else</span><span class="p">:</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_insert_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-      <span class="k">return</span> <span class="n">node</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_insert_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">_insert_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="n">data</span> <span class="o">&lt;=</span> <span class="n">node</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_insert_value</span><span class="p">(</span><span class="n">node</span><span class="p">,</span><span class="n">left</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_insert_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">node</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>시간복잡도 : $O(h)$</li>
@@ -338,42 +338,42 @@
 </span><span class="lnt">35
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
-  <span class="o">...</span>
-  <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">deleted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-      <span class="k">return</span> <span class="n">deleted</span>
-
-  <span class="k">def</span> <span class="nf">_delete_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-      <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-          <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="kc">False</span>
-      <span class="n">deleted</span> <span class="o">=</span> <span class="kc">False</span>
-      <span class="c1"># 해당 노드가 삭제할 노드일 경우</span>
-      <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">node</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-          <span class="n">deleted</span> <span class="o">=</span> <span class="kc">True</span>
-          <span class="c1"># 삭제할 노드가 자식이 두개일 경우</span>
-          <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
-              <span class="c1"># 오른쪽 서브 트리에서 가장 왼쪽에 있는 노드를 찾고 교체</span>
-              <span class="n">parent</span><span class="p">,</span> <span class="n">child</span> <span class="o">=</span> <span class="n">node</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
-              <span class="k">while</span> <span class="n">child</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                  <span class="n">parent</span><span class="p">,</span> <span class="n">child</span> <span class="o">=</span> <span class="n">child</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">left</span>
-              <span class="n">child</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span>
-              <span class="k">if</span> <span class="n">parent</span> <span class="o">!=</span> <span class="n">node</span><span class="p">:</span>
-                  <span class="n">parent</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">right</span>
-                  <span class="n">child</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
-              <span class="n">node</span> <span class="o">=</span> <span class="n">child</span>
-          <span class="c1"># 자식 노드가 하나일 경우 해당 노드와 교체</span>
-          <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">or</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
-              <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">or</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
-          <span class="c1"># 자식 노드가 없을 경우 그냥 삭제</span>
-          <span class="k">else</span><span class="p">:</span>
-              <span class="n">node</span> <span class="o">=</span> <span class="kc">None</span>
-      <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-          <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">deleted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-      <span class="k">else</span><span class="p">:</span>
-          <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">deleted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-      <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="n">deleted</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">      <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">deleted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">deleted</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">def</span> <span class="nf">_delete_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">      <span class="n">deleted</span> <span class="o">=</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">      <span class="c1"># 해당 노드가 삭제할 노드일 경우</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">node</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">          <span class="n">deleted</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">          <span class="c1"># 삭제할 노드가 자식이 두개일 경우</span>
+</span></span><span class="line"><span class="cl">          <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">              <span class="c1"># 오른쪽 서브 트리에서 가장 왼쪽에 있는 노드를 찾고 교체</span>
+</span></span><span class="line"><span class="cl">              <span class="n">parent</span><span class="p">,</span> <span class="n">child</span> <span class="o">=</span> <span class="n">node</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
+</span></span><span class="line"><span class="cl">              <span class="k">while</span> <span class="n">child</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">parent</span><span class="p">,</span> <span class="n">child</span> <span class="o">=</span> <span class="n">child</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">left</span>
+</span></span><span class="line"><span class="cl">              <span class="n">child</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span>
+</span></span><span class="line"><span class="cl">              <span class="k">if</span> <span class="n">parent</span> <span class="o">!=</span> <span class="n">node</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">parent</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">right</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">child</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
+</span></span><span class="line"><span class="cl">              <span class="n">node</span> <span class="o">=</span> <span class="n">child</span>
+</span></span><span class="line"><span class="cl">          <span class="c1"># 자식 노드가 하나일 경우 해당 노드와 교체</span>
+</span></span><span class="line"><span class="cl">          <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">or</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">              <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">or</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
+</span></span><span class="line"><span class="cl">          <span class="c1"># 자식 노드가 없을 경우 그냥 삭제</span>
+</span></span><span class="line"><span class="cl">          <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">              <span class="n">node</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">      <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">          <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">deleted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">          <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">deleted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delete_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="n">deleted</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>시간복잡도 : $O(h)$</li>
@@ -415,7 +415,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

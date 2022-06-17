@@ -142,21 +142,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="c1"># for 루프는 n-1번 반복</span>
-    <span class="k">for</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span> 
-        <span class="n">max_val</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">last</span><span class="p">]</span>
-        <span class="c1"># 가장 큰 수를 찾기 위해  last번 반복</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>        
-            <span class="k">if</span> <span class="n">max_val</span> <span class="o">&lt;</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> 
-                <span class="n">data</span><span class="p">[</span><span class="n">last</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">last</span><span class="p">]</span>
-
-<span class="n">selection_sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># for 루프는 n-1번 반복</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">max_val</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">last</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 가장 큰 수를 찾기 위해  last번 반복</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>        
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">max_val</span> <span class="o">&lt;</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]:</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">data</span><span class="p">[</span><span class="n">last</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">last</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">selection_sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>시간복잡도
@@ -188,20 +188,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="c1"># for 루프는 n-1번 반복</span>
-    <span class="k">for</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span> 
-        <span class="c1"># for 루프는 last번 반복</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span> 
-                <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
-
-<span class="n">bubble_sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">bubble_sort</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># for 루프는 n-1번 반복</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">last</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span> 
+</span></span><span class="line"><span class="cl">        <span class="c1"># for 루프는 last번 반복</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bubble_sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>시간복잡도
@@ -244,22 +244,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">insert_sort</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="c1"># for 루프는 n-1번 반복</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span> 
-        <span class="n">insert_val</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="c1"># 최악의 경우 i-1번 반복</span>
-        <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">insert_val</span><span class="p">:</span>
-            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">insert_val</span>
-
-<span class="n">insert_sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">insert_sort</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># for 루프는 n-1번 반복</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">insert_val</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 최악의 경우 i-1번 반복</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">insert_val</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">insert_val</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">insert_sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>시간복잡도
@@ -306,7 +306,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

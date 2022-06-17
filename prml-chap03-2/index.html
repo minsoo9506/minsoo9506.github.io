@@ -188,11 +188,11 @@
 <p>특정 ${\bf x}$에 대한 mean of predictive dist 은 결국 <strong>training set target t의 linear combination</strong> 이다. 이를 다르게 표현하면</p>
 <p>$$y({\bf x}, {\bf m} _ N) = \sum_{n=1}^N k({\bf x}, {\bf x}_n)t_n$$</p>
 <ul>
-<li>$k({\bf x}, {\bf x}') = \beta \phi({\bf x})^T {\bf S}_N \phi({\bf x}')$ : 이 식을 <em>smoother matrix</em> or <em>equvalent kernel</em> 라고 부른다.</li>
+<li>$k({\bf x}, {\bf x}&rsquo;) = \beta \phi({\bf x})^T {\bf S}_N \phi({\bf x}&rsquo;)$ : 이 식을 <em>smoother matrix</em> or <em>equvalent kernel</em> 라고 부른다.</li>
 <li>따라서 mean of predictive distribution at $x$ 은 $x$와 (비슷한)가까운 data에 해당하는 $t$에 높은 가중치를 준다.</li>
 </ul>
 <p>equvalent kernel에 대해서 covariance의 측면으로 살펴보자.</p>
-<p>$$cov[y({\bf x}), y({\bf x}')] = cov[\phi({\bf x})^T{\bf w}, {\bf w}^T\phi({\bf x}')] = \phi({\bf x})^T{\bf S}_N\phi({\bf x}')=\beta^{-1}k({\bf x}, {\bf x}') $$</p>
+<p>$$cov[y({\bf x}), y({\bf x}&rsquo;)] = cov[\phi({\bf x})^T{\bf w}, {\bf w}^T\phi({\bf x}&rsquo;)] = \phi({\bf x})^T{\bf S}_N\phi({\bf x}&rsquo;)=\beta^{-1}k({\bf x}, {\bf x}&rsquo;) $$</p>
 <p>equvalent kernel의 형태에서 근처의 points들의 predictive mean는 상관관계가 높다는 것을 알 수 있다.</p>
 <h2 id="34-bayesian-model-comparison">3.4 Bayesian Model Comparison</h2>
 <p>Bayesian의 입장에서 model selection을 바라보고자 한다. 모델을 선택하는 과정에 있어서 확률적인 내용을 많이 사용한다.</p>
@@ -222,7 +222,7 @@
 <li>model evidence (${\bf w}$는 model에 관한 parameter)
 <ul>
 <li>이를 sampling 측면에서 바라보면,  marginal likelihood는 data set D를 생성하는 probability로 볼 수 있는데 여기서 D는 prior로 부터 random하게 뽑힌 parameter들로 이루어진  model에서 만들어진 것이다.</li>
-<li>또한, evidence는 Bayes' Them에서 분모에 해당하는 normalizing term을 의미하기도 한다 : $p({\bf w}| D, M_i) = \frac{p(D | {\bf w}, M_i) p({\bf w} | M_i)}{p(D | M_i)}$</li>
+<li>또한, evidence는 Bayes&rsquo; Them에서 분모에 해당하는 normalizing term을 의미하기도 한다 : $p({\bf w}| D, M_i) = \frac{p(D | {\bf w}, M_i) p({\bf w} | M_i)}{p(D | M_i)}$</li>
 </ul>
 </li>
 </ul>
@@ -387,7 +387,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

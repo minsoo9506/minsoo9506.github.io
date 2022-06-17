@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[OutlierAnalysis] Supervised Outlier Analysis - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[OutlierAnalysis] Supervised Outlier Analysis" />
+<meta property="og:description" content="label이 있는 경우인 Supervised Outlier Analysis (Outlier Analysis, Charu C. Aggarwal)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/outlieranalysis02/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-09T10:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-09T10:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[OutlierAnalysis] Supervised Outlier Analysis"/>
+<meta name="twitter:description" content="label이 있는 경우인 Supervised Outlier Analysis (Outlier Analysis, Charu C. Aggarwal)"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/outlieranalysis02/" /><link rel="prev" href="http://minsoo9506.github.io/05_uplift/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[OutlierAnalysis] Supervised Outlier Analysis",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/outlieranalysis02\/"
+        },"genre": "posts","keywords": "Outlier Analysis","wordcount":  343 ,
+        "url": "http:\/\/minsoo9506.github.io\/outlieranalysis02\/","datePublished": "2022-05-09T10:00:00+00:00","dateModified": "2022-05-09T10:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[OutlierAnalysis] Supervised Outlier Analysis</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/catchminor/"><i class="far fa-folder fa-fw"></i>CatchMinor</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-05-09">2022-05-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;343 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#supervised-outlier-detection-vs-classification">supervised outlier detection vs classification</a>
+      <ul>
+        <li><a href="#class-imbalance">Class imbalance</a></li>
+        <li><a href="#contaminated-normal-class">Contaminated normal class</a></li>
+        <li><a href="#partial-training-information">Partial training information</a></li>
+      </ul>
+    </li>
+    <li><a href="#방법론">방법론</a>
+      <ul>
+        <li><a href="#cost-sensitive">Cost-Sensitive</a></li>
+        <li><a href="#adaptive-re-sampling">Adaptive Re-Sampling</a></li>
+        <li><a href="#ensemble">Ensemble</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>label이 있는 경우인 Supervised Outlier Analysis (Outlier Analysis, Charu C. Aggarwal)</p>
+<p>이상치를 찾을 때, label이 있다면 무조건 이를 이용해야한다. 실제로 모델의 성능이 비교할 수 없을 정도로 차이가 난다. 그렇다면 label이 있다면 classification을 위한 모델을 만드는 것인데 supervised outlier detection은 일반적인 classification과 어떤 차이가 있을까?</p>
+<h2 id="supervised-outlier-detection-vs-classification">supervised outlier detection vs classification</h2>
+<h3 id="class-imbalance">Class imbalance</h3>
+<p>가장 큰 차이라고 할 수 있을 것이다. 데이터를 이루고 있는 class의 비율이 차이가 나는 것이다. imbalance가 커질수록 모델을 major class로 biased된다. rare한 class를 major class로 예측하는 경우가 많아질 것이다.</p>
+<h3 id="contaminated-normal-class">Contaminated normal class</h3>
+<p>이상치의 수가 워낙 적기 때문에 normal이라고 하지만 사실은 이상치이 경우가 존재할 수 있다. 또는 사실은 이상치이지만 새로운 형태의 이상치이기 때문에 normal이라고 잘못된 라벨링이 발생할 수도 있다.</p>
+<h3 id="partial-training-information">Partial training information</h3>
+<p>이상치의 수가 적어서 대부분 normal에 대한 정보만 많다. 그래서 거의 semi-supervised 같은 경우가 될 수도 있는 것이다.</p>
+<h2 id="방법론">방법론</h2>
+<h3 id="cost-sensitive">Cost-Sensitive</h3>
+<p>예를 들어서 positive label이 1%라고 하자. 그렇다면 모델이 모든 instance를 negative라고 예측하면 accuracy가 99%나 되는 좋은 모델이 만들어진다. 하지만 우리는 1%의 positive label을 잘 찾아내기를 원한다. 따라서 label을 동일한 weight가 아닌 중요한 정도에 따라 weighted된 loss function을 최적화하기를 원할 수 있다. 이러한 관점이 cost-sensitive 라고 할 수 있다. 대표적인 방법으로는 아래와 같은 방법들이 있다.</p>
+<ul>
+<li>Relabeling (MetaCost&hellip;)
+<ul>
+<li>model-agnostic한 방법으로 weight(cost)를 고려하여 확률값을 이용하여 label을 다시하여 학습하는 방법이다.</li>
+<li>다만 확률값에 따라서 결과가 천차만별이기에 조심해야 한다. 예를 들어, minor label을 major로 예측하는 경향을 가진 모델이 만들어지면 이미 부족한 label을 잃어버리는 결과가 발생할 수도 있다.</li>
+</ul>
+</li>
+<li>Weighting model
+<ul>
+<li>model fitting 과정에서 weight를 주는 방법</li>
+</ul>
+</li>
+</ul>
+<h3 id="adaptive-re-sampling">Adaptive Re-Sampling</h3>
+<p>책에서는 re-sampling 방법을 indirect form of cost-sensitive learning이라고 했다. weight를 주는 것은 결국 imbalanced한 데이터를 평등하게 맞추는 과정이므로 re-sampling(under, over sampling)도 그 의도와 결과가 비슷하다고 할 수 있다.이와 관련한 연구도 상당히 많다. 대표적인 방법론은 SMOTE가 있다.</p>
+<h3 id="ensemble">Ensemble</h3>
+<p>Ensemble 모델이 만들어지는 과정에서 cost-sensitive(or re-sampling)의 방법을 같이 접목시킨다. 예를 들어, Adaboost의 경우 예측이 틀린 데이터에 더 가중치를 둬서 모델이 학습하도록 한다. 이 때, minor한 label에 더 가중치를 줘서 학습을 하도록 하는 AdaCost같은 모델이 있다. 또한 모델링 과정에서 SMOTE방법론을 이용하는 SMOTEBoost도 이러한 방법론이다.</p>
+<p>다양한 방법론들이 있지만 위 방법론들이 항상 효과적인 것은 아니다. 결국 데이터와 비즈니스상황에 따라 결과가 많이 달라진다. 하지만 방법론들에 대한 전반적인 이해를 갖고 있다면 문제를 해결해 나가는 과정이 좀 더 수월하지 않을까.</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-05-09</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/outlieranalysis02/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/outlier-analysis/">Outlier Analysis</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/05_uplift/" class="prev" rel="prev" title="[Algorithmic Marketing] Uplift Model"><i class="fas fa-angle-left fa-fw"></i>[Algorithmic Marketing] Uplift Model</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

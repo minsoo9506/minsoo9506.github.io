@@ -286,48 +286,48 @@
 </span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># NHN cloud</span>
-    <span class="c1"># https://www.youtube.com/watch?v=PTxqPfG_lXY</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
-<span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="kn">import</span> <span class="n">GaussianProcessRegressor</span>
-<span class="kn">from</span> <span class="nn">sklearn.gaussian_process.kernels</span> <span class="kn">import</span> <span class="n">RBF</span>
-
-<span class="c1"># Acquisition function</span>
-<span class="k">def</span> <span class="nf">expected_improvement</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="nb">max</span><span class="p">):</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">mean</span> <span class="o">-</span> <span class="nb">max</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">mean</span> <span class="o">-</span> <span class="nb">max</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">+</span> <span class="n">std</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
-
-<span class="c1"># Objective function</span>
-<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-<span class="c1"># hyperparameter space</span>
-<span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span>
-
-<span class="c1"># Observation data</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-
-<span class="c1"># GP model</span>
-<span class="n">gp_model</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">RBF</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="c1"># surrogate model fit</span>
-    <span class="n">gp_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="c1"># predict -&gt; mean, std 계산</span>
-    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
-    <span class="n">mean</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">gp_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xs</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="c1"># acq 계산</span>
-    <span class="n">acq</span> <span class="o">=</span> <span class="n">expected_improvement</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-    <span class="c1"># acq가 가장 큰 값 선택</span>
-    <span class="n">x_new</span> <span class="o">=</span> <span class="n">xs</span><span class="p">[</span><span class="n">acq</span><span class="o">.</span><span class="n">argmax</span><span class="p">()]</span>
-    <span class="n">y_new</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span>
-    <span class="c1"># 데이터에 추가</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_new</span><span class="p">]))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">y_new</span><span class="p">]))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># NHN cloud</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># https://www.youtube.com/watch?v=PTxqPfG_lXY</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.gaussian_process</span> <span class="kn">import</span> <span class="n">GaussianProcessRegressor</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sklearn.gaussian_process.kernels</span> <span class="kn">import</span> <span class="n">RBF</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Acquisition function</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">expected_improvement</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="nb">max</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">mean</span> <span class="o">-</span> <span class="nb">max</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">mean</span> <span class="o">-</span> <span class="nb">max</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">+</span> <span class="n">std</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Objective function</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># hyperparameter space</span>
+</span></span><span class="line"><span class="cl"><span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Observation data</span>
+</span></span><span class="line"><span class="cl"><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># GP model</span>
+</span></span><span class="line"><span class="cl"><span class="n">gp_model</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">RBF</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># surrogate model fit</span>
+</span></span><span class="line"><span class="cl">    <span class="n">gp_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># predict -&gt; mean, std 계산</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mean</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">gp_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xs</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">return_std</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># acq 계산</span>
+</span></span><span class="line"><span class="cl">    <span class="n">acq</span> <span class="o">=</span> <span class="n">expected_improvement</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># acq가 가장 큰 값 선택</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x_new</span> <span class="o">=</span> <span class="n">xs</span><span class="p">[</span><span class="n">acq</span><span class="o">.</span><span class="n">argmax</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y_new</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 데이터에 추가</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_new</span><span class="p">]))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">y_new</span><span class="p">]))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -369,7 +369,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

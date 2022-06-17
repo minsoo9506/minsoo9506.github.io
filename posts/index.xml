@@ -3,7 +3,14 @@
         <title>All Posts - minsoo9506</title>
         <link>http://minsoo9506.github.io/posts/</link>
         <description>All Posts | minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 08 May 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 May 2022 10:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[OutlierAnalysis] Supervised Outlier Analysis</title>
+    <link>http://minsoo9506.github.io/outlieranalysis02/</link>
+    <pubDate>Mon, 09 May 2022 10:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/outlieranalysis02/</guid>
+    <description><![CDATA[<p>label이 있는 경우인 Supervised Outlier Analysis (Outlier Analysis, Charu C. Aggarwal)</p>]]></description>
+</item><item>
     <title>[Algorithmic Marketing] Uplift Model</title>
     <link>http://minsoo9506.github.io/05_uplift/</link>
     <pubDate>Sun, 08 May 2022 09:00:00 &#43;0000</pubDate>
@@ -66,12 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/os_lec11_filesystem/</guid>
     <description><![CDATA[<p>File System에 대해 알아보자</p>]]></description>
-</item><item>
-    <title>[OS] Virtual Memory Management (2)</title>
-    <link>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement2/</link>
-    <pubDate>Sat, 09 Apr 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/os_lec10_virtualmemorymanagement2/</guid>
-    <description><![CDATA[<p>virtual memory를 다루는 방법들을 알아보자</p>]]></description>
 </item></channel>
 </rss>

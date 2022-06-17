@@ -163,25 +163,25 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">gen</span><span class="p">():</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
-        <span class="k">yield</span> <span class="n">i</span>
-
-<span class="n">g</span> <span class="o">=</span> <span class="n">gen</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
-<span class="c1"># &lt;class &#39;generator&#39;&gt;</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="fm">__dir__</span><span class="p">())</span>
-<span class="c1"># [&#39;__repr__&#39;, &#39;__getattribute__&#39;, &#39;__iter__&#39;, &#39;__next__&#39;, &#39;__del__&#39;, &#39;send&#39;, &#39;throw&#39;, &#39;close&#39;, &#39;gi_frame&#39;, &#39;gi_running&#39;, &#39;gi_code&#39;, &#39;__name__&#39;, &#39;__qualname__&#39;, &#39;gi_yieldfrom&#39;, &#39;__doc__&#39;, &#39;__hash__&#39;, &#39;__str__&#39;, &#39;__setattr__&#39;, &#39;__delattr__&#39;, &#39;__lt__&#39;, &#39;__le__&#39;, &#39;__eq__&#39;, &#39;__ne__&#39;, &#39;__gt__&#39;, &#39;__ge__&#39;, &#39;__init__&#39;, &#39;__new__&#39;, &#39;__reduce_ex__&#39;, &#39;__reduce__&#39;, &#39;__subclasshook__&#39;, &#39;__init_subclass__&#39;, &#39;__format__&#39;, &#39;__sizeof__&#39;, &#39;__dir__&#39;, &#39;__class__&#39;]</span>
-<span class="c1"># __iter__, __next__ 함수 존재</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
-<span class="c1"># 1</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
-<span class="c1"># 2</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">gen</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">g</span> <span class="o">=</span> <span class="n">gen</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &lt;class &#39;generator&#39;&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="fm">__dir__</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;__repr__&#39;, &#39;__getattribute__&#39;, &#39;__iter__&#39;, &#39;__next__&#39;, &#39;__del__&#39;, &#39;send&#39;, &#39;throw&#39;, &#39;close&#39;, &#39;gi_frame&#39;, &#39;gi_running&#39;, &#39;gi_code&#39;, &#39;__name__&#39;, &#39;__qualname__&#39;, &#39;gi_yieldfrom&#39;, &#39;__doc__&#39;, &#39;__hash__&#39;, &#39;__str__&#39;, &#39;__setattr__&#39;, &#39;__delattr__&#39;, &#39;__lt__&#39;, &#39;__le__&#39;, &#39;__eq__&#39;, &#39;__ne__&#39;, &#39;__gt__&#39;, &#39;__ge__&#39;, &#39;__init__&#39;, &#39;__new__&#39;, &#39;__reduce_ex__&#39;, &#39;__reduce__&#39;, &#39;__subclasshook__&#39;, &#39;__init_subclass__&#39;, &#39;__format__&#39;, &#39;__sizeof__&#39;, &#39;__dir__&#39;, &#39;__class__&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># __iter__, __next__ 함수 존재</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -193,13 +193,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 이런식으로 쉽게 Iterator를 만들 수 있다</span>
-<span class="k">def</span> <span class="nf">number_generator</span><span class="p">(</span><span class="n">stop</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>              
-    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>    
-        <span class="k">yield</span> <span class="n">n</span>        
-        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 이런식으로 쉽게 Iterator를 만들 수 있다</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">number_generator</span><span class="p">(</span><span class="n">stop</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>              
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>    
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="n">n</span>        
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="yield-from"><code>yield from</code></h3>
 <ul>
@@ -214,11 +214,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 위에서 만든 것과 동일한 결과</span>
-<span class="k">def</span> <span class="nf">number_generator</span><span class="p">():</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-    <span class="k">yield from</span> <span class="n">x</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 위에서 만든 것과 동일한 결과</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">number_generator</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">yield from</span> <span class="n">x</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -235,18 +235,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">number_generator</span><span class="p">(</span><span class="n">stop</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
-        <span class="k">yield</span> <span class="n">n</span>
-        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
- 
-<span class="k">def</span> <span class="nf">three_generator</span><span class="p">():</span>
-    <span class="k">yield from</span> <span class="n">number_generator</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
- 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">three_generator</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">number_generator</span><span class="p">(</span><span class="n">stop</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">three_generator</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">yield from</span> <span class="n">number_generator</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">three_generator</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="generator-표현">generator 표현</h3>
 <ul>
@@ -268,19 +268,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 리스트</span>
-<span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
-<span class="c1"># generator</span>
-<span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># 메모리 절약</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">list_size</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
-<span class="n">get_size</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">((</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">list_size</span><span class="p">)</span> <span class="c1"># 312</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">get_size</span><span class="p">)</span>  <span class="c1"># 112</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 리스트</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># generator</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 메모리 절약</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="n">list_size</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">get_size</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">((</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">list_size</span><span class="p">)</span> <span class="c1"># 312</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">get_size</span><span class="p">)</span>  <span class="c1"># 112</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>데이터 사이즈가 큰 경우, generator를 이용하면 이점이 있을 것 같다.</li>
@@ -319,7 +319,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

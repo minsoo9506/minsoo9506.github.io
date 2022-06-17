@@ -238,30 +238,30 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 전위(Pre-Order) 순회 : NLR</span>
-<span class="k">def</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
-  <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">return</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
-  <span class="n">preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
-  <span class="n">preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
-
-<span class="c1"># 중의(In-Order) 순회 : LNR</span>
-<span class="k">def</span> <span class="nf">inorder</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
-  <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">return</span>
-  <span class="n">inorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
-  <span class="n">inorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
-  
-<span class="c1"># 후위(Post-Order) 순회 : LRN</span>
-<span class="k">def</span> <span class="nf">postorder</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
-  <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">return</span>
-  <span class="n">postorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
-  <span class="n">postorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 전위(Pre-Order) 순회 : NLR</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 중의(In-Order) 순회 : LNR</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">inorder</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span>
+</span></span><span class="line"><span class="cl">  <span class="n">inorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">inorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="c1"># 후위(Post-Order) 순회 : LRN</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">postorder</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span>
+</span></span><span class="line"><span class="cl">  <span class="n">postorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">postorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -276,16 +276,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># level-order 순회</span>
-<span class="c1"># pseudo code</span>
-<span class="n">visit</span> <span class="n">the</span> <span class="n">root</span>
-<span class="n">enque</span> <span class="n">root</span> <span class="n">into</span> <span class="n">Q</span>
-<span class="k">while</span> <span class="n">Q</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">empty</span> <span class="n">do</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="n">dequeue</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
-    <span class="n">visit</span> <span class="n">children</span> <span class="n">of</span> <span class="n">v</span>
-    <span class="n">enqueue</span> <span class="n">children</span> <span class="n">of</span> <span class="n">v</span> <span class="n">into</span> <span class="n">Q</span>
-<span class="n">end</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># level-order 순회</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pseudo code</span>
+</span></span><span class="line"><span class="cl"><span class="n">visit</span> <span class="n">the</span> <span class="n">root</span>
+</span></span><span class="line"><span class="cl"><span class="n">enque</span> <span class="n">root</span> <span class="n">into</span> <span class="n">Q</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">Q</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">empty</span> <span class="n">do</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="n">dequeue</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">visit</span> <span class="n">children</span> <span class="n">of</span> <span class="n">v</span>
+</span></span><span class="line"><span class="cl">    <span class="n">enqueue</span> <span class="n">children</span> <span class="n">of</span> <span class="n">v</span> <span class="n">into</span> <span class="n">Q</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -324,7 +324,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

@@ -190,32 +190,32 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="c1"># 데이터수는 n</span>
-<span class="c1"># 데이터는 0부터 k의 값을 가진다.</span>
-<span class="k">def</span> <span class="nf">counting_sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">k</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="n">sort_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># index를 1부터 하기 위해</span>
-    <span class="n">count_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="c1"># data 원소별 개수 count</span>
-    <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-        <span class="n">count_list</span><span class="p">[</span><span class="n">ele</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="c1"># 누적합</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">count_list</span><span class="p">)):</span>
-        <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="c1"># 정렬</span>
-    <span class="c1"># data의 맨 뒤부터 시작 -&gt; stable 정렬이 가능</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">sort_list</span><span class="p">[</span><span class="n">count_list</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">count_list</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">-=</span> <span class="mi">1</span>
-
-    <span class="k">return</span> <span class="n">sort_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># index를 1부터 사용했으니까</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">counting_sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 데이터수는 n</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 데이터는 0부터 k의 값을 가진다.</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">counting_sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">k</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sort_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># index를 1부터 하기 위해</span>
+</span></span><span class="line"><span class="cl">    <span class="n">count_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># data 원소별 개수 count</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count_list</span><span class="p">[</span><span class="n">ele</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 누적합</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">count_list</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 정렬</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># data의 맨 뒤부터 시작 -&gt; stable 정렬이 가능</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sort_list</span><span class="p">[</span><span class="n">count_list</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count_list</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">sort_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># index를 1부터 사용했으니까</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">counting_sort</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>시간복잡도
@@ -284,38 +284,38 @@
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">23</span><span class="p">]</span>
-
-<span class="k">def</span> <span class="nf">counting_sort_for_radix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">digit</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="n">sort_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> 
-    <span class="n">count_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-        <span class="n">idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="n">digit</span>
-        <span class="n">count_list</span><span class="p">[</span><span class="n">idx</span> <span class="o">%</span> <span class="mi">10</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
-        <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">idx</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">//</span> <span class="n">digit</span>
-        <span class="n">sort_list</span><span class="p">[</span><span class="n">count_list</span><span class="p">[</span><span class="n">idx</span> <span class="o">%</span> <span class="mi">10</span><span class="p">]]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">count_list</span><span class="p">[</span><span class="n">idx</span> <span class="o">%</span> <span class="mi">10</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
-
-    <span class="k">return</span> <span class="n">sort_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-
-<span class="k">def</span> <span class="nf">radix_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
-    <span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
-    <span class="n">digit</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="n">max_val</span> <span class="o">//</span> <span class="n">digit</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">arr</span> <span class="o">=</span> <span class="n">counting_sort_for_radix</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">digit</span><span class="p">)</span>
-        <span class="n">digit</span> <span class="o">*=</span> <span class="mi">10</span>
-
-    <span class="k">return</span> <span class="n">arr</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">radix_sort</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">23</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">counting_sort_for_radix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">digit</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sort_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">count_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="n">digit</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count_list</span><span class="p">[</span><span class="n">idx</span> <span class="o">%</span> <span class="mi">10</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">count_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">idx</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">//</span> <span class="n">digit</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sort_list</span><span class="p">[</span><span class="n">count_list</span><span class="p">[</span><span class="n">idx</span> <span class="o">%</span> <span class="mi">10</span><span class="p">]]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count_list</span><span class="p">[</span><span class="n">idx</span> <span class="o">%</span> <span class="mi">10</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">sort_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">radix_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">digit</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">max_val</span> <span class="o">//</span> <span class="n">digit</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arr</span> <span class="o">=</span> <span class="n">counting_sort_for_radix</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">digit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">digit</span> <span class="o">*=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">arr</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">radix_sort</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -354,7 +354,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

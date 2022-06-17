@@ -235,16 +235,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="n">dowhy</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">linear_dataset</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">num_common_causes</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-        <span class="n">num_instruments</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="n">num_effect_modifiers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">num_samples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
-        <span class="n">treatment_is_binary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">stddev_treatment_noise</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">num_discrete_common_causes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&#34;df&#34;</span><span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">dowhy</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">linear_dataset</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">num_common_causes</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">num_instruments</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">num_effect_modifiers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">num_samples</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">treatment_is_binary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stddev_treatment_noise</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">num_discrete_common_causes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&#34;df&#34;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>data</code>에 들어있는 값들은 아래와 같다. (<code>df</code>제외, <code>df</code>는 위의 조건대로 만들어진 <code>pandas.DataFrame</code>)</p>
 <div class="highlight"><div class="chroma">
@@ -260,16 +260,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">&#39;treatment_name&#39;: [&#39;v0&#39;],
-&#39;outcome_name&#39;: &#39;y&#39;,
-&#39;common_causes_names&#39;: [&#39;W0&#39;, &#39;W1&#39;, &#39;W2&#39;, &#39;W3&#39;, &#39;W4&#39;],
-&#39;instrument_names&#39;: [&#39;Z0&#39;, &#39;Z1&#39;],
-&#39;effect_modifier_names&#39;: [&#39;X0&#39;],
-&#39;frontdoor_variables_names&#39;: [],
-&#39;dot_graph&#39;: &#39;digraph {v0-&gt;y;W0-&gt; v0; W1-&gt; v0; W2-&gt; v0; W3-&gt; v0; W4-&gt; v0;Z0-&gt; v0; Z1-&gt; v0;W0-&gt; y; W1-&gt; y; W2-&gt; y; W3-&gt; y; W4-&gt; y;X0-&gt; y;}&#39;,
-&#39;gml_graph&#39;: &#39;graph[directed 1node[ id &#34;y&#34; label &#34;y&#34;]node[ id &#34;W0&#34; label &#34;W0&#34;] node[ id &#34;W1&#34; label &#34;W1&#34;] node[ id &#34;W2&#34; label &#34;W2&#34;] node[ id &#34;W3&#34; label &#34;W3&#34;] node[ id &#34;W4&#34; label &#34;W4&#34;]node[ id &#34;Z0&#34; label &#34;Z0&#34;] node[ id &#34;Z1&#34; label &#34;Z1&#34;]node[ id &#34;v0&#34; label &#34;v0&#34;]edge[source &#34;v0&#34; target &#34;y&#34;]edge[ source &#34;W0&#34; target &#34;v0&#34;] edge[ source &#34;W1&#34; target &#34;v0&#34;] edge[ source &#34;W2&#34; target &#34;v0&#34;] edge[ source &#34;W3&#34; target &#34;v0&#34;] edge[ source &#34;W4&#34; target &#34;v0&#34;]edge[ source &#34;Z0&#34; target &#34;v0&#34;] edge[ source &#34;Z1&#34; target &#34;v0&#34;]edge[ source &#34;W0&#34; target &#34;y&#34;] edge[ source &#34;W1&#34; target &#34;y&#34;] edge[ source &#34;W2&#34; target &#34;y&#34;] edge[ source &#34;W3&#34; target &#34;y&#34;] edge[ source &#34;W4&#34; target &#34;y&#34;]node[ id &#34;X0&#34; label &#34;X0&#34;] edge[ source &#34;X0&#34; target &#34;y&#34;]]&#39;,
- &#39;ate&#39;: 12.852576193620925}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#39;treatment_name&#39;: [&#39;v0&#39;],
+</span></span><span class="line"><span class="cl">&#39;outcome_name&#39;: &#39;y&#39;,
+</span></span><span class="line"><span class="cl">&#39;common_causes_names&#39;: [&#39;W0&#39;, &#39;W1&#39;, &#39;W2&#39;, &#39;W3&#39;, &#39;W4&#39;],
+</span></span><span class="line"><span class="cl">&#39;instrument_names&#39;: [&#39;Z0&#39;, &#39;Z1&#39;],
+</span></span><span class="line"><span class="cl">&#39;effect_modifier_names&#39;: [&#39;X0&#39;],
+</span></span><span class="line"><span class="cl">&#39;frontdoor_variables_names&#39;: [],
+</span></span><span class="line"><span class="cl">&#39;dot_graph&#39;: &#39;digraph {v0-&gt;y;W0-&gt; v0; W1-&gt; v0; W2-&gt; v0; W3-&gt; v0; W4-&gt; v0;Z0-&gt; v0; Z1-&gt; v0;W0-&gt; y; W1-&gt; y; W2-&gt; y; W3-&gt; y; W4-&gt; y;X0-&gt; y;}&#39;,
+</span></span><span class="line"><span class="cl">&#39;gml_graph&#39;: &#39;graph[directed 1node[ id &#34;y&#34; label &#34;y&#34;]node[ id &#34;W0&#34; label &#34;W0&#34;] node[ id &#34;W1&#34; label &#34;W1&#34;] node[ id &#34;W2&#34; label &#34;W2&#34;] node[ id &#34;W3&#34; label &#34;W3&#34;] node[ id &#34;W4&#34; label &#34;W4&#34;]node[ id &#34;Z0&#34; label &#34;Z0&#34;] node[ id &#34;Z1&#34; label &#34;Z1&#34;]node[ id &#34;v0&#34; label &#34;v0&#34;]edge[source &#34;v0&#34; target &#34;y&#34;]edge[ source &#34;W0&#34; target &#34;v0&#34;] edge[ source &#34;W1&#34; target &#34;v0&#34;] edge[ source &#34;W2&#34; target &#34;v0&#34;] edge[ source &#34;W3&#34; target &#34;v0&#34;] edge[ source &#34;W4&#34; target &#34;v0&#34;]edge[ source &#34;Z0&#34; target &#34;v0&#34;] edge[ source &#34;Z1&#34; target &#34;v0&#34;]edge[ source &#34;W0&#34; target &#34;y&#34;] edge[ source &#34;W1&#34; target &#34;y&#34;] edge[ source &#34;W2&#34; target &#34;y&#34;] edge[ source &#34;W3&#34; target &#34;y&#34;] edge[ source &#34;W4&#34; target &#34;y&#34;]node[ id &#34;X0&#34; label &#34;X0&#34;] edge[ source &#34;X0&#34; target &#34;y&#34;]]&#39;,
+</span></span><span class="line"><span class="cl"> &#39;ate&#39;: 12.852576193620925}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="model-causal-mechanism">Model causal mechanism</h3>
 <p>위에서 만든 <code>data</code>를 이용하여 causal graph를 생성한다.</p>
@@ -283,13 +283,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">model</span><span class="o">=</span><span class="n">CausalModel</span><span class="p">(</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
-        <span class="n">treatment</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&#34;treatment_name&#34;</span><span class="p">],</span>
-        <span class="n">outcome</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&#34;outcome_name&#34;</span><span class="p">],</span>
-        <span class="n">graph</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&#34;gml_graph&#34;</span><span class="p">]</span>
-        <span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">model</span><span class="o">=</span><span class="n">CausalModel</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">treatment</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&#34;treatment_name&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="n">outcome</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&#34;outcome_name&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="n">graph</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&#34;gml_graph&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>생성한 데이터가 아닌 다른 데이터를 이용하려면 위와 같은 format으로 만들면 된다. 갖고 있는 데이터에 대해 저절로 찾아주는게 아니라 사용자가 알려줘야한다.</p>
 <div class="highlight"><div class="chroma">
@@ -317,28 +317,28 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 예시</span>
-<span class="n">causal_graph</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">digraph {
-</span><span class="s2">High_limit;
-</span><span class="s2">Churn;
-</span><span class="s2">Income_Category;
-</span><span class="s2">Education_Level;
-</span><span class="s2">Customer_Age;
-</span><span class="s2">U[label=&#34;Unobserved Confounders&#34;];
-</span><span class="s2">Customer_Age -&gt; Education_Level; Customer_Age -&gt; Income_Category;
-</span><span class="s2">Education_Level -&gt; Income_Category; Income_Category-&gt;High_limit;
-</span><span class="s2">U-&gt;Income_Category;U-&gt;High_limit;U-&gt;Churn;
-</span><span class="s2">High_limit-&gt;Churn; Income_Category -&gt; Churn;
-</span><span class="s2">}
-</span><span class="s2">&#34;&#34;&#34;</span>
-
-<span class="n">model</span><span class="o">=</span> <span class="n">CausalModel</span><span class="p">(</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">training</span><span class="p">,</span> <span class="c1"># dataframe</span>
-        <span class="n">graph</span><span class="o">=</span><span class="n">causal_graph</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">),</span>
-        <span class="n">treatment</span><span class="o">=</span><span class="s1">&#39;High_limit&#39;</span><span class="p">,</span>
-        <span class="n">outcome</span><span class="o">=</span><span class="s1">&#39;Churn&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 예시</span>
+</span></span><span class="line"><span class="cl"><span class="n">causal_graph</span> <span class="o">=</span> <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">digraph {
+</span></span></span><span class="line"><span class="cl"><span class="s2">High_limit;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Churn;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Income_Category;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Education_Level;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Customer_Age;
+</span></span></span><span class="line"><span class="cl"><span class="s2">U[label=&#34;Unobserved Confounders&#34;];
+</span></span></span><span class="line"><span class="cl"><span class="s2">Customer_Age -&gt; Education_Level; Customer_Age -&gt; Income_Category;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Education_Level -&gt; Income_Category; Income_Category-&gt;High_limit;
+</span></span></span><span class="line"><span class="cl"><span class="s2">U-&gt;Income_Category;U-&gt;High_limit;U-&gt;Churn;
+</span></span></span><span class="line"><span class="cl"><span class="s2">High_limit-&gt;Churn; Income_Category -&gt; Churn;
+</span></span></span><span class="line"><span class="cl"><span class="s2">}
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">=</span> <span class="n">CausalModel</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">training</span><span class="p">,</span> <span class="c1"># dataframe</span>
+</span></span><span class="line"><span class="cl">        <span class="n">graph</span><span class="o">=</span><span class="n">causal_graph</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">treatment</span><span class="o">=</span><span class="s1">&#39;High_limit&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">outcome</span><span class="o">=</span><span class="s1">&#39;Churn&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>그러면 어떤 causal graph가 만들어졌는지 확인해보자.</p>
 <div class="highlight"><div class="chroma">
@@ -349,11 +349,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">model</span><span class="o">.</span><span class="n">view_model</span><span class="p">()</span>
-
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&#34;causal_model.png&#34;</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">view_model</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
+</span></span><span class="line"><span class="cl"><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&#34;causal_model.png&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><center>
     <img src="https://github.com/minsoo9506/blog/blob/master/static/blog-imgs/DoWhy_00.png?raw=true"  width="400">
@@ -369,12 +369,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">identified_estimand</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">identify_effect</span><span class="p">(</span><span class="n">proceed_when_unidentifiable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1"># proceed_when_unidentifiable. It needs to be set to True</span>
-<span class="c1"># to convey the assumption that we are ignoring any unobserved confounding</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">identified_estimand</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">identify_effect</span><span class="p">(</span><span class="n">proceed_when_unidentifiable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># proceed_when_unidentifiable. It needs to be set to True</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># to convey the assumption that we are ignoring any unobserved confounding</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>결과로 아래와 같이 identify하는 방법들에 대한 설명이 나온다. 귀엽게 수식도 나오고 가정도 알려준다. 나중에 시간이 되면 소스코드를 보고 싶다. 이런 오픈소스를 사용하다보면 겸손해진다.</p>
 <div class="highlight"><div class="chroma">
@@ -404,30 +404,30 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Estimand type: nonparametric-ate
-
-### Estimand : 1
-Estimand name: backdoor
-Estimand expression:
-  d                       
-─────(E[y|W3,W1,W2,W4,W0])
-d[v₀]                     
-Estimand assumption 1, Unconfoundedness: If U→{v0} and U→y then P(y|v0,W3,W1,W2,W4,W0,U) = P(y|v0,W3,W1,W2,W4,W0)
-
-### Estimand : 2
-Estimand name: iv
-Estimand expression:
- ⎡                              -1⎤
- ⎢    d        ⎛    d          ⎞  ⎥
-E⎢─────────(y)⋅⎜─────────([v₀])⎟  ⎥
- ⎣d[Z₁  Z₀]    ⎝d[Z₁  Z₀]      ⎠  ⎦
-Estimand assumption 1, As-if-random: If U→→y then ¬(U →→{Z1,Z0})
-Estimand assumption 2, Exclusion: If we remove {Z1,Z0}→{v0}, then ¬({Z1,Z0}→y)
-
-### Estimand : 3
-Estimand name: frontdoor
-No such variable(s) found!
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Estimand type: nonparametric-ate
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### Estimand : 1
+</span></span><span class="line"><span class="cl">Estimand name: backdoor
+</span></span><span class="line"><span class="cl">Estimand expression:
+</span></span><span class="line"><span class="cl">  d                       
+</span></span><span class="line"><span class="cl">─────(E[y|W3,W1,W2,W4,W0])
+</span></span><span class="line"><span class="cl">d[v₀]                     
+</span></span><span class="line"><span class="cl">Estimand assumption 1, Unconfoundedness: If U→{v0} and U→y then P(y|v0,W3,W1,W2,W4,W0,U) = P(y|v0,W3,W1,W2,W4,W0)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### Estimand : 2
+</span></span><span class="line"><span class="cl">Estimand name: iv
+</span></span><span class="line"><span class="cl">Estimand expression:
+</span></span><span class="line"><span class="cl"> ⎡                              -1⎤
+</span></span><span class="line"><span class="cl"> ⎢    d        ⎛    d          ⎞  ⎥
+</span></span><span class="line"><span class="cl">E⎢─────────(y)⋅⎜─────────([v₀])⎟  ⎥
+</span></span><span class="line"><span class="cl"> ⎣d[Z₁  Z₀]    ⎝d[Z₁  Z₀]      ⎠  ⎦
+</span></span><span class="line"><span class="cl">Estimand assumption 1, As-if-random: If U→→y then ¬(U →→{Z1,Z0})
+</span></span><span class="line"><span class="cl">Estimand assumption 2, Exclusion: If we remove {Z1,Z0}→{v0}, then ¬({Z1,Z0}→y)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### Estimand : 3
+</span></span><span class="line"><span class="cl">Estimand name: frontdoor
+</span></span><span class="line"><span class="cl">No such variable(s) found!
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="estimate-causal-effect">Estimate causal effect</h3>
 <div class="highlight"><div class="chroma">
@@ -437,10 +437,10 @@ No such variable(s) found!
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">causal_estimate</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">estimate_effect</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">,</span>
-        <span class="n">method_name</span><span class="o">=</span><span class="s2">&#34;backdoor.propensity_score_stratification&#34;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">causal_estimate</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">causal_estimate</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">estimate_effect</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">method_name</span><span class="o">=</span><span class="s2">&#34;backdoor.propensity_score_stratification&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">causal_estimate</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>backdoor criterion과 propensity score를 이용하여 causal effect(지금은 ATE)를 구하면 아래와 같은 결과가 나온다. true값과 거의 비슷하게 나왔다.</p>
 <div class="highlight"><div class="chroma">
@@ -467,27 +467,27 @@ No such variable(s) found!
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">propensity_score_stratification
-*** Causal Estimate ***
-
-## Identified estimand
-Estimand type: nonparametric-ate
-
-### Estimand : 1
-Estimand name: backdoor
-Estimand expression:
-  d                       
-─────(E[y|W3,W1,W2,W4,W0])
-d[v₀]                     
-Estimand assumption 1, Unconfoundedness: If U→{v0} and U→y then P(y|v0,W3,W1,W2,W4,W0,U) = P(y|v0,W3,W1,W2,W4,W0)
-
-## Realized estimand
-b: y~v0+W3+W1+W2+W4+W0
-Target units: ate
-
-## Estimate
-Mean value: 10.257618758277024
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">propensity_score_stratification
+</span></span><span class="line"><span class="cl">*** Causal Estimate ***
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## Identified estimand
+</span></span><span class="line"><span class="cl">Estimand type: nonparametric-ate
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">### Estimand : 1
+</span></span><span class="line"><span class="cl">Estimand name: backdoor
+</span></span><span class="line"><span class="cl">Estimand expression:
+</span></span><span class="line"><span class="cl">  d                       
+</span></span><span class="line"><span class="cl">─────(E[y|W3,W1,W2,W4,W0])
+</span></span><span class="line"><span class="cl">d[v₀]                     
+</span></span><span class="line"><span class="cl">Estimand assumption 1, Unconfoundedness: If U→{v0} and U→y then P(y|v0,W3,W1,W2,W4,W0,U) = P(y|v0,W3,W1,W2,W4,W0)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## Realized estimand
+</span></span><span class="line"><span class="cl">b: y~v0+W3+W1+W2+W4+W0
+</span></span><span class="line"><span class="cl">Target units: ate
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">## Estimate
+</span></span><span class="line"><span class="cl">Mean value: 10.257618758277024
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="refute-estimate">Refute estimate</h3>
 <p>refute의 방법에는 여러가지가 있다. 그 중 두가지만 알아보자.</p>
@@ -500,11 +500,11 @@ Mean value: 10.257618758277024
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Replacing treatment with a random (placebo) variable</span>
-<span class="n">res_placebo</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">refute_estimate</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">,</span> <span class="n">causal_estimate</span><span class="p">,</span>
-        <span class="n">method_name</span><span class="o">=</span><span class="s2">&#34;placebo_treatment_refuter&#34;</span><span class="p">,</span> <span class="n">placebo_type</span><span class="o">=</span><span class="s2">&#34;permute&#34;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">res_placebo</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Replacing treatment with a random (placebo) variable</span>
+</span></span><span class="line"><span class="cl"><span class="n">res_placebo</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">refute_estimate</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">,</span> <span class="n">causal_estimate</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">method_name</span><span class="o">=</span><span class="s2">&#34;placebo_treatment_refuter&#34;</span><span class="p">,</span> <span class="n">placebo_type</span><span class="o">=</span><span class="s2">&#34;permute&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">res_placebo</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -514,11 +514,11 @@ Mean value: 10.257618758277024
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Refute: Use a Placebo Treatment
-Estimated effect:10.257618758277024
-New effect:0.004448677029791578
-p value:0.49
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Refute: Use a Placebo Treatment
+</span></span><span class="line"><span class="cl">Estimated effect:10.257618758277024
+</span></span><span class="line"><span class="cl">New effect:0.004448677029791578
+</span></span><span class="line"><span class="cl">p value:0.49
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>다음은 data의 subset을 random하게 없애고 causal effect를 구하는 것이다. 일부를 없애도 <code>New effect</code>는 기존의 effect와 동일하게 나와야한다.</p>
 <div class="highlight"><div class="chroma">
@@ -529,11 +529,11 @@ p value:0.49
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Removing a random subset of the data</span>
-<span class="n">res_subset</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">refute_estimate</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">,</span> <span class="n">causal_estimate</span><span class="p">,</span>
-        <span class="n">method_name</span><span class="o">=</span><span class="s2">&#34;data_subset_refuter&#34;</span><span class="p">,</span> <span class="n">subset_fraction</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">res_subset</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Removing a random subset of the data</span>
+</span></span><span class="line"><span class="cl"><span class="n">res_subset</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">refute_estimate</span><span class="p">(</span><span class="n">identified_estimand</span><span class="p">,</span> <span class="n">causal_estimate</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">method_name</span><span class="o">=</span><span class="s2">&#34;data_subset_refuter&#34;</span><span class="p">,</span> <span class="n">subset_fraction</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">res_subset</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -543,11 +543,11 @@ p value:0.49
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Refute: Use a subset of data
-Estimated effect:10.257618758277024
-New effect:10.220266223065927
-p value:0.37
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Refute: Use a subset of data
+</span></span><span class="line"><span class="cl">Estimated effect:10.257618758277024
+</span></span><span class="line"><span class="cl">New effect:10.220266223065927
+</span></span><span class="line"><span class="cl">p value:0.37
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -583,7 +583,7 @@ p value:0.37
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

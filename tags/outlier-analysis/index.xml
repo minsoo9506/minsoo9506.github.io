@@ -3,7 +3,14 @@
         <title>Outlier Analysis - Tag - minsoo9506</title>
         <link>http://minsoo9506.github.io/tags/outlier-analysis/</link>
         <description>Outlier Analysis - Tag - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 20 Mar 2022 10:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/outlier-analysis/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 May 2022 10:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/outlier-analysis/" rel="self" type="application/rss+xml" /><item>
+    <title>[OutlierAnalysis] Supervised Outlier Analysis</title>
+    <link>http://minsoo9506.github.io/outlieranalysis02/</link>
+    <pubDate>Mon, 09 May 2022 10:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/outlieranalysis02/</guid>
+    <description><![CDATA[<p>label이 있는 경우인 Supervised Outlier Analysis (Outlier Analysis, Charu C. Aggarwal)</p>]]></description>
+</item><item>
     <title>[OutlierAnalysis] Model Combination for Outlier Ensembles</title>
     <link>http://minsoo9506.github.io/outlieranalysis01/</link>
     <pubDate>Sun, 20 Mar 2022 10:00:00 &#43;0000</pubDate>

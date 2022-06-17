@@ -161,22 +161,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;no use&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
-<span class="c1"># max heap 생성</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">max_heapify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">original_heap_size</span><span class="p">,</span> <span class="n">new_data</span><span class="p">):</span>
-    <span class="n">heap_size</span> <span class="o">=</span> <span class="n">original_heap_size</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">data</span><span class="p">[</span><span class="n">heap_size</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_data</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">heap_size</span>
-    <span class="c1"># i &gt;1 : i가 root가 아니고</span>
-    <span class="c1"># data[i//2] &lt; data[i] : new_data가 부모보다 큰 경우</span>
-    <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-        <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
-        <span class="n">i</span> <span class="o">//=</span> <span class="mi">2</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;no use&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># max heap 생성</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_heapify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">original_heap_size</span><span class="p">,</span> <span class="n">new_data</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">heap_size</span> <span class="o">=</span> <span class="n">original_heap_size</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="p">[</span><span class="n">heap_size</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_data</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="n">heap_size</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># i &gt;1 : i가 root가 아니고</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># data[i//2] &lt; data[i] : new_data가 부모보다 큰 경우</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">//=</span> <span class="mi">2</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>시간복잡도
@@ -226,25 +226,25 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;no use&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
-<span class="c1"># max heap 생성</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">max_heapify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">extract_max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">heap_size</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">heap_size</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span>
-    <span class="c1"># heap의 root는 max</span>
-    <span class="n">max_val</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="c1"># 맨 마지막원소를 root로 보내기</span>
-    <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">heap_size</span><span class="p">]</span>
-    <span class="c1"># root값을 뺐으니까</span>
-    <span class="n">heap_size</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="c1"># root의 subtree들은 heap인 상태므로 heapify</span>
-    <span class="n">max_heapify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">heap_size</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">max_val</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;no use&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># max heap 생성</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_heapify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">extract_max</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">heap_size</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">heap_size</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># heap의 root는 max</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_val</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 맨 마지막원소를 root로 보내기</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">heap_size</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># root값을 뺐으니까</span>
+</span></span><span class="line"><span class="cl">    <span class="n">heap_size</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># root의 subtree들은 heap인 상태므로 heapify</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_heapify</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">heap_size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">max_val</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -283,7 +283,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

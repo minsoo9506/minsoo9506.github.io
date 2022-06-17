@@ -224,12 +224,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># pseudo code</span>
-<span class="n">RELAX</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
-        <span class="n">then</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span><span class="p">(</span><span class="n">u</span><span class="o">+</span><span class="n">v</span><span class="p">)</span> <span class="c1"># 더 짧은 경로가 있다면 갱신</span>
-             <span class="n">pi</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># pseudo code</span>
+</span></span><span class="line"><span class="cl"><span class="n">RELAX</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">then</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span><span class="p">(</span><span class="n">u</span><span class="o">+</span><span class="n">v</span><span class="p">)</span> <span class="c1"># 더 짧은 경로가 있다면 갱신</span>
+</span></span><span class="line"><span class="cl">             <span class="n">pi</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="dijkstra의-알고리즘">Dijkstra의 알고리즘</h2>
 <ul>
@@ -306,47 +306,47 @@
 </span><span class="lnt">40
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">heapq</span>
-<span class="n">INF</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e9</span><span class="p">)</span>
-<span class="c1"># 노드의 개수, 간선의 개수</span>
-<span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-<span class="c1"># 시작 노드 번호 입력</span>
-<span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
-<span class="c1"># 각 노드에 연결되어 있는 노드에 대한 정보</span>
-<span class="c1"># 인덱스는 1부터 시작하도록</span>
-<span class="n">graph</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
-<span class="c1"># 최단 거리 table</span>
-<span class="n">distance</span> <span class="o">=</span> <span class="p">[</span><span class="n">INF</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># 그래프에 대한 정보</span>
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-    <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">))</span> <span class="c1"># 여기서 b : 연결된 노드, c : weight</span>
-
-<span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">start</span><span class="p">):</span>
-    <span class="n">q</span> <span class="o">=</span> <span class="p">[]</span>  
-    <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">start</span><span class="p">))</span>
-    <span class="n">distance</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">while</span> <span class="n">q</span><span class="p">:</span>
-        <span class="c1"># 최단거리가 가장 짧은 경우 꺼내기</span>
-        <span class="n">dist</span><span class="p">,</span> <span class="n">now</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-        <span class="c1"># 현재 노드가 이미 처리되었으면 넘어가기</span>
-        <span class="k">if</span> <span class="n">distance</span><span class="p">[</span><span class="n">now</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="c1"># 현재 노드와 연결된 인접노드들에 대한 relaxing</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">now</span><span class="p">]:</span>
-            <span class="n">cost</span> <span class="o">=</span> <span class="n">dist</span> <span class="o">+</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="c1"># 현재 노드를 지나서 가는게 더 짧은 경우</span>
-                <span class="k">if</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]]:</span>
-                    <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cost</span>
-                    <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-
-<span class="c1"># 실행        </span>
-<span class="n">dijkstra</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">heapq</span>
+</span></span><span class="line"><span class="cl"><span class="n">INF</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 노드의 개수, 간선의 개수</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 시작 노드 번호 입력</span>
+</span></span><span class="line"><span class="cl"><span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 각 노드에 연결되어 있는 노드에 대한 정보</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 인덱스는 1부터 시작하도록</span>
+</span></span><span class="line"><span class="cl"><span class="n">graph</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 최단 거리 table</span>
+</span></span><span class="line"><span class="cl"><span class="n">distance</span> <span class="o">=</span> <span class="p">[</span><span class="n">INF</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 그래프에 대한 정보</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">))</span> <span class="c1"># 여기서 b : 연결된 노드, c : weight</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">start</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span> <span class="o">=</span> <span class="p">[]</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">start</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">distance</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">q</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 최단거리가 가장 짧은 경우 꺼내기</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dist</span><span class="p">,</span> <span class="n">now</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 현재 노드가 이미 처리되었으면 넘어가기</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">distance</span><span class="p">[</span><span class="n">now</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 현재 노드와 연결된 인접노드들에 대한 relaxing</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">now</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cost</span> <span class="o">=</span> <span class="n">dist</span> <span class="o">+</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># 현재 노드를 지나서 가는게 더 짧은 경우</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]]:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cost</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 실행        </span>
+</span></span><span class="line"><span class="cl"><span class="n">dijkstra</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="floyd-warshall-알고리즘">Floyd-Warshall 알고리즘</h2>
 <ul>
@@ -397,35 +397,35 @@
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">INF</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e9</span><span class="p">)</span>
-<span class="c1"># node 개수, edge 개수</span>
-<span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-<span class="c1"># 2차원 리스트를 만들고 무한대로 초기회</span>
-<span class="n">graph</span> <span class="o">=</span> <span class="p">[[</span><span class="n">INF</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
-<span class="c1"># 자기자신은 0으로 초기화</span>
-<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="c1"># input</span>
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
-    <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
-
-<span class="c1"># 알고리즘 실행</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">],</span> <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="n">graph</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">b</span><span class="p">])</span>
-
-<span class="c1"># 결과 출력</span>
-<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">]</span> <span class="o">==</span> <span class="n">INF</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">INF</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># node 개수, edge 개수</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2차원 리스트를 만들고 무한대로 초기회</span>
+</span></span><span class="line"><span class="cl"><span class="n">graph</span> <span class="o">=</span> <span class="p">[[</span><span class="n">INF</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 자기자신은 0으로 초기화</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># input</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 알고리즘 실행</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">],</span> <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="n">graph</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">b</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 결과 출력</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">]</span> <span class="o">==</span> <span class="n">INF</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="n">b</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -465,7 +465,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>

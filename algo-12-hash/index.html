@@ -307,14 +307,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">hashlib</span>
-<span class="n">hash_obj</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">()</span>
-<span class="n">hash_obj</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
-<span class="n">hex_dig</span> <span class="o">=</span> <span class="n">hash_obj</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hex_dig</span><span class="p">)</span> 
-<span class="c1"># 결과</span>
-<span class="c1"># b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">hashlib</span>
+</span></span><span class="line"><span class="cl"><span class="n">hash_obj</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">hash_obj</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">hex_dig</span> <span class="o">=</span> <span class="n">hash_obj</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">hex_dig</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 결과</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -386,73 +386,73 @@
 </span><span class="lnt">66
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 해시맵, 개별체이닝 구현</span>
-<span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
-      <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>
-
-<span class="kn">import</span> <span class="nn">collections</span>
-
-<span class="k">class</span> <span class="nc">HashMap</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="n">ListNode</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">key</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="c1"># division 기법</span>
-        
-        <span class="c1"># index에 노드가 없는 경우</span>
-        <span class="c1"># defaultdict는 index가 없으면 바로 생성하기에</span>
-        <span class="c1"># if self.table[index] is None: 이렇게 하면 무조건 True</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-            <span class="k">return</span>
-
-        <span class="c1"># 노드가 있는 경우</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="k">while</span> <span class="n">p</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
-                <span class="n">p</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-                <span class="k">return</span>
-            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">return</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span>
-        <span class="n">p</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">key</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
-        <span class="c1"># 해당하는 index가 비어있는 경우</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="c1"># 해당하는 index에서 값을 찾는다</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="k">while</span> <span class="n">p</span><span class="p">:</span> 
-            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">value</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-
-    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="n">key</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
-        <span class="c1"># 해당하는 index가 비어있는 경우</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="c1"># index의 첫번째 노드일 때 삭제처리</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
-            <span class="c1"># if self.table[index].value is None: 이부분이 에러나지 않도록하기 위해</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span>
-            <span class="k">return</span>
-        <span class="c1"># 연결 리스트 노드 삭제</span>
-        <span class="n">prev</span> <span class="o">=</span> <span class="n">p</span>
-        <span class="k">while</span> <span class="n">p</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
-                <span class="n">prev</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span>
-                <span class="k">return</span>
-            <span class="n">prev</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 해시맵, 개별체이닝 구현</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ListNode</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">collections</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">HashMap</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1000</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="n">ListNode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">index</span> <span class="o">=</span> <span class="n">key</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="c1"># division 기법</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># index에 노드가 없는 경우</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># defaultdict는 index가 없으면 바로 생성하기에</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># if self.table[index] is None: 이렇게 하면 무조건 True</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># 노드가 있는 경우</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">p</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">p</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">index</span> <span class="o">=</span> <span class="n">key</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 해당하는 index가 비어있는 경우</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 해당하는 index에서 값을 찾는다</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">p</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">value</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">index</span> <span class="o">=</span> <span class="n">key</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 해당하는 index가 비어있는 경우</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># index의 첫번째 노드일 때 삭제처리</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># if self.table[index].value is None: 이부분이 에러나지 않도록하기 위해</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 연결 리스트 노드 삭제</span>
+</span></span><span class="line"><span class="cl">        <span class="n">prev</span> <span class="o">=</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">p</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">prev</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span>
+</span></span><span class="line"><span class="cl">            <span class="n">prev</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">next</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="reference">Reference</h2>
 <ul>
@@ -491,7 +491,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.89.4">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
         </div>
     </footer></div>
