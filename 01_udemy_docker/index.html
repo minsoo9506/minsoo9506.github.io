@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>[Docker] Image와 Container - minsoo9506</title><meta name="Description" content="This is My New Hugo Site"><meta property="og:title" content="[Docker] Image와 Container" />
+<meta property="og:description" content="Docker의 가장 기본적인 개념 (Image, Container)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://minsoo9506.github.io/01_udemy_docker/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-03T13:02:00+09:00" />
+<meta property="article:modified_time" content="2022-06-03T13:02:00+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Docker] Image와 Container"/>
+<meta name="twitter:description" content="Docker의 가장 기본적인 개념 (Image, Container)"/>
+<meta name="application-name" content="minsoo9506">
+<meta name="apple-mobile-web-app-title" content="minsoo9506"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://minsoo9506.github.io/01_udemy_docker/" /><link rel="prev" href="http://minsoo9506.github.io/outlieranalysis02/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[Docker] Image와 Container",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/minsoo9506.github.io\/01_udemy_docker\/"
+        },"genre": "posts","keywords": "Docker","wordcount":  641 ,
+        "url": "http:\/\/minsoo9506.github.io\/01_udemy_docker\/","datePublished": "2022-06-03T13:02:00+09:00","dateModified": "2022-06-03T13:02:00+09:00","publisher": {
+            "@type": "Organization",
+            "name": "minsoo9506"},"author": {
+                "@type": "Person",
+                "name": "minsoo9506"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="minsoo9506">minsoo9506 study note</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="minsoo9506">minsoo9506 study note</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">[Docker] Image와 Container</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>Docker</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-03">2022-06-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;641 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#image">Image</a></li>
+        <li><a href="#image-layer">Image layer</a></li>
+        <li><a href="#dockerfile">Dockerfile</a></li>
+      </ul>
+    </li>
+    <li><a href="#image-container-관리">image, container 관리</a>
+      <ul>
+        <li><a href="#컨테이너-재시작">컨테이너 재시작</a></li>
+        <li><a href="#attached-detached">attached, detached</a></li>
+        <li><a href="#interactive-모드">interactive 모드</a></li>
+        <li><a href="#컨테이너에서-나오기">컨테이너에서 나오기</a></li>
+        <li><a href="#삭제">삭제</a></li>
+        <li><a href="#이미지-컨테이너-살펴보기">이미지, 컨테이너 살펴보기</a></li>
+        <li><a href="#컨테이너-파일-복사">컨테이너 파일 복사</a></li>
+        <li><a href="#컨테이너의-이름-이미지의-태그-지정">컨테이너의 이름, 이미지의 태그 지정</a></li>
+        <li><a href="#dockerhub에-이미지-푸시하기">Dockerhub에 이미지 푸시하기</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Docker의 가장 기본적인 개념 (Image, Container)</p>
+<h3 id="image">Image</h3>
+<ul>
+<li>
+<p>templates for containers, Read-Only</p>
+</li>
+<li>
+<p>이미지를 기반으로 컨테이너 띄워서 사용한다.</p>
+</li>
+<li>
+<p><code>docker run imageName</code></p>
+<ul>
+<li><code>run</code> 명령어를 치면 이미지가 없는 경우 도커허브에서 다운받고 컨테이너를 띄운다'</li>
+</ul>
+</li>
+<li>
+<p><code>docker run -it node</code></p>
+<ul>
+<li>바로 컨테이너안에서 명령어를 칠 수 있게 된다 (컨테이너가 대화형 셀을 제공하는 경우)</li>
+</ul>
+</li>
+<li>
+<p><code>docker ps</code></p>
+<ul>
+<li>지금 돌아가고 있는 컨테이너를 알려준다.</li>
+<li><code>docker ps -a</code>로 <code>-a</code>를 붙이면 모든 컨테이너를 보여준다 (정지된 컨테이너도 포함하여)</li>
+</ul>
+</li>
+</ul>
+<h3 id="image-layer">Image layer</h3>
+<ul>
+<li>이미지는 layer 기반이라고 할 수 있다. (각 명령어는 layer라고 할 수 있다)</li>
+<li>한번 build한 이미지는 다시 build하면 엄청 빠르게 진행된다. 이는 캐시되었기 때문이다.</li>
+<li>특정 명령어 부분의 코드가 바뀌면 그 뒤의 모든 명령어(layer)들도 전부 캐시를 이용하지 않고 처음 build하듯이 살펴본다.</li>
+<li>그래서 명령어의 순서도 적절하기 배치하는 것이 build를 최적화하는 방법중 하나이다.</li>
+</ul>
+<h3 id="dockerfile">Dockerfile</h3>
+<ul>
+<li>Dockerfile을 통해서 이미지를 빌드할 수 있다.</li>
+<li>우리가 원하는대로 커스텀 이미지를 만들 수 있는 것이다.</li>
+<li>Dockerfile 예시
+<ul>
+<li><code>FROM node</code>: 기본 이미지 다운로드</li>
+<li><code>WORKDIR /app</code>: 이미지에서 명령어가 실행될 기본 디렉토리 설정</li>
+<li><code>COPY . ./</code>: 첫번째가 지금 위치, 두번째가 이미지 내부 위치를 의미, 지금 위치의 파일을 복사해서 이미지 내부의 위치에 복사</li>
+<li><code>RUN npm install</code>: 이미지 내부에서 명령어 실행</li>
+<li><code>EXPOSE 80</code>: 호스트와 연결할 포트 번호를 설정, 하지만 document같은 역할일 뿐 실제로 포트를 연결하기 위해서는 컨테이너를 띄울때 명령어를 통해 진행해야 한다</li>
+<li><code>CMD [&quot;node&quot;, &quot;server.js&quot;]</code>: 이미지를 기반으로 컨테이너가 시작될 때 실행된다, 배열형식으로 명령어를 작성</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> node</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> . /app<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> npm install<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 80</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;node&#34;</span><span class="p">,</span> <span class="s2">&#34;server.js&#34;</span><span class="p">]</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>위의 Dockerfile이 있는 위치에서 <code>docker build .</code> 명령어를 통해서 이미지를 빌드할 수 있다.</li>
+<li>포트를 연결하기 위해서는 <code>docker run -p 3000:80 imageID</code> 같은 명령어가 필요하다: <code>-p 로컬포트:container포트</code></li>
+<li><code>docker stop containerName</code>으로 컨테이너를 멈출 수 있다.</li>
+</ul>
+<h2 id="image-container-관리">image, container 관리</h2>
+<h3 id="컨테이너-재시작">컨테이너 재시작</h3>
+<ul>
+<li><code>docker start containerID</code>: 기존의 containerID 컨테이너 재시작 (container 이름으로도 당연히 가능하다)</li>
+</ul>
+<h3 id="attached-detached">attached, detached</h3>
+<ul>
+<li><code>docker run</code>은 attached 모드가 default, <code>docker start</code>는 detached 모드가 default이다.</li>
+<li>detached 모드는 컨테이너를 백그라운드에서 동작하게 한다.</li>
+<li>detached 모드를 하고 싶으면 <code>docker run -d imageID</code>하면 된다.</li>
+<li>attaced모드로 꺼져있는 컨테이너를 시작하고 싶으면 <code>docker start -a containerID</code>하면 된다.</li>
+<li>실행중인 컨테이너에 attach하고 싶으면 <code>docker attach containerID</code>하면 된다.</li>
+</ul>
+<h3 id="interactive-모드">interactive 모드</h3>
+<ul>
+<li><code>-i</code> 옵션을 통해서 입력이 가능하게하고 <code>-t</code> 옵션을 통해서 컨테이너의 터미널을 사용할 수 있게 된다. 그래서 이미지로 컨테이너를 띄울 때, 두 가지 옵션 <code>-it</code>을 자주 같이 사용한다.</li>
+<li>컨테이너 재시작에서도 <code>docker start -a -i containerID</code>로 사용하기도 한다.</li>
+</ul>
+<h3 id="컨테이너에서-나오기">컨테이너에서 나오기</h3>
+<ul>
+<li><code>exit</code>, <code>Ctrl + D</code> 입력하면 컨테이너 빠져나오면서 동시에 컨테이너를 정지시킨다.</li>
+<li>컨테이너를 정지시키지 않고 나오고 싶으면 <code>Ctrl + P, Q</code>를 이용하자.</li>
+</ul>
+<h3 id="삭제">삭제</h3>
+<ul>
+<li><code>docker rm containerID</code>는 컨테이너를 삭제할 수 있다
+<ul>
+<li>한번에 여러개도 할 수 있다. 그냥 주르륵 쓰면 된다.</li>
+</ul>
+</li>
+<li><code>docker images</code>는 image들을 보여준다.</li>
+<li><code>docker rmi imageID</code>는 이미지를 삭제할 수 있다.
+<ul>
+<li>모든 이미지를 항상 삭제할 수 있는 것은 아니고 중지된 컨테이너들만 존재할 때 삭제할 수 있다.</li>
+</ul>
+</li>
+<li><code>docker image prune</code>는 현재 실행되지 않는 컨테이너의 이미지들을 모두 삭제한다. (사용하지 말자 ㅎㅎ)</li>
+<li><code>docker rum --rm containerID</code>에서 <code>--rm</code>은 컨테이너가 중지되면 자동으로 삭제되는 옵션이다.</li>
+</ul>
+<h3 id="이미지-컨테이너-살펴보기">이미지, 컨테이너 살펴보기</h3>
+<ul>
+<li><code>docker image inspect imageID</code>를 통해 이미지에 대한 정보를 알 수 있다. (컨테이너도 가능)
+<ul>
+<li>OS, 만들어진 날짜 등등 생각보다 많은 정보를 알 수 있다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="컨테이너-파일-복사">컨테이너 파일 복사</h3>
+<ul>
+<li>컨테이너로 파일을 복사할 수 있고 반대로 컨테이너에서 파일을 복사할 수도 있다. (실행중인 컨테이너도 가능)</li>
+<li><code>docker cp folder/test.txt containerName:/test/test.txt</code>는 로컬 파일경로 <code>folder/test.txt</code>를 <code>containerName</code>이라는 컨테이너의 <code>/test/test.txt</code>위치에 복사한다. (<code>:</code>도 꼭 해줘야한다)</li>
+<li><code>docker cp containerName:/test/test.txt folder/test.txt</code>는 위와 반대의 과정을 진행한다.</li>
+</ul>
+<h3 id="컨테이너의-이름-이미지의-태그-지정">컨테이너의 이름, 이미지의 태그 지정</h3>
+<ul>
+<li>
+<p><code>docker run --name 원하는컨테이너이름 imageID</code>처럼 <code>--name</code>으로 원하는 컨테이너의 이름을 지정할 수 있다.</p>
+</li>
+<li>
+<p>이미지의 이름은 아래처럼 두 가지로 이루어져있다.</p>
+<ul>
+<li><code>repository:tag</code></li>
+<li><code>repository</code>는 이미지들을 그룹핑 할 수 있는 것 또는 이름으로 이해할 수 있고 <code>tag</code>는 버전같이 더 해당그룹의 작은 단위의 특징을 나타낼 수 있다.</li>
+</ul>
+</li>
+<li>
+<p><code>docker build -t repository:tag .</code> 이런식으로 image의 만들면 된다.</p>
+</li>
+<li>
+<p><code>docker tag 이전이름 새이름</code> repository:tag를 바꿀 수도 있다.</p>
+</li>
+</ul>
+<h3 id="dockerhub에-이미지-푸시하기">Dockerhub에 이미지 푸시하기</h3>
+<ul>
+<li>Docker Hub를 이용할 수도 있고 Private Registry에 이미지를 푸시할 수 있다.</li>
+<li>Docker Hub
+<ul>
+<li>Docker Hub에서 repository를 먼저 만들어준다.</li>
+<li>그리고 <code>push</code> 를 이용해서 올릴 수 있다.</li>
+<li><code>docker push hubID/repositoryName:tagName</code>
+<ul>
+<li>따라서 로컬에 있는 이미지의 이름도 위와 같아야한다.</li>
+<li>그리고 권한 제한이 뜰 수도 있는데 이 때는 <code>docker login</code>을 해서 인증을 해야한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>Docker &amp; Kubernetes: 실전 가이드 -2022년판 (udemy 강의)</li>
+<li>시작하세요 도커/쿠버네티스 , 용찬호 지음</li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-06-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/01_udemy_docker/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/docker/">Docker</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/outlieranalysis02/" class="prev" rel="prev" title="[OutlierAnalysis] Supervised Outlier Analysis"><i class="fas fa-angle-left fa-fw"></i>[OutlierAnalysis] Supervised Outlier Analysis</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/minsoo9506" target="_blank">minsoo9506</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
