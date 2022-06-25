@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Image - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/image/</link>
+        <description>Image - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 03 Jun 2022 13:02:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/image/" rel="self" type="application/rss+xml" /><item>
+    <title>[Docker] Image와 Container</title>
+    <link>http://minsoo9506.github.io/01_udemy_docker/</link>
+    <pubDate>Fri, 03 Jun 2022 13:02:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/01_udemy_docker/</guid>
+    <description><![CDATA[<p>Docker의 가장 기본적인 개념 (Image, Container)</p>]]></description>
+</item></channel>
+</rss>
