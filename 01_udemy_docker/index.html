@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/minsoo9506.github.io\/01_udemy_docker\/"
-        },"genre": "posts","keywords": "Docker, Image, Container","wordcount":  641 ,
+        },"genre": "posts","keywords": "Docker, Image, Container","wordcount":  700 ,
         "url": "http:\/\/minsoo9506.github.io\/01_udemy_docker\/","datePublished": "2022-06-03T13:02:00+09:00","dateModified": "2022-06-03T13:02:00+09:00","publisher": {
             "@type": "Organization",
             "name": "minsoo9506"},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[Docker] Image와 Container</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://github.com/minsoo9506" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>minsoo9506</a></span>&nbsp;<span class="post-category">included in <a href="/categories/docker/"><i class="far fa-folder fa-fw"></i>Docker</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-03">2022-06-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;641 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-03">2022-06-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;700 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="true">
                 <div class="details-summary toc-title">
@@ -126,6 +126,7 @@
         <li><a href="#attached-detached">attached, detached</a></li>
         <li><a href="#interactive-모드">interactive 모드</a></li>
         <li><a href="#컨테이너에서-나오기">컨테이너에서 나오기</a></li>
+        <li><a href="#exec">exec</a></li>
         <li><a href="#삭제">삭제</a></li>
         <li><a href="#이미지-컨테이너-살펴보기">이미지, 컨테이너 살펴보기</a></li>
         <li><a href="#컨테이너-파일-복사">컨테이너 파일 복사</a></li>
@@ -242,6 +243,29 @@
 <ul>
 <li><code>exit</code>, <code>Ctrl + D</code> 입력하면 컨테이너 빠져나오면서 동시에 컨테이너를 정지시킨다.</li>
 <li>컨테이너를 정지시키지 않고 나오고 싶으면 <code>Ctrl + P, Q</code>를 이용하자.</li>
+</ul>
+<h3 id="exec">exec</h3>
+<ul>
+<li><code>docker exec</code>를 통해서 실행중인 컨테이너에 명령어를 사용할 수 있다.
+<ul>
+<li>예를 들어, <code>docker exec -it containerName npm init</code></li>
+</ul>
+</li>
+<li>컨테이너를 띄울 때, 이미지의 이름 뒤에 명령어를 쓰면 기존의 Dockerfile에 있던 <code>CMD</code>에 작성한 명령어를 덮어쓴다.</li>
+<li><code>ENTRYPOINT</code>는 이미지의 이름 뒤 명령어가 이어져서 사용된다.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;npm&#34;</span><span class="p">,</span> <span class="s2">&#34;start&#34;</span><span class="p">]</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;npm&#34;</span><span class="p">]</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>docker run node init</code> 이런식의 명령어를 사용하면 <code>CMD</code>는 무시되고 <code>npm init</code>이 실행된다.</li>
 </ul>
 <h3 id="삭제">삭제</h3>
 <ul>

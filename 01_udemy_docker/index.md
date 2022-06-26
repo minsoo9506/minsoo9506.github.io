@@ -79,6 +79,20 @@ CMD ["node", "server.js"]
 - `exit`, `Ctrl + D` 입력하면 컨테이너 빠져나오면서 동시에 컨테이너를 정지시킨다.
 - 컨테이너를 정지시키지 않고 나오고 싶으면 `Ctrl + P, Q`를 이용하자.
 
+### exec
+
+- `docker exec`를 통해서 실행중인 컨테이너에 명령어를 사용할 수 있다.
+  - 예를 들어, `docker exec -it containerName npm init`
+- 컨테이너를 띄울 때, 이미지의 이름 뒤에 명령어를 쓰면 기존의 Dockerfile에 있던 `CMD`에 작성한 명령어를 덮어쓴다.
+- `ENTRYPOINT`는 이미지의 이름 뒤 명령어가 이어져서 사용된다.
+
+```Dockerfile
+CMD ["npm", "start"]
+ENTRYPOINT ["npm"]
+```
+
+- `docker run node init` 이런식의 명령어를 사용하면 `CMD`는 무시되고 `npm init`이 실행된다.
+
 ### 삭제
 
 - `docker rm containerID`는 컨테이너를 삭제할 수 있다
