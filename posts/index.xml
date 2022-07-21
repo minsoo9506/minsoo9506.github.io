@@ -3,7 +3,14 @@
         <title>All Posts - minsoo9506</title>
         <link>http://minsoo9506.github.io/posts/</link>
         <description>All Posts | minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 26 Jun 2022 09:02:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 21 Jul 2022 13:01:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[Linux] 리눅스 명령어 정리</title>
+    <link>http://minsoo9506.github.io/04-linux-udemy/</link>
+    <pubDate>Thu, 21 Jul 2022 13:01:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/04-linux-udemy/</guid>
+    <description><![CDATA[<p>리눅스 명령어 정리</p>]]></description>
+</item><item>
     <title>[Docker] docker-compose</title>
     <link>http://minsoo9506.github.io/04_udemy_docker/</link>
     <pubDate>Sun, 26 Jun 2022 09:02:00 &#43;0900</pubDate>
@@ -66,12 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/airflow04/</guid>
     <description><![CDATA[<p>multiple task를 execute하는 방법과 관련한 내용을 공부해보자.</p>]]></description>
-</item><item>
-    <title>[Airflow] Pipeline</title>
-    <link>http://minsoo9506.github.io/airflow03/</link>
-    <pubDate>Sun, 17 Apr 2022 10:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/airflow03/</guid>
-    <description><![CDATA[<p>Airflow pipeline을 만들어보자</p>]]></description>
 </item></channel>
 </rss>
