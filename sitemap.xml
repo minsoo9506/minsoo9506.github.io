@@ -2,13 +2,15 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://minsoo9506.github.io/01_gnn/</loc><lastmod>2022-08-10T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2022-08-10T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/gnn/</loc><lastmod>2022-08-10T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/graph/</loc><lastmod>2022-08-10T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>http://minsoo9506.github.io/</loc><lastmod>2022-08-10T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2022-08-10T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2022-08-10T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>http://minsoo9506.github.io/03_gat/</loc><lastmod>2022-09-01T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2022-09-01T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/gnn/</loc><lastmod>2022-09-01T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/graph/</loc><lastmod>2022-09-01T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/</loc><lastmod>2022-09-01T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2022-09-01T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2022-09-01T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/02_graphsage/</loc><lastmod>2022-08-30T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/01_gcn/</loc><lastmod>2022-08-10T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://minsoo9506.github.io/04-linux-udemy/</loc><lastmod>2022-07-21T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/linux/</loc><lastmod>2022-07-21T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/categories/ml-engineering/</loc><lastmod>2022-07-21T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

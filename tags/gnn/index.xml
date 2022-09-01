@@ -3,12 +3,26 @@
         <title>GNN - Tag - minsoo9506</title>
         <link>http://minsoo9506.github.io/tags/gnn/</link>
         <description>GNN - Tag - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 10 Aug 2022 13:01:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/gnn/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 01 Sep 2022 13:01:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/gnn/" rel="self" type="application/rss+xml" /><item>
+    <title>[GNN] GAT</title>
+    <link>http://minsoo9506.github.io/03_gat/</link>
+    <pubDate>Thu, 01 Sep 2022 13:01:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/03_gat/</guid>
+    <description><![CDATA[<p>GAT에 대해 간단하게 정리</p>]]></description>
+</item><item>
+    <title>[GNN] GraphSAGE</title>
+    <link>http://minsoo9506.github.io/02_graphsage/</link>
+    <pubDate>Tue, 30 Aug 2022 13:01:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/02_graphsage/</guid>
+    <description><![CDATA[<p>GraphSAGE에 대해 간단하게 정리</p>]]></description>
+</item><item>
     <title>[GNN] Graph Convolutional Network</title>
-    <link>http://minsoo9506.github.io/01_gnn/</link>
+    <link>http://minsoo9506.github.io/01_gcn/</link>
     <pubDate>Wed, 10 Aug 2022 13:01:00 &#43;0900</pubDate>
     <author>Author</author>
-    <guid>http://minsoo9506.github.io/01_gnn/</guid>
+    <guid>http://minsoo9506.github.io/01_gcn/</guid>
     <description><![CDATA[<p>GCN에 대해 간단하게 정리</p>]]></description>
 </item></channel>
 </rss>
