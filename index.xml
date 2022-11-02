@@ -3,9 +3,23 @@
         <title>minsoo9506</title>
         <link>http://minsoo9506.github.io/</link>
         <description>This is My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 01 Sep 2022 13:01:00 &#43;0900</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 02 Nov 2022 09:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://minsoo9506.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[Causality] CausalForest</title>
+    <link>http://minsoo9506.github.io/causalml_01_causalforest/</link>
+    <pubDate>Wed, 02 Nov 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causalml_01_causalforest/</guid>
+    <description><![CDATA[<p>CausalForest에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[Causality] Double Machine Learning</title>
+    <link>http://minsoo9506.github.io/causalml_00_doubleml/</link>
+    <pubDate>Tue, 01 Nov 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causalml_00_doubleml/</guid>
+    <description><![CDATA[<p>Double Machine Learning에 대해 알아보자.</p>]]></description>
+</item><item>
     <title>[GNN] GAT</title>
     <link>http://minsoo9506.github.io/03_gat/</link>
     <pubDate>Thu, 01 Sep 2022 13:01:00 &#43;0900</pubDate>
@@ -61,19 +75,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/01_udemy_docker/</guid>
     <description><![CDATA[<p>Docker의 가장 기본적인 개념 (Image, Container)</p>]]></description>
-</item><item>
-    <title>[OutlierAnalysis] Supervised Outlier Analysis</title>
-    <link>http://minsoo9506.github.io/outlieranalysis02/</link>
-    <pubDate>Mon, 09 May 2022 10:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/outlieranalysis02/</guid>
-    <description><![CDATA[<p>label이 있는 경우인 Supervised Outlier Analysis (Outlier Analysis, Charu C. Aggarwal)</p>]]></description>
-</item><item>
-    <title>[Algorithmic Marketing] Uplift Model</title>
-    <link>http://minsoo9506.github.io/05_uplift/</link>
-    <pubDate>Sun, 08 May 2022 09:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/05_uplift/</guid>
-    <description><![CDATA[<p>타겟팅을 할 때, 주로 사용하는 uplift 모형에 대한 기본개념을 알아보자.</p>]]></description>
 </item></channel>
 </rss>

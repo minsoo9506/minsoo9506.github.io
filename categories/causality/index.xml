@@ -3,7 +3,21 @@
         <title>Causality - Category - minsoo9506</title>
         <link>http://minsoo9506.github.io/categories/causality/</link>
         <description>Causality - Category - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 02 Apr 2022 11:09:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/causality/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 02 Nov 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/causality/" rel="self" type="application/rss+xml" /><item>
+    <title>[Causality] CausalForest</title>
+    <link>http://minsoo9506.github.io/causalml_01_causalforest/</link>
+    <pubDate>Wed, 02 Nov 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causalml_01_causalforest/</guid>
+    <description><![CDATA[<p>CausalForest에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[Causality] Double Machine Learning</title>
+    <link>http://minsoo9506.github.io/causalml_00_doubleml/</link>
+    <pubDate>Tue, 01 Nov 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causalml_00_doubleml/</guid>
+    <description><![CDATA[<p>Double Machine Learning에 대해 알아보자.</p>]]></description>
+</item><item>
     <title>[DoWhy] Tutorial</title>
     <link>http://minsoo9506.github.io/dowhy_00_tutorial/</link>
     <pubDate>Sat, 02 Apr 2022 11:09:00 &#43;0000</pubDate>
@@ -59,19 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/causal07/</guid>
     <description><![CDATA[<p>No unobserved confounding은 솔직히 비현실적이다.</p>]]></description>
-</item><item>
-    <title>[인과추론] Estimation</title>
-    <link>http://minsoo9506.github.io/causal06/</link>
-    <pubDate>Fri, 03 Dec 2021 11:06:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal06/</guid>
-    <description><![CDATA[<p>causality를 estimate하는 방법을 알아보자.</p>]]></description>
-</item><item>
-    <title>[인과추론] Randomized Experiments and Identification</title>
-    <link>http://minsoo9506.github.io/causal05/</link>
-    <pubDate>Fri, 03 Dec 2021 11:05:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal05/</guid>
-    <description><![CDATA[<p>Randomized Experiment에 대해 알아보고 causal effect를 identification하는 방법에 대해 알아보자.</p>]]></description>
 </item></channel>
 </rss>

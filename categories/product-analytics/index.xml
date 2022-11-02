@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Product Analytics - Category - minsoo9506</title>
+        <link>http://minsoo9506.github.io/categories/product-analytics/</link>
+        <description>Product Analytics - Category - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 08 May 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/product-analytics/" rel="self" type="application/rss+xml" /><item>
+    <title>[Product Analytics] Uplift Model</title>
+    <link>http://minsoo9506.github.io/uplift/</link>
+    <pubDate>Sun, 08 May 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/uplift/</guid>
+    <description><![CDATA[<p>타겟팅을 할 때, 주로 사용하는 uplift 모형에 대한 기본개념을 알아보자.</p>]]></description>
+</item><item>
+    <title>[Product Analytics] RFM 분석 기본개념</title>
+    <link>http://minsoo9506.github.io/rfm/</link>
+    <pubDate>Wed, 12 Jan 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/rfm/</guid>
+    <description><![CDATA[<p>RFM (Recency, Frequency, Monetary) 분석 의 기본개념을 알아보자.</p>]]></description>
+</item></channel>
+</rss>
