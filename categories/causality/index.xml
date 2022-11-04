@@ -3,7 +3,14 @@
         <title>Causality - Category - minsoo9506</title>
         <link>http://minsoo9506.github.io/categories/causality/</link>
         <description>Causality - Category - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 02 Nov 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/causality/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 03 Nov 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/causality/" rel="self" type="application/rss+xml" /><item>
+    <title>[Causality] Metalearners (X-learner)</title>
+    <link>http://minsoo9506.github.io/causalml_02_metalearner/</link>
+    <pubDate>Thu, 03 Nov 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causalml_02_metalearner/</guid>
+    <description><![CDATA[<p>heterogeneous treatment effect를 추정하는 metalearners방법론들 중에서 X-learner에 대해 알아보자.</p>]]></description>
+</item><item>
     <title>[Causality] CausalForest</title>
     <link>http://minsoo9506.github.io/causalml_01_causalforest/</link>
     <pubDate>Wed, 02 Nov 2022 09:00:00 &#43;0000</pubDate>
@@ -66,12 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/causal08/</guid>
     <description><![CDATA[<p>unobserved confounding이 있는 경우는 어떻게 할까? 이전 chapter에서도 알아봤지만 여기서는 <em>instrumental vairable</em> $Z$을 이용하고자 한다.</p>]]></description>
-</item><item>
-    <title>[인과추론] Unobserved Confounding, Bounds, and Unobserved Confounding</title>
-    <link>http://minsoo9506.github.io/causal07/</link>
-    <pubDate>Fri, 03 Dec 2021 11:07:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/causal07/</guid>
-    <description><![CDATA[<p>No unobserved confounding은 솔직히 비현실적이다.</p>]]></description>
 </item></channel>
 </rss>

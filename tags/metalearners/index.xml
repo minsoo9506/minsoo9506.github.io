@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Metalearners - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/metalearners/</link>
+        <description>Metalearners - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 03 Nov 2022 09:00:00 &#43;0000</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/metalearners/" rel="self" type="application/rss+xml" /><item>
+    <title>[Causality] Metalearners (X-learner)</title>
+    <link>http://minsoo9506.github.io/causalml_02_metalearner/</link>
+    <pubDate>Thu, 03 Nov 2022 09:00:00 &#43;0000</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/causalml_02_metalearner/</guid>
+    <description><![CDATA[<p>heterogeneous treatment effect를 추정하는 metalearners방법론들 중에서 X-learner에 대해 알아보자.</p>]]></description>
+</item></channel>
+</rss>
