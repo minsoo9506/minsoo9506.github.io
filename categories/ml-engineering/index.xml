@@ -3,7 +3,14 @@
         <title>ML Engineering - Category - minsoo9506</title>
         <link>http://minsoo9506.github.io/categories/ml-engineering/</link>
         <description>ML Engineering - Category - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 21 Jul 2022 13:01:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/ml-engineering/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 25 Nov 2022 13:01:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/ml-engineering/" rel="self" type="application/rss+xml" /><item>
+    <title>[Linux Shell] Shell Script 명령어 정리</title>
+    <link>http://minsoo9506.github.io/05-shell/</link>
+    <pubDate>Fri, 25 Nov 2022 13:01:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/05-shell/</guid>
+    <description><![CDATA[<p>Shell Script 명령어 정리</p>]]></description>
+</item><item>
     <title>[Linux] 리눅스 명령어 정리</title>
     <link>http://minsoo9506.github.io/04-linux-udemy/</link>
     <pubDate>Thu, 21 Jul 2022 13:01:00 &#43;0900</pubDate>

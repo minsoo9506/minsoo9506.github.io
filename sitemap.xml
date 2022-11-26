@@ -2,27 +2,29 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://minsoo9506.github.io/causalml_02_metalearner/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/causal-inference/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/causality/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/metalearners/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/x-learner/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/causalml_01_causalforest/</loc><lastmod>2022-11-02T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/causalforest/</loc><lastmod>2022-11-02T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/causalml_00_doubleml/</loc><lastmod>2022-11-01T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/double-machine-learning/</loc><lastmod>2022-11-01T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/05-shell/</loc><lastmod>2022-11-25T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/</loc><lastmod>2022-11-25T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/linux/</loc><lastmod>2022-11-25T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/</loc><lastmod>2022-11-25T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/ml-engineering/</loc><lastmod>2022-11-25T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/posts/</loc><lastmod>2022-11-25T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/shell-scripting/</loc><lastmod>2022-11-25T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/</loc><lastmod>2022-11-25T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://minsoo9506.github.io/causalml_02_metalearner/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/causal-inference/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>http://minsoo9506.github.io/categories/causality/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/metalearners/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/x-learner/</loc><lastmod>2022-11-03T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>http://minsoo9506.github.io/causalml_01_causalforest/</loc><lastmod>2022-11-02T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/causalforest/</loc><lastmod>2022-11-02T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>http://minsoo9506.github.io/causalml_00_doubleml/</loc><lastmod>2022-11-01T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>http://minsoo9506.github.io/tags/double-machine-learning/</loc><lastmod>2022-11-01T09:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>http://minsoo9506.github.io/03_gat/</loc><lastmod>2022-09-01T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/gnn/</loc><lastmod>2022-09-01T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/categories/graph/</loc><lastmod>2022-09-01T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/02_graphsage/</loc><lastmod>2022-08-30T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/01_gcn/</loc><lastmod>2022-08-10T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/04-linux-udemy/</loc><lastmod>2022-07-21T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://minsoo9506.github.io/tags/linux/</loc><lastmod>2022-07-21T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://minsoo9506.github.io/categories/ml-engineering/</loc><lastmod>2022-07-21T13:01:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/04_udemy_docker/</loc><lastmod>2022-06-26T09:02:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/compose/</loc><lastmod>2022-06-26T09:02:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://minsoo9506.github.io/tags/docker/</loc><lastmod>2022-06-26T09:02:00&#43;09:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
