@@ -3,7 +3,21 @@
         <title>All Posts - minsoo9506</title>
         <link>http://minsoo9506.github.io/posts/</link>
         <description>All Posts | minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 25 Nov 2022 13:01:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 03 Jan 2023 09:02:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[k8s] Pod</title>
+    <link>http://minsoo9506.github.io/01_lecture_pod/</link>
+    <pubDate>Tue, 03 Jan 2023 09:02:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/01_lecture_pod/</guid>
+    <description><![CDATA[<p>k8s를 구성하는 object중에서 Pod에 대해 알아보자.</p>]]></description>
+</item><item>
+    <title>[k8s] 기본개념</title>
+    <link>http://minsoo9506.github.io/00_lecture_basic/</link>
+    <pubDate>Tue, 03 Jan 2023 09:02:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/00_lecture_basic/</guid>
+    <description><![CDATA[<p>k8s에 대한 기본적인 내용을 알아보자.</p>]]></description>
+</item><item>
     <title>[Linux Shell] Shell Script 명령어 정리</title>
     <link>http://minsoo9506.github.io/05-shell/</link>
     <pubDate>Fri, 25 Nov 2022 13:01:00 &#43;0900</pubDate>
@@ -59,19 +73,5 @@
     <author>Author</author>
     <guid>http://minsoo9506.github.io/04-linux-udemy/</guid>
     <description><![CDATA[<p>리눅스 명령어 정리</p>]]></description>
-</item><item>
-    <title>[Docker] docker-compose</title>
-    <link>http://minsoo9506.github.io/04_udemy_docker/</link>
-    <pubDate>Sun, 26 Jun 2022 09:02:00 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/04_udemy_docker/</guid>
-    <description><![CDATA[<p>docker compose에 대해 알아보자.</p>]]></description>
-</item><item>
-    <title>[Docker] Network</title>
-    <link>http://minsoo9506.github.io/03_udemy_docker/</link>
-    <pubDate>Sat, 25 Jun 2022 09:02:00 &#43;0900</pubDate>
-    <author>Author</author>
-    <guid>http://minsoo9506.github.io/03_udemy_docker/</guid>
-    <description><![CDATA[<p>도커의 네트워크에 대해 알아보자.</p>]]></description>
 </item></channel>
 </rss>

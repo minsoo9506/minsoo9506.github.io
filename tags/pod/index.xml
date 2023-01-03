@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Pod - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/pod/</link>
+        <description>Pod - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 03 Jan 2023 09:02:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/pod/" rel="self" type="application/rss+xml" /><item>
+    <title>[k8s] Pod</title>
+    <link>http://minsoo9506.github.io/01_lecture_pod/</link>
+    <pubDate>Tue, 03 Jan 2023 09:02:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/01_lecture_pod/</guid>
+    <description><![CDATA[<p>k8s를 구성하는 object중에서 Pod에 대해 알아보자.</p>]]></description>
+</item></channel>
+</rss>
