@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>CronJob - Tag - minsoo9506</title>
+        <link>http://minsoo9506.github.io/tags/cronjob/</link>
+        <description>CronJob - Tag - minsoo9506</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 06 Jan 2023 09:02:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/tags/cronjob/" rel="self" type="application/rss+xml" /><item>
+    <title>[k8s] Controller</title>
+    <link>http://minsoo9506.github.io/03_lecture_controller/</link>
+    <pubDate>Fri, 06 Jan 2023 09:02:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/03_lecture_controller/</guid>
+    <description><![CDATA[<p>k8s를 구성하는 object중에서 Controller들에 대해 알아보자.</p>]]></description>
+</item></channel>
+</rss>
