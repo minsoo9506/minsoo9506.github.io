@@ -3,7 +3,14 @@
         <title>kubernetes - Category - minsoo9506</title>
         <link>http://minsoo9506.github.io/categories/kubernetes/</link>
         <description>kubernetes - Category - minsoo9506</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 09 Jan 2023 09:00:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/kubernetes/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 10 Jan 2023 09:00:00 &#43;0900</lastBuildDate><atom:link href="http://minsoo9506.github.io/categories/kubernetes/" rel="self" type="application/rss+xml" /><item>
+    <title>[k8s] Ingress</title>
+    <link>http://minsoo9506.github.io/05_lecture_ingress/</link>
+    <pubDate>Tue, 10 Jan 2023 09:00:00 &#43;0900</pubDate>
+    <author>Author</author>
+    <guid>http://minsoo9506.github.io/05_lecture_ingress/</guid>
+    <description><![CDATA[<p>외부의 요청과 k8s 내부를 연결해주는 Ingress에 대해 알아보자.</p>]]></description>
+</item><item>
     <title>[k8s] Service</title>
     <link>http://minsoo9506.github.io/04_lecture_service/</link>
     <pubDate>Mon, 09 Jan 2023 09:00:00 &#43;0900</pubDate>
